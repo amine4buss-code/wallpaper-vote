@@ -70,7 +70,7 @@
             -webkit-backdrop-filter: blur(10px);
             padding: 18px 28px;
             border-radius: 100px;
-            margin-bottom: 48px;
+            margin-bottom: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.03), 0 2px 5px rgba(0,0,0,0.02), inset 0 0 0 1px rgba(255,255,255,0.7);
             border: 1px solid rgba(255, 245, 235, 0.6);
         }
@@ -116,6 +116,34 @@
             box-shadow: inset 0 -2px 0 #5a3f39, 0 4px 8px rgba(0,0,0,0.1);
         }
         .winner-note { font-size: 0.95rem; color: #6b4b3e; font-weight: 600; }
+
+        /* ---------- VALUE PROPOSITION BANNER – clear & friendly ---------- */
+        .value-prop {
+            background: linear-gradient(145deg, #ffede3, #ffe6d9);
+            border-radius: 80px;
+            padding: 14px 28px;
+            margin: 0 0 30px 0;
+            text-align: center;
+            border: 1px solid #ffc6ad;
+            box-shadow: 0 6px 0 #d6957b, 0 8px 16px rgba(0,0,0,0.03);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #4a342e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .value-prop span {
+            background: #ff7b5c;
+            color: white;
+            padding: 6px 18px;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
         
         /* headlines – refined */
         .daily-headline {
@@ -473,14 +501,184 @@
         .puzzle-btn:active { transform: translateY(12px); box-shadow: 0 2px 0 #8f4e3a, 0 15px 30px rgba(200, 130, 80, 0.2); }
         .puzzle-btn span { font-size: 2rem; }
         
-        /* ---------- PUZZLE OVERLAY (unchanged, works perfectly) ---------- */
-        /* (keeping all existing device mockup styles – they are perfect) */
-        .puzzle-overlay { /* ... */ }
-        /* all device styles remain exactly as before – we are not touching them */
-        
-        /* all device mockup styles from your previous version are still here, unmodified */
-        /* (I've kept them intact – no need to repeat them here, they are preserved) */
-        /* ... (all your device CSS is untouched, just copied below) */
+        /* ---------- PUZZLE OVERLAY – FULLY RESTORED! WORKS PERFECTLY ---------- */
+        .puzzle-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(6px);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .puzzle-overlay.active { display: flex; }
+        .puzzle-card {
+            background: #fff9f0;
+            border-radius: 64px 64px 48px 48px;
+            padding: 30px;
+            max-width: 750px;
+            width: 90%;
+            border: 6px solid #ffc6ad;
+            box-shadow: 0 18px 0 #a8624b;
+            text-align: center;
+            position: relative;
+        }
+        .puzzle-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #402b24;
+            margin-bottom: 10px;
+        }
+        .puzzle-selector {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+        .puzzle-thumb {
+            width: 100px;
+            height: 100px;
+            border-radius: 24px;
+            border: 5px solid #ffd8bf;
+            box-shadow: 0 6px 0 #b37b66;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .puzzle-thumb:hover {
+            transform: scale(1.05);
+            border-color: #ffa07a;
+        }
+        .puzzle-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 18px;
+        }
+        .puzzle-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            width: 360px;
+            height: 360px;
+            margin: 20px auto;
+            background: #ffe8dd;
+            padding: 2px;
+            border: 4px solid #ffad8a;
+            box-shadow: 0 10px 0 #b37b66;
+            border-radius: 8px;
+        }
+        .puzzle-piece {
+            width: 100%;
+            height: 100%;
+            background-color: #ffe3d6;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: 360px 360px;
+            background-repeat: no-repeat;
+            cursor: grab;
+            transition: 0.05s;
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+        }
+        .puzzle-piece:active { cursor: grabbing; }
+        .celebration-8s {
+            background: linear-gradient(145deg, #ffeaa5, #ffd48a);
+            padding: 30px 20px;
+            border-radius: 80px;
+            font-size: 2.5rem;
+            margin: 20px 0;
+            border: 8px solid #fff1b5;
+            animation: dance 0.6s infinite alternate, partyGlow 0.8s infinite alternate, wiggle 0.3s infinite;
+            position: relative;
+            box-shadow: 0 0 30px #ffb347;
+            font-weight: 800;
+            letter-spacing: 4px;
+            color: #2d1f1c;
+            text-shadow: 2px 2px 0 #fff8e7, 4px 4px 0 #ffc2a1;
+            transform-origin: center;
+        }
+        @keyframes dance {
+            0% { transform: scale(1) rotate(-1deg); }
+            100% { transform: scale(1.15) rotate(2deg); }
+        }
+        @keyframes wiggle {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        @keyframes partyGlow {
+            from { box-shadow: 0 0 20px #ffae42, 0 0 40px #ff8c00; }
+            to   { box-shadow: 0 0 50px #ffd700, 0 0 90px #ffaa33; }
+        }
+        .confetti {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #ffb3c6;
+            opacity: 0.9;
+            animation: fall 2s linear infinite;
+            border-radius: 2px;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(200px) rotate(360deg); opacity: 0; }
+        }
+        .btn-small {
+            background: #ffe0b5;
+            padding: 12px 24px;
+            border-radius: 50px;
+            border: 3px solid #ffad8a;
+            font-weight: 700;
+            margin: 8px;
+            box-shadow: 0 4px 0 #b37b66;
+            cursor: pointer;
+        }
+        .btn-small:active { transform: translateY(5px); box-shadow: 0 1px 0 #b37b66; }
+        .signature-input {
+            border: 4px dashed #ffad8a;
+            border-radius: 60px;
+            padding: 12px 24px;
+            font-size: 1.2rem;
+            width: 80%;
+            margin: 15px 0;
+            text-align: center;
+            font-family: 'Quicksand', cursive;
+        }
+        .signature-input:focus {
+            border-color: #ff7b5c;
+            box-shadow: 0 0 0 4px #ffe0d4;
+            outline: none;
+        }
+        .social-icons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 25px 0 10px;
+        }
+        .social-icon {
+            background: #ffdcc2;
+            padding: 12px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid white;
+            box-shadow: 0 5px 0 #c47a5e;
+            cursor: pointer;
+        }
+        .social-icon:active { transform: translateY(5px); box-shadow: 0 1px 0 #9b5e4a; }
         
         /* ---------- 4 DEVICES CAROUSEL – FULL MOCKUPS (preserved) ---------- */
         .devices-overlay {
@@ -567,6 +765,12 @@
                 <span class="countdown-number" id="countdownDisplay">00:00:00</span>
                 <span style="background: #ffc6ad; padding: 5px 12px; border-radius: 30px;">UTC+0</span>
             </div>
+        </div>
+
+        <!-- ========== VALUE PROPOSITION – CLEAR & FRIENDLY ========== -->
+        <div class="value-prop">
+            <span>✨ FREE DAILY</span>
+            High-quality AI wallpapers, download free. Fresh batch every day – vote for your favorite!
         </div>
         
         <!-- Info popup (What's this?) -->
@@ -816,7 +1020,6 @@
             let pastWinners = [];
             const PAST_WINNERS_KEY = 'wallrank_past_winners';
             
-            // Load past winners from localStorage
             function loadPastWinners() {
                 const stored = localStorage.getItem(PAST_WINNERS_KEY);
                 if (stored) {
@@ -829,43 +1032,32 @@
                     pastWinners = [];
                 }
             }
-            
-            // Save past winners to localStorage
             function savePastWinners() {
-                // Keep only last 12 winners to avoid clutter
                 if (pastWinners.length > 12) pastWinners = pastWinners.slice(0, 12);
                 localStorage.setItem(PAST_WINNERS_KEY, JSON.stringify(pastWinners));
             }
-            
-            // Add a winner to history
             function addWinnerToHistory(winnerId, date) {
                 const wp = wallpapers.find(w => w.id === winnerId);
                 if (!wp) return;
-                
                 const winnerEntry = {
                     id: winnerId,
                     title: wp.title,
                     filename: wp.filename,
                     votes: wp.votes,
                     downloads: wp.downloads,
-                    date: date || new Date().toISOString().split('T')[0] // YYYY-MM-DD
+                    date: date || new Date().toISOString().split('T')[0]
                 };
-                
-                pastWinners.unshift(winnerEntry); // newest first
+                pastWinners.unshift(winnerEntry);
                 savePastWinners();
                 renderWinnersHistory();
             }
-            
-            // Render the winners grid
             function renderWinnersHistory() {
                 const grid = document.getElementById('winnersGrid');
                 if (!grid) return;
-                
                 if (pastWinners.length === 0) {
                     grid.innerHTML = '<div class="empty-history">✨ No past winners yet. Be the first to vote!</div>';
                     return;
                 }
-                
                 let html = '';
                 pastWinners.forEach(winner => {
                     html += `
@@ -888,7 +1080,6 @@
             function saveVoteRecord() { localStorage.setItem(`voteRecord_${todayKey}`, JSON.stringify(userVoteRecord)); }
             loadVoteRecord();
             
-            // Load saved votes/downloads
             wallpapers.forEach(w => { let saved = localStorage.getItem(`dailyWall_${w.id}_${todayKey}`); if (saved) { try { saved = JSON.parse(saved); w.votes = saved.votes || 0; w.downloads = saved.downloads || 0; } catch(e) {} } });
             
             const grid = document.getElementById('wallGrid');
@@ -1059,15 +1250,12 @@
                     
                     if (celebration10minTimer) clearTimeout(celebration10minTimer);
                     celebration10minTimer = setTimeout(() => {
-                        // 🏆 ADD WINNER TO HISTORY BEFORE RESETTING
                         if (winnerId) {
                             const todayDate = new Date();
-                            todayDate.setDate(todayDate.getDate() - 1); // yesterday's date
+                            todayDate.setDate(todayDate.getDate() - 1);
                             const dateStr = todayDate.toISOString().split('T')[0];
                             addWinnerToHistory(winnerId, dateStr);
                         }
-                        
-                        // Load tomorrow's wallpapers
                         for (let i = 0; i < wallpapers.length; i++) {
                             wallpapers[i].filename = tomorrowWallpapers[i].filename;
                             wallpapers[i].title = tomorrowWallpapers[i].title;
@@ -1081,7 +1269,7 @@
                         userVoteRecord = {};
                         saveVoteRecord();
                         renderCards();
-                    }, 600000); // 10 minutes
+                    }, 600000);
                 }
             }
             setInterval(checkMidnightAndWinner, 1000);
