@@ -90,20 +90,63 @@
             margin-top: 4px;
         }
         
-        /* AUTO-LOOPING HERO SHOWCASE */
+        /* 🆕 AUTO-LOOPING HERO SHOWCASE WITH FLOATING BACKGROUND */
         .hero-showcase {
             margin: 0 0 60px 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 500px;
+            min-height: 540px;
             width: 100%;
+            position: relative; /* Crucial for absolute background cards */
+            z-index: 1;
         }
+        
+        /* Floating Background Cards */
+        .hero-bg-card {
+            position: absolute;
+            width: 200px;
+            aspect-ratio: 4 / 5;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            opacity: 0.5; /* Keeps them distinct from the main device */
+            z-index: -1;
+            pointer-events: none; /* Ensures they don't block clicks */
+            border: 4px solid var(--surface); /* Professional polaroid-style frame */
+            background: var(--surface);
+        }
+        .hero-bg-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Ambient floating animation */
+        @keyframes floatIdle {
+            0% { transform: translateY(0px) rotate(var(--rot)); }
+            50% { transform: translateY(-12px) rotate(var(--rot)); }
+            100% { transform: translateY(0px) rotate(var(--rot)); }
+        }
+
+        /* Placement in the empty spaces */
+        .float-1 { --rot: -6deg; top: 5%; left: 0%; animation: floatIdle 6s ease-in-out infinite; }
+        .float-2 { --rot: 4deg; bottom: 5%; left: 16%; animation: floatIdle 8s ease-in-out infinite reverse; }
+        .float-3 { --rot: 8deg; top: 10%; right: 0%; animation: floatIdle 7s ease-in-out infinite; }
+        .float-4 { --rot: -4deg; bottom: 2%; right: 16%; animation: floatIdle 9s ease-in-out infinite reverse; }
+
+        @media (max-width: 950px) {
+            .hero-bg-card { display: none; } /* Hide on smaller screens to prevent clutter */
+        }
+
         .showcase-container {
             width: 100%;
             display: flex;
             justify-content: center;
+            position: relative;
+            z-index: 10; /* Keeps devices above the floating cards */
         }
+        
         .showcase-slide {
             display: none;
             opacity: 0;
@@ -126,25 +169,25 @@
         @keyframes fadeInSleek { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
         /* DEVICE MOCKUPS (Pure CSS) */
-        .device-phone { width: 240px; height: 480px; background: #1a1a1a; border-radius: 36px; padding: 10px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid #333; }
+        .device-phone { width: 240px; height: 480px; background: #1a1a1a; border-radius: 36px; padding: 10px; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2); border: 1px solid #333; }
         .phone-screen { width: 100%; height: 100%; background: black; border-radius: 28px; overflow: hidden; position: relative; }
         .phone-notch { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 90px; height: 25px; background: #1a1a1a; border-radius: 20px; z-index: 10; }
         .phone-home-bar { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); width: 100px; height: 4px; background: rgba(255,255,255,0.4); border-radius: 10px; }
         
         .device-laptop { width: 420px; perspective: 1200px; }
-        .laptop-body { background: #1a1a1a; border-radius: 12px 12px 0 0; padding: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .laptop-body { background: #1a1a1a; border-radius: 12px 12px 0 0; padding: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
         .laptop-bezel { background: #0a0a0a; border-radius: 8px; padding: 6px; }
         .laptop-screen { background: black; border-radius: 4px; width: 100%; aspect-ratio: 16/10; overflow: hidden; }
         .laptop-base { width: 100%; height: 16px; background: #2a2a2a; border-radius: 0 0 8px 8px; border-bottom: 2px solid #111; }
         
         .device-monitor { width: 420px; }
-        .monitor-body { background: #1a1a1a; border-radius: 8px; padding: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .monitor-body { background: #1a1a1a; border-radius: 8px; padding: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
         .monitor-bezel { background: #0a0a0a; border-radius: 4px; padding: 6px; }
         .monitor-screen { background: black; border-radius: 2px; width: 100%; aspect-ratio: 16/9; overflow: hidden; }
         .monitor-stand { width: 60px; height: 40px; background: #2a2a2a; margin: 0 auto; }
         .monitor-base { width: 140px; height: 8px; background: #333; margin: 0 auto; border-radius: 4px; }
         
-        .device-tablet { width: 300px; height: 420px; background: #1a1a1a; border-radius: 24px; padding: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .device-tablet { width: 300px; height: 420px; background: #1a1a1a; border-radius: 24px; padding: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
         .tablet-bezel { background: #0a0a0a; border-radius: 16px; padding: 6px; height: 100%; }
         .tablet-screen { background: black; border-radius: 12px; width: 100%; height: 100%; overflow: hidden; position: relative; }
         .tablet-home-bar { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: rgba(255,255,255,0.4); border-radius: 10px; }
@@ -285,6 +328,12 @@
         </header>
 
         <section class="hero-showcase" id="heroShowcase">
+            
+            <div class="hero-bg-card float-1"><img src="https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/1.png" alt=""></div>
+            <div class="hero-bg-card float-2"><img src="https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/2.png" alt=""></div>
+            <div class="hero-bg-card float-3"><img src="https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/3.png" alt=""></div>
+            <div class="hero-bg-card float-4"><img src="https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/4.png" alt=""></div>
+
             <div class="showcase-container">
                 
                 <div class="showcase-slide active" id="sc-slide-phone">
@@ -362,7 +411,7 @@
             ];
             
             const todayKey = new Date().toISOString().split('T')[0]; 
-            let userVoteRecord = {}; // tracks: { id: 1 (up), id: -1 (down) }
+            let userVoteRecord = {}; 
 
             // Load saved data
             const storedVotes = localStorage.getItem(`vr_${todayKey}`);
@@ -422,15 +471,13 @@
                 
                 const currentVote = userVoteRecord[id] || 0;
                 
-                // If clicking the same button, remove vote (toggle off)
                 if (currentVote === direction) {
                     wp.score -= direction;
                     userVoteRecord[id] = 0;
                     if (event) createReaction(event.clientX, event.clientY, '↺', '#94a3b8');
                 } else {
-                    // Reversing vote or new vote
-                    if (currentVote !== 0) wp.score -= currentVote; // remove old
-                    wp.score += direction; // apply new
+                    if (currentVote !== 0) wp.score -= currentVote; 
+                    wp.score += direction; 
                     userVoteRecord[id] = direction;
                     
                     if (event) {
@@ -440,11 +487,9 @@
                     }
                 }
                 
-                // Save to local storage
                 localStorage.setItem(`vr_${todayKey}`, JSON.stringify(userVoteRecord));
                 localStorage.setItem(`wall_${id}_${todayKey}`, JSON.stringify({ score: wp.score }));
                 
-                // Track internally via GA
                 gtag('event', 'vote', { 'event_category': 'engagement', 'value': wp.score });
                 
                 renderCards();
@@ -455,7 +500,7 @@
                 
                 const link = document.createElement('a'); 
                 link.href = wp.filename; 
-                link.download = `wallrank-${id}.png`; // Suggests download name
+                link.download = `wallrank-${id}.png`; 
                 link.target = '_blank'; 
                 link.rel = 'noopener'; 
                 link.click();
@@ -464,7 +509,6 @@
                 if (event) createReaction(event.clientX, event.clientY, '✓', '#10b981');
             }
             
-            // Event Delegation for buttons
             document.addEventListener('click', function(e) {
                 const btn = e.target.closest('button');
                 if (!btn) return;
@@ -492,7 +536,6 @@
             function updateShowcase() {
                 scWallIndex++;
                 
-                // Switch device after showing all 4 images
                 if (scWallIndex >= wallpapers.length) {
                     scWallIndex = 0;
                     scDeviceIndex = (scDeviceIndex + 1) % showcaseSlides.length;
@@ -502,7 +545,6 @@
                     });
                 }
                 
-                // Fade effect for image swap
                 showcaseImages.forEach(img => {
                     if(img) {
                         img.style.opacity = '0.4'; 
