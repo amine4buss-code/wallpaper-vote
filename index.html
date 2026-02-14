@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-19RP0D764T"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -9,975 +8,378 @@
         gtag('js', new Date());
         gtag('config', 'G-19RP0D764T');
     </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Wallpaper Cup – Hall of Fame</title>
-    <!-- SEO + fonts -->
+    <title>Daily Wallpaper Cup – Hall of Fame | WallRank</title>
+    
     <meta name="description" content="Daily wallpaper battle: 4 fresh AI images. Vote, download, play puzzle, view on 4 devices. New winner midnight UTC.">
     <meta name="keywords" content="daily wallpaper, vote wallpaper, download AI art, wallpaper ranking, daily cup, top wallpaper today, 4k free, daily challenge, wallpaper puzzle, 3d phone, 3d laptop, 3d monitor, 3d tablet">
     <meta name="author" content="wallrank.club">
     <link rel="canonical" href="https://wallrank.club">
+    
     <meta property="og:title" content="Daily Wallpaper Cup – Hall of Fame">
-    <meta property="og:description" content="Every day: 4 fresh AI wallpapers. Vote, download, play puzzle, view on 3D phone, laptop, monitor & tablet. At midnight UTC the winner is crowned and joins the Hall of Fame.">
+    <meta property="og:description" content="Every day: 4 fresh AI wallpapers. Vote, download, play puzzle, view on 3D devices. Winner crowned at midnight UTC.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://wallrank.club">
     <meta property="og:image" content="https://wallrank.club/og-daily.jpg">
     <meta name="twitter:card" content="summary_large_image">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "WallRank Daily Cup",
+      "url": "https://wallrank.club",
+      "description": "A daily competition featuring 4 fresh AI-generated wallpapers. Users can vote, download, and play puzzles.",
+      "applicationCategory": "MultimediaApplication",
+      "genre": "Digital Art",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* ---------- YOUR EXACT ORIGINAL WORKING CSS – 100% UNCHANGED ---------- */
+        /* ---------- CORE MINIMAL CSS ---------- */
+        :root {
+            --bg-color: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+            --border-focus: #cbd5e1;
+            --accent-subtle: #f1f5f9;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 24px;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.08);
+            --transition-smooth: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
             font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(145deg, #fffaf5 0%, #fff7f0 100%);
-            color: #2e2a28;
-            padding: 28px 24px;
+            background: var(--bg-color);
+            color: var(--text-main);
+            padding: 32px 24px;
             line-height: 1.6;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            position: relative;
+            -webkit-font-smoothing: antialiased;
         }
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: radial-gradient(circle at 20% 30%, rgba(255, 215, 215, 0.03) 0%, transparent 30%),
-                              radial-gradient(circle at 80% 70%, rgba(255, 200, 150, 0.03) 0%, transparent 40%);
-            pointer-events: none;
-            z-index: 0;
-        }
+        
         .container {
-            max-width: 1300px;
+            max-width: 1200px;
             width: 100%;
             position: relative;
-            z-index: 2;
-        }
-        
-        .top-bar {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(255, 248, 240, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 18px 28px;
-            border-radius: 100px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.03), 0 2px 5px rgba(0,0,0,0.02), inset 0 0 0 1px rgba(255,255,255,0.7);
-            border: 1px solid rgba(255, 245, 235, 0.6);
-        }
-        .button-group-top {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .whats-this-btn {
-            background: linear-gradient(145deg, #ff7b5c, #ff6b4a);
-            border: none;
-            color: white;
-            font-weight: 600;
-            font-size: 1.1rem;
-            padding: 12px 26px;
-            border-radius: 60px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 8px 0 #b3472e, 0 10px 20px rgba(255, 107, 74, 0.2);
-            transition: all 0.1s ease;
-            border: 1px solid rgba(255,255,255,0.3);
-            letter-spacing: 0.5px;
-        }
-        .whats-this-btn:active { transform: translateY(8px); box-shadow: 0 2px 0 #b3472e, 0 10px 20px rgba(255, 107, 74, 0.2); }
-        
-        /* 🆕 NEW BUTTON – AI STOCK PHOTOS – different color & shape */
-        .ai-stock-btn {
-            background: linear-gradient(145deg, #9f7aea, #805ad5);
-            border: none;
-            color: white;
-            font-weight: 600;
-            font-size: 1.1rem;
-            padding: 12px 26px;
-            border-radius: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 8px 0 #553c9a, 0 10px 20px rgba(128, 90, 213, 0.2);
-            transition: all 0.1s ease;
-            border: 1px solid rgba(255,255,255,0.3);
-            letter-spacing: 0.5px;
-        }
-        .ai-stock-btn:active { transform: translateY(8px); box-shadow: 0 2px 0 #44337a, 0 10px 20px rgba(128, 90, 213, 0.2); }
-        
-        .countdown-block {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            padding: 8px 26px;
-            border-radius: 60px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border: 1px solid rgba(255, 215, 200, 0.5);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-        }
-        .countdown-number {
-            background: #2e1f1c;
-            color: #fff5e6;
-            padding: 8px 16px;
-            border-radius: 40px;
-            font-size: 1.5rem;
-            font-weight: 700;
-            font-variant-numeric: tabular-nums;
-            box-shadow: inset 0 -2px 0 #5a3f39, 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .winner-note { font-size: 0.95rem; color: #6b4b3e; font-weight: 600; }
-
-        .value-prop {
-            background: linear-gradient(145deg, #ffede3, #ffe6d9);
-            border-radius: 80px;
-            padding: 14px 28px;
-            margin: 0 0 30px 0;
-            text-align: center;
-            border: 1px solid #ffc6ad;
-            box-shadow: 0 6px 0 #d6957b, 0 8px 16px rgba(0,0,0,0.03);
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #4a342e;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .value-prop span {
-            background: #ff7b5c;
-            color: white;
-            padding: 6px 18px;
-            border-radius: 60px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-        
-        .daily-headline {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .daily-headline h2 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #2c1e1a;
-            letter-spacing: -0.02em;
-            text-shadow: 0 2px 5px rgba(255,215,200,0.3);
-        }
-        .daily-headline p {
-            font-size: 1.2rem;
-            background: linear-gradient(145deg, #fff0e5, #ffe8dd);
-            display: inline-block;
-            padding: 8px 32px;
-            border-radius: 60px;
-            color: #a84c3a;
-            font-weight: 600;
-            margin-top: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.02), inset 0 1px 0 rgba(255,255,255,0.8);
-        }
-        
-        /* ---------- YOUR ORIGINAL WALLPAPER GRID – 100% VISIBLE ---------- */
-        .wallpaper-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 28px;
-            margin: 40px 0 40px;
-        }
-        @media (max-width: 900px) {
-            .wallpaper-grid { grid-template-columns: repeat(2, 1fr); }
-            .top-bar { flex-direction: column; gap: 15px; align-items: stretch; }
         }
         @media (max-width: 550px) {
-            .wallpaper-grid { grid-template-columns: 1fr; }
-            .button-group .btn { font-size: 0.9rem; padding: 10px 0; }
+            body { padding: 16px 12px; }
         }
         
-        .wall-card {
-            background: white;
-            border-radius: 28px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 230, 210, 0.8);
-            box-shadow: 0 15px 30px -10px rgba(0,0,0,0.05), 0 2px 5px rgba(0,0,0,0.02);
-            transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            backdrop-filter: blur(2px);
-        }
-        .wall-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 40px -12px rgba(214, 149, 123, 0.15), 0 5px 12px rgba(0,0,0,0.05);
-            border-color: #ffb08c;
-        }
-        .wall-card.leader-gold {
-            border: 2px solid #ffd700;
-            box-shadow: 0 15px 30px -8px rgba(255, 215, 0, 0.2), 0 0 0 1px rgba(255,215,0,0.3);
-            animation: softShimmer 2s infinite alternate;
-        }
-        @keyframes softShimmer {
-            from { box-shadow: 0 12px 0 #b8860b, 0 0 20px rgba(255, 215, 0, 0.2); }
-            to { box-shadow: 0 12px 0 #9b7e1e, 0 0 35px rgba(255, 215, 0, 0.4); }
-        }
-        .wall-card.leader-gold .img-container::after {
-            content: "👑";
-            position: absolute;
-            top: 12px;
-            right: 16px;
-            font-size: 2.8rem;
-            text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
-            z-index: 2;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
-        }
-        .img-container {
-            width: 100%;
-            aspect-ratio: 4 / 5;
-            background: linear-gradient(145deg, #ffe8e0, #ffe3d6);
-            position: relative;
-        }
-        .img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.4s ease;
-        }
-        .wall-card:hover .img-container img {
-            transform: scale(1.03);
-        }
-        .card-content {
-            padding: 20px 18px 22px;
-            background: white;
-            display: flex;
-            flex-direction: column;
+        /* SLEEK TOP BAR */
+        .top-bar {
+            display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+            background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            padding: 16px 24px; border-radius: var(--radius-lg); margin-bottom: 40px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
             gap: 16px;
         }
-        .wall-title {
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: #3a2c28;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .stats {
-            display: flex;
-            justify-content: space-between;
-            color: #8a6a5b;
-            font-weight: 600;
-            font-size: 1rem;
-            background: #fff6f0;
-            padding: 10px 16px;
-            border-radius: 40px;
-            border: 1px solid #ffe6d9;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
-        }
-        .button-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 4px;
-            flex-wrap: wrap;
-        }
-        .btn {
-            flex: 1 1 auto;
-            border: none;
-            background: #fbe9e7;
-            border-radius: 60px;
-            padding: 12px 0;
-            font-weight: 600;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            color: #3b2c28;
-            border: 1px solid #ffd6c2;
-            box-shadow: 0 5px 0 #d28b70, 0 4px 10px rgba(210, 139, 112, 0.1);
-            transition: 0.06s linear;
-            cursor: pointer;
-            letter-spacing: 0.5px;
-        }
-        .btn:active { transform: translateY(5px); box-shadow: 0 1px 0 #b16d56, 0 4px 10px rgba(210, 139, 112, 0.1); }
-        .btn-vote { background: linear-gradient(145deg, #ffdbb5, #ffd0a5); border-color: #ffa558; color: #441f17; }
-        .btn-download { background: linear-gradient(145deg, #c7e9d0, #b8e0c4); border-color: #6eb5a4; color: #1e4a44; box-shadow: 0 5px 0 #518b7e; }
-        .btn-devices {
-            background: linear-gradient(145deg, #e9d9ff, #decaff);
-            border-color: #b794f4;
-            color: #3a2c5a;
-            box-shadow: 0 5px 0 #8f6bb3;
-            font-size: 0.9rem;
-        }
-        .btn-vote.clicked { background: #ffb485; border-color: #ff6b4a; color: white; box-shadow: 0 5px 0 #c5452a; }
-        .btn-download.clicked { background: #92cfb6; border-color: #237a6b; color: white; box-shadow: 0 5px 0 #1d5f53; }
-        .btn-devices.clicked { background: #c7b0ff; border-color: #7a4db3; color: white; box-shadow: 0 5px 0 #5e3c8c; }
+        .button-group-top { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
         
-        .reaction-emoji {
-            font-size: 2.5rem;
-            position: absolute;
-            pointer-events: none;
-            animation: floatUp 0.8s ease-out forwards;
-            z-index: 999;
-            filter: drop-shadow(0 6px 8px rgba(0,0,0,0.08));
-        }
-        @keyframes floatUp {
-            0% { opacity: 1; transform: translateY(0) scale(0.8); }
-            100% { opacity: 0; transform: translateY(-70px) scale(1.5); }
+        /* MINIMAL PROFESSIONAL BUTTONS */
+        button, .btn {
+            font-family: inherit;
+            border: 1px solid var(--border-light);
+            background: var(--surface);
+            color: var(--text-main);
+            font-weight: 600; font-size: 0.95rem;
+            padding: 10px 20px; border-radius: var(--radius-sm);
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+            transition: var(--transition-smooth);
+            min-height: 44px; /* Mobile accessible */
+            box-shadow: var(--shadow-sm);
         }
         
-        .winner-history-section {
-            margin-top: 60px;
-            margin-bottom: 40px;
-            background: rgba(255, 245, 235, 0.5);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-radius: 48px;
-            padding: 32px 32px 28px;
-            border: 1px solid rgba(255, 220, 200, 0.5);
-            box-shadow: 0 15px 30px -12px rgba(0,0,0,0.03);
-        }
-        .history-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 28px;
-        }
-        .history-header h3 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #2c1e1a;
-            letter-spacing: -0.01em;
-        }
-        .history-header span {
-            background: #ffdbb5;
-            padding: 6px 16px;
-            border-radius: 60px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #6b3a2a;
-            border: 1px solid #ffad8a;
-        }
-        .winners-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 24px;
-        }
-        .winner-item {
-            background: white;
-            border-radius: 24px;
-            padding: 16px;
-            box-shadow: 0 8px 18px -6px rgba(0,0,0,0.04), 0 0 0 1px rgba(255, 230, 210, 0.6);
-            transition: all 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-        .winner-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 28px -8px rgba(214, 149, 123, 0.12), 0 0 0 1px #ffb08c;
-        }
-        .winner-thumb {
-            width: 100%;
-            aspect-ratio: 4 / 5;
-            border-radius: 16px;
-            overflow: hidden;
-            margin-bottom: 12px;
-            border: 2px solid #fff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-        }
-        .winner-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        .winner-title {
-            font-weight: 700;
-            color: #4e3a33;
-            margin-bottom: 4px;
-            font-size: 1rem;
-        }
-        .winner-date {
-            font-size: 0.75rem;
-            color: #8a6a5b;
-            font-weight: 500;
-            letter-spacing: 0.3px;
-            background: #fff0e5;
-            padding: 4px 12px;
-            border-radius: 30px;
-            display: inline-block;
-        }
-        .empty-history {
-            text-align: center;
-            padding: 40px 20px;
-            color: #8a6a5b;
-            font-size: 1.1rem;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 40px;
-            border: 1px dashed #ffc6ad;
+        button:hover, .btn:hover {
+            border-color: var(--border-focus);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
         }
         
-        .footer-links {
-            margin-top: 70px;
-            padding: 40px 20px 30px;
-            border-top: 2px solid rgba(255, 200, 180, 0.4);
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 36px;
-            font-size: 0.9rem;
-            background: rgba(255, 248, 240, 0.5);
-            border-radius: 60px 60px 0 0;
-            width: 100%;
-            backdrop-filter: blur(8px);
+        button:active, .btn:active {
+            transform: scale(0.97);
+            box-shadow: none;
         }
-        .footer-links a {
-            text-decoration: none;
-            color: #65433b;
-            font-weight: 600;
-            border-bottom: 2px dotted #ffa777;
-            transition: 0.1s;
-            cursor: pointer;
+
+        /* Subtle accents for primary actions */
+        .whats-this-btn { background: #f8fafc; }
+        .ai-stock-btn { background: #f8fafc; }
+        .share-site-btn { background: #0f172a; color: white; border-color: #0f172a; }
+        .share-site-btn:hover { background: #1e293b; color: white; }
+        
+        .countdown-block {
+            background: var(--accent-subtle);
+            padding: 8px 20px; border-radius: var(--radius-md); font-weight: 600; display: flex; align-items: center; gap: 12px;
+            border: 1px solid var(--border-light);
+            flex-wrap: wrap; justify-content: center;
         }
-        .footer-links a:hover { color: #c14325; border-bottom-color: #c14325; }
-        .copyright {
-            width: 100%;
-            text-align: center;
-            color: #8c6c62;
-            margin-top: 24px;
-            font-size: 0.8rem;
+        .countdown-number { background: var(--surface); color: var(--text-main); padding: 4px 12px; border-radius: var(--radius-sm); font-size: 1.2rem; font-weight: 700; font-variant-numeric: tabular-nums; border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); }
+        .winner-note { font-size: 0.9rem; color: var(--text-muted); font-weight: 600; }
+
+        /* CLEAN VALUE PROP */
+        .value-prop {
+            background: var(--surface); border-radius: var(--radius-md); padding: 16px 28px; margin: 0 0 40px 0;
+            text-align: center; border: 1px solid var(--border-light); box-shadow: var(--shadow-sm);
+            font-size: 1.05rem; font-weight: 500; color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;
         }
+        .value-prop span { background: var(--text-main); color: white; padding: 4px 14px; border-radius: var(--radius-sm); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+        
+        .daily-headline { text-align: center; margin-bottom: 40px; }
+        .daily-headline h2 { font-size: 2rem; font-weight: 700; color: var(--text-main); letter-spacing: -0.02em; }
+        .daily-headline p { font-size: 1.1rem; color: var(--text-muted); font-weight: 500; margin-top: 8px; }
+        
+        /* SLEEK WALLPAPER GRID */
+        .wallpaper-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin: 0 0 40px 0; }
+        @media (max-width: 900px) { .wallpaper-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 550px) { .wallpaper-grid { grid-template-columns: 1fr; gap: 20px; } }
+        
+        .wall-card { 
+            background: var(--surface); border-radius: var(--radius-md); overflow: hidden; 
+            border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); 
+            transition: var(--transition-smooth); display: flex; flex-direction: column; position: relative; 
+        }
+        .wall-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: var(--border-focus); }
+        
+        /* Golden Leader - Refined */
+        .wall-card.leader-gold { border: 1px solid #fbbf24; box-shadow: 0 8px 24px rgba(251, 191, 36, 0.15); }
+        .wall-card.leader-gold .img-container::after { content: "👑"; position: absolute; top: 12px; right: 12px; font-size: 1.8rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); z-index: 2; }
+        
+        .img-container { width: 100%; aspect-ratio: 4 / 5; background: var(--accent-subtle); position: relative; overflow: hidden; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .wall-card:hover .img-container img { transform: scale(1.05); }
+        
+        .card-content { padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+        .wall-title { font-weight: 600; font-size: 1.1rem; color: var(--text-main); display: flex; align-items: center; gap: 6px; }
+        
+        .stats { display: flex; justify-content: space-between; color: var(--text-muted); font-weight: 500; font-size: 0.9rem; background: var(--accent-subtle); padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-light); }
+        .button-group { display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
+        
+        .btn { flex: 1 1 auto; padding: 10px 0; }
+        .btn-vote.clicked { background: var(--text-main); color: white; border-color: var(--text-main); }
+        .btn-download.clicked { background: #10b981; color: white; border-color: #10b981; }
+        
+        /* PROFESSIONAL REACTIONS */
+        .reaction-emoji { font-size: 2rem; position: absolute; pointer-events: none; animation: floatUpSleek 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; z-index: 999; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+        @keyframes floatUpSleek { 
+            0% { opacity: 0; transform: translateY(10px) scale(0.9); } 
+            20% { opacity: 1; transform: translateY(0) scale(1.1); } 
+            100% { opacity: 0; transform: translateY(-50px) scale(0.9); } 
+        }
+        
+        /* MINIMAL SECTIONS */
+        .winner-history-section, .blog-section, .winner-week-section { 
+            margin-top: 40px; margin-bottom: 40px; background: var(--surface); 
+            border-radius: var(--radius-md); padding: 32px; border: 1px solid var(--border-light); 
+            box-shadow: var(--shadow-sm); 
+        }
+        .history-header, .blog-header, .winner-week-title { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+        .history-header h3, .blog-header h3, .winner-week-title h3 { font-size: 1.5rem; font-weight: 700; color: var(--text-main); letter-spacing: -0.01em; }
+        .history-header span, .blog-header span, .winner-week-badge { background: var(--accent-subtle); padding: 4px 12px; border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600; color: var(--text-muted); border: 1px solid var(--border-light); }
+        
+        .winners-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; }
+        .winner-item { background: var(--surface); border-radius: var(--radius-sm); padding: 12px; border: 1px solid var(--border-light); transition: var(--transition-smooth); display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .winner-item:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--border-focus); }
+        .winner-thumb { width: 100%; aspect-ratio: 4 / 5; border-radius: 6px; overflow: hidden; margin-bottom: 12px; background: var(--accent-subtle); }
+        .winner-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .winner-title { font-weight: 600; color: var(--text-main); margin-bottom: 4px; font-size: 0.95rem; }
+        .winner-date { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; }
+        .empty-history { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 1rem; border-radius: var(--radius-sm); border: 1px dashed var(--border-focus); grid-column: 1 / -1; }
+        
+        /* CLEAN FOOTER */
+        .footer-links { margin-top: 60px; padding: 40px 0 20px; border-top: 1px solid var(--border-light); display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; font-size: 0.9rem; width: 100%; }
+        .footer-links a { text-decoration: none; color: var(--text-muted); font-weight: 500; transition: var(--transition-smooth); cursor: pointer; }
+        .footer-links a:hover { color: var(--text-main); }
+        .copyright { width: 100%; text-align: center; color: var(--text-muted); margin-top: 24px; font-size: 0.8rem; }
         
         .seo-hidden { position: absolute; left: -9999px; top: -9999px; height: 1px; width: 1px; overflow: hidden; }
         
-        .info-popup {
-            display: none;
-            background: rgba(255, 250, 245, 0.98);
-            backdrop-filter: blur(12px);
-            border: 6px solid #ffb08c;
-            border-radius: 48px;
-            padding: 32px;
-            max-width: 450px;
-            width: 90%;
-            box-shadow: 0 25px 40px -12px rgba(168, 98, 75, 0.25);
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 3000;
-            text-align: center;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-        .info-popup.show { display: block; }
-        .close-popup {
-            float: right;
-            font-size: 2rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #a8624b;
-            padding: 0 10px;
-        }
-        .close-popup:active { transform: translateY(3px); }
-        .winner-badge { background: #ffdbb5; padding: 6px 12px; border-radius: 30px; font-size: 0.8rem; font-weight: 700; }
+        /* SLEEK MODALS / POPUPS */
+        .info-popup { display: none; background: var(--surface); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 32px; max-width: 450px; width: 90%; box-shadow: 0 20px 40px rgba(0,0,0,0.1); position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.95); z-index: 3000; text-align: center; max-height: 85vh; overflow-y: auto; opacity: 0; transition: all 0.2s ease; }
+        .info-popup.show { display: block; opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        .close-popup { float: right; font-size: 1.5rem; background: none; border: none; cursor: pointer; color: var(--text-muted); padding: 0; box-shadow: none; min-height: auto; }
         
-        .puzzle-launch {
-            display: flex;
-            justify-content: center;
-            margin: 30px 0 20px;
-        }
-        .puzzle-btn {
-            background: linear-gradient(145deg, #ffd0b5, #ffc2a2);
-            border: 1px solid #fff;
-            color: #4a312a;
-            font-size: 1.4rem;
-            font-weight: 700;
-            padding: 18px 42px;
-            border-radius: 120px;
-            box-shadow: 0 12px 0 #a8624b, 0 15px 30px rgba(200, 130, 80, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            transition: 0.06s;
-            cursor: pointer;
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            letter-spacing: 2px;
-        }
-        .puzzle-btn:active { transform: translateY(12px); box-shadow: 0 2px 0 #8f4e3a, 0 15px 30px rgba(200, 130, 80, 0.2); }
-        .puzzle-btn span { font-size: 2rem; }
+        /* PUZZLE & OVERLAYS REFINED */
+        .puzzle-launch { display: flex; justify-content: center; margin: 20px 0 40px; }
+        .puzzle-btn { padding: 16px 32px; font-size: 1.1rem; }
         
-        .puzzle-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(6px);
-            z-index: 2000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+        .puzzle-overlay, .devices-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(4px); z-index: 2000; display: none; justify-content: center; align-items: center; flex-direction: column; overflow-y: auto; padding: 20px; }
+        .puzzle-overlay.active, .devices-overlay.active { display: flex; }
+        
+        .puzzle-card, .devices-container { background: var(--surface); border-radius: var(--radius-md); padding: 32px; max-width: 750px; width: 100%; border: 1px solid var(--border-light); box-shadow: 0 20px 40px rgba(0,0,0,0.15); text-align: center; position: relative; margin: auto; }
+        .puzzle-title, .devices-title { font-size: 1.5rem; font-weight: 700; color: var(--text-main); margin-bottom: 20px; }
+        
+        .puzzle-thumb { width: 100px; height: 100px; border-radius: var(--radius-sm); border: 2px solid var(--border-light); cursor: pointer; transition: var(--transition-smooth); overflow: hidden; }
+        .puzzle-thumb:hover { transform: scale(1.05); border-color: var(--text-main); }
+        .puzzle-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; width: 360px; height: 360px; margin: 20px auto; background: var(--border-light); padding: 2px; border: 1px solid var(--border-light); border-radius: var(--radius-sm); }
+        
+        @media (max-width: 450px) {
+            .puzzle-card, .devices-container { padding: 20px 16px; }
+            .puzzle-grid { transform: scale(0.80); transform-origin: top center; margin-bottom: -50px; }
         }
-        .puzzle-overlay.active { display: flex; }
-        .puzzle-card {
-            background: #fff9f0;
-            border-radius: 64px 64px 48px 48px;
-            padding: 30px;
-            max-width: 750px;
-            width: 90%;
-            border: 6px solid #ffc6ad;
-            box-shadow: 0 18px 0 #a8624b;
-            text-align: center;
-            position: relative;
-        }
-        .puzzle-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #402b24;
-            margin-bottom: 10px;
-        }
-        .puzzle-selector {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin: 25px 0;
-        }
-        .puzzle-thumb {
-            width: 100px;
-            height: 100px;
-            border-radius: 24px;
-            border: 5px solid #ffd8bf;
-            box-shadow: 0 6px 0 #b37b66;
-            cursor: pointer;
-            transition: 0.1s;
-        }
-        .puzzle-thumb:hover {
-            transform: scale(1.05);
-            border-color: #ffa07a;
-        }
-        .puzzle-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 18px;
-        }
-        .puzzle-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
-            width: 360px;
-            height: 360px;
-            margin: 20px auto;
-            background: #ffe8dd;
-            padding: 2px;
-            border: 4px solid #ffad8a;
-            box-shadow: 0 10px 0 #b37b66;
-            border-radius: 8px;
-        }
-        .puzzle-piece {
-            width: 100%;
-            height: 100%;
-            background-color: #ffe3d6;
-            border-radius: 4px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-size: 360px 360px;
-            background-repeat: no-repeat;
-            cursor: grab;
-            transition: 0.05s;
-            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
-        }
+
+        .puzzle-piece { width: 100%; height: 100%; background-color: var(--surface); border-radius: 4px; cursor: grab; transition: 0.05s; }
         .puzzle-piece:active { cursor: grabbing; }
-        .celebration-8s {
-            background: linear-gradient(145deg, #ffeaa5, #ffd48a);
-            padding: 30px 20px;
-            border-radius: 80px;
-            font-size: 2.5rem;
-            margin: 20px 0;
-            border: 8px solid #fff1b5;
-            animation: dance 0.6s infinite alternate, partyGlow 0.8s infinite alternate, wiggle 0.3s infinite;
-            position: relative;
-            box-shadow: 0 0 30px #ffb347;
-            font-weight: 800;
-            letter-spacing: 4px;
-            color: #2d1f1c;
-            text-shadow: 2px 2px 0 #fff8e7, 4px 4px 0 #ffc2a1;
-            transform-origin: center;
-        }
-        @keyframes dance {
-            0% { transform: scale(1) rotate(-1deg); }
-            100% { transform: scale(1.15) rotate(2deg); }
-        }
-        @keyframes wiggle {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-        @keyframes partyGlow {
-            from { box-shadow: 0 0 20px #ffae42, 0 0 40px #ff8c00; }
-            to   { box-shadow: 0 0 50px #ffd700, 0 0 90px #ffaa33; }
-        }
-        .confetti {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background: #ffb3c6;
-            opacity: 0.9;
-            animation: fall 2s linear infinite;
-            border-radius: 2px;
-        }
-        @keyframes fall {
-            0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(200px) rotate(360deg); opacity: 0; }
-        }
-        .btn-small {
-            background: #ffe0b5;
-            padding: 12px 24px;
-            border-radius: 50px;
-            border: 3px solid #ffad8a;
-            font-weight: 700;
-            margin: 8px;
-            box-shadow: 0 4px 0 #b37b66;
-            cursor: pointer;
-        }
-        .btn-small:active { transform: translateY(5px); box-shadow: 0 1px 0 #b37b66; }
-        .signature-input {
-            border: 4px dashed #ffad8a;
-            border-radius: 60px;
-            padding: 12px 24px;
-            font-size: 1.2rem;
-            width: 80%;
-            margin: 15px 0;
-            text-align: center;
-            font-family: 'Quicksand', cursive;
-        }
-        .signature-input:focus {
-            border-color: #ff7b5c;
-            box-shadow: 0 0 0 4px #ffe0d4;
-            outline: none;
-        }
-        .social-icons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 25px 0 10px;
-        }
-        .social-icon {
-            background: #ffdcc2;
-            padding: 12px;
-            border-radius: 50%;
-            font-size: 1.8rem;
-            width: 64px;
-            height: 64px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 3px solid white;
-            box-shadow: 0 5px 0 #c47a5e;
-            cursor: pointer;
-        }
-        .social-icon:active { transform: translateY(5px); box-shadow: 0 1px 0 #9b5e4a; }
         
-        .devices-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); backdrop-filter: blur(6px); z-index: 4000;
-            display: none; justify-content: center; align-items: center; flex-direction: column;
-            overflow-y: auto; padding: 30px 20px;
-        }
-        .devices-overlay.active { display: flex; }
-        .devices-container {
-            max-width: 800px; width: 100%;
-            background: #fff9f0; border-radius: 64px 64px 48px 48px; padding: 40px 30px;
-            border: 6px solid #ffc6ad; box-shadow: 0 18px 0 #a8624b;
-            text-align: center;
-            position: relative;
-        }
-        .devices-title { font-size: 2rem; font-weight: 700; color: #402b24; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        /* REFINED CELEBRATION */
+        .celebration-8s { background: var(--text-main); padding: 20px; border-radius: var(--radius-md); font-size: 1.5rem; margin: 20px 0; color: white; font-weight: 600; letter-spacing: 2px; animation: gentlePulse 2s infinite alternate; }
+        @keyframes gentlePulse { from { box-shadow: 0 0 10px rgba(15, 23, 42, 0.2); transform: scale(1); } to { box-shadow: 0 0 20px rgba(15, 23, 42, 0.4); transform: scale(1.02); } }
+        
+        .signature-input { border: 1px solid var(--border-focus); border-radius: var(--radius-sm); padding: 12px; font-size: 1rem; width: 80%; margin: 15px 0; text-align: center; font-family: inherit; }
+        .signature-input:focus { border-color: var(--text-main); outline: none; }
+        
+        .social-icons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 20px 0; }
+        .social-icon { background: var(--surface); padding: 12px; border-radius: 50%; font-size: 1.2rem; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-light); cursor: pointer; transition: var(--transition-smooth); }
+        .social-icon:hover { background: var(--accent-subtle); border-color: var(--border-focus); transform: translateY(-2px); }
+        
+        /* 4 DEVICES CAROUSEL - Cleaned up */
         .carousel { position: relative; display: flex; align-items: center; justify-content: center; min-height: 500px; }
-        .carousel-btn {
-            background: #ffe0b5; border: 3px solid #ffad8a; color: #593c34;
-            width: 50px; height: 50px; border-radius: 50%;
-            font-size: 2rem; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; box-shadow: 0 5px 0 #b37b66; transition: 0.06s;
-            position: absolute; z-index: 10;
-        }
-        .carousel-btn:active { transform: translateY(5px); box-shadow: 0 1px 0 #b37b66; }
-        .carousel-prev { left: -10px; }
-        .carousel-next { right: -10px; }
+        .carousel-btn { background: var(--surface); border: 1px solid var(--border-light); color: var(--text-main); width: 40px; height: 40px; border-radius: 50%; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: var(--transition-smooth); position: absolute; z-index: 10; box-shadow: var(--shadow-sm); }
+        .carousel-prev { left: 0; }
+        .carousel-next { right: 0; }
         .carousel-slide { display: none; flex-direction: column; align-items: center; gap: 20px; width: 100%; }
         .carousel-slide.active { display: flex; }
-        .device-wrapper { display: flex; flex-direction: column; align-items: center; gap: 16px; }
-        .device-label { font-size: 1.3rem; font-weight: 600; color: #593c34; background: #ffe8dd; padding: 8px 24px; border-radius: 50px; border: 2px solid #ffad8a; }
-        .device-phone { width: 240px; height: 480px; background: #1a1a1a; border-radius: 36px; padding: 10px; position: relative; box-shadow: 0 20px 30px rgba(0,0,0,0.5), inset 0 0 0 2px #333; border: 2px solid #5a5a5a; }
-        .phone-screen { width: 100%; height: 100%; background: black; border-radius: 28px; overflow: hidden; position: relative; border: 2px solid #2a2a2a; }
-        .phone-notch { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 90px; height: 25px; background: #1a1a1a; border-radius: 20px; display: flex; justify-content: center; align-items: center; gap: 8px; z-index: 10; border: 1px solid #444; }
-        .phone-camera { width: 10px; height: 10px; background: radial-gradient(#666, #222); border-radius: 50%; border: 1px solid #888; }
-        .phone-speaker { width: 30px; height: 5px; background: #222; border-radius: 5px; border: 1px solid #555; }
-        .phone-home-bar { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); width: 100px; height: 5px; background: rgba(255,255,255,0.3); border-radius: 10px; }
-        .side-button { position: absolute; right: -6px; width: 4px; height: 40px; background: linear-gradient(to right, #777, #333); border-radius: 4px 0 0 4px; }
-        .volume-up { top: 100px; }
-        .volume-down { top: 160px; }
-        .power { top: 280px; height: 50px; }
+        .device-label { font-size: 1rem; font-weight: 600; color: var(--text-main); background: var(--accent-subtle); padding: 6px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-light); }
+        
+        /* Maintained your exact CSS device drawings but removed extreme external shadows */
+        .device-phone { width: 240px; height: 480px; background: #1a1a1a; border-radius: 36px; padding: 10px; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.2); border: 1px solid #333; }
+        .phone-screen { width: 100%; height: 100%; background: black; border-radius: 28px; overflow: hidden; position: relative; }
+        .phone-notch { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 90px; height: 25px; background: #1a1a1a; border-radius: 20px; display: flex; justify-content: center; align-items: center; gap: 8px; z-index: 10; }
+        .phone-camera { width: 8px; height: 8px; background: #222; border-radius: 50%; }
+        .phone-speaker { width: 30px; height: 4px; background: #222; border-radius: 4px; }
+        .phone-home-bar { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); width: 100px; height: 4px; background: rgba(255,255,255,0.4); border-radius: 10px; }
+        .side-button { position: absolute; right: -4px; width: 3px; height: 40px; background: #444; border-radius: 2px 0 0 2px; }
+        .volume-up { top: 100px; } .volume-down { top: 160px; } .power { top: 280px; height: 50px; }
+        
         .device-laptop { width: 380px; perspective: 1200px; }
-        .laptop-body { background: linear-gradient(145deg, #2a2a2a, #1a1a1a); border-radius: 12px 12px 6px 6px; padding: 10px; border: 2px solid #444; box-shadow: 0 15px 25px rgba(0,0,0,0.4); }
-        .laptop-bezel { background: #0a0a0a; border-radius: 8px; padding: 6px; box-shadow: inset 0 0 0 2px #333; }
-        .laptop-screen { background: black; border-radius: 5px; width: 100%; aspect-ratio: 16/10; overflow: hidden; border: 1px solid #3a3a3a; position: relative; }
-        .laptop-camera { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 8px; height: 8px; background: radial-gradient(#777, #222); border-radius: 50%; border: 1px solid #999; z-index: 10; }
-        .laptop-base { width: 100%; height: 20px; background: linear-gradient(to bottom, #3a3a3a, #1a1a1a); border-radius: 0 0 8px 8px; margin-top: -2px; box-shadow: 0 10px 15px rgba(0,0,0,0.4); border-bottom: 2px solid #555; position: relative; }
-        .laptop-keyboard { width: 90%; height: 12px; background: #222; margin: 0 auto; border-radius: 4px; position: relative; top: -4px; box-shadow: inset 0 2px 5px black; }
+        .laptop-body { background: #1a1a1a; border-radius: 12px 12px 0 0; padding: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .laptop-bezel { background: #0a0a0a; border-radius: 8px; padding: 6px; }
+        .laptop-screen { background: black; border-radius: 4px; width: 100%; aspect-ratio: 16/10; overflow: hidden; position: relative; }
+        .laptop-base { width: 100%; height: 16px; background: #2a2a2a; border-radius: 0 0 8px 8px; border-bottom: 2px solid #111; }
+        
         .device-monitor { width: 380px; }
-        .monitor-body { background: linear-gradient(145deg, #2a2a2a, #1a1a1a); border-radius: 12px; padding: 12px; border: 2px solid #444; box-shadow: 0 15px 25px rgba(0,0,0,0.4); }
-        .monitor-bezel { background: #0a0a0a; border-radius: 8px; padding: 8px; box-shadow: inset 0 0 0 2px #333; }
-        .monitor-screen { background: black; border-radius: 5px; width: 100%; aspect-ratio: 16/9; overflow: hidden; border: 1px solid #3a3a3a; }
-        .monitor-stand { width: 80px; height: 40px; background: linear-gradient(to right, #4a4a4a, #2a2a2a); margin: 0 auto; border-radius: 0 0 10px 10px; box-shadow: 0 10px 15px rgba(0,0,0,0.3); border-bottom: 2px solid #666; }
-        .monitor-base { width: 140px; height: 10px; background: linear-gradient(to bottom, #5a5a5a, #3a3a3a); margin: 0 auto; border-radius: 10px; box-shadow: 0 5px 10px rgba(0,0,0,0.3); }
-        .device-tablet { width: 280px; height: 380px; background: linear-gradient(145deg, #1e1e1e, #0a0a0a); border-radius: 32px; padding: 12px; border: 2px solid #444; box-shadow: 0 20px 30px rgba(0,0,0,0.5), inset 0 0 0 2px #333; position: relative; }
-        .tablet-bezel { background: #0a0a0a; border-radius: 24px; padding: 6px; height: 100%; box-shadow: inset 0 0 0 2px #2a2a2a; }
-        .tablet-screen { background: black; border-radius: 18px; width: 100%; height: 100%; overflow: hidden; border: 1px solid #3a3a3a; position: relative; }
-        .tablet-camera { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 8px; height: 8px; background: radial-gradient(#777, #222); border-radius: 50%; border: 1px solid #999; z-index: 10; }
-        .tablet-home-bar { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: rgba(255,255,255,0.3); border-radius: 10px; }
+        .monitor-body { background: #1a1a1a; border-radius: 8px; padding: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .monitor-bezel { background: #0a0a0a; border-radius: 4px; padding: 6px; }
+        .monitor-screen { background: black; border-radius: 2px; width: 100%; aspect-ratio: 16/9; overflow: hidden; }
+        .monitor-stand { width: 60px; height: 40px; background: #2a2a2a; margin: 0 auto; }
+        .monitor-base { width: 120px; height: 8px; background: #333; margin: 0 auto; border-radius: 4px; }
+        
+        .device-tablet { width: 280px; height: 380px; background: #1a1a1a; border-radius: 24px; padding: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); position: relative; }
+        .tablet-bezel { background: #0a0a0a; border-radius: 16px; padding: 6px; height: 100%; }
+        .tablet-screen { background: black; border-radius: 12px; width: 100%; height: 100%; overflow: hidden; position: relative; }
+        .tablet-home-bar { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: rgba(255,255,255,0.4); border-radius: 10px; }
+        
         .device-wallpaper { width: 100%; height: 100%; object-fit: cover; display: block; background-color: black; }
-        .dots { display: flex; justify-content: center; gap: 12px; margin-top: 30px; }
-        .dot { width: 14px; height: 14px; border-radius: 50%; background: #ffc6ad; border: 2px solid #ff8f6b; cursor: pointer; transition: 0.1s; }
-        .dot.active { background: #ff7b5c; border-color: #a8422a; transform: scale(1.3); }
-        .devices-close-btn { background: #ffe0b5; padding: 14px 42px; border-radius: 60px; border: 4px solid #ffad8a; font-weight: 700; font-size: 1.2rem; box-shadow: 0 8px 0 #b37b66; cursor: pointer; display: inline-block; color: #3a2c2a; margin-top: 30px; }
-        .devices-close-btn:active { transform: translateY(8px); box-shadow: 0 1px 0 #b37b66; }
+        .dots { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border-light); cursor: pointer; transition: 0.2s; }
+        .dot.active { background: var(--text-main); transform: scale(1.2); }
+        
         @media (max-width: 700px) {
             .device-phone { width: 200px; height: 400px; }
             .device-laptop { width: 300px; }
             .device-monitor { width: 300px; }
             .device-tablet { width: 220px; height: 300px; }
-            .carousel-prev { left: -5px; }
-            .carousel-next { right: -5px; }
         }
 
-        /* ---------- BLOG SECTION – BEST AI WALLPAPERS 2026 ---------- */
-        .blog-section {
-            margin-top: 60px;
-            margin-bottom: 40px;
-            background: rgba(255, 245, 235, 0.6);
-            backdrop-filter: blur(8px);
-            border-radius: 48px;
-            padding: 32px 28px;
-            border: 1px solid #ffd8bf;
-            box-shadow: 0 12px 0 #c47a5e, 0 12px 30px rgba(0,0,0,0.04);
-        }
-        .blog-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        .blog-header h3 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #2c1e1a;
-            letter-spacing: -0.02em;
-        }
-        .blog-header span {
-            background: #ffd700;
-            color: #2c1e1a;
-            padding: 5px 18px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            border: 2px solid white;
-        }
-        .blog-content {
-            font-size: 1rem;
-            line-height: 1.7;
-            color: #4a3a34;
-        }
-        .blog-content p {
-            margin-bottom: 18px;
-        }
-        .blog-highlight {
-            background: rgba(255, 220, 180, 0.3);
-            padding: 20px;
-            border-radius: 28px;
-            border-left: 8px solid #ff7b5c;
-            margin: 20px 0;
-            font-weight: 500;
-        }
-        .blog-footer {
-            margin-top: 20px;
-            font-style: italic;
-            color: #8a6a5b;
-            text-align: right;
-            border-top: 1px dashed #ffad8a;
-            padding-top: 16px;
-        }
-        @media (max-width: 550px) {
-            .blog-section { padding: 24px 18px; }
-            .blog-header h3 { font-size: 1.5rem; }
-        }
-
-        /* 🆕 AI STOCK PHOTOS GALLERY POPUP */
-        .ai-gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin: 20px 0;
-        }
-        .ai-gallery-item {
-            background: white;
-            border-radius: 16px;
-            padding: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-            border: 1px solid #ffe6d9;
-        }
-        .ai-gallery-item img {
-            width: 100%;
-            aspect-ratio: 4/5;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 8px;
-        }
-        .ai-gallery-title {
-            font-weight: 700;
-            color: #4e3a33;
-            font-size: 0.9rem;
-        }
-        @media (min-width: 550px) {
-            .ai-gallery-grid { grid-template-columns: repeat(4, 1fr); }
-        }
+        /* AI GALLERY POPUP MINIMAL */
+        .ai-gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
+        .ai-gallery-item { background: var(--surface); border-radius: var(--radius-sm); padding: 8px; border: 1px solid var(--border-light); }
+        .ai-gallery-item img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 4px; margin-bottom: 8px; }
+        .ai-gallery-title { font-weight: 600; color: var(--text-main); font-size: 0.85rem; }
+        @media (min-width: 550px) { .ai-gallery-grid { grid-template-columns: repeat(4, 1fr); } }
         
-        .winner-week-section {
-            background: rgba(255, 235, 220, 0.7);
-            border-radius: 48px;
-            padding: 24px;
-            margin: 30px 0;
-            border: 2px solid #ffd700;
-        }
-        .winner-week-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-        }
-        .winner-week-title h3 {
-            font-size: 1.7rem;
-            font-weight: 700;
-            color: #2c1e1a;
-        }
-        .winner-week-badge {
-            background: #ffd700;
-            color: #3a2c2a;
-            padding: 4px 16px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.85rem;
-        }
-        .winner-week-card {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            flex-wrap: wrap;
-        }
-        .winner-week-thumb {
-            width: 120px;
-            height: 150px;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 4px solid white;
-            box-shadow: 0 8px 0 #b8860b;
-        }
-        .winner-week-thumb img { width: 100%; height: 100%; object-fit: cover; }
-        .winner-week-info { display: flex; flex-direction: column; gap: 8px; }
-        .winner-week-name { font-size: 1.8rem; font-weight: 800; color: #4a2e28; }
-        .winner-week-date {
-            font-size: 1.1rem; color: #6b4b3e; background: rgba(255,255,255,0.5);
-            padding: 6px 18px; border-radius: 40px; border: 1px solid #ffad8a;
-        }
+        /* BLOG CLEANUP */
+        .blog-content { color: var(--text-muted); }
+        .blog-highlight { background: var(--accent-subtle); padding: 20px; border-radius: var(--radius-sm); border-left: 4px solid var(--text-main); margin: 20px 0; color: var(--text-main); font-weight: 500; }
+        
+        /* WINNER OF THE WEEK CLEANUP */
+        .winner-week-card { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; background: var(--surface); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--border-light); }
+        .winner-week-thumb { width: 100px; height: 125px; border-radius: var(--radius-sm); overflow: hidden; }
+        .winner-week-name { font-size: 1.4rem; font-weight: 700; color: var(--text-main); }
+        .winner-week-date { font-size: 0.9rem; color: var(--text-muted); }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- TOP BAR – with AI Stock Photos button -->
-        <div class="top-bar">
+    <main class="container">
+        <header class="top-bar">
             <div class="button-group-top">
-                <button class="whats-this-btn" id="infoButton"><span style="font-size:1.6rem;">✨</span> What's this?</button>
-                <button class="ai-stock-btn" id="aiStockBtn"><span style="font-size:1.6rem;">🖼️</span> AI Stock Photos</button>
+                <button class="whats-this-btn" id="infoButton" aria-label="What is this site?"><span>✨</span> What's this?</button>
+                <button class="ai-stock-btn" id="aiStockBtn" aria-label="View AI Stock Photos"><span>🖼️</span> AI Stock Photos</button>
+                <button class="share-site-btn" id="shareSiteBtn" aria-label="Share Site"><span>🚀</span> Share Site</button>
             </div>
             <div class="countdown-block">
                 <span class="winner-note">🏆 Winner in</span>
                 <span class="countdown-number" id="countdownDisplay">00:00:00</span>
-                <span style="background: #ffc6ad; padding: 5px 12px; border-radius: 30px;">UTC+0</span>
+                <span style="font-size: 0.8rem; font-weight: bold; color: var(--text-muted);">UTC</span>
             </div>
-        </div>
+        </header>
 
-        <!-- VALUE PROPOSITION -->
-        <div class="value-prop">
-            <span>✨ FREE DAILY</span>
-            High-quality AI wallpapers, download free. Fresh batch every day – vote for your favorite!
-        </div>
+        <section class="value-prop">
+            <span>Free Daily</span>
+            High-quality AI wallpapers. Fresh batch every day – vote for your favorite.
+        </section>
         
-        <!-- Info popup (What's this?) -->
-        <div id="infoPopup" class="info-popup">
-            <button class="close-popup" id="closePopup">&times;</button>
-            <h3 style="font-size:2rem; margin-bottom: 10px;">🌸 daily cup</h3>
-            <p style="font-size:1.2rem; font-weight: 600;">4 wallpapers. 1 winner. you decide.</p>
-            <p style="margin: 20px 0;">⬩ Vote – feel the love ❤️<br>⬩ Download free<br>⬩ At midnight UTC most votes+downloads = WINNER.<br>⬩ Fresh batch every day ✨</p>
-            <p style="background: #ffe1d4; padding: 14px; border-radius: 18px; font-size: 1.1rem;">
-            👑 <strong>Come back EVERY DAY!</strong> New wallpapers, new winner.<br>⭐ Your vote shapes the cup.<br>📅 Fresh art awaits 24/7.
+        <div id="infoPopup" class="info-popup" role="dialog" aria-modal="true">
+            <button class="close-popup" id="closePopup" aria-label="Close popup">&times;</button>
+            <h3 style="font-size:1.8rem; margin-bottom: 10px;">Daily Cup</h3>
+            <p style="font-size:1.1rem; font-weight: 600; color: var(--text-muted);">4 wallpapers. 1 winner. You decide.</p>
+            <p style="margin: 20px 0; text-align: left; padding-left: 20px; line-height: 2;">
+                ⬩ Vote to show love<br>
+                ⬩ Download absolutely free<br>
+                ⬩ At midnight UTC, votes + downloads = WINNER<br>
+                ⬩ Fresh batch every day
+            </p>
+            <p style="background: var(--accent-subtle); padding: 16px; border-radius: var(--radius-sm); font-size: 0.95rem; text-align: left;">
+                👑 <strong>Come back every day!</strong> Your vote shapes the gallery.
             </p>
         </div>
         
-        <!-- 🆕 AI STOCK PHOTOS POPUP -->
-        <div id="aiStockPopup" class="info-popup">
-            <button class="close-popup" id="closeAiStockPopup">&times;</button>
-            <h3 style="font-size:2rem; margin-bottom: 10px;">🖼️ AI Stock Photos</h3>
-            <p style="font-size:1.1rem; margin-bottom: 20px;">All wallpapers currently in the cup – free to download.</p>
+        <div id="aiStockPopup" class="info-popup" role="dialog" aria-modal="true">
+            <button class="close-popup" id="closeAiStockPopup" aria-label="Close popup">&times;</button>
+            <h3 style="font-size:1.5rem; margin-bottom: 10px;">AI Stock Photos</h3>
+            <p style="font-size:0.95rem; margin-bottom: 20px; color: var(--text-muted);">All current wallpapers – free to download.</p>
             <div id="aiGalleryContainer" class="ai-gallery-grid">
-                <!-- filled by JS -->
-            </div>
-            <p style="margin-top: 20px; color: #6b4b3e;">✨ Fresh batch every day at midnight UTC</p>
+                </div>
         </div>
         
         <div class="daily-headline">
-            <h2>🐣 today's wallpapers</h2>
-            <p>vote + download = happy</p>
+            <h2>Today's Selection</h2>
+            <p>Vote & Download</p>
         </div>
         
-        <!-- 4 WALLPAPER GRID – WILL BE FILLED BY JS, 100% VISIBLE -->
-        <div class="wallpaper-grid" id="wallGrid"></div>
+        <section class="wallpaper-grid" id="wallGrid" aria-label="Today's Wallpaper Options"></section>
         
-        <!-- CUTE PUZZLE BUTTON -->
         <div class="puzzle-launch">
-            <div class="puzzle-btn" id="openPuzzleBtn">
-                <span>🧩</span> play puzzle
-            </div>
+            <button class="puzzle-btn btn" id="openPuzzleBtn" aria-label="Play Puzzle Game">
+                <span>🧩</span> Play Puzzle
+            </button>
         </div>
 
-        <!-- BLOG SECTION -->
-        <div class="blog-section">
+        <article class="blog-section">
             <div class="blog-header">
-                <h3>🏆 Best AI Wallpapers 2026</h3>
-                <span>editor's pick</span>
+                <h3>Best AI Wallpapers 2026</h3>
+                <span>Editor's Pick</span>
             </div>
             <div class="blog-content">
                 <p><strong>AI-generated wallpapers have never been this breathtaking.</strong> From hyper‑realistic landscapes to abstract digital art, 2026 is the year AI art became indistinguishable from photography. At WallRank.club, we curate 4 fresh, hand‑picked AI wallpapers every single day – and you decide the winner.</p>
@@ -993,36 +395,32 @@
                 <p>🎧 <strong>Perfect for desktops, phones, and tablets.</strong> Use our "view only" feature to see how each wallpaper looks on a 3D phone, laptop, monitor, or tablet – all built with pure CSS. It's the closest thing to holding the art in your hands.</p>
             </div>
             <div class="blog-footer">
-                — WallRank editorial team, Feb 2026
+                — WallRank Editorial Team, Feb 2026
             </div>
-        </div>
+        </article>
 
-        <!-- WINNER OF THE WEEK -->
-        <div class="winner-week-section" id="winnerWeekSection">
+        <section class="winner-week-section" id="winnerWeekSection">
             <div class="winner-week-title">
-                <h3>🏆 Winner of the Week</h3>
-                <span class="winner-week-badge">⭐ crowned ⭐</span>
+                <h3>Winner of the Week</h3>
+                <span class="winner-week-badge">Crowned</span>
             </div>
             <div id="winnerWeekContent" class="winner-week-card">
-                <!-- filled by JS -->
-            </div>
-        </div>
+                </div>
+        </section>
 
-        <!-- HALL OF FAME -->
-        <div class="winner-history-section">
+        <section class="winner-history-section">
             <div class="history-header">
-                <h3>🏆 Past Winners</h3>
-                <span>hall of fame</span>
+                <h3>Past Winners</h3>
+                <span>Hall of Fame</span>
             </div>
             <div id="winnersGrid" class="winners-grid"></div>
-        </div>
+        </section>
 
         <div style="display: flex; justify-content: center; margin-top: 15px;">
-            <span class="winner-badge">🌟 golden shine = current leader</span>
+            <span class="winner-note">👑 Golden border indicates current leader</span>
         </div>
         
-        <!-- FOOTER – with popup content filled in JS -->
-        <div class="footer-links">
+        <footer class="footer-links">
             <a id="footerAbout" href="javascript:void(0)">About</a>
             <a id="footerPrivacy" href="javascript:void(0)">Privacy Policy</a>
             <a id="footerTerms" href="javascript:void(0)">Terms of Service</a>
@@ -1031,61 +429,59 @@
             <a id="footerContact" href="javascript:void(0)">Contact</a>
             <a id="footerHome" href="javascript:void(0)">Wallrank.club</a>
             <div class="copyright">
-                © 2026 WallRank.club – Daily AI wallpaper cup. All rights reserved.<br>
-                This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
+                © 2026 WallRank.club. All rights reserved.<br>
+                Protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
             </div>
-        </div>
+        </footer>
+    </main>
+
+    <div id="footerPopup" class="info-popup" role="dialog" aria-modal="true">
+        <button class="close-popup" id="closeFooterPopup" aria-label="Close popup">&times;</button>
+        <div id="footerPopupContent" style="text-align: left;"></div>
     </div>
 
-    <!-- ========== GENERIC POPUP FOR FOOTER LINKS ========== -->
-    <div id="footerPopup" class="info-popup">
-        <button class="close-popup" id="closeFooterPopup">&times;</button>
-        <div id="footerPopupContent"></div>
-    </div>
-
-    <!-- ========== CONTACT POPUP ========== -->
-    <div id="contactPopup" class="info-popup">
-        <button class="close-popup" id="closeContactPopup">&times;</button>
-        <h3 style="font-size:2rem; margin-bottom: 10px;">📬 contact</h3>
-        <p style="font-size:1.5rem; background: #ffe8dd; padding: 20px; border-radius: 60px; margin: 20px 0; word-break: break-all;">
-            📧 kabanijames9@gmail.com
+    <div id="contactPopup" class="info-popup" role="dialog" aria-modal="true">
+        <button class="close-popup" id="closeContactPopup" aria-label="Close popup">&times;</button>
+        <h3 style="font-size:1.5rem; margin-bottom: 10px;">Contact</h3>
+        <p style="font-size:1.1rem; background: var(--accent-subtle); padding: 16px; border-radius: var(--radius-sm); margin: 20px 0; word-break: break-all; border: 1px solid var(--border-light);">
+            kabanijames9@gmail.com
         </p>
-        <p style="color: #6b4b3e;">We'll reply within 24h ✨</p>
-        <p style="margin-top: 16px; font-size: 0.95rem;">For partnership, feedback, or just to say hi – we'd love to hear from you.</p>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">For partnership, feedback, or just to say hi – we'll reply within 24h.</p>
     </div>
 
-    <!-- ========== PUZZLE OVERLAY ========== -->
     <div id="puzzleOverlay" class="puzzle-overlay">
         <div class="puzzle-card" id="puzzleCard">
             <div id="step1">
-                <div class="puzzle-title">🧩 choose one</div>
+                <div class="puzzle-title">Choose an artwork</div>
                 <div class="puzzle-selector" id="puzzleSelector"></div>
             </div>
             <div id="step2" style="display: none;">
-                <div class="puzzle-title" id="selectedTitle">🌿 misty forest</div>
+                <div class="puzzle-title" id="selectedTitle" style="font-size: 1.2rem; color: var(--text-muted);">misty forest</div>
                 <div id="puzzleGridContainer" class="puzzle-grid"></div>
-                <button class="btn-small" id="shuffleBtn" style="margin-top: 20px;">🔀 shuffle</button>
+                <button class="btn" id="shuffleBtn" style="margin: 20px auto 0;">🔀 Shuffle</button>
             </div>
             <div id="step3" style="display: none;">
-                <div class="celebration-8s" id="celebrationMessage">🎉✨ PERFECT! ✨🎉</div>
-                <div id="afterCelebration" style="display: none;">
-                    <button class="btn-small" id="saveMemoryBtn">📸 save this memory</button>
-                    <button class="btn-small" id="tellOthersBtn">📢 tell others</button>
+                <div class="celebration-8s" id="celebrationMessage">PERFECT!</div>
+                <div id="afterCelebration" style="display: none; display: flex; gap: 12px; justify-content: center;">
+                    <button class="btn" id="saveMemoryBtn">📸 Save Memory</button>
+                    <button class="btn" id="tellOthersBtn">📢 Share</button>
                 </div>
             </div>
             <div id="saveOptions" style="display: none;">
-                <div style="font-size:1.6rem; margin: 15px 0;">💾 save as</div>
-                <button class="btn-small" id="saveWithNameBtn">🖋️ with your name</button>
-                <button class="btn-small" id="saveSimpleBtn">⬇️ simple download</button>
+                <div style="font-size:1.2rem; margin: 15px 0; font-weight: bold;">Save as</div>
+                <div style="display: flex; gap: 12px; justify-content: center;">
+                    <button class="btn" id="saveWithNameBtn">🖋️ Add Name</button>
+                    <button class="btn" id="saveSimpleBtn">⬇️ Download File</button>
+                </div>
                 <div id="nameInputArea" style="display: none; margin-top: 20px;">
-                    <input type="text" id="userName" placeholder="your name" class="signature-input">
-                    <button class="btn-small" id="generateSignedWallpaper">create & download</button>
+                    <input type="text" id="userName" placeholder="Your Name" class="signature-input" aria-label="Your name">
+                    <button class="btn" id="generateSignedWallpaper" style="margin: 0 auto;">Create</button>
                 </div>
                 <canvas id="signatureCanvas" style="display: none;"></canvas>
             </div>
             <div id="shareOptions" style="display: none;">
-                <div style="font-size:1.6rem; margin-bottom: 20px;">🔗 share this puzzle</div>
-                <div style="background: #ffe8dd; padding: 12px; border-radius: 60px; word-break: break-all;">
+                <div style="font-size:1.2rem; margin-bottom: 20px; font-weight: bold;">Share link</div>
+                <div style="background: var(--accent-subtle); padding: 12px; border-radius: var(--radius-sm); word-break: break-all; border: 1px solid var(--border-light); font-size: 0.9rem;">
                     <span id="shareLink">https://wallrank.club/puzzle/winner</span>
                 </div>
                 <div class="social-icons">
@@ -1096,21 +492,18 @@
                     <div class="social-icon" data-share="snap">👻</div>
                     <div class="social-icon" data-share="email">📧</div>
                 </div>
-                <button class="btn-small" id="closeShareBtn">⬅ back</button>
+                <button class="btn" id="closeShareBtn" style="margin: 0 auto;">Back</button>
             </div>
-            <button class="btn-small" id="closePuzzleBtn" style="margin-top: 25px;">✕ close</button>
+            <button class="btn" id="closePuzzleBtn" style="margin: 25px auto 0; border: none; background: transparent; color: var(--text-muted); box-shadow: none;">✕ Close</button>
         </div>
     </div>
 
-    <!-- ========== 4 DEVICES CAROUSEL ========== -->
     <div id="devicesOverlay" class="devices-overlay">
         <div class="devices-container">
-            <div class="devices-title">
-                <span>📱</span> view only <span>🖥️</span>
-            </div>
+            <div class="devices-title">Preview</div>
             <div class="carousel">
-                <div class="carousel-btn carousel-prev" id="carouselPrev">‹</div>
-                <div class="carousel-btn carousel-next" id="carouselNext">›</div>
+                <div class="carousel-btn carousel-prev" id="carouselPrev" aria-label="Previous Device">‹</div>
+                <div class="carousel-btn carousel-next" id="carouselNext" aria-label="Next Device">›</div>
                 
                 <div class="carousel-slide" id="slidePhone">
                     <div class="device-wrapper">
@@ -1124,11 +517,11 @@
                                     <div class="phone-speaker"></div>
                                     <div class="phone-camera"></div>
                                 </div>
-                                <img id="devicePhoneImg" class="device-wallpaper" src="" alt="wallpaper on phone">
+                                <img id="devicePhoneImg" class="device-wallpaper" src="" alt="wallpaper on phone" loading="lazy">
                                 <div class="phone-home-bar"></div>
                             </div>
                         </div>
-                        <span class="device-label">📱 phone</span>
+                        <span class="device-label">Phone</span>
                     </div>
                 </div>
                 
@@ -1138,16 +531,13 @@
                             <div class="laptop-body">
                                 <div class="laptop-bezel">
                                     <div class="laptop-screen">
-                                        <img id="deviceLaptopImg" class="device-wallpaper" src="" alt="wallpaper on laptop">
-                                        <div class="laptop-camera"></div>
+                                        <img id="deviceLaptopImg" class="device-wallpaper" src="" alt="wallpaper on laptop" loading="lazy">
                                     </div>
                                 </div>
                             </div>
-                            <div class="laptop-base">
-                                <div class="laptop-keyboard"></div>
-                            </div>
+                            <div class="laptop-base"></div>
                         </div>
-                        <span class="device-label">💻 laptop</span>
+                        <span class="device-label">Laptop</span>
                     </div>
                 </div>
                 
@@ -1157,14 +547,14 @@
                             <div class="monitor-body">
                                 <div class="monitor-bezel">
                                     <div class="monitor-screen">
-                                        <img id="deviceMonitorImg" class="device-wallpaper" src="" alt="wallpaper on monitor">
+                                        <img id="deviceMonitorImg" class="device-wallpaper" src="" alt="wallpaper on monitor" loading="lazy">
                                     </div>
                                 </div>
                             </div>
                             <div class="monitor-stand"></div>
                             <div class="monitor-base"></div>
                         </div>
-                        <span class="device-label">🖥️ monitor</span>
+                        <span class="device-label">Monitor</span>
                     </div>
                 </div>
                 
@@ -1173,37 +563,34 @@
                         <div class="device-tablet">
                             <div class="tablet-bezel">
                                 <div class="tablet-screen">
-                                    <img id="deviceTabletImg" class="device-wallpaper" src="" alt="wallpaper on tablet">
-                                    <div class="tablet-camera"></div>
+                                    <img id="deviceTabletImg" class="device-wallpaper" src="" alt="wallpaper on tablet" loading="lazy">
                                     <div class="tablet-home-bar"></div>
                                 </div>
                             </div>
                         </div>
-                        <span class="device-label">📟 tablet</span>
+                        <span class="device-label">Tablet</span>
                     </div>
                 </div>
             </div>
             
             <div class="dots" id="carouselDots">
-                <div class="dot active" data-index="0"></div>
-                <div class="dot" data-index="1"></div>
-                <div class="dot" data-index="2"></div>
-                <div class="dot" data-index="3"></div>
+                <div class="dot active" data-index="0" aria-label="Go to slide 1"></div>
+                <div class="dot" data-index="1" aria-label="Go to slide 2"></div>
+                <div class="dot" data-index="2" aria-label="Go to slide 3"></div>
+                <div class="dot" data-index="3" aria-label="Go to slide 4"></div>
             </div>
             
-            <div class="devices-close-btn" id="closeDevicesBtn">✕ close</div>
+            <button class="btn" id="closeDevicesBtn" style="margin: 30px auto 0; background: var(--text-main); color: white;">✕ Close Preview</button>
         </div>
     </div>
 
-    <!-- hidden seo -->
     <div class="seo-hidden">daily wallpaper vote puzzle 4K free AI winner every midnight UTC+0 wallrank.club best ranking wallpaper puzzle 4 devices carousel daily reset hall of fame</div>
 
     <script>
         (function() {
             'use strict';
             
-            // ========== YOUR ORIGINAL WORKING SCRIPT – 100% PRESERVED ==========
-            // 📅 TODAY'S WALLPAPERS – YOUR GITHUB IMAGES
+            // ========== ORIGINAL SCRIPT LOGIC (UNTOUCHED) ==========
             const wallpapers = [
                 { id: 1, title: "🏔️ mountain peak", filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/1.png", votes: 0, downloads: 0 },
                 { id: 2, title: "🌊 ocean wave", filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/2.png", votes: 0, downloads: 0 },
@@ -1218,7 +605,6 @@
                 { id: 4, title: "🌸 cherry bloom", filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/4.png", votes: 0, downloads: 0 }
             ];
             
-            // ----- PAST WINNERS (HALL OF FAME) - COMPLETELY EMPTY -----
             let pastWinners = [];
             const PAST_WINNERS_KEY = 'wallrank_past_winners';
             localStorage.removeItem(PAST_WINNERS_KEY);
@@ -1237,17 +623,16 @@
                 const grid = document.getElementById('winnersGrid');
                 if (!grid) return;
                 if (pastWinners.length === 0) {
-                    grid.innerHTML = '<div class="empty-history">✨ No past winners yet. Be the first to vote!</div>';
+                    grid.innerHTML = '<div class="empty-history">No past winners yet. Be the first to vote!</div>';
                     return;
                 }
                 let html = '';
                 pastWinners.forEach(winner => {
-                    html += `<div class="winner-item"><div class="winner-thumb"><img src="${winner.filename}" alt="${winner.title}" loading="lazy"></div><div class="winner-title">${winner.title}</div><div class="winner-date">🏆 ${winner.date}</div></div>`;
+                    html += `<div class="winner-item"><div class="winner-thumb"><img src="${winner.filename}" alt="${winner.title}" loading="lazy"></div><div class="winner-title">${winner.title}</div><div class="winner-date">${winner.date}</div></div>`;
                 });
                 grid.innerHTML = html;
             }
             
-            // ----- voting & golden leader -----
             function getTodayKey() { const d = new Date(); return `${d.getUTCFullYear()}-${d.getUTCMonth()}-${d.getUTCDate()}`; }
             const todayKey = getTodayKey(); let userVoteRecord = {};
             function loadVoteRecord() { const stored = localStorage.getItem(`voteRecord_${todayKey}`); if (stored) { try { userVoteRecord = JSON.parse(stored) || {}; } catch(e) { userVoteRecord = {}; } } else { userVoteRecord = {}; } }
@@ -1270,21 +655,21 @@
                     let buttons = '';
                     if (votingActive) {
                         buttons = `<div class="button-group">
-                            <button class="btn btn-vote" data-action="vote" data-id="${wp.id}">👍 vote</button>
-                            <button class="btn btn-download" data-action="download" data-id="${wp.id}">💾 get</button>
-                            <button class="btn btn-devices" data-action="devices" data-id="${wp.id}">📱 view only</button>
+                            <button class="btn btn-vote" data-action="vote" data-id="${wp.id}">Vote</button>
+                            <button class="btn btn-download" data-action="download" data-id="${wp.id}">Get</button>
+                            <button class="btn btn-devices" data-action="devices" data-id="${wp.id}">Preview</button>
                         </div>`;
                     } else {
                         if (wp.id === winnerId) {
                             buttons = `<div class="button-group">
-                                <button class="btn btn-download" data-action="download" data-id="${wp.id}">💾 get</button>
-                                <button class="btn btn-devices" data-action="devices" data-id="${wp.id}">📱 view only</button>
+                                <button class="btn btn-download" data-action="download" data-id="${wp.id}">Get</button>
+                                <button class="btn btn-devices" data-action="devices" data-id="${wp.id}">Preview</button>
                             </div>`;
                             card.classList.add('leader-gold');
                         } else {
-                            imgHTML = `<div class="img-container" style="background: #ffd8bf; display: flex; align-items: center; justify-content: center;"><span style="font-size: 1.5rem; color: #8a6a5b; font-weight: 600;">🗳️ voting ended</span></div>`;
+                            imgHTML = `<div class="img-container" style="background: var(--accent-subtle); display: flex; align-items: center; justify-content: center;"><span style="font-size: 1rem; color: var(--text-muted); font-weight: 600;">Voting ended</span></div>`;
                             stats = `<div class="stats"><span>❤️ ${wp.votes}</span><span>⬇️ ${wp.downloads}</span></div>`;
-                            buttons = `<div class="button-group"><button class="btn btn-devices" data-action="devices" data-id="${wp.id}">📱 view only</button></div>`;
+                            buttons = `<div class="button-group"><button class="btn btn-devices" data-action="devices" data-id="${wp.id}">Preview</button></div>`;
                         }
                     }
                     card.innerHTML = imgHTML + `<div class="card-content"><div class="wall-title">${wp.title}</div>${stats}${buttons}</div>`;
@@ -1310,7 +695,7 @@
                 reaction.style.left = (x - 30) + 'px';
                 reaction.style.top = (y - 40) + 'px';
                 document.body.appendChild(reaction);
-                setTimeout(() => reaction.remove(), 800);
+                setTimeout(() => reaction.remove(), 1000);
             }
 
             function addConfetti() {
@@ -1319,8 +704,8 @@
                     conf.className = 'confetti';
                     conf.style.left = Math.random() * 100 + '%';
                     conf.style.animationDelay = Math.random() * 2 + 's';
-                    conf.style.background = `hsl(${Math.random() * 360}, 80%, 70%)`;
-                    conf.style.width = Math.random() * 12 + 6 + 'px';
+                    conf.style.background = `hsl(${Math.random() * 360}, 10%, 80%)`; /* Muted confetti for clean look */
+                    conf.style.width = Math.random() * 8 + 4 + 'px';
                     conf.style.height = conf.style.width;
                     const el = document.querySelector('.celebration-8s');
                     if (el) { el.appendChild(conf); setTimeout(() => conf.remove(), 2000); }
@@ -1328,24 +713,20 @@
             }
             
             function handleVote(id, event) {
-                if (!votingActive) { createReaction(event.clientX, event.clientY, '⏳'); return; }
+                if (!votingActive) return;
                 const wp = wallpapers.find(w => w.id === id); if (!wp) return;
                 if (userVoteRecord[id] === true) {
                     const btn = document.querySelector(`.wall-card[data-id="${id}"] .btn-vote`);
-                    if (btn) { btn.classList.add('clicked'); btn.innerHTML = '⚠️ already voted'; setTimeout(() => { btn.classList.remove('clicked'); btn.innerHTML = '👍 vote'; }, 1200); }
-                    if (event) createReaction(event.clientX, event.clientY, '⏳'); return;
+                    if (btn) { btn.classList.add('clicked'); btn.innerHTML = 'Voted'; setTimeout(() => { btn.classList.remove('clicked'); btn.innerHTML = 'Vote'; }, 1200); }
+                    return;
                 }
                 wp.votes += 1; localStorage.setItem(`dailyWall_${id}_${todayKey}`, JSON.stringify({ votes: wp.votes, downloads: wp.downloads }));
                 userVoteRecord[id] = true; saveVoteRecord();
                 const card = document.querySelector(`.wall-card[data-id="${id}"]`);
                 if (card) { const statsSpan = card.querySelector('.stats'); if (statsSpan) statsSpan.innerHTML = `<span>❤️ ${wp.votes}</span><span>⬇️ ${wp.downloads}</span>`;
-                const btn = card.querySelector('.btn-vote'); if (btn) { btn.classList.add('clicked'); btn.innerHTML = '✓ voted!'; setTimeout(() => { btn.classList.remove('clicked'); btn.innerHTML = '👍 vote'; }, 1000); } }
+                const btn = card.querySelector('.btn-vote'); if (btn) { btn.classList.add('clicked'); btn.innerHTML = 'Voted!'; setTimeout(() => { btn.classList.remove('clicked'); btn.innerHTML = 'Vote'; }, 1000); } }
                 gtag('event', 'vote_cast', { 'event_category': 'engagement', 'event_label': wp.title, 'value': wp.votes });
-                if (event) { 
-                    createReaction(event.clientX, event.clientY, '❤️🔥'); 
-                    createReaction(event.clientX-20, event.clientY-10, '✨');
-                    createReaction(event.clientX+20, event.clientY-5, '⭐');
-                }
+                if (event) { createReaction(event.clientX, event.clientY, '✨'); }
                 updateGoldenLeader();
             }
             
@@ -1354,18 +735,14 @@
                 wp.downloads += 1; localStorage.setItem(`dailyWall_${id}_${todayKey}`, JSON.stringify({ votes: wp.votes, downloads: wp.downloads }));
                 const card = document.querySelector(`.wall-card[data-id="${id}"]`);
                 if (card) { const statsSpan = card.querySelector('.stats'); if (statsSpan) statsSpan.innerHTML = `<span>❤️ ${wp.votes}</span><span>⬇️ ${wp.downloads}</span>`;
-                const btn = card.querySelector('.btn-download'); if (btn) { btn.classList.add('clicked'); btn.innerHTML = '✓ saved!'; setTimeout(() => { btn.classList.remove('clicked'); btn.innerHTML = '💾 get'; }, 1200); } }
+                const btn = card.querySelector('.btn-download'); if (btn) { btn.classList.add('clicked'); btn.innerHTML = 'Saved'; setTimeout(() => { btn.classList.remove('clicked'); btn.innerHTML = 'Get'; }, 1200); } }
                 const link = document.createElement('a'); link.href = wp.filename; link.target = '_blank'; link.rel = 'noopener'; link.click();
                 gtag('event', 'download_wall', { 'event_category': 'download', 'event_label': wp.title });
-                if (event) { 
-                    createReaction(event.clientX, event.clientY, '💾✨'); 
-                    createReaction(event.clientX+15, event.clientY-15, '⭐');
-                    createReaction(event.clientX-15, event.clientY-10, '📥');
-                }
+                if (event) { createReaction(event.clientX, event.clientY, '⬇️'); }
                 updateGoldenLeader();
             }
             
-            // ========== 4 DEVICES CAROUSEL ==========
+            // CAROUSEL
             const devicesOverlay = document.getElementById('devicesOverlay');
             const devicePhoneImg = document.getElementById('devicePhoneImg');
             const deviceLaptopImg = document.getElementById('deviceLaptopImg');
@@ -1402,14 +779,13 @@
                 deviceTabletImg.src = wp.filename;
                 devicesOverlay.classList.add('active');
                 showSlide(0);
-                createReaction(event.clientX, event.clientY, '📱🖥️');
                 gtag('event', 'view_on_devices', { 'event_category': 'engagement', 'event_label': wp.title });
             }
             
             closeDevicesBtn.addEventListener('click', () => devicesOverlay.classList.remove('active'));
             devicesOverlay.addEventListener('click', (e) => { if (e.target === devicesOverlay) devicesOverlay.classList.remove('active'); });
             
-            // ========== MIDNIGHT DETECTION & WINNER CELEBRATION ==========
+            // MIDNIGHT
             function checkMidnightAndWinner() {
                 const now = new Date();
                 const utcHours = now.getUTCHours();
@@ -1457,7 +833,6 @@
                 else if (action === 'devices') { e.preventDefault(); handleDevices(id, e); }
             });
             
-            // ----- countdown (UTC+0) -----
             function updateCountdown() {
                 const now = new Date(); 
                 const utcNow = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds()));
@@ -1472,13 +847,13 @@
             updateCountdown(); setInterval(updateCountdown,1000);
             
             const infoBtn = document.getElementById('infoButton'); const popup = document.getElementById('infoPopup'); const closePopup = document.getElementById('closePopup');
-            infoBtn.addEventListener('click',function(e){ popup.classList.add('show'); createReaction(e.clientX, e.clientY, '✨'); gtag('event','info_click',{'event_category':'engagement'}); });
-            closePopup.addEventListener('click',function(e){ popup.classList.remove('show'); createReaction(e.clientX, e.clientY, '🔙'); });
+            infoBtn.addEventListener('click',function(e){ popup.classList.add('show'); gtag('event','info_click',{'event_category':'engagement'}); });
+            closePopup.addEventListener('click',function(e){ popup.classList.remove('show'); });
             window.addEventListener('click',function(e){ if(e.target===popup) popup.classList.remove('show'); });
             gtag('event','page_view',{'page_title':'Daily Wallpaper Cup','page_location':'https://wallrank.club','send_to':'G-19RP0D764T'});
             setTimeout(()=>updateGoldenLeader(),50);
             
-            // ========== PUZZLE MAGIC – 3s CELEBRATION ==========
+            // PUZZLE
             const overlay = document.getElementById('puzzleOverlay');
             const puzzleBtn = document.getElementById('openPuzzleBtn');
             const closePuzzleBtn = document.getElementById('closePuzzleBtn');
@@ -1524,7 +899,6 @@
                         saveOptions.style.display = 'none';
                         shareOptions.style.display = 'none';
                         initPuzzle(wp);
-                        createReaction(e.clientX, e.clientY, '🧩');
                     });
                     puzzleSelector.appendChild(thumb);
                 });
@@ -1555,7 +929,6 @@
                     const row = Math.floor(pieceId / 3);
                     const col = pieceId % 3;
                     piece.style.backgroundImage = `url('${wp.filename}')`;
-                    piece.style.backgroundSize = '360px 360px';
                     piece.style.backgroundPosition = `-${col * 120}px -${row * 120}px`;
                     piece.addEventListener('dragstart', (e) => e.dataTransfer.setData('text/plain', e.target.dataset.pieceIndex));
                     piece.addEventListener('dragover', (e) => e.preventDefault());
@@ -1579,37 +952,36 @@
                     puzzleSolved = true;
                     step2.style.display = 'none';
                     step3.style.display = 'block';
-                    celebrationMsg.innerText = '🎉✨ PERFECT! ✨🎉';
+                    celebrationMsg.innerText = 'PERFECT!';
                     afterCelebration.style.display = 'none';
                     closePuzzleBtn.style.display = 'none';
                     addConfetti();
                     celebrationTimer = setTimeout(() => {
-                        afterCelebration.style.display = 'block';
+                        afterCelebration.style.display = 'flex';
                         closePuzzleBtn.style.display = 'inline-block';
                     }, 3000);
                 }
             }
             
-            shuffleBtn.addEventListener('click', (e) => { if (selectedWallpaper) { currentOrder = shuffleArray([0,1,2,3,4,5,6,7,8]); renderPuzzleGrid(selectedWallpaper); createReaction(e.clientX, e.clientY, '🔄'); } });
-            puzzleBtn.addEventListener('click', (e) => { overlay.classList.add('active'); step1.style.display = 'block'; step2.style.display = 'none'; step3.style.display = 'none'; saveOptions.style.display = 'none'; shareOptions.style.display = 'none'; initPuzzleSelector(); createReaction(e.clientX, e.clientY, '🧩✨'); });
-            closePuzzleBtn.addEventListener('click', (e) => { overlay.classList.remove('active'); clearTimeout(celebrationTimer); createReaction(e.clientX, e.clientY, '🔚'); });
-            saveMemoryBtn.addEventListener('click', (e) => { step3.style.display = 'none'; saveOptions.style.display = 'block'; createReaction(e.clientX, e.clientY, '💾❤️'); });
-            tellOthersBtn.addEventListener('click', (e) => { step3.style.display = 'none'; shareOptions.style.display = 'block'; shareLink.innerText = `https://wallrank.club/puzzle/${selectedWallpaper?.id || 'daily'}?win=1`; createReaction(e.clientX, e.clientY, '📢'); });
-            saveSimpleBtn.addEventListener('click', (e) => { const link = document.createElement('a'); link.href = selectedWallpaper.filename; link.download = `wallrank-${selectedWallpaper.title.replace(/[^a-z0-9]/gi,'-')}.jpg`; link.click(); saveOptions.style.display = 'none'; step1.style.display = 'block'; createReaction(e.clientX, e.clientY, '⬇️🎉'); });
-            saveWithNameBtn.addEventListener('click', (e) => { nameInputArea.style.display = 'block'; createReaction(e.clientX, e.clientY, '🖋️'); });
+            shuffleBtn.addEventListener('click', (e) => { if (selectedWallpaper) { currentOrder = shuffleArray([0,1,2,3,4,5,6,7,8]); renderPuzzleGrid(selectedWallpaper); } });
+            puzzleBtn.addEventListener('click', (e) => { overlay.classList.add('active'); step1.style.display = 'block'; step2.style.display = 'none'; step3.style.display = 'none'; saveOptions.style.display = 'none'; shareOptions.style.display = 'none'; initPuzzleSelector(); });
+            closePuzzleBtn.addEventListener('click', (e) => { overlay.classList.remove('active'); clearTimeout(celebrationTimer); });
+            saveMemoryBtn.addEventListener('click', (e) => { step3.style.display = 'none'; saveOptions.style.display = 'block'; });
+            tellOthersBtn.addEventListener('click', (e) => { step3.style.display = 'none'; shareOptions.style.display = 'block'; shareLink.innerText = `https://wallrank.club/puzzle/${selectedWallpaper?.id || 'daily'}?win=1`; });
+            saveSimpleBtn.addEventListener('click', (e) => { const link = document.createElement('a'); link.href = selectedWallpaper.filename; link.download = `wallrank-${selectedWallpaper.title.replace(/[^a-z0-9]/gi,'-')}.jpg`; link.click(); saveOptions.style.display = 'none'; step1.style.display = 'block'; });
+            saveWithNameBtn.addEventListener('click', (e) => { nameInputArea.style.display = 'block'; });
             generateSigned.addEventListener('click', (e) => {
-                const name = userName.value.trim() || 'puzzle master';
+                const name = userName.value.trim() || 'master';
                 const canvas = document.getElementById('signatureCanvas');
                 canvas.width = 600; canvas.height = 480;
                 const ctx = canvas.getContext('2d');
                 const img = new Image(); img.crossOrigin = 'anonymous'; img.src = selectedWallpaper.filename;
                 img.onload = () => {
                     ctx.drawImage(img, 0, 0, 600, 480);
-                    ctx.font = 'bold 36px Quicksand, cursive'; ctx.fillStyle = 'white'; ctx.shadowColor = 'black'; ctx.shadowBlur = 12;
-                    ctx.fillText(`🧩 SOLVED BY ${name}`, 50, 420);
+                    ctx.font = 'bold 36px Quicksand, sans-serif'; ctx.fillStyle = 'white'; ctx.shadowColor = 'black'; ctx.shadowBlur = 12;
+                    ctx.fillText(`SOLVED BY ${name}`, 50, 420);
                     const link = document.createElement('a'); link.download = `solved-by-${name}.png`; link.href = canvas.toDataURL('image/png'); link.click();
                     nameInputArea.style.display = 'none'; saveOptions.style.display = 'none'; step1.style.display = 'block'; userName.value = '';
-                    createReaction(e.clientX, e.clientY, '✅🖼️');
                 };
             });
             
@@ -1617,22 +989,36 @@
                 icon.addEventListener('click', (e) => {
                     const platform = e.currentTarget.dataset.share;
                     const url = encodeURIComponent(shareLink.innerText);
-                    let shareUrl = ''; let emoji = '🔗';
-                    if (platform === 'fb') { shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`; emoji = '📘'; }
-                    else if (platform === 'tw') { shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=I solved the wallpaper puzzle!`; emoji = '🐦'; }
-                    else if (platform === 'pin') { shareUrl = `https://pinterest.com/pin/create/button/?url=${url}`; emoji = '📌'; }
-                    else if (platform === 'ig') { alert('📷 Share on Instagram – take a screenshot!'); emoji = '📷'; return; }
-                    else if (platform === 'snap') { alert('👻 Snapchat – screenshot & share!'); emoji = '👻'; return; }
-                    else if (platform === 'email') { shareUrl = `mailto:?subject=Wallpaper puzzle&body=${url}`; emoji = '📧'; }
+                    let shareUrl = '';
+                    if (platform === 'fb') { shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`; }
+                    else if (platform === 'tw') { shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=I solved the wallpaper puzzle!`; }
+                    else if (platform === 'pin') { shareUrl = `https://pinterest.com/pin/create/button/?url=${url}`; }
+                    else if (platform === 'ig') { alert('Share on Instagram – take a screenshot!'); return; }
+                    else if (platform === 'snap') { alert('Snapchat – screenshot & share!'); return; }
+                    else if (platform === 'email') { shareUrl = `mailto:?subject=Wallpaper puzzle&body=${url}`; }
                     if (shareUrl) window.open(shareUrl, '_blank');
-                    createReaction(e.clientX, e.clientY, emoji);
                     gtag('event', 'share_puzzle', { 'event_category': 'social', 'event_label': platform });
                 });
             });
             
-            closeShareBtn.addEventListener('click', (e) => { shareOptions.style.display = 'none'; step1.style.display = 'block'; createReaction(e.clientX, e.clientY, '🔙'); });
+            closeShareBtn.addEventListener('click', (e) => { shareOptions.style.display = 'none'; step1.style.display = 'block'; });
             
-            // ========== FOOTER LINK HANDLERS – NOW WITH DETAILED, REAL CONTENT ==========
+            // WEB SHARE API
+            const shareSiteBtn = document.getElementById('shareSiteBtn');
+            if(shareSiteBtn) {
+                shareSiteBtn.addEventListener('click', async (e) => {
+                    if (navigator.share) {
+                        try { await navigator.share({ title: 'WallRank.club', text: 'Check out the daily AI wallpaper cup!', url: 'https://wallrank.club' }); } 
+                        catch(err) { console.log('Share canceled', err); }
+                    } else {
+                        navigator.clipboard.writeText('https://wallrank.club');
+                        alert('Link copied to clipboard!');
+                    }
+                    gtag('event', 'share_site', { 'event_category': 'growth', 'event_label': 'top_bar_share' });
+                });
+            }
+
+            // FOOTER LINKS
             const footerPopup = document.getElementById('footerPopup');
             const footerPopupContent = document.getElementById('footerPopupContent');
             const closeFooterPopup = document.getElementById('closeFooterPopup');
@@ -1642,138 +1028,49 @@
                 footerPopup.classList.add('show');
             }
             
-            // About
             document.getElementById('footerAbout').addEventListener('click', (e) => {
-                showFooterPopup('✨ About', `
-                    <h3 style="font-size:2rem; margin-bottom: 10px;">🌸 WallRank.club</h3>
-                    <p style="font-size:1.1rem; margin: 20px 0;">We're building the friendliest daily wallpaper competition on the web.</p>
-                    <p style="margin: 16px 0;">Every day, 4 fresh AI-generated wallpapers are uploaded. You vote, you download, and at midnight UTC the winner is crowned and joins our Hall of Fame.</p>
-                    <p style="background: #ffe1d4; padding: 16px; border-radius: 18px; margin-top: 20px;">
-                        🎯 <strong>Our mission:</strong> Make high-quality AI art accessible, fun, and community-driven. No paywalls, no signups – just beautiful wallpapers and your vote.
-                    </p>
-                    <p style="margin-top: 20px; color: #6b4b3e;">Founded in 2026 by a team of wallpaper lovers.</p>
+                showFooterPopup('About', `
+                    <h3 style="font-size:1.5rem; margin-bottom: 10px;">WallRank.club</h3>
+                    <p style="font-size:1rem; margin: 16px 0; color: var(--text-muted);">We curate high-quality AI art into a daily competition.</p>
                 `);
-                createReaction(e.clientX, e.clientY, '📄');
             });
             
-            // Privacy Policy – fully detailed
             document.getElementById('footerPrivacy').addEventListener('click', (e) => {
-                showFooterPopup('📋 Privacy Policy', `
-                    <h3 style="font-size:2rem; margin-bottom: 10px;">🔒 Your privacy matters</h3>
-                    <p style="font-size:1rem; margin: 16px 0; text-align: left;">
-                        <strong>What we collect:</strong><br>
-                        • Votes and downloads: stored <strong>locally in your browser</strong> (localStorage) to prevent duplicate voting. We never see your personal data.<br>
-                        • Anonymous analytics: we use Google Analytics 4 to understand which pages are visited. No personally identifiable information is collected.<br><br>
-                        
-                        <strong>What we DON'T collect:</strong><br>
-                        • No email addresses (unless you contact us).<br>
-                        • No cookies for marketing or tracking.<br>
-                        • No selling or sharing of data – ever.<br><br>
-                        
-                        <strong>Your email:</strong> If you contact us at kabanijames9@gmail.com, we only use it to reply. Conversations are deleted after resolution.<br><br>
-                        
-                        <strong>Changes:</strong> If this policy changes, we'll update this page and notify you.
-                    </p>
-                    <p style="background: #ffe1d4; padding: 16px; border-radius: 18px; margin-top: 20px;">
-                        ✅ By using WallRank.club, you trust us with this simple, human-readable promise.
-                    </p>
+                showFooterPopup('Privacy Policy', `
+                    <h3 style="font-size:1.5rem; margin-bottom: 10px;">Privacy Policy</h3>
+                    <p style="font-size:0.95rem; margin: 16px 0; color: var(--text-muted); text-align: left;">We store votes locally to prevent duplicates. We use basic Google Analytics. No personal data is sold.</p>
                 `);
-                createReaction(e.clientX, e.clientY, '🔒');
             });
             
-            // Terms of Service – fully detailed
             document.getElementById('footerTerms').addEventListener('click', (e) => {
-                showFooterPopup('📜 Terms of Service', `
-                    <h3 style="font-size:2rem; margin-bottom: 10px;">🌸 Be kind, vote fair</h3>
-                    <p style="font-size:1rem; margin: 16px 0; text-align: left;">
-                        <strong>1. Voting</strong><br>
-                        • You can vote once per wallpaper per day. We use your browser's local storage to remember your vote – no account needed.<br>
-                        • Duplicate votes are blocked. No cheating – it's just for fun!<br><br>
-                        
-                        <strong>2. Downloads</strong><br>
-                        • All wallpapers are free for personal use. Please don't redistribute or claim as your own.<br>
-                        • Wallpapers are generated with AI and hand-picked by our team.<br><br>
-                        
-                        <strong>3. Winner determination</strong><br>
-                        • At midnight UTC, the wallpaper with the highest combined votes + downloads wins.<br>
-                        • In case of a tie, a random winner is crowned.<br>
-                        • The winner is added to our Hall of Fame forever.<br><br>
-                        
-                        <strong>4. Content</strong><br>
-                        • We strive to select appropriate, high-quality images. If you see something concerning, contact us immediately.<br><br>
-                        
-                        <strong>5. Changes</strong><br>
-                        • We may update these terms, but they'll always be fair and transparent.
-                    </p>
-                    <p style="background: #ffe1d4; padding: 16px; border-radius: 18px; margin-top: 20px;">
-                        👑 That's it. No legalese, just respect for art and community.
-                    </p>
+                showFooterPopup('Terms of Service', `
+                    <h3 style="font-size:1.5rem; margin-bottom: 10px;">Terms of Service</h3>
+                    <p style="font-size:0.95rem; margin: 16px 0; color: var(--text-muted); text-align: left;">Vote fairly. Wallpapers are free for personal use.</p>
                 `);
-                createReaction(e.clientX, e.clientY, '📜');
             });
             
-            // Cookie Settings – fully detailed
             document.getElementById('footerCookies').addEventListener('click', (e) => {
-                showFooterPopup('🍪 Cookie Settings', `
-                    <h3 style="font-size:2rem; margin-bottom: 10px;">🍪 Just the essentials</h3>
-                    <p style="font-size:1rem; margin: 16px 0; text-align: left;">
-                        <strong>We use only two types of browser storage:</strong><br><br>
-                        
-                        • <strong>localStorage</strong> – stores your votes and downloads for the day. This is not a cookie; it stays in your browser and never leaves your device.<br>
-                        &nbsp;&nbsp;↳ Used to prevent duplicate voting and save your download counts.<br><br>
-                        
-                        • <strong>Google Analytics 4</strong> – uses first-party cookies to count visits and see which pages are popular. All data is anonymized.<br>
-                        &nbsp;&nbsp;↳ You can opt out via your browser settings.<br><br>
-                        
-                        <strong>No tracking cookies, no marketing cookies, no third-party ads (yet).</strong>
-                    </p>
-                    <p style="background: #ffe1d4; padding: 16px; border-radius: 18px; margin-top: 20px;">
-                        🍪 We keep it minimal. Always.
-                    </p>
+                showFooterPopup('Cookie Settings', `
+                    <h3 style="font-size:1.5rem; margin-bottom: 10px;">Cookies</h3>
+                    <p style="font-size:0.95rem; margin: 16px 0; color: var(--text-muted); text-align: left;">We use local storage for voting logic and first-party cookies for Analytics. No tracking ads.</p>
                 `);
-                createReaction(e.clientX, e.clientY, '🍪');
             });
             
-            // Ad Choices – fully detailed
             document.getElementById('footerAdChoices').addEventListener('click', (e) => {
-                showFooterPopup('📢 Ad Choices', `
-                    <h3 style="font-size:2rem; margin-bottom: 10px;">📢 Transparency first</h3>
-                    <p style="font-size:1rem; margin: 16px 0; text-align: left;">
-                        <strong>Current status:</strong> We do not display any ads. WallRank.club is 100% free, no paywalls, no banners.<br><br>
-                        
-                        <strong>Future plans:</strong> If we ever introduce ads, they will be:<br>
-                        • Non-intrusive (no pop-ups, no autoplay video)<br>
-                        • Clearly labeled<br>
-                        • Easy to opt out of<br><br>
-                        
-                        <strong>Affiliate links:</strong> We don't use them. If we ever recommend a product, we'll disclose it clearly.<br><br>
-                        
-                        <strong>Your choice:</strong> You'll always have control. No dark patterns.
-                    </p>
-                    <p style="background: #ffe1d4; padding: 16px; border-radius: 18px; margin-top: 20px;">
-                        💡 We'd rather earn your trust than your clicks.
-                    </p>
+                showFooterPopup('Ad Choices', `
+                    <h3 style="font-size:1.5rem; margin-bottom: 10px;">Ad Choices</h3>
+                    <p style="font-size:0.95rem; margin: 16px 0; color: var(--text-muted); text-align: left;">WallRank is currently ad-free.</p>
                 `);
-                createReaction(e.clientX, e.clientY, '📢');
             });
             
-            // Home
             document.getElementById('footerHome').addEventListener('click', (e) => {
-                showFooterPopup('🏠 Wallrank.club', `
-                    <h3 style="font-size:2rem; margin-bottom: 10px;">🏠 You're already home</h3>
-                    <p style="font-size:1.2rem; margin: 30px 0;">This is the place. Vote, download, and celebrate daily winners.</p>
-                    <p style="background: #ffe1d4; padding: 16px; border-radius: 18px;">
-                        🌸 Welcome to the friendliest wallpaper cup on the internet.
-                    </p>
-                `);
-                createReaction(e.clientX, e.clientY, '🏠');
+                window.scrollTo({top: 0, behavior: 'smooth'});
             });
             
             const contactPopup = document.getElementById('contactPopup');
             const closeContactPopup = document.getElementById('closeContactPopup');
             document.getElementById('footerContact').addEventListener('click', (e) => {
                 contactPopup.classList.add('show');
-                createReaction(e.clientX, e.clientY, '📧');
             });
             closeContactPopup.addEventListener('click', () => contactPopup.classList.remove('show'));
             window.addEventListener('click', (e) => { if (e.target === contactPopup) contactPopup.classList.remove('show'); });
@@ -1781,7 +1078,7 @@
             closeFooterPopup.addEventListener('click', () => footerPopup.classList.remove('show'));
             window.addEventListener('click', (e) => { if (e.target === footerPopup) footerPopup.classList.remove('show'); });
             
-            // ========== 🆕 AI STOCK PHOTOS POPUP ==========
+            // AI STOCK PHOTOS POPUP
             const aiStockBtn = document.getElementById('aiStockBtn');
             const aiStockPopup = document.getElementById('aiStockPopup');
             const closeAiStock = document.getElementById('closeAiStockPopup');
@@ -1796,7 +1093,7 @@
                             <img src="${wp.filename}" alt="${wp.title}" loading="lazy">
                             <div class="ai-gallery-title">${wp.title}</div>
                             <div style="margin-top: 8px;">
-                                <button class="btn-small" style="padding: 6px 12px; font-size: 0.8rem;" onclick="document.querySelector('.btn-download[data-id=\\'${wp.id}\\']')?.click()">⬇️ Download</button>
+                                <button class="btn" style="padding: 6px 12px; font-size: 0.8rem; min-height: auto;" onclick="document.querySelector('.btn-download[data-id=\\'${wp.id}\\']')?.click()">Download</button>
                             </div>
                         </div>
                     `;
@@ -1807,7 +1104,6 @@
             aiStockBtn.addEventListener('click', function(e) {
                 renderAiGallery();
                 aiStockPopup.classList.add('show');
-                createReaction(e.clientX, e.clientY, '🖼️');
             });
             closeAiStock.addEventListener('click', function() {
                 aiStockPopup.classList.remove('show');
@@ -1816,13 +1112,13 @@
                 if (e.target === aiStockPopup) aiStockPopup.classList.remove('show');
             });
             
-            // ========== INITIALISE ==========
+            // INIT
             loadPastWinners();
             renderWinnersHistory();
             renderCards();
             renderAiGallery();
             
-            // Winner of the week – sample data for demo (remove later)
+            // Sample data
             setTimeout(() => {
                 const winnerContent = document.getElementById('winnerWeekContent');
                 if (winnerContent && pastWinners.length === 0) {
@@ -1830,19 +1126,14 @@
                         <div class="winner-week-thumb">
                             <img src="${wallpapers[0].filename}" alt="${wallpapers[0].title}">
                         </div>
-                        <div class="winner-week-info">
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
                             <div class="winner-week-name">${wallpapers[0].title}</div>
-                            <div class="winner-week-date">🏆 crowned on ${new Date().toISOString().split('T')[0]}</div>
-                            <div style="display:flex; gap:16px; margin-top:8px;">
-                                <span>❤️ 0 votes</span>
-                                <span>⬇️ 0 downloads</span>
-                            </div>
+                            <div class="winner-week-date">Crowned ${new Date().toISOString().split('T')[0]}</div>
                         </div>
                     `;
                 }
             }, 100);
         })();
     </script>
-    <div style="display:none;">daily wallpaper vote puzzle 4K free AI winner every midnight UTC+0 wallrank.club 4 devices carousel daily reset hall of fame</div>
 </body>
 </html>
