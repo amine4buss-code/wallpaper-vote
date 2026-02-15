@@ -151,7 +151,6 @@
             animation: fadeInSleek 0.6s ease forwards;
         }
         
-        /* Start images fully transparent (Black Screen) */
         .showcase-img {
             width: 100%;
             height: 100%;
@@ -162,7 +161,7 @@
         }
         @keyframes fadeInSleek { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* DEVICE MOCKUPS (Pure CSS) */
+        /* DEVICE MOCKUPS */
         .device-phone { width: 240px; height: 480px; background: #1a1a1a; border-radius: 36px; padding: 10px; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.15); border: 1px solid #333; }
         .phone-screen { width: 100%; height: 100%; background: black; border-radius: 28px; overflow: hidden; position: relative; }
         .phone-notch { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 90px; height: 25px; background: #1a1a1a; border-radius: 20px; z-index: 10; }
@@ -194,27 +193,15 @@
             .showcase-container { min-height: 400px; }
         }
         
-        /* ACTIVE ACTION BAR (Hidden by default) */
+        /* ACTIVE ACTION BAR */
         .active-actions { 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            gap: 20px;
-            padding: 16px 24px; 
-            background: var(--surface); 
-            border-radius: 100px;
-            border: 1px solid var(--border-focus);
-            box-shadow: var(--shadow-sm);
-            opacity: 0; /* Hidden until image selected */
-            pointer-events: none;
-            transition: opacity 0.4s ease, transform 0.4s ease;
+            display: flex; justify-content: center; align-items: center; gap: 20px;
+            padding: 16px 24px; background: var(--surface); border-radius: 100px;
+            border: 1px solid var(--border-focus); box-shadow: var(--shadow-sm);
+            opacity: 0; pointer-events: none; transition: opacity 0.4s ease, transform 0.4s ease;
             transform: translateY(10px);
         }
-        .active-actions.show {
-            opacity: 1;
-            pointer-events: auto;
-            transform: translateY(0);
-        }
+        .active-actions.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
 
         .vote-controls { display: flex; align-items: center; gap: 12px; font-weight: 700; color: var(--text-main); font-size: 1.2rem; }
         .icon-btn { background: var(--accent-subtle); border: 1px solid var(--border-light); font-size: 1.2rem; cursor: pointer; color: var(--text-muted); transition: var(--transition-smooth); display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; }
@@ -230,7 +217,36 @@
         .reaction-item { font-size: 1.5rem; font-weight: bold; position: absolute; pointer-events: none; animation: floatSleek 0.8s ease forwards; z-index: 999; color: var(--text-main); }
         @keyframes floatSleek { 0% { opacity: 0; transform: translateY(0) scale(0.8); } 20% { opacity: 1; transform: translateY(-10px) scale(1.2); } 100% { opacity: 0; transform: translateY(-40px) scale(0.9); } }
         
-        footer { margin-top: auto; padding: 40px 0; text-align: center; color: var(--text-muted); font-size: 0.85rem; width: 100%; }
+        /* 🆕 SPECS / COMPATIBILITY SECTION */
+        .specs-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            width: 100%;
+            max-width: 900px;
+            margin: 60px auto 0 auto;
+            border-top: 1px solid var(--border-focus);
+            padding-top: 60px;
+        }
+        @media (max-width: 768px) {
+            .specs-section { grid-template-columns: 1fr; gap: 16px; padding-top: 40px; margin-top: 40px; }
+        }
+        .spec-card {
+            background: var(--surface);
+            padding: 32px 24px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-light);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+        }
+        .spec-card:hover { transform: translateY(-3px); border-color: var(--border-focus); box-shadow: var(--shadow-md); }
+        .spec-icon { font-size: 2rem; margin-bottom: 16px; }
+        .spec-title { font-weight: 700; color: var(--text-main); margin-bottom: 8px; font-size: 1.1rem; letter-spacing: -0.01em; }
+        .spec-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
+        .spec-dim { display: inline-block; background: var(--accent-subtle); padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; color: var(--text-main); margin-top: 12px; border: 1px solid var(--border-light); }
+
+        footer { margin-top: auto; padding: 60px 0 20px 0; text-align: center; color: var(--text-muted); font-size: 0.85rem; width: 100%; }
         footer a { color: var(--text-muted); text-decoration: none; margin: 0 10px; transition: 0.2s; }
         footer a:hover { color: var(--text-main); }
     </style>
@@ -324,6 +340,27 @@
             </div>
         </section>
         
+        <section class="specs-section">
+            <div class="spec-card">
+                <div class="spec-icon">📱</div>
+                <div class="spec-title">Mobile</div>
+                <div class="spec-desc">Optimized for high-density OLED screens including iPhone Pro/Max, Pixel, and Galaxy Ultra devices.</div>
+                <div class="spec-dim">1170 x 2532+</div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-icon">💻</div>
+                <div class="spec-title">Desktop & PC</div>
+                <div class="spec-desc">Ultra-crisp clarity tailored for MacBook Pro Retina displays, PC Monitors, and Ultrawides.</div>
+                <div class="spec-dim">3840 x 2160 (4K)</div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-icon">📟</div>
+                <div class="spec-title">Tablets</div>
+                <div class="spec-desc">Perfectly scaled aspect ratios designed for iPad Pro, Galaxy Tab, and other large-format tablets.</div>
+                <div class="spec-dim">2048 x 2732+</div>
+            </div>
+        </section>
+        
         <footer>
             <div style="margin-bottom: 12px;">
                 <a href="mailto:kabanijames9@gmail.com">Contact</a>
@@ -348,7 +385,6 @@
             const todayKey = new Date().toISOString().split('T')[0]; 
             let userVoteRecord = {}; 
 
-            // Load saved data
             const storedVotes = localStorage.getItem(`vr_${todayKey}`);
             if (storedVotes) { try { userVoteRecord = JSON.parse(storedVotes); } catch(e){} }
             
@@ -368,7 +404,6 @@
                 setTimeout(() => reaction.remove(), 800);
             }
             
-            // 🧊 CUBE, DEVICE, & ACTION LOGIC
             const menuCube = document.getElementById('menuCube');
             const cubeFaces = document.querySelectorAll('.cube-face');
             const cubeImages = document.querySelectorAll('.cf-img');
@@ -390,9 +425,8 @@
 
             let cubeRotationY = 0;
             let scDeviceIndex = 0;
-            let activeWallpaperId = null; // Tracks currently displayed wallpaper
+            let activeWallpaperId = null;
 
-            // 1. Fill cube faces
             if (wallpapers.length >= 4) {
                 cubeImages[0].src = wallpapers[0].filename;
                 cubeImages[1].src = wallpapers[1].filename;
@@ -400,19 +434,16 @@
                 cubeImages[3].src = wallpapers[3].filename;
             }
 
-            // Function to update action buttons state
             function updateActionButtons() {
                 if (!activeWallpaperId) return;
                 const wp = wallpapers.find(w => w.id === activeWallpaperId);
                 const userVote = userVoteRecord[wp.id] || 0;
                 
                 scoreDisplay.innerText = wp.score;
-                
                 btnUp.className = 'icon-btn upvote ' + (userVote === 1 ? 'active-up' : '');
                 btnDown.className = 'icon-btn downvote ' + (userVote === -1 ? 'active-down' : '');
             }
 
-            // 2. Handle Cube Clicks (Turn on screen & show controls)
             cubeFaces.forEach(face => {
                 face.addEventListener('click', function(e) {
                     const idx = this.getAttribute('data-index');
@@ -420,7 +451,6 @@
                         const wp = wallpapers[idx];
                         activeWallpaperId = wp.id;
                         
-                        // Fade image onto the black devices
                         showcaseImages.forEach(img => {
                             img.style.opacity = '0'; 
                             setTimeout(() => {
@@ -429,17 +459,14 @@
                             }, 150); 
                         });
                         
-                        // Reveal control panel & update states
                         activeActionsBox.classList.add('show');
-                        instructionText.style.display = 'none'; // Hide instructions once they get it
+                        instructionText.style.display = 'none';
                         updateActionButtons();
-                        
                         createReaction(e.clientX, e.clientY, '📸', '#0f172a');
                     }
                 });
             });
 
-            // 3. Handle Active Votes & Downloads
             btnUp.addEventListener('click', (e) => handleVote(1, e));
             btnDown.addEventListener('click', (e) => handleVote(-1, e));
             btnDownload.addEventListener('click', (e) => {
@@ -460,7 +487,6 @@
             function handleVote(direction, event) {
                 if (!activeWallpaperId) return;
                 const wp = wallpapers.find(w => w.id === activeWallpaperId); 
-                
                 const currentVote = userVoteRecord[wp.id] || 0;
                 
                 if (currentVote === direction) {
@@ -471,7 +497,6 @@
                     if (currentVote !== 0) wp.score -= currentVote; 
                     wp.score += direction; 
                     userVoteRecord[wp.id] = direction;
-                    
                     const icon = direction === 1 ? '▲' : '▼';
                     const color = direction === 1 ? '#10b981' : '#ef4444';
                     createReaction(event.clientX, event.clientY, icon, color);
@@ -479,12 +504,10 @@
                 
                 localStorage.setItem(`vr_${todayKey}`, JSON.stringify(userVoteRecord));
                 localStorage.setItem(`wall_${wp.id}_${todayKey}`, JSON.stringify({ score: wp.score }));
-                
                 gtag('event', 'vote', { 'event_category': 'engagement', 'value': wp.score });
                 updateActionButtons();
             }
 
-            // 4. Timers for Spin and Device Cycle
             setInterval(() => {
                 cubeRotationY -= 90; 
                 menuCube.style.transform = `rotateX(-10deg) rotateY(${cubeRotationY}deg)`;
