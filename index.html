@@ -130,6 +130,7 @@
         .btn-download { background: var(--text-main); color: white; border: none; padding: 12px 32px; border-radius: 50px; font-size: 1rem; font-weight: 700; font-family: inherit; cursor: pointer; transition: var(--transition-smooth); display: flex; align-items: center; gap: 10px; box-shadow: var(--shadow-sm); }
         .btn-download:hover { background: #334155; transform: translateY(-2px); }
         .btn-download:active { transform: scale(0.96); }
+        .btn-download.loading { opacity: 0.8; cursor: not-allowed; transform: none; }
 
         /* POPUP OVERLAY */
         .wallpaper-popup {
@@ -232,7 +233,7 @@
         <div class="action-area">
             <button class="btn-download" id="mainDownloadBtn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                Download Wallpaper
+                <span id="downloadText">Download Wallpaper</span>
             </button>
         </div>
         
@@ -259,7 +260,7 @@
         (function() {
             'use strict';
             
-            // Updated Data: 8 Wallpapers based on your GitHub structure
+            // 8 Wallpapers based on your GitHub structure
             const wallpapers = [
                 { id: 1, filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/1.png" },
                 { id: 2, filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/2.png" },
@@ -271,7 +272,7 @@
                 { id: 8, filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/8.png" }
             ];
             
-            let currentWallIndex = 0; // Starts with the first wallpaper
+            let currentWallIndex = 0;
             let currentDeviceIndex = 0;
 
             const showcaseImages = document.querySelectorAll('.showcase-img');
@@ -285,6 +286,7 @@
             const prevBtn = document.getElementById('prevWall');
             const nextBtn = document.getElementById('nextWall');
             const downloadBtn = document.getElementById('mainDownloadBtn');
+            const downloadText = document.getElementById('downloadText');
             
             const wallPopup = document.getElementById('wallPopup');
             const openMenuBtn = document.getElementById('openMenuBtn');
@@ -293,11 +295,10 @@
 
             // --- Core Functions ---
 
-            // Update the images displayed on the mockups based on current index
             function updateDisplayImage() {
                 const imgUrl = wallpapers[currentWallIndex].filename;
                 showcaseImages.forEach(img => {
-                    img.style.opacity = '0.5'; // Quick fade effect
+                    img.style.opacity = '0.5'; 
                     setTimeout(() => {
                         img.src = imgUrl;
                         img.style.opacity = '1';
@@ -305,26 +306,59 @@
                 });
             }
 
-            // Handle manual navigation (arrows)
             function changeWallpaper(direction) {
                 currentWallIndex = (currentWallIndex + direction + wallpapers.length) % wallpapers.length;
                 updateDisplayImage();
             }
 
-            // Handle download click
-            function downloadCurrent() {
+            // 🆕 FORCE DIRECT DOWNLOAD USING FETCH & BLOB
+            async function downloadCurrent() {
                 const wp = wallpapers[currentWallIndex];
-                const link = document.createElement('a');
-                link.href = wp.filename;
-                link.download = `wallrank-${wp.id}.png`;
-                link.target = '_blank'; link.rel = 'noopener';
-                link.click();
-                gtag('event', 'download', { 'event_category': 'conversion', 'event_label': `ID: ${wp.id}` });
+                
+                // Prevent multiple clicks while fetching
+                if (downloadBtn.classList.contains('loading')) return;
+                
+                // Show loading state
+                downloadBtn.classList.add('loading');
+                const originalText = downloadText.innerText;
+                downloadText.innerText = 'Downloading...';
+
+                try {
+                    // Fetch the image data behind the scenes
+                    const response = await fetch(wp.filename);
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    
+                    const blob = await response.blob();
+                    const blobUrl = URL.createObjectURL(blob);
+                    
+                    // Create an invisible link and trigger a click to download
+                    const link = document.createElement('a');
+                    link.href = blobUrl;
+                    link.download = `wallrank-art-${wp.id}.png`;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    // Clean up memory
+                    setTimeout(() => URL.revokeObjectURL(blobUrl), 100);
+                    
+                    gtag('event', 'download', { 'event_category': 'conversion', 'event_label': `ID: ${wp.id}` });
+                } catch (error) {
+                    console.error('Direct download failed, falling back to new tab:', error);
+                    // Fallback just in case there's a strict network issue
+                    const link = document.createElement('a');
+                    link.href = wp.filename;
+                    link.target = '_blank';
+                    link.click();
+                } finally {
+                    // Restore button state
+                    downloadBtn.classList.remove('loading');
+                    downloadText.innerText = originalText;
+                }
             }
 
             // --- Popup Functions ---
 
-            // Render grid items in the popup
             function renderPopupGrid() {
                 popupGrid.innerHTML = '';
                 wallpapers.forEach((wp, index) => {
@@ -332,7 +366,6 @@
                     item.className = 'grid-item';
                     item.innerHTML = `<img src="${wp.filename}" alt="Wallpaper ${wp.id}" loading="lazy">`;
                     
-                    // Clicking a grid item updates main display and closes popup
                     item.addEventListener('click', () => {
                         currentWallIndex = index;
                         updateDisplayImage();
@@ -348,21 +381,17 @@
             downloadBtn.addEventListener('click', downloadCurrent);
             
             openMenuBtn.addEventListener('click', () => {
-                renderPopupGrid(); // Ensure grid is fresh
+                renderPopupGrid(); 
                 wallPopup.classList.add('active');
             });
             closeMenuBtn.addEventListener('click', () => wallPopup.classList.remove('active'));
-            // Close popup if clicking outside content area
             wallPopup.addEventListener('click', (e) => {
                 if(e.target === wallPopup) wallPopup.classList.remove('active');
             });
 
             // --- Initialization & Auto-Loops ---
-
-            // 1. Start with first image loaded
             updateDisplayImage();
 
-            // 2. Auto-rotate device mockups every 3 seconds (independent of wallpaper)
             setInterval(() => {
                 currentDeviceIndex = (currentDeviceIndex + 1) % showcaseSlides.length;
                 showcaseSlides.forEach((slide, idx) => {
