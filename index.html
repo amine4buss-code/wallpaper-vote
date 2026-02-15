@@ -13,9 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily Wallpapers | WallRank</title>
     
-    <meta name="description" content="Daily 4K AI wallpapers. Vote up or down, download for free, and view on 3D device mockups.">
-    <meta name="keywords" content="daily wallpaper, minimal wallpaper, download AI art, 4k free, 3d phone mockup">
-    <meta name="author" content="wallrank.club">
+    <meta name="description" content="Daily 4K AI wallpapers. View on 3D device mockups and download for free.">
     <link rel="canonical" href="https://wallrank.club">
     
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
@@ -32,8 +30,7 @@
             --accent-subtle: #f8fafc;
             --radius-md: 12px;
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.03);
-            --shadow-md: 0 10px 40px rgba(0, 0, 0, 0.15);
-            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.3, 1);
+            --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -43,161 +40,80 @@
             background: var(--bg-color);
             color: var(--text-main);
             padding: 40px 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
+            display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh; -webkit-font-smoothing: antialiased;
         }
         
-        .container { max-width: 1100px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        .container { max-width: 1100px; width: 100%; display: flex; flex-direction: column; align-items: center; position: relative; }
 
-        header { text-align: center; margin-bottom: 40px; position: relative; z-index: 60; }
+        /* HEADER & CORNER MENU */
+        header { text-align: center; margin-bottom: 60px; position: relative; width: 100%; }
         header h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.03em; }
         header p { color: var(--text-muted); font-weight: 500; margin-top: 4px; }
-        
-        /* 🧊 CENTRAL SHOWCASE & ANIMATIONS */
+
+        .corner-menu-btn {
+            position: absolute; top: 0; right: 0;
+            background: var(--surface); border: 1px solid var(--border-light);
+            width: 44px; height: 44px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; cursor: pointer; color: var(--text-main);
+            transition: var(--transition-smooth); box-shadow: var(--shadow-sm);
+        }
+        .corner-menu-btn:hover { background: var(--accent-subtle); transform: translateY(-2px); }
+
+        /* MAIN DISPLAY STAGE */
         .hero-showcase {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            max-width: 900px;
-            min-height: 560px;
             position: relative;
-            padding-top: 60px; /* Space for the tiny cube */
-        }
-        
-        /* THE INTERACTIVE 3D CUBE */
-        .cube-container {
-            width: 200px;
-            height: 250px;
-            perspective: 1200px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(1);
-            z-index: 50;
-            transition: all 0.7s cubic-bezier(0.25, 1, 0.3, 1);
-        }
-        
-        /* MINIMIZED PIXEL CUBE STATE */
-        .cube-container.minimized {
-            top: 10px;
-            transform: translate(-50%, 0) scale(0.18);
-            cursor: pointer;
-            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
-        }
-        .cube-container.minimized:hover {
-            transform: translate(-50%, 0) scale(0.22);
+            display: flex; align-items: center; justify-content: center;
+            width: 100%; max-width: 900px; min-height: 520px;
         }
 
-        .anim-cube {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            transform: rotateX(-10deg) rotateY(0deg); 
+        /* NAVIGATION ARROWS */
+        .nav-arrow {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: var(--surface); border: 1px solid var(--border-light);
+            width: 50px; height: 50px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; color: var(--text-muted); cursor: pointer;
+            transition: var(--transition-smooth); z-index: 20;
+            box-shadow: var(--shadow-sm);
         }
-        
-        .cube-face {
-            position: absolute;
-            border: 4px solid var(--surface);
-            background: var(--surface);
-            box-shadow: var(--shadow-md);
-            overflow: hidden;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-        }
-        .cube-container:not(.minimized) .cube-face:hover { border-color: var(--text-main); transform: scale(1.02) translateZ(10px); }
-        .cube-face img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
-        
-        .cube-face.front  { transform: rotateY(0deg) translateZ(100px); width: 200px; height: 250px; }
-        .cube-face.right  { transform: rotateY(90deg) translateZ(100px); width: 200px; height: 250px; }
-        .cube-face.back   { transform: rotateY(180deg) translateZ(100px); width: 200px; height: 250px; }
-        .cube-face.left   { transform: rotateY(-90deg) translateZ(100px); width: 200px; height: 250px; }
-        .cube-face.top    { transform: rotateX(90deg) translateZ(125px); width: 200px; height: 200px; background: #e2e8f0; border: none; cursor: default;}
-        .cube-face.bottom { transform: rotateX(-90deg) translateZ(125px); width: 200px; height: 200px; background: #cbd5e1; border: none; cursor: default;}
-
-        .cube-instruction {
-            position: absolute;
-            bottom: -50px;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            font-size: 0.9rem;
-            color: var(--text-main);
-            font-weight: 700;
-            animation: pulseText 2s infinite;
-            transition: opacity 0.3s;
-        }
-        .cube-container.minimized .cube-instruction { opacity: 0; pointer-events: none; }
-        
-        @keyframes pulseText { 0%, 100% { opacity: 1; transform: translateY(0); } 50% { opacity: 0.5; transform: translateY(-3px); } }
-
-        /* THE DISPLAY STAGE */
-        .display-stage {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-            width: 420px;
-            transition: all 0.7s cubic-bezier(0.25, 1, 0.3, 1);
+        .nav-arrow:hover { color: var(--text-main); background: var(--accent-subtle); box-shadow: var(--shadow-sm); }
+        .nav-arrow.left { left: -20px; padding-right: 4px; }
+        .nav-arrow.right { right: -20px; padding-left: 4px; }
+        @media (max-width: 700px) {
+            .nav-arrow { width: 40px; height: 40px; font-size: 1.4rem; }
+            .nav-arrow.left { left: 0; } .nav-arrow.right { right: 0; }
         }
 
         .showcase-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 100%; display: flex; justify-content: center; align-items: center;
             position: relative;
-            min-height: 480px;
         }
-        .showcase-slide {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            flex-direction: column;
-            align-items: center;
-        }
-        .showcase-slide.active {
-            display: flex;
-            opacity: 1;
-            animation: fadeInSleek 0.6s ease forwards;
-        }
-        
-        .showcase-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            opacity: 0; 
-            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+        .showcase-slide { display: none; opacity: 0; transition: opacity 0.5s ease; flex-direction: column; align-items: center; }
+        .showcase-slide.active { display: flex; opacity: 1; }
+        .showcase-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.3s ease; }
 
         /* DEVICE MOCKUPS */
-        .device-phone { width: 240px; height: 480px; background: #1a1a1a; border-radius: 36px; padding: 10px; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.15); border: 1px solid #333; }
+        .device-phone { width: 240px; height: 480px; background: #1a1a1a; border-radius: 36px; padding: 10px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.15); border: 1px solid #333; }
         .phone-screen { width: 100%; height: 100%; background: black; border-radius: 28px; overflow: hidden; position: relative; }
         .phone-notch { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 90px; height: 25px; background: #1a1a1a; border-radius: 20px; z-index: 10; }
         .phone-home-bar { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); width: 100px; height: 4px; background: rgba(255,255,255,0.4); border-radius: 10px; }
         
         .device-laptop { width: 420px; perspective: 1200px; }
-        .laptop-body { background: #1a1a1a; border-radius: 12px 12px 0 0; padding: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); }
+        .laptop-body { background: #1a1a1a; border-radius: 12px 12px 0 0; padding: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
         .laptop-bezel { background: #0a0a0a; border-radius: 8px; padding: 6px; }
         .laptop-screen { background: black; border-radius: 4px; width: 100%; aspect-ratio: 16/10; overflow: hidden; }
         .laptop-base { width: 100%; height: 16px; background: #2a2a2a; border-radius: 0 0 8px 8px; border-bottom: 2px solid #111; }
         
         .device-monitor { width: 420px; }
-        .monitor-body { background: #1a1a1a; border-radius: 8px; padding: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); }
+        .monitor-body { background: #1a1a1a; border-radius: 8px; padding: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
         .monitor-bezel { background: #0a0a0a; border-radius: 4px; padding: 6px; }
         .monitor-screen { background: black; border-radius: 2px; width: 100%; aspect-ratio: 16/9; overflow: hidden; }
         .monitor-stand { width: 60px; height: 40px; background: #2a2a2a; margin: 0 auto; }
         .monitor-base { width: 140px; height: 8px; background: #333; margin: 0 auto; border-radius: 4px; }
         
-        .device-tablet { width: 300px; height: 420px; background: #1a1a1a; border-radius: 24px; padding: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); }
+        .device-tablet { width: 300px; height: 420px; background: #1a1a1a; border-radius: 24px; padding: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
         .tablet-bezel { background: #0a0a0a; border-radius: 16px; padding: 6px; height: 100%; }
         .tablet-screen { background: black; border-radius: 12px; width: 100%; height: 100%; overflow: hidden; position: relative; }
         .tablet-home-bar { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: rgba(255,255,255,0.4); border-radius: 10px; }
@@ -206,213 +122,158 @@
             .device-phone { width: 200px; height: 400px; }
             .device-laptop, .device-monitor { width: 320px; }
             .device-tablet { width: 240px; height: 340px; }
-            .display-stage { width: 100%; }
-            .showcase-container { min-height: 400px; }
+            .hero-showcase { min-height: 420px; }
         }
         
-        /* ACTIVE ACTION BAR (Vote / Download) */
-        .active-actions { 
-            display: flex; justify-content: center; align-items: center; gap: 20px;
-            padding: 16px 24px; background: var(--surface); border-radius: 100px;
-            border: 1px solid var(--border-focus); box-shadow: var(--shadow-sm);
-            opacity: 0; pointer-events: none; transition: opacity 0.4s ease, transform 0.4s ease;
-            transform: translateY(10px);
-        }
-        .active-actions.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
-
-        .vote-controls { display: flex; align-items: center; gap: 12px; font-weight: 700; color: var(--text-main); font-size: 1.2rem; }
-        .icon-btn { background: var(--accent-subtle); border: 1px solid var(--border-light); font-size: 1.2rem; cursor: pointer; color: var(--text-muted); transition: var(--transition-smooth); display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; }
-        .icon-btn:hover { background: var(--border-focus); color: var(--text-main); }
-        .icon-btn.active-up { color: white; background: #10b981; border-color: #10b981; }
-        .icon-btn.active-down { color: white; background: #ef4444; border-color: #ef4444; }
-        .icon-btn:active { transform: scale(0.9); }
-        
-        .btn-download { background: var(--text-main); color: white; border: none; padding: 10px 24px; border-radius: 50px; font-size: 0.95rem; font-weight: 700; font-family: inherit; cursor: pointer; transition: var(--transition-smooth); display: flex; align-items: center; gap: 8px; }
-        .btn-download:hover { background: #334155; transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+        /* DOWNLOAD BUTTON */
+        .action-area { margin-top: 40px; }
+        .btn-download { background: var(--text-main); color: white; border: none; padding: 12px 32px; border-radius: 50px; font-size: 1rem; font-weight: 700; font-family: inherit; cursor: pointer; transition: var(--transition-smooth); display: flex; align-items: center; gap: 10px; box-shadow: var(--shadow-sm); }
+        .btn-download:hover { background: #334155; transform: translateY(-2px); }
         .btn-download:active { transform: scale(0.96); }
 
-        .reaction-item { font-size: 1.5rem; font-weight: bold; position: absolute; pointer-events: none; animation: floatSleek 0.8s ease forwards; z-index: 999; color: var(--text-main); }
-        @keyframes floatSleek { 0% { opacity: 0; transform: translateY(0) scale(0.8); } 20% { opacity: 1; transform: translateY(-10px) scale(1.2); } 100% { opacity: 0; transform: translateY(-40px) scale(0.9); } }
-        
-        /* SPECS / COMPATIBILITY SECTION */
-        .specs-section {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; width: 100%; max-width: 900px;
-            margin: 40px auto 0 auto; border-top: 1px solid var(--border-focus); padding-top: 60px;
+        /* POPUP OVERLAY */
+        .wallpaper-popup {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(5px);
+            z-index: 100; opacity: 0; pointer-events: none;
+            transition: opacity 0.3s ease;
+            display: flex; justify-content: center; padding: 40px 20px;
         }
-        @media (max-width: 768px) { .specs-section { grid-template-columns: 1fr; gap: 16px; padding-top: 40px; margin-top: 40px; } }
-        .spec-card { background: var(--surface); padding: 32px 24px; border-radius: var(--radius-md); border: 1px solid var(--border-light); text-align: center; box-shadow: var(--shadow-sm); transition: var(--transition-smooth); }
-        .spec-card:hover { transform: translateY(-3px); border-color: var(--border-focus); box-shadow: var(--shadow-md); }
-        .spec-icon { font-size: 2rem; margin-bottom: 16px; }
-        .spec-title { font-weight: 700; color: var(--text-main); margin-bottom: 8px; font-size: 1.1rem; }
-        .spec-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
-        .spec-dim { display: inline-block; background: var(--accent-subtle); padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; color: var(--text-main); margin-top: 12px; border: 1px solid var(--border-light); }
-
-        footer { margin-top: auto; padding: 60px 0 20px 0; text-align: center; color: var(--text-muted); font-size: 0.85rem; width: 100%; }
+        .wallpaper-popup.active { opacity: 1; pointer-events: auto; }
+        .popup-content {
+            max-width: 900px; width: 100%; height: 100%;
+            display: flex; flex-direction: column;
+        }
+        .popup-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .popup-title { font-size: 1.5rem; font-weight: 700; }
+        .close-popup { background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text-muted); transition: 0.2s; }
+        .close-popup:hover { color: var(--text-main); transform: rotate(90deg); }
+        
+        .popup-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+            overflow-y: auto; padding-bottom: 20px;
+        }
+        @media (max-width: 700px) { .popup-grid { grid-template-columns: repeat(2, 1fr); } }
+        
+        .grid-item {
+            aspect-ratio: 4/5; border-radius: var(--radius-md); overflow: hidden;
+            cursor: pointer; border: 2px solid transparent; transition: var(--transition-smooth);
+        }
+        .grid-item:hover { border-color: var(--text-main); transform: scale(0.98); }
+        .grid-item img { width: 100%; height: 100%; object-fit: cover; }
+        
+        footer { margin-top: auto; padding: 40px 0 20px 0; text-align: center; color: var(--text-muted); font-size: 0.85rem; width: 100%; }
         footer a { color: var(--text-muted); text-decoration: none; margin: 0 10px; transition: 0.2s; }
         footer a:hover { color: var(--text-main); }
     </style>
 </head>
 <body>
     <main class="container">
-        
         <header>
             <h1>WallRank</h1>
-            <p>Curated AI Wallpapers</p>
+            <p>Daily AI Wallpapers</p>
+            <button class="corner-menu-btn" id="openMenuBtn" aria-label="Browse All Wallpapers">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            </button>
         </header>
 
-        <section class="hero-showcase" id="heroShowcase">
-            
-            <div class="cube-container" id="cubeWrapper">
-                <div class="anim-cube" id="menuCube">
-                    <div class="cube-face front" data-index="0"><img class="cf-img" src="" alt="Menu item 1"></div>
-                    <div class="cube-face right" data-index="1"><img class="cf-img" src="" alt="Menu item 2"></div>
-                    <div class="cube-face back" data-index="2"><img class="cf-img" src="" alt="Menu item 3"></div>
-                    <div class="cube-face left" data-index="3"><img class="cf-img" src="" alt="Menu item 4"></div>
-                    <div class="cube-face top"></div>
-                    <div class="cube-face bottom"></div>
+        <section class="hero-showcase">
+            <button class="nav-arrow left" id="prevWall">‹</button>
+            <button class="nav-arrow right" id="nextWall">›</button>
+
+            <div class="showcase-container">
+                <div class="showcase-slide active" id="sc-slide-phone">
+                    <div class="device-phone">
+                        <div class="phone-screen">
+                            <div class="phone-notch"></div>
+                            <img class="showcase-img" src="" alt="Wallpaper Display">
+                            <div class="phone-home-bar"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="cube-instruction">↑ Click a face to power on</div>
-            </div>
-
-            <div class="display-stage" id="displayStage">
-                
-                <div class="showcase-container">
-                    <div class="showcase-slide active" id="sc-slide-phone">
-                        <div class="device-phone">
-                            <div class="phone-screen">
-                                <div class="phone-notch"></div>
-                                <img class="showcase-img" id="imgPhone" src="" alt="Selected wallpaper">
-                                <div class="phone-home-bar"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="showcase-slide" id="sc-slide-laptop">
-                        <div class="device-laptop">
-                            <div class="laptop-body">
-                                <div class="laptop-bezel">
-                                    <div class="laptop-screen">
-                                        <img class="showcase-img" id="imgLaptop" src="" alt="Selected wallpaper">
-                                    </div>
+                <div class="showcase-slide" id="sc-slide-laptop">
+                    <div class="device-laptop">
+                        <div class="laptop-body">
+                            <div class="laptop-bezel">
+                                <div class="laptop-screen">
+                                    <img class="showcase-img" src="" alt="Wallpaper Display">
                                 </div>
                             </div>
-                            <div class="laptop-base"></div>
                         </div>
+                        <div class="laptop-base"></div>
                     </div>
-
-                    <div class="showcase-slide" id="sc-slide-monitor">
-                        <div class="device-monitor">
-                            <div class="monitor-body">
-                                <div class="monitor-bezel">
-                                    <div class="monitor-screen">
-                                        <img class="showcase-img" id="imgMonitor" src="" alt="Selected wallpaper">
-                                    </div>
+                </div>
+                <div class="showcase-slide" id="sc-slide-monitor">
+                    <div class="device-monitor">
+                        <div class="monitor-body">
+                            <div class="monitor-bezel">
+                                <div class="monitor-screen">
+                                    <img class="showcase-img" src="" alt="Wallpaper Display">
                                 </div>
                             </div>
-                            <div class="monitor-stand"></div>
-                            <div class="monitor-base"></div>
                         </div>
+                        <div class="monitor-stand"></div>
+                        <div class="monitor-base"></div>
                     </div>
-
-                    <div class="showcase-slide" id="sc-slide-tablet">
-                        <div class="device-tablet">
-                            <div class="tablet-bezel">
-                                <div class="tablet-screen">
-                                    <img class="showcase-img" id="imgTablet" src="" alt="Selected wallpaper">
-                                    <div class="tablet-home-bar"></div>
-                                </div>
+                </div>
+                <div class="showcase-slide" id="sc-slide-tablet">
+                    <div class="device-tablet">
+                        <div class="tablet-bezel">
+                            <div class="tablet-screen">
+                                <img class="showcase-img" src="" alt="Wallpaper Display">
+                                <div class="tablet-home-bar"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="active-actions" id="activeActions">
-                    <div class="vote-controls">
-                        <button class="icon-btn upvote" id="btnUp" aria-label="Upvote">▲</button>
-                        <span id="activeScoreDisplay">0</span>
-                        <button class="icon-btn downvote" id="btnDown" aria-label="Downvote">▼</button>
-                    </div>
-                    <div style="width: 1px; height: 24px; background: var(--border-focus);"></div>
-                    <button class="btn-download" id="btnDownload">
-                        <span>↓</span> Download
-                    </button>
-                </div>
-
             </div>
         </section>
         
-        <section class="specs-section">
-            <div class="spec-card">
-                <div class="spec-icon">📱</div>
-                <div class="spec-title">Mobile</div>
-                <div class="spec-desc">Optimized for high-density OLED screens including iPhone Pro/Max, Pixel, and Galaxy Ultra devices.</div>
-                <div class="spec-dim">1170 x 2532+</div>
-            </div>
-            <div class="spec-card">
-                <div class="spec-icon">💻</div>
-                <div class="spec-title">Desktop & PC</div>
-                <div class="spec-desc">Ultra-crisp clarity tailored for MacBook Pro Retina displays, PC Monitors, and Ultrawides.</div>
-                <div class="spec-dim">3840 x 2160 (4K)</div>
-            </div>
-            <div class="spec-card">
-                <div class="spec-icon">📟</div>
-                <div class="spec-title">Tablets</div>
-                <div class="spec-desc">Perfectly scaled aspect ratios designed for iPad Pro, Galaxy Tab, and other large-format tablets.</div>
-                <div class="spec-dim">2048 x 2732+</div>
-            </div>
-        </section>
+        <div class="action-area">
+            <button class="btn-download" id="mainDownloadBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Download Wallpaper
+            </button>
+        </div>
         
         <footer>
             <div style="margin-bottom: 12px;">
                 <a href="mailto:kabanijames9@gmail.com">Contact</a>
-                <a href="javascript:void(0)">Privacy</a>
-                <a href="javascript:void(0)">Terms</a>
             </div>
             © 2026 WallRank.club
         </footer>
     </main>
 
+    <div class="wallpaper-popup" id="wallPopup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <div class="popup-title">All Wallpapers</div>
+                <button class="close-popup" id="closeMenuBtn">&times;</button>
+            </div>
+            <div class="popup-grid" id="popupGrid">
+                </div>
+        </div>
+    </div>
+
     <script>
         (function() {
             'use strict';
             
+            // Updated Data: 8 Wallpapers based on your GitHub structure
             const wallpapers = [
-                { id: 1, title: "mountain peak", filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/1.png", score: 0 },
-                { id: 2, title: "ocean wave", filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/2.png", score: 0 },
-                { id: 3, title: "forest path", filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/3.png", score: 0 },
-                { id: 4, title: "cherry bloom", filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/4.png", score: 0 }
+                { id: 1, filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/1.png" },
+                { id: 2, filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/2.png" },
+                { id: 3, filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/3.png" },
+                { id: 4, filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/4.png" },
+                { id: 5, filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/5.png" },
+                { id: 6, filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/6.png" },
+                { id: 7, filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/7.png" },
+                { id: 8, filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/8.png" }
             ];
             
-            const todayKey = new Date().toISOString().split('T')[0]; 
-            let userVoteRecord = {}; 
+            let currentWallIndex = 0; // Starts with the first wallpaper
+            let currentDeviceIndex = 0;
 
-            // Load saved data
-            const storedVotes = localStorage.getItem(`vr_${todayKey}`);
-            if (storedVotes) { try { userVoteRecord = JSON.parse(storedVotes); } catch(e){} }
-            
-            wallpapers.forEach(w => { 
-                let saved = localStorage.getItem(`wall_${w.id}_${todayKey}`); 
-                if (saved) { try { w.score = JSON.parse(saved).score || 0; } catch(e) {} } 
-            });
-            
-            function createReaction(x, y, text, color) {
-                const reaction = document.createElement('div');
-                reaction.className = 'reaction-item';
-                reaction.textContent = text;
-                reaction.style.color = color || 'var(--text-main)';
-                reaction.style.left = (x - 10) + 'px';
-                reaction.style.top = (y - 30) + 'px';
-                document.body.appendChild(reaction);
-                setTimeout(() => reaction.remove(), 800);
-            }
-            
-            // 🧊 CUBE & DISPLAY STATE LOGIC
-            const cubeWrapper = document.getElementById('cubeWrapper');
-            const menuCube = document.getElementById('menuCube');
-            const cubeFaces = document.querySelectorAll('.cube-face');
-            const cubeImages = document.querySelectorAll('.cf-img');
-            
-            const displayStage = document.getElementById('displayStage');
             const showcaseImages = document.querySelectorAll('.showcase-img');
             const showcaseSlides = [
                 document.getElementById('sc-slide-phone'),
@@ -421,147 +282,94 @@
                 document.getElementById('sc-slide-tablet')
             ];
             
-            const activeActionsBox = document.getElementById('activeActions');
-            const btnUp = document.getElementById('btnUp');
-            const btnDown = document.getElementById('btnDown');
-            const btnDownload = document.getElementById('btnDownload');
-            const scoreDisplay = document.getElementById('activeScoreDisplay');
+            const prevBtn = document.getElementById('prevWall');
+            const nextBtn = document.getElementById('nextWall');
+            const downloadBtn = document.getElementById('mainDownloadBtn');
+            
+            const wallPopup = document.getElementById('wallPopup');
+            const openMenuBtn = document.getElementById('openMenuBtn');
+            const closeMenuBtn = document.getElementById('closeMenuBtn');
+            const popupGrid = document.getElementById('popupGrid');
 
-            let cubeRotationY = 0;
-            let scDeviceIndex = 0;
-            let activeWallpaperId = null;
+            // --- Core Functions ---
 
-            // Pre-load cube faces
-            if (wallpapers.length >= 4) {
-                cubeImages[0].src = wallpapers[0].filename;
-                cubeImages[1].src = wallpapers[1].filename;
-                cubeImages[2].src = wallpapers[2].filename;
-                cubeImages[3].src = wallpapers[3].filename;
-            }
-
-            // Function to Set Menu State (Cube large, Stage Dimmed)
-            function setMenuState() {
-                cubeWrapper.classList.remove('minimized');
-                displayStage.style.opacity = '0.15'; // Dim the devices heavily
-                displayStage.style.pointerEvents = 'none';
-                
-                // Black out the screens
-                showcaseImages.forEach(img => img.style.opacity = '0');
-                
-                // Hide controls
-                activeActionsBox.classList.remove('show');
-                activeWallpaperId = null;
-            }
-
-            // Function to Set Presentation State (Cube small, Stage Active)
-            function setPresentationState(idx, e) {
-                const wp = wallpapers[idx];
-                activeWallpaperId = wp.id;
-                
-                cubeWrapper.classList.add('minimized');
-                displayStage.style.opacity = '1';
-                displayStage.style.pointerEvents = 'auto';
-                
-                // Fade image onto the black devices
+            // Update the images displayed on the mockups based on current index
+            function updateDisplayImage() {
+                const imgUrl = wallpapers[currentWallIndex].filename;
                 showcaseImages.forEach(img => {
-                    img.style.opacity = '0'; 
+                    img.style.opacity = '0.5'; // Quick fade effect
                     setTimeout(() => {
-                        img.src = wp.filename;
-                        img.style.opacity = '1'; 
-                    }, 400); // Wait slightly for the cube to move out of the way
+                        img.src = imgUrl;
+                        img.style.opacity = '1';
+                    }, 150);
                 });
-                
-                updateActionButtons();
-                activeActionsBox.classList.add('show');
-                
-                if (e) createReaction(e.clientX, e.clientY, '📸', '#0f172a');
             }
 
-            function updateActionButtons() {
-                if (!activeWallpaperId) return;
-                const wp = wallpapers.find(w => w.id === activeWallpaperId);
-                const userVote = userVoteRecord[wp.id] || 0;
-                
-                scoreDisplay.innerText = wp.score;
-                btnUp.className = 'icon-btn upvote ' + (userVote === 1 ? 'active-up' : '');
-                btnDown.className = 'icon-btn downvote ' + (userVote === -1 ? 'active-down' : '');
+            // Handle manual navigation (arrows)
+            function changeWallpaper(direction) {
+                currentWallIndex = (currentWallIndex + direction + wallpapers.length) % wallpapers.length;
+                updateDisplayImage();
             }
 
-            // Listeners for Cube Clicks
-            cubeFaces.forEach(face => {
-                face.addEventListener('click', function(e) {
-                    if (!cubeWrapper.classList.contains('minimized')) {
-                        e.stopPropagation(); // Stop from hitting wrapper
-                        const idx = this.getAttribute('data-index');
-                        if (idx !== null) setPresentationState(idx, e);
-                    }
-                });
-            });
-
-            // Clicking the minimized cube brings the menu back
-            cubeWrapper.addEventListener('click', (e) => {
-                if (cubeWrapper.classList.contains('minimized')) {
-                    setMenuState();
-                }
-            });
-
-            // Action Buttons
-            btnUp.addEventListener('click', (e) => handleVote(1, e));
-            btnDown.addEventListener('click', (e) => handleVote(-1, e));
-            btnDownload.addEventListener('click', (e) => {
-                const wp = wallpapers.find(w => w.id === activeWallpaperId);
-                if(!wp) return;
-                
-                const link = document.createElement('a'); 
-                link.href = wp.filename; 
-                link.download = `wallrank-${wp.id}.png`; 
-                link.target = '_blank'; 
-                link.rel = 'noopener'; 
+            // Handle download click
+            function downloadCurrent() {
+                const wp = wallpapers[currentWallIndex];
+                const link = document.createElement('a');
+                link.href = wp.filename;
+                link.download = `wallrank-${wp.id}.png`;
+                link.target = '_blank'; link.rel = 'noopener';
                 link.click();
-                
-                gtag('event', 'download', { 'event_category': 'conversion', 'event_label': wp.title });
-                createReaction(e.clientX, e.clientY, '✓', '#10b981');
-            });
-
-            function handleVote(direction, event) {
-                if (!activeWallpaperId) return;
-                const wp = wallpapers.find(w => w.id === activeWallpaperId); 
-                const currentVote = userVoteRecord[wp.id] || 0;
-                
-                if (currentVote === direction) {
-                    wp.score -= direction;
-                    userVoteRecord[wp.id] = 0;
-                    createReaction(event.clientX, event.clientY, '↺', '#94a3b8');
-                } else {
-                    if (currentVote !== 0) wp.score -= currentVote; 
-                    wp.score += direction; 
-                    userVoteRecord[wp.id] = direction;
-                    const icon = direction === 1 ? '▲' : '▼';
-                    const color = direction === 1 ? '#10b981' : '#ef4444';
-                    createReaction(event.clientX, event.clientY, icon, color);
-                }
-                
-                localStorage.setItem(`vr_${todayKey}`, JSON.stringify(userVoteRecord));
-                localStorage.setItem(`wall_${wp.id}_${todayKey}`, JSON.stringify({ score: wp.score }));
-                gtag('event', 'vote', { 'event_category': 'engagement', 'value': wp.score });
-                updateActionButtons();
+                gtag('event', 'download', { 'event_category': 'conversion', 'event_label': `ID: ${wp.id}` });
             }
 
-            // Timers for Spin and Device Cycle
-            setInterval(() => {
-                cubeRotationY -= 90; 
-                menuCube.style.transform = `rotateX(-10deg) rotateY(${cubeRotationY}deg)`;
-            }, 2500);
+            // --- Popup Functions ---
 
+            // Render grid items in the popup
+            function renderPopupGrid() {
+                popupGrid.innerHTML = '';
+                wallpapers.forEach((wp, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'grid-item';
+                    item.innerHTML = `<img src="${wp.filename}" alt="Wallpaper ${wp.id}" loading="lazy">`;
+                    
+                    // Clicking a grid item updates main display and closes popup
+                    item.addEventListener('click', () => {
+                        currentWallIndex = index;
+                        updateDisplayImage();
+                        wallPopup.classList.remove('active');
+                    });
+                    popupGrid.appendChild(item);
+                });
+            }
+
+            // --- Event Listeners ---
+            prevBtn.addEventListener('click', () => changeWallpaper(-1));
+            nextBtn.addEventListener('click', () => changeWallpaper(1));
+            downloadBtn.addEventListener('click', downloadCurrent);
+            
+            openMenuBtn.addEventListener('click', () => {
+                renderPopupGrid(); // Ensure grid is fresh
+                wallPopup.classList.add('active');
+            });
+            closeMenuBtn.addEventListener('click', () => wallPopup.classList.remove('active'));
+            // Close popup if clicking outside content area
+            wallPopup.addEventListener('click', (e) => {
+                if(e.target === wallPopup) wallPopup.classList.remove('active');
+            });
+
+            // --- Initialization & Auto-Loops ---
+
+            // 1. Start with first image loaded
+            updateDisplayImage();
+
+            // 2. Auto-rotate device mockups every 3 seconds (independent of wallpaper)
             setInterval(() => {
-                scDeviceIndex = (scDeviceIndex + 1) % showcaseSlides.length;
+                currentDeviceIndex = (currentDeviceIndex + 1) % showcaseSlides.length;
                 showcaseSlides.forEach((slide, idx) => {
-                    if (slide) slide.classList.toggle('active', idx === scDeviceIndex);
+                    if (slide) slide.classList.toggle('active', idx === currentDeviceIndex);
                 });
             }, 3000);
-            
-            // INIT
-            setMenuState();
+
             gtag('event', 'page_view', { 'page_title': 'Daily Wallpapers', 'page_location': 'https://wallrank.club' });
         })();
     </script>
