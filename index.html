@@ -32,8 +32,8 @@
             --accent-subtle: #f8fafc;
             --radius-md: 12px;
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.03);
-            --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
-            --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            --shadow-md: 0 10px 40px rgba(0, 0, 0, 0.15);
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.3, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -52,33 +52,47 @@
         
         .container { max-width: 1100px; width: 100%; display: flex; flex-direction: column; align-items: center; }
 
-        header { text-align: center; margin-bottom: 80px; }
+        header { text-align: center; margin-bottom: 40px; position: relative; z-index: 60; }
         header h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.03em; }
         header p { color: var(--text-muted); font-weight: 500; margin-top: 4px; }
         
-        /* 🧊 SIDE-BY-SIDE HERO SHOWCASE */
+        /* 🧊 CENTRAL SHOWCASE & ANIMATIONS */
         .hero-showcase {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 100px;
             width: 100%;
             max-width: 900px;
-        }
-
-        @media (max-width: 800px) {
-            .hero-showcase { flex-direction: column; gap: 80px; }
+            min-height: 560px;
+            position: relative;
+            padding-top: 60px; /* Space for the tiny cube */
         }
         
-        /* LEFT: THE INTERACTIVE 3D CUBE */
+        /* THE INTERACTIVE 3D CUBE */
         .cube-container {
             width: 200px;
             height: 250px;
-            perspective: 1000px;
-            position: relative;
-            z-index: 10;
+            perspective: 1200px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            z-index: 50;
+            transition: all 0.7s cubic-bezier(0.25, 1, 0.3, 1);
         }
+        
+        /* MINIMIZED PIXEL CUBE STATE */
+        .cube-container.minimized {
+            top: 10px;
+            transform: translate(-50%, 0) scale(0.18);
+            cursor: pointer;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+        }
+        .cube-container.minimized:hover {
+            transform: translate(-50%, 0) scale(0.22);
+        }
+
         .anim-cube {
             width: 100%;
             height: 100%;
@@ -98,7 +112,7 @@
             cursor: pointer;
             transition: var(--transition-smooth);
         }
-        .cube-face:hover { border-color: var(--text-main); transform: scale(1.02) translateZ(10px); }
+        .cube-container:not(.minimized) .cube-face:hover { border-color: var(--text-main); transform: scale(1.02) translateZ(10px); }
         .cube-face img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
         
         .cube-face.front  { transform: rotateY(0deg) translateZ(100px); width: 200px; height: 250px; }
@@ -118,16 +132,20 @@
             color: var(--text-main);
             font-weight: 700;
             animation: pulseText 2s infinite;
+            transition: opacity 0.3s;
         }
+        .cube-container.minimized .cube-instruction { opacity: 0; pointer-events: none; }
+        
         @keyframes pulseText { 0%, 100% { opacity: 1; transform: translateY(0); } 50% { opacity: 0.5; transform: translateY(-3px); } }
 
-        /* RIGHT: THE DISPLAY STAGE */
+        /* THE DISPLAY STAGE */
         .display-stage {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 30px;
             width: 420px;
+            transition: all 0.7s cubic-bezier(0.25, 1, 0.3, 1);
         }
 
         .showcase-container {
@@ -157,9 +175,8 @@
             object-fit: cover;
             display: block;
             opacity: 0; 
-            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        @keyframes fadeInSleek { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
         /* DEVICE MOCKUPS */
         .device-phone { width: 240px; height: 480px; background: #1a1a1a; border-radius: 36px; padding: 10px; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.15); border: 1px solid #333; }
@@ -193,7 +210,7 @@
             .showcase-container { min-height: 400px; }
         }
         
-        /* ACTIVE ACTION BAR */
+        /* ACTIVE ACTION BAR (Vote / Download) */
         .active-actions { 
             display: flex; justify-content: center; align-items: center; gap: 20px;
             padding: 16px 24px; background: var(--surface); border-radius: 100px;
@@ -217,32 +234,16 @@
         .reaction-item { font-size: 1.5rem; font-weight: bold; position: absolute; pointer-events: none; animation: floatSleek 0.8s ease forwards; z-index: 999; color: var(--text-main); }
         @keyframes floatSleek { 0% { opacity: 0; transform: translateY(0) scale(0.8); } 20% { opacity: 1; transform: translateY(-10px) scale(1.2); } 100% { opacity: 0; transform: translateY(-40px) scale(0.9); } }
         
-        /* 🆕 SPECS / COMPATIBILITY SECTION */
+        /* SPECS / COMPATIBILITY SECTION */
         .specs-section {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            width: 100%;
-            max-width: 900px;
-            margin: 60px auto 0 auto;
-            border-top: 1px solid var(--border-focus);
-            padding-top: 60px;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; width: 100%; max-width: 900px;
+            margin: 40px auto 0 auto; border-top: 1px solid var(--border-focus); padding-top: 60px;
         }
-        @media (max-width: 768px) {
-            .specs-section { grid-template-columns: 1fr; gap: 16px; padding-top: 40px; margin-top: 40px; }
-        }
-        .spec-card {
-            background: var(--surface);
-            padding: 32px 24px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border-light);
-            text-align: center;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition-smooth);
-        }
+        @media (max-width: 768px) { .specs-section { grid-template-columns: 1fr; gap: 16px; padding-top: 40px; margin-top: 40px; } }
+        .spec-card { background: var(--surface); padding: 32px 24px; border-radius: var(--radius-md); border: 1px solid var(--border-light); text-align: center; box-shadow: var(--shadow-sm); transition: var(--transition-smooth); }
         .spec-card:hover { transform: translateY(-3px); border-color: var(--border-focus); box-shadow: var(--shadow-md); }
         .spec-icon { font-size: 2rem; margin-bottom: 16px; }
-        .spec-title { font-weight: 700; color: var(--text-main); margin-bottom: 8px; font-size: 1.1rem; letter-spacing: -0.01em; }
+        .spec-title { font-weight: 700; color: var(--text-main); margin-bottom: 8px; font-size: 1.1rem; }
         .spec-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
         .spec-dim { display: inline-block; background: var(--accent-subtle); padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; color: var(--text-main); margin-top: 12px; border: 1px solid var(--border-light); }
 
@@ -261,7 +262,7 @@
 
         <section class="hero-showcase" id="heroShowcase">
             
-            <div class="cube-container">
+            <div class="cube-container" id="cubeWrapper">
                 <div class="anim-cube" id="menuCube">
                     <div class="cube-face front" data-index="0"><img class="cf-img" src="" alt="Menu item 1"></div>
                     <div class="cube-face right" data-index="1"><img class="cf-img" src="" alt="Menu item 2"></div>
@@ -273,7 +274,7 @@
                 <div class="cube-instruction">↑ Click a face to power on</div>
             </div>
 
-            <div class="display-stage">
+            <div class="display-stage" id="displayStage">
                 
                 <div class="showcase-container">
                     <div class="showcase-slide active" id="sc-slide-phone">
@@ -385,6 +386,7 @@
             const todayKey = new Date().toISOString().split('T')[0]; 
             let userVoteRecord = {}; 
 
+            // Load saved data
             const storedVotes = localStorage.getItem(`vr_${todayKey}`);
             if (storedVotes) { try { userVoteRecord = JSON.parse(storedVotes); } catch(e){} }
             
@@ -404,10 +406,13 @@
                 setTimeout(() => reaction.remove(), 800);
             }
             
+            // 🧊 CUBE & DISPLAY STATE LOGIC
+            const cubeWrapper = document.getElementById('cubeWrapper');
             const menuCube = document.getElementById('menuCube');
             const cubeFaces = document.querySelectorAll('.cube-face');
             const cubeImages = document.querySelectorAll('.cf-img');
             
+            const displayStage = document.getElementById('displayStage');
             const showcaseImages = document.querySelectorAll('.showcase-img');
             const showcaseSlides = [
                 document.getElementById('sc-slide-phone'),
@@ -421,17 +426,55 @@
             const btnDown = document.getElementById('btnDown');
             const btnDownload = document.getElementById('btnDownload');
             const scoreDisplay = document.getElementById('activeScoreDisplay');
-            const instructionText = document.querySelector('.cube-instruction');
 
             let cubeRotationY = 0;
             let scDeviceIndex = 0;
             let activeWallpaperId = null;
 
+            // Pre-load cube faces
             if (wallpapers.length >= 4) {
                 cubeImages[0].src = wallpapers[0].filename;
                 cubeImages[1].src = wallpapers[1].filename;
                 cubeImages[2].src = wallpapers[2].filename;
                 cubeImages[3].src = wallpapers[3].filename;
+            }
+
+            // Function to Set Menu State (Cube large, Stage Dimmed)
+            function setMenuState() {
+                cubeWrapper.classList.remove('minimized');
+                displayStage.style.opacity = '0.15'; // Dim the devices heavily
+                displayStage.style.pointerEvents = 'none';
+                
+                // Black out the screens
+                showcaseImages.forEach(img => img.style.opacity = '0');
+                
+                // Hide controls
+                activeActionsBox.classList.remove('show');
+                activeWallpaperId = null;
+            }
+
+            // Function to Set Presentation State (Cube small, Stage Active)
+            function setPresentationState(idx, e) {
+                const wp = wallpapers[idx];
+                activeWallpaperId = wp.id;
+                
+                cubeWrapper.classList.add('minimized');
+                displayStage.style.opacity = '1';
+                displayStage.style.pointerEvents = 'auto';
+                
+                // Fade image onto the black devices
+                showcaseImages.forEach(img => {
+                    img.style.opacity = '0'; 
+                    setTimeout(() => {
+                        img.src = wp.filename;
+                        img.style.opacity = '1'; 
+                    }, 400); // Wait slightly for the cube to move out of the way
+                });
+                
+                updateActionButtons();
+                activeActionsBox.classList.add('show');
+                
+                if (e) createReaction(e.clientX, e.clientY, '📸', '#0f172a');
             }
 
             function updateActionButtons() {
@@ -444,29 +487,25 @@
                 btnDown.className = 'icon-btn downvote ' + (userVote === -1 ? 'active-down' : '');
             }
 
+            // Listeners for Cube Clicks
             cubeFaces.forEach(face => {
                 face.addEventListener('click', function(e) {
-                    const idx = this.getAttribute('data-index');
-                    if (idx !== null) {
-                        const wp = wallpapers[idx];
-                        activeWallpaperId = wp.id;
-                        
-                        showcaseImages.forEach(img => {
-                            img.style.opacity = '0'; 
-                            setTimeout(() => {
-                                img.src = wp.filename;
-                                img.style.opacity = '1'; 
-                            }, 150); 
-                        });
-                        
-                        activeActionsBox.classList.add('show');
-                        instructionText.style.display = 'none';
-                        updateActionButtons();
-                        createReaction(e.clientX, e.clientY, '📸', '#0f172a');
+                    if (!cubeWrapper.classList.contains('minimized')) {
+                        e.stopPropagation(); // Stop from hitting wrapper
+                        const idx = this.getAttribute('data-index');
+                        if (idx !== null) setPresentationState(idx, e);
                     }
                 });
             });
 
+            // Clicking the minimized cube brings the menu back
+            cubeWrapper.addEventListener('click', (e) => {
+                if (cubeWrapper.classList.contains('minimized')) {
+                    setMenuState();
+                }
+            });
+
+            // Action Buttons
             btnUp.addEventListener('click', (e) => handleVote(1, e));
             btnDown.addEventListener('click', (e) => handleVote(-1, e));
             btnDownload.addEventListener('click', (e) => {
@@ -508,18 +547,21 @@
                 updateActionButtons();
             }
 
+            // Timers for Spin and Device Cycle
             setInterval(() => {
                 cubeRotationY -= 90; 
                 menuCube.style.transform = `rotateX(-10deg) rotateY(${cubeRotationY}deg)`;
-            }, 2000);
+            }, 2500);
 
             setInterval(() => {
                 scDeviceIndex = (scDeviceIndex + 1) % showcaseSlides.length;
                 showcaseSlides.forEach((slide, idx) => {
                     if (slide) slide.classList.toggle('active', idx === scDeviceIndex);
                 });
-            }, 2500);
+            }, 3000);
             
+            // INIT
+            setMenuState();
             gtag('event', 'page_view', { 'page_title': 'Daily Wallpapers', 'page_location': 'https://wallrank.club' });
         })();
     </script>
