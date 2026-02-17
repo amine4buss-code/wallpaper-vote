@@ -11,9 +11,10 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Wallpapers | WallRank</title>
     
-    <meta name="description" content="Daily 4K AI wallpapers. View on 3D device mockups and download for free.">
+    <title>Free 4K AI Wallpapers for Phone & Desktop | WallRank</title>
+    
+    <meta name="description" content="Download unique 4K AI wallpapers for iPhone, Android, and Desktop. Preview on real devices, play puzzles, and get free video backgrounds daily.">
     <link rel="canonical" href="https://wallrank.club">
     
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
@@ -65,7 +66,7 @@
 
         /* CONTENT TABS */
         .content-tabs {
-            display: flex; gap: 15px; margin-bottom: 50px;
+            display: flex; gap: 15px; margin-bottom: 30px;
             background: var(--surface); padding: 8px; border-radius: 50px;
             box-shadow: var(--shadow-sm); border: 1px solid var(--border-light);
         }
@@ -75,6 +76,16 @@
         }
         .tab-link.active { background: var(--text-main); color: white; }
         .tab-link:hover:not(.active) { color: var(--text-main); background: var(--accent-subtle); }
+
+        /* ✅ NEW: CUTE INSTRUCTION TEXT */
+        .soft-instruction {
+            text-align: center; color: var(--text-muted); font-size: 0.95rem; 
+            margin-bottom: 25px; max-width: 500px; line-height: 1.5;
+            animation: fadeIn 1s ease;
+        }
+        .soft-instruction b { color: var(--text-main); font-weight: 700; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
         /* MAIN DISPLAY STAGE */
         .hero-showcase {
@@ -240,6 +251,11 @@
             <a href="#puzzle" class="tab-link" onclick="setActiveTab(this)">🧩 Puzzle</a>
             <a href="#footage" class="tab-link" onclick="setActiveTab(this)">🎬 Footage</a>
         </nav>
+
+        <p class="soft-instruction">
+            ✨ Swipe <b>&lt; left or right &gt;</b> to view different styles on real devices.<br>
+            Fall in love? Just hit <b>Download</b> to make it yours!
+        </p>
 
         <section id="wallpapers" class="hero-showcase">
             <button class="nav-arrow left" id="prevWall">‹</button>
