@@ -35,6 +35,8 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Quicksand', sans-serif;
             background: var(--bg-color);
@@ -47,7 +49,7 @@
         .container { max-width: 1100px; width: 100%; display: flex; flex-direction: column; align-items: center; position: relative; }
 
         /* HEADER & CORNER MENU */
-        header { text-align: center; margin-bottom: 60px; position: relative; width: 100%; }
+        header { text-align: center; margin-bottom: 30px; position: relative; width: 100%; }
         header h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.03em; }
         header p { color: var(--text-muted); font-weight: 500; margin-top: 4px; }
 
@@ -61,11 +63,25 @@
         }
         .corner-menu-btn:hover { background: var(--accent-subtle); transform: translateY(-2px); }
 
+        /* CONTENT TABS */
+        .content-tabs {
+            display: flex; gap: 15px; margin-bottom: 50px;
+            background: var(--surface); padding: 8px; border-radius: 50px;
+            box-shadow: var(--shadow-sm); border: 1px solid var(--border-light);
+        }
+        .tab-link {
+            text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 0.95rem;
+            padding: 8px 20px; border-radius: 30px; transition: var(--transition-smooth);
+        }
+        .tab-link.active { background: var(--text-main); color: white; }
+        .tab-link:hover:not(.active) { color: var(--text-main); background: var(--accent-subtle); }
+
         /* MAIN DISPLAY STAGE */
         .hero-showcase {
             position: relative;
             display: flex; align-items: center; justify-content: center;
             width: 100%; max-width: 900px; min-height: 520px;
+            scroll-margin-top: 100px;
         }
 
         /* NAVIGATION ARROWS */
@@ -123,14 +139,42 @@
             .device-laptop, .device-monitor { width: 320px; }
             .device-tablet { width: 240px; height: 340px; }
             .hero-showcase { min-height: 420px; }
+            .content-tabs { flex-wrap: wrap; justify-content: center; border-radius: 12px; }
         }
         
         /* DOWNLOAD BUTTON */
-        .action-area { margin-top: 40px; }
+        .action-area { margin-top: 40px; margin-bottom: 60px; }
         .btn-download { background: var(--text-main); color: white; border: none; padding: 12px 32px; border-radius: 50px; font-size: 1rem; font-weight: 700; font-family: inherit; cursor: pointer; transition: var(--transition-smooth); display: flex; align-items: center; gap: 10px; box-shadow: var(--shadow-sm); }
         .btn-download:hover { background: #334155; transform: translateY(-2px); }
         .btn-download:active { transform: scale(0.96); }
         .btn-download.loading { opacity: 0.8; cursor: not-allowed; transform: none; }
+
+        /* NEW SECTIONS (PUZZLE & FOOTAGE) */
+        .content-section {
+            width: 100%; max-width: 900px; margin-bottom: 60px;
+            text-align: center; scroll-margin-top: 40px;
+            background: var(--surface); padding: 40px; border-radius: var(--radius-md);
+            border: 1px solid var(--border-light); box-shadow: var(--shadow-sm);
+        }
+        .content-section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
+        .content-section p { color: var(--text-muted); font-weight: 500; margin-bottom: 24px; }
+        
+        .btn-secondary {
+            background: var(--border-light); color: var(--text-main); border: 1px solid var(--border-focus);
+            padding: 10px 24px; border-radius: 50px; font-size: 0.95rem; font-weight: 700; font-family: inherit;
+            cursor: pointer; transition: var(--transition-smooth);
+        }
+        .btn-secondary:hover { background: var(--border-focus); transform: translateY(-2px); }
+
+        .footage-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 20px;
+        }
+        @media (max-width: 600px) { .footage-grid { grid-template-columns: repeat(2, 1fr); } }
+        .footage-placeholder {
+            aspect-ratio: 16/9; background: var(--border-light); border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted); font-size: 1.5rem; border: 2px dashed var(--border-focus);
+        }
 
         /* POPUP OVERLAY */
         .wallpaper-popup {
@@ -173,12 +217,18 @@
         <header>
             <h1>WallRank</h1>
             <p>Daily AI Wallpapers</p>
-            <button class="corner-menu-btn" id="openMenuBtn" aria-label="Browse All Wallpapers">
+            <button class="corner-menu-btn" id="openMenuBtn" aria-label="Browse All Wallpapers" title="AI Stock Photos">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
             </button>
         </header>
 
-        <section class="hero-showcase">
+        <nav class="content-tabs">
+            <a href="#wallpapers" class="tab-link active" onclick="setActiveTab(this)">🖼️ Wallpapers</a>
+            <a href="#puzzle" class="tab-link" onclick="setActiveTab(this)">🧩 Puzzle</a>
+            <a href="#footage" class="tab-link" onclick="setActiveTab(this)">🎬 Footage</a>
+        </nav>
+
+        <section id="wallpapers" class="hero-showcase">
             <button class="nav-arrow left" id="prevWall">‹</button>
             <button class="nav-arrow right" id="nextWall">›</button>
 
@@ -236,6 +286,23 @@
                 <span id="downloadText">Download Wallpaper</span>
             </button>
         </div>
+
+        <section id="puzzle" class="content-section">
+            <h2>🧩 Image Puzzle</h2>
+            <p>Play with today's wallpapers and test your skills.</p>
+            <button class="btn-secondary" onclick="alert('Hook up your puzzle JS function here!')">Play with Current Image</button>
+        </section>
+
+        <section id="footage" class="content-section">
+            <h2>🎬 Footage-Style Stills</h2>
+            <p>High-quality assets for video editors. Coming Soon.</p>
+            <div class="footage-grid">
+                <div class="footage-placeholder">+</div>
+                <div class="footage-placeholder">+</div>
+                <div class="footage-placeholder">+</div>
+                <div class="footage-placeholder">+</div>
+            </div>
+        </section>
         
         <footer>
             <div style="margin-bottom: 12px;">
@@ -401,6 +468,12 @@
 
             gtag('event', 'page_view', { 'page_title': 'Daily Wallpapers', 'page_location': 'https://wallrank.club' });
         })();
+
+        // TAB NAVIGATION LOGIC
+        function setActiveTab(clickedTab) {
+            document.querySelectorAll('.tab-link').forEach(tab => tab.classList.remove('active'));
+            clickedTab.classList.add('active');
+        }
     </script>
 </body>
 </html>
