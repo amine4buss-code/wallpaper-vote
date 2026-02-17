@@ -166,15 +166,28 @@
         }
         .btn-secondary:hover { background: var(--border-focus); transform: translateY(-2px); }
 
+        /* FOOTAGE GRID STYLING */
         .footage-grid {
             display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 20px;
         }
-        @media (max-width: 600px) { .footage-grid { grid-template-columns: repeat(2, 1fr); } }
-        .footage-placeholder {
+        @media (max-width: 700px) { .footage-grid { grid-template-columns: repeat(2, 1fr); } }
+        
+        .footage-item {
             aspect-ratio: 16/9; background: var(--border-light); border-radius: 8px;
-            display: flex; align-items: center; justify-content: center;
-            color: var(--text-muted); font-size: 1.5rem; border: 2px dashed var(--border-focus);
+            position: relative; overflow: hidden; border: 1px solid var(--border-focus);
+            box-shadow: var(--shadow-sm);
         }
+        .footage-item img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+        }
+        .btn-render-video {
+            position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+            background: rgba(15, 23, 42, 0.85); color: white; border: none; padding: 6px 12px;
+            border-radius: 50px; font-size: 0.75rem; font-weight: 700; cursor: pointer;
+            backdrop-filter: blur(4px); transition: var(--transition-smooth); white-space: nowrap;
+        }
+        .btn-render-video:hover { background: #000; }
+        .btn-render-video.loading { opacity: 0.9; cursor: wait; background: #eab308; color: #000;}
 
         /* POPUP OVERLAY */
         .wallpaper-popup {
@@ -216,7 +229,7 @@
     <main class="container">
         <header>
             <h1>WallRank</h1>
-            <p>Daily AI Wallpapers</p>
+            <p>Daily AI Wallpapers & Footage</p>
             <button class="corner-menu-btn" id="openMenuBtn" aria-label="Browse All Wallpapers" title="AI Stock Photos">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
             </button>
@@ -295,13 +308,9 @@
 
         <section id="footage" class="content-section">
             <h2>🎬 Footage-Style Stills</h2>
-            <p>High-quality assets for video editors. Coming Soon.</p>
-            <div class="footage-grid">
-                <div class="footage-placeholder">+</div>
-                <div class="footage-placeholder">+</div>
-                <div class="footage-placeholder">+</div>
-                <div class="footage-placeholder">+</div>
-            </div>
+            <p>High-quality assets for video editors. These videos are generated directly inside your browser to save bandwidth!</p>
+            <div class="footage-grid" id="footageGrid">
+                </div>
         </section>
         
         <footer>
@@ -378,27 +387,21 @@
                 updateDisplayImage();
             }
 
-            // 🆕 FORCE DIRECT DOWNLOAD USING FETCH & BLOB
             async function downloadCurrent() {
                 const wp = wallpapers[currentWallIndex];
-                
-                // Prevent multiple clicks while fetching
                 if (downloadBtn.classList.contains('loading')) return;
                 
-                // Show loading state
                 downloadBtn.classList.add('loading');
                 const originalText = downloadText.innerText;
                 downloadText.innerText = 'Downloading...';
 
                 try {
-                    // Fetch the image data behind the scenes
                     const response = await fetch(wp.filename);
                     if (!response.ok) throw new Error('Network response was not ok');
                     
                     const blob = await response.blob();
                     const blobUrl = URL.createObjectURL(blob);
                     
-                    // Create an invisible link and trigger a click to download
                     const link = document.createElement('a');
                     link.href = blobUrl;
                     link.download = `wallrank-art-${wp.id}.png`;
@@ -406,25 +409,21 @@
                     link.click();
                     document.body.removeChild(link);
                     
-                    // Clean up memory
                     setTimeout(() => URL.revokeObjectURL(blobUrl), 100);
-                    
                     gtag('event', 'download', { 'event_category': 'conversion', 'event_label': `ID: ${wp.id}` });
                 } catch (error) {
-                    console.error('Direct download failed, falling back to new tab:', error);
-                    // Fallback just in case there's a strict network issue
+                    console.error('Direct download failed:', error);
                     const link = document.createElement('a');
                     link.href = wp.filename;
                     link.target = '_blank';
                     link.click();
                 } finally {
-                    // Restore button state
                     downloadBtn.classList.remove('loading');
                     downloadText.innerText = originalText;
                 }
             }
 
-            // --- Popup Functions ---
+            // --- Popup & Footage Functions ---
 
             function renderPopupGrid() {
                 popupGrid.innerHTML = '';
@@ -439,6 +438,22 @@
                         wallPopup.classList.remove('active');
                     });
                     popupGrid.appendChild(item);
+                });
+            }
+
+            // Generates the Footage section UI dynamically
+            function renderFootageGrid() {
+                const fGrid = document.getElementById('footageGrid');
+                fGrid.innerHTML = '';
+                // Grab the first 4 images to act as footage starters
+                wallpapers.slice(0, 4).forEach((wp) => {
+                    const item = document.createElement('div');
+                    item.className = 'footage-item';
+                    item.innerHTML = `
+                        <img src="${wp.filename}" alt="Footage Base ${wp.id}" loading="lazy" crossorigin="anonymous">
+                        <button class="btn-render-video" onclick="generateVideoLoop('${wp.filename}', this, ${wp.id})">🎬 Render 5s Loop</button>
+                    `;
+                    fGrid.appendChild(item);
                 });
             }
 
@@ -458,6 +473,7 @@
 
             // --- Initialization & Auto-Loops ---
             updateDisplayImage();
+            renderFootageGrid();
 
             setInterval(() => {
                 currentDeviceIndex = (currentDeviceIndex + 1) % showcaseSlides.length;
@@ -469,11 +485,89 @@
             gtag('event', 'page_view', { 'page_title': 'Daily Wallpapers', 'page_location': 'https://wallrank.club' });
         })();
 
+        // --- GLOBAL FUNCTIONS --- 
+        
         // TAB NAVIGATION LOGIC
         function setActiveTab(clickedTab) {
             document.querySelectorAll('.tab-link').forEach(tab => tab.classList.remove('active'));
             clickedTab.classList.add('active');
         }
+
+        // 🎬 THE ZERO-SERVER-COST VIDEO GENERATOR
+        window.generateVideoLoop = function(imageUrl, btnElement, id) {
+            // Prevent multiple clicks
+            if(btnElement.classList.contains('loading')) return;
+            
+            const originalText = btnElement.innerText;
+            btnElement.innerText = '⏳ Rendering... Wait 5s';
+            btnElement.classList.add('loading');
+
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set for 1080p Video
+            canvas.width = 1920; 
+            canvas.height = 1080;
+
+            const img = new Image();
+            img.crossOrigin = "anonymous"; // Required to prevent security block from Github URLs
+            img.src = imageUrl;
+
+            img.onload = () => {
+                const stream = canvas.captureStream(30); // 30 FPS
+                const recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
+                const chunks = [];
+
+                recorder.ondataavailable = e => chunks.push(e.data);
+                
+                recorder.onstop = () => {
+                    const blob = new Blob(chunks, { type: 'video/webm' });
+                    const videoUrl = URL.createObjectURL(blob);
+                    
+                    const a = document.createElement('a');
+                    a.href = videoUrl;
+                    a.download = `wallrank-loop-${id}.webm`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    
+                    // Reset Button
+                    setTimeout(() => URL.revokeObjectURL(videoUrl), 100);
+                    btnElement.innerText = originalText;
+                    btnElement.classList.remove('loading');
+                };
+
+                let scale = 1.0;
+                function animateFrame() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    const w = canvas.width * scale;
+                    const h = canvas.height * scale;
+                    const x = (canvas.width - w) / 2;
+                    const y = (canvas.height - h) / 2;
+
+                    ctx.drawImage(img, x, y, w, h);
+                    scale += 0.0008; // Cinematic slow zoom speed
+
+                    if (recorder.state === 'recording') {
+                        requestAnimationFrame(animateFrame);
+                    }
+                }
+
+                recorder.start();
+                animateFrame();
+
+                setTimeout(() => {
+                    recorder.stop();
+                }, 5000); // Stop after 5 seconds
+            };
+
+            img.onerror = () => {
+                btnElement.innerText = '❌ Error Loading';
+                btnElement.classList.remove('loading');
+                setTimeout(() => btnElement.innerText = originalText, 3000);
+            };
+        };
     </script>
 </body>
 </html>
