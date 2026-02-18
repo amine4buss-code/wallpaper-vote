@@ -35,7 +35,6 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         html { scroll-behavior: smooth; }
 
         body {
@@ -90,10 +89,8 @@
 
         /* MAIN DISPLAY STAGE */
         .hero-showcase {
-            position: relative;
-            display: flex; align-items: center; justify-content: center;
-            width: 100%; max-width: 900px; min-height: 520px;
-            scroll-margin-top: 100px;
+            position: relative; display: flex; align-items: center; justify-content: center;
+            width: 100%; max-width: 900px; min-height: 520px; scroll-margin-top: 100px;
         }
 
         /* NAVIGATION ARROWS */
@@ -103,8 +100,7 @@
             width: 50px; height: 50px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             font-size: 1.8rem; color: var(--text-muted); cursor: pointer;
-            transition: var(--transition-smooth); z-index: 20;
-            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth); z-index: 20; box-shadow: var(--shadow-sm);
         }
         .nav-arrow:hover { color: var(--text-main); background: var(--accent-subtle); box-shadow: var(--shadow-sm); }
         .nav-arrow.left { left: -20px; padding-right: 4px; }
@@ -184,44 +180,43 @@
         .close-popup { background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text-muted); transition: 0.2s; }
         .close-popup:hover { color: var(--text-main); transform: rotate(90deg); }
         .popup-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; overflow-y: auto; padding-bottom: 20px; }
-        .grid-item { aspect-ratio: 4/5; border-radius: var(--radius-md); overflow: hidden; cursor: pointer; border: 2px solid transparent; transition: var(--transition-smooth); }
+        .grid-item { aspect-ratio: 4/5; background: var(--border-light); border-radius: var(--radius-md); overflow: hidden; cursor: pointer; border: 2px solid transparent; transition: var(--transition-smooth); }
         .grid-item:hover { border-color: var(--text-main); transform: scale(0.98); }
         .grid-item img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* ✅ 3D HTML/CSS T-SHIRT MOCKUP (ZERO LAG) */
-        .mockup-3d-scene { perspective: 1000px; display: flex; justify-content: center; align-items: center; margin: 40px 0; }
-        .css-human {
-            position: relative; width: 180px; height: 220px;
-            animation: softBreath 4s infinite ease-in-out alternate;
+        /* ✅ REBUILT 3D HTML/CSS T-SHIRT MOCKUP (FOOLPROOF & NO LAG) */
+        .mockup-3d-scene { perspective: 800px; display: flex; justify-content: center; margin: 40px 0; }
+        .tshirt-mockup {
+            position: relative; width: 160px; height: 220px;
+            animation: floatingShirt 4s ease-in-out infinite alternate;
             transform-style: preserve-3d;
         }
-        .css-neck { width: 50px; height: 30px; background: #e2e8f0; margin: 0 auto; border-radius: 10px 10px 0 0; box-shadow: inset 0 -10px 10px rgba(0,0,0,0.05); }
-        .css-torso {
-            position: relative; width: 100%; height: 190px; background: var(--text-main);
-            border-radius: 30px 30px 15px 15px; box-shadow: inset -10px -10px 30px rgba(0,0,0,0.3), 0 20px 30px rgba(0,0,0,0.1);
-            overflow: hidden;
+        /* The Neck Hole */
+        .tshirt-collar {
+            position: absolute; top: -5px; left: 50%; transform: translateX(-50%);
+            width: 50px; height: 15px; background: var(--bg-color); border-radius: 0 0 25px 25px; z-index: 5;
         }
-        /* Sleeves */
-        .css-torso::before, .css-torso::after {
-            content: ''; position: absolute; top: -5px; width: 50px; height: 70px; background: var(--text-main); border-radius: 20px;
+        /* Main Body of the Shirt */
+        .tshirt-body {
+            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 140px; height: 220px; background: #1a1a1a;
+            border-radius: 15px 15px 10px 10px; box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+            display: flex; justify-content: center; padding-top: 40px; overflow: hidden; z-index: 2;
         }
-        .css-torso::before { left: -15px; transform: rotate(25deg); }
-        .css-torso::after { right: -15px; transform: rotate(-25deg); }
-        
-        /* The Printed Design on Shirt */
-        .css-print-design {
-            position: absolute; top: 40px; left: 50%; transform: translateX(-50%);
-            width: 100px; height: 120px; border-radius: 8px; overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: var(--transition-smooth);
+        /* The Sleeves */
+        .tshirt-sleeves {
+            position: absolute; top: 10px; left: -15px; width: 190px; height: 60px;
+            background: #1a1a1a; border-radius: 20px; z-index: 1;
         }
-        .css-print-design img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
+        /* The Graphic Print */
+        .tshirt-body img { width: 80%; height: 110px; object-fit: cover; border-radius: 6px; opacity: 0.95; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
 
-        @keyframes softBreath {
-            0% { transform: translateY(0) rotateY(-8deg) scale(1); }
-            100% { transform: translateY(-12px) rotateY(8deg) scale(1.02); }
+        @keyframes floatingShirt {
+            0% { transform: translateY(0px) rotateY(-10deg) rotateX(5deg); }
+            100% { transform: translateY(-15px) rotateY(10deg) rotateX(-5deg); }
         }
 
-        /* ✅ FIXED FOOTER STYLING */
+        /* FIXED FOOTER STYLING */
         .main-footer {
             margin-top: auto; padding: 40px 0 20px 0; width: 100%; max-width: 900px;
             display: flex; justify-content: space-between; align-items: flex-start;
@@ -237,10 +232,9 @@
         .footer-links a:hover { opacity: 0.7; }
         .footer-copy { font-size: 0.85rem; color: var(--text-muted); }
 
-        /* ✅ STRICT MOBILE-FIRST OVERRIDES */
+        /* STRICT MOBILE-FIRST OVERRIDES */
         @media (max-width: 700px) {
             header h1 { font-size: 1.8rem; margin-top: 10px;}
-            /* Fix Top Button Size */
             .corner-menu-btn { width: 36px; height: 36px; top: 0px; right: 0px; font-size: 1.1rem; }
             .content-tabs { gap: 8px; }
             
@@ -254,7 +248,6 @@
             .popup-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .footage-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             
-            /* Fix Footer Stacking */
             .main-footer { flex-direction: column; align-items: center; text-align: center; }
             .footer-about { max-width: 100%; text-align: center; }
             .footer-right { align-items: center; width: 100%; }
@@ -356,12 +349,11 @@
             <p>See how today's wallpaper looks as a premium T-Shirt graphic.</p>
             
             <div class="mockup-3d-scene">
-                <div class="css-human">
-                    <div class="css-neck"></div>
-                    <div class="css-torso">
-                        <div class="css-print-design">
-                            <img id="shirtDesignImg" src="" alt="T-Shirt Design">
-                        </div>
+                <div class="tshirt-mockup">
+                    <div class="tshirt-collar"></div>
+                    <div class="tshirt-sleeves"></div>
+                    <div class="tshirt-body">
+                        <img id="shirtDesignImg" src="" alt="T-Shirt Design">
                     </div>
                 </div>
             </div>
@@ -371,7 +363,7 @@
 
         <section id="footage" class="content-section">
             <h2>🎬 Footage-Style Stills</h2>
-            <p>High-quality assets for video editors. These videos are generated directly inside your browser to save bandwidth!</p>
+            <p>High-quality assets for video editors. Generated directly inside your browser to save bandwidth!</p>
             <div class="footage-grid" id="footageGrid"></div>
         </section>
 
@@ -423,7 +415,7 @@
         (function() {
             'use strict';
             
-            // ✅ AUTOMATICALLY GENERATE 15 WALLPAPERS
+            // AUTOMATICALLY GENERATE 15 WALLPAPERS
             const wallpapers = [];
             for(let i = 1; i <= 15; i++) {
                 wallpapers.push({ 
@@ -432,7 +424,7 @@
                 });
             }
 
-            // ✅ AUTOMATICALLY GENERATE 4 BIRTHDAY GIFTS (b1 to b4)
+            // AUTOMATICALLY GENERATE 4 BIRTHDAY GIFTS (b1 to b4)
             const gifts = [];
             for(let i = 1; i <= 4; i++) {
                 gifts.push({ 
@@ -470,21 +462,30 @@
             const puzzleGrid = document.getElementById('puzzleGrid');
             const puzzleStatus = document.getElementById('puzzleStatus');
 
-            // --- Core Functions ---
+            // --- Core Functions with Auto-Skip for Broken Images ---
             function updateDisplayImage() {
                 const imgUrl = wallpapers[currentWallIndex].filename;
                 
-                // Update Main Displays
-                showcaseImages.forEach(img => {
-                    img.style.opacity = '0.5'; 
-                    setTimeout(() => {
-                        img.src = imgUrl;
-                        img.style.opacity = '1';
-                    }, 150);
-                });
-
-                // Update T-Shirt Mockup seamlessly
-                shirtDesignImg.src = imgUrl;
+                // Preloader prevents broken images from showing
+                const tempImg = new Image();
+                tempImg.src = imgUrl;
+                
+                tempImg.onload = () => {
+                    showcaseImages.forEach(img => {
+                        img.style.opacity = '0.5'; 
+                        setTimeout(() => {
+                            img.src = imgUrl;
+                            img.style.opacity = '1';
+                        }, 150);
+                    });
+                    shirtDesignImg.src = imgUrl;
+                };
+                
+                // ✅ AUTO-SKIP: If image fails (like 14.png or 15.png), skip to the next one instantly!
+                tempImg.onerror = () => {
+                    console.warn(`Image ${imgUrl} failed to load. Skipping...`);
+                    changeWallpaper(1); 
+                };
             }
 
             function changeWallpaper(direction) {
@@ -503,7 +504,6 @@
                 try {
                     const response = await fetch(wp.filename);
                     if (!response.ok) throw new Error('Network response was not ok');
-                    
                     const blob = await response.blob();
                     const blobUrl = URL.createObjectURL(blob);
                     
@@ -527,13 +527,14 @@
                 }
             }
 
-            // --- Render Popup Grids ---
+            // --- Render Popup Grids (Fast Lazy Loading) ---
             function renderPopupGrid(gridElement, popupElement, isPuzzleMode = false) {
                 gridElement.innerHTML = '';
                 wallpapers.forEach((wp, index) => {
                     const item = document.createElement('div');
                     item.className = 'grid-item';
-                    item.innerHTML = `<img src="${wp.filename}" alt="Wallpaper ${wp.id}" loading="lazy">`;
+                    // Added strict lazy loading and an onerror tag to hide broken popup images
+                    item.innerHTML = `<img src="${wp.filename}" alt="Wallpaper ${wp.id}" loading="lazy" onerror="this.parentElement.style.display='none'">`;
                     
                     item.addEventListener('click', () => {
                         if (isPuzzleMode) {
@@ -555,7 +556,7 @@
                     const item = document.createElement('div');
                     item.className = 'footage-item';
                     item.innerHTML = `
-                        <img src="${wp.filename}" alt="Footage Base ${wp.id}" loading="lazy" crossorigin="anonymous">
+                        <img src="${wp.filename}" alt="Footage Base ${wp.id}" loading="lazy" crossorigin="anonymous" onerror="this.parentElement.style.display='none'">
                         <button class="btn-render-video" onclick="generateVideoLoop('${wp.filename}', this, ${wp.id})">🎬 Render 5s Loop</button>
                     `;
                     fGrid.appendChild(item);
@@ -568,7 +569,7 @@
                 gifts.forEach((gift) => {
                     const item = document.createElement('div');
                     item.className = 'grid-item';
-                    item.innerHTML = `<img src="${gift.filename}" alt="Gift ${gift.id}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x500?text=Gift+${gift.id}'">`;
+                    item.innerHTML = `<img src="${gift.filename}" alt="Gift ${gift.id}" loading="lazy" onerror="this.parentElement.style.display='none'">`;
                     gGrid.appendChild(item);
                 });
             }
@@ -613,7 +614,7 @@
             clickedTab.classList.add('active');
         }
 
-        // 🎬 THE ZERO-SERVER-COST VIDEO GENERATOR
+        // THE ZERO-SERVER-COST VIDEO GENERATOR
         window.generateVideoLoop = function(imageUrl, btnElement, id) {
             if(btnElement.classList.contains('loading')) return;
             
