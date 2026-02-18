@@ -66,14 +66,14 @@
 
         /* CONTENT TABS */
         .content-tabs {
-            display: flex; gap: 15px; margin-bottom: 30px;
+            display: flex; gap: 10px; margin-bottom: 30px;
             background: var(--surface); padding: 8px; border-radius: 50px;
             box-shadow: var(--shadow-sm); border: 1px solid var(--border-light);
             flex-wrap: wrap; justify-content: center;
         }
         .tab-link {
-            text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 0.95rem;
-            padding: 8px 20px; border-radius: 30px; transition: var(--transition-smooth);
+            text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 0.9rem;
+            padding: 8px 16px; border-radius: 30px; transition: var(--transition-smooth);
         }
         .tab-link.active { background: var(--text-main); color: white; }
         .tab-link:hover:not(.active) { color: var(--text-main); background: var(--accent-subtle); }
@@ -110,10 +110,7 @@
         .nav-arrow.left { left: -20px; padding-right: 4px; }
         .nav-arrow.right { right: -20px; padding-left: 4px; }
 
-        .showcase-container {
-            width: 100%; display: flex; justify-content: center; align-items: center;
-            position: relative;
-        }
+        .showcase-container { width: 100%; display: flex; justify-content: center; align-items: center; position: relative; }
         .showcase-slide { display: none; opacity: 0; transition: opacity 0.5s ease; flex-direction: column; align-items: center; }
         .showcase-slide.active { display: flex; opacity: 1; }
         .showcase-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.3s ease; }
@@ -149,7 +146,7 @@
         .btn-download:active { transform: scale(0.96); }
         .btn-download.loading { opacity: 0.8; cursor: not-allowed; transform: none; }
 
-        /* NEW SECTIONS (PUZZLE & FOOTAGE) */
+        /* SECTIONS */
         .content-section {
             width: 100%; max-width: 900px; margin-bottom: 60px;
             text-align: center; scroll-margin-top: 40px;
@@ -168,26 +165,16 @@
 
         /* FOOTAGE GRID STYLING */
         .footage-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 20px; }
-        .footage-item {
-            aspect-ratio: 16/9; background: var(--border-light); border-radius: 8px;
-            position: relative; overflow: hidden; border: 1px solid var(--border-focus); box-shadow: var(--shadow-sm);
-        }
+        .footage-item { aspect-ratio: 16/9; background: var(--border-light); border-radius: 8px; position: relative; overflow: hidden; border: 1px solid var(--border-focus); box-shadow: var(--shadow-sm); }
         .footage-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .btn-render-video {
-            position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
-            background: rgba(15, 23, 42, 0.85); color: white; border: none; padding: 6px 12px;
-            border-radius: 50px; font-size: 0.75rem; font-weight: 700; cursor: pointer;
-            backdrop-filter: blur(4px); transition: var(--transition-smooth); white-space: nowrap;
-        }
+        .btn-render-video { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: rgba(15, 23, 42, 0.85); color: white; border: none; padding: 6px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; cursor: pointer; backdrop-filter: blur(4px); transition: var(--transition-smooth); white-space: nowrap; }
         .btn-render-video:hover { background: #000; }
-        .btn-render-video.loading { opacity: 0.9; cursor: wait; background: #eab308; color: #000;}
-
-        /* POPUP OVERLAY */
+        
+        /* POPUP OVERLAYS */
         .wallpaper-popup {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(255,255,255,0.95); backdrop-filter: blur(5px);
-            z-index: 100; opacity: 0; pointer-events: none;
-            transition: opacity 0.3s ease;
+            z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
             display: flex; justify-content: center; padding: 40px 20px;
         }
         .wallpaper-popup.active { opacity: 1; pointer-events: auto; }
@@ -197,14 +184,44 @@
         .close-popup { background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text-muted); transition: 0.2s; }
         .close-popup:hover { color: var(--text-main); transform: rotate(90deg); }
         .popup-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; overflow-y: auto; padding-bottom: 20px; }
-        .grid-item {
-            aspect-ratio: 4/5; border-radius: var(--radius-md); overflow: hidden;
-            cursor: pointer; border: 2px solid transparent; transition: var(--transition-smooth);
-        }
+        .grid-item { aspect-ratio: 4/5; border-radius: var(--radius-md); overflow: hidden; cursor: pointer; border: 2px solid transparent; transition: var(--transition-smooth); }
         .grid-item:hover { border-color: var(--text-main); transform: scale(0.98); }
         .grid-item img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* ✅ 3D HTML/CSS T-SHIRT MOCKUP (ZERO LAG) */
+        .mockup-3d-scene { perspective: 1000px; display: flex; justify-content: center; align-items: center; margin: 40px 0; }
+        .css-human {
+            position: relative; width: 180px; height: 220px;
+            animation: softBreath 4s infinite ease-in-out alternate;
+            transform-style: preserve-3d;
+        }
+        .css-neck { width: 50px; height: 30px; background: #e2e8f0; margin: 0 auto; border-radius: 10px 10px 0 0; box-shadow: inset 0 -10px 10px rgba(0,0,0,0.05); }
+        .css-torso {
+            position: relative; width: 100%; height: 190px; background: var(--text-main);
+            border-radius: 30px 30px 15px 15px; box-shadow: inset -10px -10px 30px rgba(0,0,0,0.3), 0 20px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        /* Sleeves */
+        .css-torso::before, .css-torso::after {
+            content: ''; position: absolute; top: -5px; width: 50px; height: 70px; background: var(--text-main); border-radius: 20px;
+        }
+        .css-torso::before { left: -15px; transform: rotate(25deg); }
+        .css-torso::after { right: -15px; transform: rotate(-25deg); }
         
-        /* ✅ FIXED FOOTER STYLING (WITH POLICY LINKS) */
+        /* The Printed Design on Shirt */
+        .css-print-design {
+            position: absolute; top: 40px; left: 50%; transform: translateX(-50%);
+            width: 100px; height: 120px; border-radius: 8px; overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: var(--transition-smooth);
+        }
+        .css-print-design img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
+
+        @keyframes softBreath {
+            0% { transform: translateY(0) rotateY(-8deg) scale(1); }
+            100% { transform: translateY(-12px) rotateY(8deg) scale(1.02); }
+        }
+
+        /* ✅ FIXED FOOTER STYLING */
         .main-footer {
             margin-top: auto; padding: 40px 0 20px 0; width: 100%; max-width: 900px;
             display: flex; justify-content: space-between; align-items: flex-start;
@@ -225,6 +242,7 @@
             header h1 { font-size: 1.8rem; margin-top: 10px;}
             /* Fix Top Button Size */
             .corner-menu-btn { width: 36px; height: 36px; top: 0px; right: 0px; font-size: 1.1rem; }
+            .content-tabs { gap: 8px; }
             
             .nav-arrow { width: 40px; height: 40px; font-size: 1.4rem; }
             .nav-arrow.left { left: 0; } .nav-arrow.right { right: 0; }
@@ -258,6 +276,8 @@
             <a href="#wallpapers" class="tab-link active" onclick="setActiveTab(this)">🖼️ Wallpapers</a>
             <a href="#puzzle" class="tab-link" onclick="setActiveTab(this)">🧩 Puzzle</a>
             <a href="#footage" class="tab-link" onclick="setActiveTab(this)">🎬 Footage</a>
+            <a href="#shirts" class="tab-link" onclick="setActiveTab(this)">👕 Shirts</a>
+            <a href="#gifts" class="tab-link" onclick="setActiveTab(this)">🎁 Gifts</a>
         </nav>
 
         <p class="soft-instruction">
@@ -326,15 +346,39 @@
 
         <section id="puzzle" class="content-section">
             <h2>🧩 Image Puzzle</h2>
-            <p>Play with today's wallpapers and test your skills.</p>
-            <button class="btn-secondary" onclick="alert('Hook up your puzzle JS function here!')">Play with Current Image</button>
+            <p>Select any wallpaper from our library to start playing.</p>
+            <button class="btn-secondary" id="openPuzzleMenuBtn">Choose Image to Play</button>
+            <div id="puzzleStatus" style="margin-top: 15px; color: var(--text-main); font-weight: 600;"></div>
+        </section>
+
+        <section id="shirts" class="content-section">
+            <h2>👕 Print on Demand Mockups</h2>
+            <p>See how today's wallpaper looks as a premium T-Shirt graphic.</p>
+            
+            <div class="mockup-3d-scene">
+                <div class="css-human">
+                    <div class="css-neck"></div>
+                    <div class="css-torso">
+                        <div class="css-print-design">
+                            <img id="shirtDesignImg" src="" alt="T-Shirt Design">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn-secondary" onclick="alert('Redirecting to your Print on Demand store...')">Get this T-Shirt</button>
         </section>
 
         <section id="footage" class="content-section">
             <h2>🎬 Footage-Style Stills</h2>
             <p>High-quality assets for video editors. These videos are generated directly inside your browser to save bandwidth!</p>
-            <div class="footage-grid" id="footageGrid">
-                </div>
+            <div class="footage-grid" id="footageGrid"></div>
+        </section>
+
+        <section id="gifts" class="content-section">
+            <h2>🎁 Birthday Gift Ideas</h2>
+            <p>Curated inspiration for the perfect birthday present.</p>
+            <div class="popup-grid" id="giftsGrid" style="margin-top: 20px;"></div>
         </section>
         
         <footer class="main-footer">
@@ -361,8 +405,17 @@
                 <div class="popup-title">All Wallpapers</div>
                 <button class="close-popup" id="closeMenuBtn">&times;</button>
             </div>
-            <div class="popup-grid" id="popupGrid">
-                </div>
+            <div class="popup-grid" id="popupGrid"></div>
+        </div>
+    </div>
+
+    <div class="wallpaper-popup" id="puzzlePopup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <div class="popup-title">Choose Puzzle Image</div>
+                <button class="close-popup" id="closePuzzleMenuBtn">&times;</button>
+            </div>
+            <div class="popup-grid" id="puzzleGrid"></div>
         </div>
     </div>
 
@@ -370,22 +423,30 @@
         (function() {
             'use strict';
             
-            // 8 Wallpapers based on your GitHub structure
-            const wallpapers = [
-                { id: 1, filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/1.png" },
-                { id: 2, filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/2.png" },
-                { id: 3, filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/3.png" },
-                { id: 4, filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/4.png" },
-                { id: 5, filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/5.png" },
-                { id: 6, filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/6.png" },
-                { id: 7, filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/7.png" },
-                { id: 8, filename: "https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/8.png" }
-            ];
+            // ✅ AUTOMATICALLY GENERATE 15 WALLPAPERS
+            const wallpapers = [];
+            for(let i = 1; i <= 15; i++) {
+                wallpapers.push({ 
+                    id: i, 
+                    filename: `https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/${i}.png` 
+                });
+            }
+
+            // ✅ AUTOMATICALLY GENERATE 4 BIRTHDAY GIFTS (b1 to b4)
+            const gifts = [];
+            for(let i = 1; i <= 4; i++) {
+                gifts.push({ 
+                    id: `b${i}`, 
+                    filename: `https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/b${i}.png` 
+                });
+            }
             
             let currentWallIndex = 0;
             let currentDeviceIndex = 0;
 
             const showcaseImages = document.querySelectorAll('.showcase-img');
+            const shirtDesignImg = document.getElementById('shirtDesignImg');
+            
             const showcaseSlides = [
                 document.getElementById('sc-slide-phone'),
                 document.getElementById('sc-slide-laptop'),
@@ -403,10 +464,17 @@
             const closeMenuBtn = document.getElementById('closeMenuBtn');
             const popupGrid = document.getElementById('popupGrid');
 
-            // --- Core Functions ---
+            const puzzlePopup = document.getElementById('puzzlePopup');
+            const openPuzzleMenuBtn = document.getElementById('openPuzzleMenuBtn');
+            const closePuzzleMenuBtn = document.getElementById('closePuzzleMenuBtn');
+            const puzzleGrid = document.getElementById('puzzleGrid');
+            const puzzleStatus = document.getElementById('puzzleStatus');
 
+            // --- Core Functions ---
             function updateDisplayImage() {
                 const imgUrl = wallpapers[currentWallIndex].filename;
+                
+                // Update Main Displays
                 showcaseImages.forEach(img => {
                     img.style.opacity = '0.5'; 
                     setTimeout(() => {
@@ -414,6 +482,9 @@
                         img.style.opacity = '1';
                     }, 150);
                 });
+
+                // Update T-Shirt Mockup seamlessly
+                shirtDesignImg.src = imgUrl;
             }
 
             function changeWallpaper(direction) {
@@ -446,7 +517,6 @@
                     setTimeout(() => URL.revokeObjectURL(blobUrl), 100);
                     gtag('event', 'download', { 'event_category': 'conversion', 'event_label': `ID: ${wp.id}` });
                 } catch (error) {
-                    console.error('Direct download failed:', error);
                     const link = document.createElement('a');
                     link.href = wp.filename;
                     link.target = '_blank';
@@ -457,21 +527,24 @@
                 }
             }
 
-            // --- Popup & Footage Functions ---
-
-            function renderPopupGrid() {
-                popupGrid.innerHTML = '';
+            // --- Render Popup Grids ---
+            function renderPopupGrid(gridElement, popupElement, isPuzzleMode = false) {
+                gridElement.innerHTML = '';
                 wallpapers.forEach((wp, index) => {
                     const item = document.createElement('div');
                     item.className = 'grid-item';
                     item.innerHTML = `<img src="${wp.filename}" alt="Wallpaper ${wp.id}" loading="lazy">`;
                     
                     item.addEventListener('click', () => {
-                        currentWallIndex = index;
-                        updateDisplayImage();
-                        wallPopup.classList.remove('active');
+                        if (isPuzzleMode) {
+                            puzzleStatus.innerHTML = `✅ Selected Image #${wp.id} for Puzzle. (JS Game Engine Loading soon!)`;
+                        } else {
+                            currentWallIndex = index;
+                            updateDisplayImage();
+                        }
+                        popupElement.classList.remove('active');
                     });
-                    popupGrid.appendChild(item);
+                    gridElement.appendChild(item);
                 });
             }
 
@@ -489,23 +562,40 @@
                 });
             }
 
+            function renderGiftsGrid() {
+                const gGrid = document.getElementById('giftsGrid');
+                gGrid.innerHTML = '';
+                gifts.forEach((gift) => {
+                    const item = document.createElement('div');
+                    item.className = 'grid-item';
+                    item.innerHTML = `<img src="${gift.filename}" alt="Gift ${gift.id}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x500?text=Gift+${gift.id}'">`;
+                    gGrid.appendChild(item);
+                });
+            }
+
             // --- Event Listeners ---
             prevBtn.addEventListener('click', () => changeWallpaper(-1));
             nextBtn.addEventListener('click', () => changeWallpaper(1));
             downloadBtn.addEventListener('click', downloadCurrent);
             
             openMenuBtn.addEventListener('click', () => {
-                renderPopupGrid(); 
+                renderPopupGrid(popupGrid, wallPopup, false); 
                 wallPopup.classList.add('active');
             });
             closeMenuBtn.addEventListener('click', () => wallPopup.classList.remove('active'));
-            wallPopup.addEventListener('click', (e) => {
-                if(e.target === wallPopup) wallPopup.classList.remove('active');
+            wallPopup.addEventListener('click', (e) => { if(e.target === wallPopup) wallPopup.classList.remove('active'); });
+
+            openPuzzleMenuBtn.addEventListener('click', () => {
+                renderPopupGrid(puzzleGrid, puzzlePopup, true); 
+                puzzlePopup.classList.add('active');
             });
+            closePuzzleMenuBtn.addEventListener('click', () => puzzlePopup.classList.remove('active'));
+            puzzlePopup.addEventListener('click', (e) => { if(e.target === puzzlePopup) puzzlePopup.classList.remove('active'); });
 
             // --- Initialization & Auto-Loops ---
             updateDisplayImage();
             renderFootageGrid();
+            renderGiftsGrid();
 
             setInterval(() => {
                 currentDeviceIndex = (currentDeviceIndex + 1) % showcaseSlides.length;
