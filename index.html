@@ -14,7 +14,7 @@
     
     <title>Free 4K AI Wallpapers for Phone & Desktop | WallRank</title>
     
-    <meta name="description" content="Download unique 4K AI wallpapers for iPhone, Android, and Desktop. Preview on real devices, play puzzles, and get free video backgrounds daily.">
+    <meta name="description" content="Download unique 4K AI wallpapers for iPhone, Android, and Desktop. Preview on real devices, play puzzles, and download instantly.">
     <link rel="canonical" href="https://wallrank.club">
     
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
@@ -90,8 +90,8 @@
         /* TINY ACTION BUTTONS ON IMAGES */
         .grid-actions {
             position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
-            display: flex; gap: 8px; background: rgba(15, 23, 42, 0.7);
-            padding: 6px 12px; border-radius: 30px; backdrop-filter: blur(6px);
+            display: flex; gap: 12px; background: rgba(15, 23, 42, 0.75);
+            padding: 8px 16px; border-radius: 30px; backdrop-filter: blur(6px);
             opacity: 0; transition: opacity 0.2s ease, transform 0.2s ease;
         }
         .grid-item:hover .grid-actions { opacity: 1; }
@@ -100,8 +100,8 @@
         @media (hover: none) { .grid-actions { opacity: 1; background: rgba(15, 23, 42, 0.85); } }
 
         .action-btn {
-            background: none; border: none; font-size: 1.2rem; cursor: pointer;
-            color: white; transition: transform 0.1s ease; padding: 4px;
+            background: none; border: none; font-size: 1.3rem; cursor: pointer;
+            color: white; transition: transform 0.1s ease; padding: 2px;
         }
         .action-btn:hover { transform: scale(1.2); }
         .action-btn:active { transform: scale(0.9); }
@@ -116,12 +116,21 @@
         .content-section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
         .content-section p { color: var(--text-muted); font-weight: 500; margin-bottom: 24px; }
 
-        /* FOOTAGE GRID STYLING */
-        .footage-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 20px; }
-        .footage-item { aspect-ratio: 16/9; background: var(--border-light); border-radius: 8px; position: relative; overflow: hidden; border: 1px solid var(--border-focus); box-shadow: var(--shadow-sm); }
-        .footage-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .btn-render-video { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: rgba(15, 23, 42, 0.85); color: white; border: none; padding: 6px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; cursor: pointer; backdrop-filter: blur(4px); transition: var(--transition-smooth); white-space: nowrap; }
-        
+        /* ✅ PLAYABLE PUZZLE STYLING */
+        #puzzleBoard {
+            display: none; grid-template-columns: repeat(3, 1fr); gap: 2px;
+            max-width: 320px; aspect-ratio: 4/5; margin: 20px auto;
+            background: var(--border-light); border: 3px solid var(--text-main);
+            border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-sm);
+        }
+        .puzzle-piece {
+            width: 100%; height: 100%; background-size: 300% 300%;
+            cursor: pointer; transition: transform 0.15s ease, opacity 0.15s ease;
+        }
+        .puzzle-piece.selected {
+            transform: scale(0.85); opacity: 0.7; border-radius: 6px;
+        }
+
         /* MOCKUP POPUP MODAL */
         .mockup-popup {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -192,7 +201,6 @@
         @media (max-width: 700px) {
             header h1 { font-size: 1.8rem; margin-top: 10px;}
             .main-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .footage-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             
             .nav-arrow { width: 40px; height: 40px; font-size: 1.4rem; }
             .device-phone { width: 200px; height: 400px; }
@@ -210,13 +218,12 @@
     <main class="container">
         <header>
             <h1>WallRank</h1>
-            <p>Daily AI Wallpapers & Footage</p>
+            <p>Daily AI Wallpapers & Art</p>
         </header>
 
         <nav class="content-tabs">
             <a href="#wallpapers" class="tab-link active" onclick="setActiveTab(this)">🖼️ Wallpapers</a>
-            <a href="#puzzle" class="tab-link" onclick="setActiveTab(this)">🧩 Puzzle</a>
-            <a href="#footage" class="tab-link" onclick="setActiveTab(this)">🎬 Footage</a>
+            <a href="#puzzle" class="tab-link" onclick="setActiveTab(this)">🧩 Puzzle Game</a>
         </nav>
 
         <p class="soft-instruction">
@@ -229,16 +236,16 @@
         </section>
 
         <section id="puzzle" class="content-section">
-            <h2>🧩 Image Puzzle</h2>
-            <p>Select the puzzle icon 🧩 on any wallpaper above to start playing.</p>
-            <div id="puzzleStatus" style="color: var(--text-main); font-weight: 600;">Waiting for selection...</div>
-            <img id="puzzlePreview" style="max-width: 200px; border-radius: 12px; display: none; margin: 15px auto 0 auto; box-shadow: var(--shadow-sm);" alt="Puzzle Preview">
-        </section>
-
-        <section id="footage" class="content-section">
-            <h2>🎬 Footage-Style Stills</h2>
-            <p>High-quality assets for video editors. Generated directly inside your browser to save bandwidth!</p>
-            <div class="footage-grid" id="footageGrid"></div>
+            <h2>🧩 Swap Puzzle Game</h2>
+            <div id="puzzleStatus" style="color: var(--text-main); font-weight: 600; margin-bottom: 10px;">Select the 🧩 icon on any wallpaper above to start!</div>
+            
+            <div id="puzzleBoard"></div>
+            <p id="puzzleCongrats" style="display:none; color: #16a34a; font-weight: 800; font-size: 1.3rem; margin-top: 15px;">🎉 You Solved It!</p>
+            
+            <div id="puzzleReferenceContainer" style="display: none; margin-top: 30px;">
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; font-weight: 600;">Reference Image</p>
+                <img id="puzzlePreview" style="max-width: 120px; border-radius: 8px; margin: 0 auto; box-shadow: var(--shadow-sm); opacity: 0.8;" alt="Puzzle Reference">
+            </div>
         </section>
 
         <footer class="main-footer">
@@ -341,22 +348,7 @@
                 });
             }
 
-            // --- 2. RENDER FOOTAGE ---
-            function renderFootageGrid() {
-                const fGrid = document.getElementById('footageGrid');
-                fGrid.innerHTML = '';
-                wallpapers.slice(0, 4).forEach((wp) => {
-                    const item = document.createElement('div');
-                    item.className = 'footage-item';
-                    item.innerHTML = `
-                        <img src="${wp.filename}" alt="Footage ${wp.id}" loading="lazy" crossorigin="anonymous" onerror="this.parentElement.style.display='none'">
-                        <button class="btn-render-video" onclick="generateVideoLoop('${wp.filename}', this, ${wp.id})">🎬 Render 5s Loop</button>
-                    `;
-                    fGrid.appendChild(item);
-                });
-            }
-
-            // --- 3. MOCKUP VIEWER LOGIC ---
+            // --- 2. MOCKUP VIEWER LOGIC ---
             window.openMockup = function(index) {
                 currentWallIndex = index;
                 updateDisplayImage();
@@ -378,7 +370,6 @@
                     });
                 };
                 
-                // Auto-skip inside the 3D viewer if image is broken
                 tempImg.onerror = () => {
                     console.warn(`Skipping broken image ${imgUrl}`);
                     changeWallpaper(1); 
@@ -390,22 +381,82 @@
                 updateDisplayImage();
             }
 
-            // --- 4. PUZZLE TRIGGER LOGIC ---
+            // --- 3. THE REAL PUZZLE ENGINE (Click to Swap) ---
+            let selectedPiece = null;
+
             window.startPuzzle = function(index) {
                 const wp = wallpapers[index];
-                document.getElementById('puzzleStatus').innerHTML = `✅ Selected Image #${wp.id} for Puzzle. (Game Engine Ready!)`;
+                document.getElementById('puzzleStatus').innerHTML = `✅ Playing with Image #${wp.id}. Tap two pieces to swap them!`;
                 document.getElementById('puzzlePreview').src = wp.filename;
-                document.getElementById('puzzlePreview').style.display = 'block';
+                document.getElementById('puzzleReferenceContainer').style.display = 'block';
+                document.getElementById('puzzleCongrats').style.display = 'none';
+
+                const board = document.getElementById('puzzleBoard');
+                board.style.display = 'grid';
+                board.innerHTML = '';
                 
+                const cols = 3; const rows = 3;
+                let pieces = [];
+
+                // Create the 9 sliced pieces using Background Position mapping
+                for (let i = 0; i < cols * rows; i++) {
+                    let piece = document.createElement('div');
+                    piece.className = 'puzzle-piece';
+                    piece.style.backgroundImage = `url(${wp.filename})`;
+                    
+                    let x = (i % cols) * 50;
+                    let y = Math.floor(i / cols) * 50;
+                    piece.style.backgroundPosition = `${x}% ${y}%`;
+                    piece.dataset.correctIndex = i;
+                    pieces.push(piece);
+                }
+
+                // Shuffle array randomly
+                pieces.sort(() => Math.random() - 0.5);
+                pieces.forEach(p => board.appendChild(p));
+
                 // Switch Tabs Automatically
                 setActiveTab(document.querySelector('.tab-link[href="#puzzle"]'));
                 window.location.hash = '#puzzle';
             };
 
-            // --- 5. INDIVIDUAL DOWNLOAD LOGIC ---
+            // Puzzle Swap Click Logic
+            document.getElementById('puzzleBoard').addEventListener('click', function(e) {
+                if (!e.target.classList.contains('puzzle-piece')) return;
+                
+                if (!selectedPiece) {
+                    selectedPiece = e.target;
+                    selectedPiece.classList.add('selected');
+                } else {
+                    if (selectedPiece !== e.target) {
+                        // Swap physical DOM elements
+                        let temp = document.createElement('div');
+                        selectedPiece.parentNode.insertBefore(temp, selectedPiece);
+                        e.target.parentNode.insertBefore(selectedPiece, e.target);
+                        temp.parentNode.insertBefore(e.target, temp);
+                        temp.parentNode.removeChild(temp);
+                        
+                        checkWinCondition();
+                    }
+                    selectedPiece.classList.remove('selected');
+                    selectedPiece = null;
+                }
+            });
+
+            function checkWinCondition() {
+                const currentPieces = Array.from(document.getElementById('puzzleBoard').children);
+                // Check if every piece's current position matches its original correctIndex
+                const won = currentPieces.every((p, idx) => p.dataset.correctIndex == idx);
+                if (won) {
+                    document.getElementById('puzzleCongrats').style.display = 'block';
+                    document.getElementById('puzzleStatus').innerHTML = '🏆 Perfect!';
+                }
+            }
+
+            // --- 4. INDIVIDUAL DOWNLOAD LOGIC ---
             window.downloadImage = async function(index, btnElement) {
                 const wp = wallpapers[index];
-                if(btnElement.style.opacity === '0.5') return; // Prevent double click
+                if(btnElement.style.opacity === '0.5') return; 
                 
                 btnElement.style.opacity = '0.5';
                 try {
@@ -447,70 +498,13 @@
 
             // Init
             renderMainGrid();
-            renderFootageGrid();
-
             gtag('event', 'page_view', { 'page_title': 'Daily Wallpapers', 'page_location': 'https://wallrank.club' });
         })();
 
-        function setActiveTab(clickedTab) {
+        // TAB UI SWITCHER
+        window.setActiveTab = function(clickedTab) {
             document.querySelectorAll('.tab-link').forEach(tab => tab.classList.remove('active'));
-            clickedTab.classList.add('active');
-        }
-
-        // ZERO-SERVER-COST VIDEO GENERATOR
-        window.generateVideoLoop = function(imageUrl, btnElement, id) {
-            if(btnElement.classList.contains('loading')) return;
-            const originalText = btnElement.innerText;
-            btnElement.innerText = '⏳ Wait 5s...';
-            btnElement.classList.add('loading');
-
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = 1920; canvas.height = 1080;
-
-            const img = new Image();
-            img.crossOrigin = "anonymous"; 
-            img.src = imageUrl;
-
-            img.onload = () => {
-                const stream = canvas.captureStream(30);
-                const recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
-                const chunks = [];
-
-                recorder.ondataavailable = e => chunks.push(e.data);
-                recorder.onstop = () => {
-                    const blob = new Blob(chunks, { type: 'video/webm' });
-                    const videoUrl = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = videoUrl;
-                    a.download = `wallrank-loop-${id}.webm`;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    setTimeout(() => URL.revokeObjectURL(videoUrl), 100);
-                    btnElement.innerText = originalText;
-                    btnElement.classList.remove('loading');
-                };
-
-                let scale = 1.0;
-                function animateFrame() {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    const w = canvas.width * scale; const h = canvas.height * scale;
-                    const x = (canvas.width - w) / 2; const y = (canvas.height - h) / 2;
-                    ctx.drawImage(img, x, y, w, h);
-                    scale += 0.0008; 
-                    if (recorder.state === 'recording') requestAnimationFrame(animateFrame);
-                }
-
-                recorder.start();
-                animateFrame();
-                setTimeout(() => { recorder.stop(); }, 5000); 
-            };
-            img.onerror = () => {
-                btnElement.innerText = '❌ Error';
-                btnElement.classList.remove('loading');
-                setTimeout(() => btnElement.innerText = originalText, 3000);
-            };
+            if(clickedTab) clickedTab.classList.add('active');
         };
     </script>
 </body>
