@@ -13,14 +13,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <title>Free 4K AI Wallpapers for Phone & Desktop | WallRank</title>
-    
-    <meta name="description" content="Download unique 4K AI wallpapers for iPhone, Android, and Desktop. Preview on real devices, play puzzles, and download instantly.">
+    <meta name="description" content="Download unique 4K AI wallpapers for iPhone, Android, and Desktop. Preview on real devices and download instantly for free.">
     <link rel="canonical" href="https://wallrank.club">
     
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* ---------- ULTRA MINIMAL & APP-LIKE CSS ---------- */
+        /* ---------- ULTRA MINIMAL & PREMIUM SPACING ---------- */
         :root {
             --bg-color: #fafafa;
             --surface: #ffffff;
@@ -29,8 +28,8 @@
             --border-light: #f1f5f9;
             --border-focus: #e2e8f0;
             --accent-subtle: #f8fafc;
-            --radius-md: 12px;
-            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --radius-md: 16px;
+            --shadow-sm: 0 8px 24px rgba(0, 0, 0, 0.04);
             --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -49,38 +48,74 @@
         .container { max-width: 1100px; width: 100%; display: flex; flex-direction: column; align-items: center; position: relative; flex: 1; }
 
         /* HEADER */
-        header { text-align: center; margin-bottom: 25px; width: 100%; }
-        header h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.03em; }
-        header p { color: var(--text-muted); font-weight: 500; margin-top: 4px; }
+        header { text-align: center; margin-bottom: 20px; width: 100%; }
+        header h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.04em; }
+        header p { color: var(--text-muted); font-weight: 500; margin-top: 4px; font-size: 1.05rem; }
 
-        /* APP-STYLE CONTENT TABS */
-        .content-tabs {
-            display: flex; gap: 10px; margin-bottom: 30px;
-            background: var(--surface); padding: 8px; border-radius: 50px;
+        .soft-instruction {
+            text-align: center; color: var(--text-muted); font-size: 0.95rem; 
+            margin-bottom: 40px; max-width: 500px; line-height: 1.5;
+            background: var(--surface); padding: 12px 24px; border-radius: 50px;
             box-shadow: var(--shadow-sm); border: 1px solid var(--border-light);
-            flex-wrap: wrap; justify-content: center;
         }
-        .tab-link {
-            background: none; border: none; font-family: inherit;
-            color: var(--text-muted); font-weight: 600; font-size: 0.95rem;
-            padding: 10px 24px; border-radius: 30px; cursor: pointer;
-            transition: var(--transition-smooth);
-        }
-        .tab-link.active { background: var(--text-main); color: white; }
-        .tab-link:hover:not(.active) { color: var(--text-main); background: var(--accent-subtle); }
 
-        /* SECTIONS (Only one visible at a time) */
-        .app-section {
-            display: none; width: 100%; animation: fadeIn 0.4s ease;
-            flex-direction: column; align-items: center; width: 100%;
+        /* 3D DEVICE HERO SECTION */
+        .hero-showcase {
+            position: relative; display: flex; align-items: center; justify-content: center;
+            width: 100%; max-width: 900px; height: 480px; margin-bottom: 30px;
         }
-        .app-section.active-section { display: flex; }
+        
+        .nav-arrow {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: var(--surface); border: 1px solid var(--border-light);
+            width: 56px; height: 56px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; color: var(--text-muted); cursor: pointer;
+            transition: var(--transition-smooth); z-index: 20; box-shadow: var(--shadow-sm);
+        }
+        .nav-arrow:hover { color: var(--text-main); transform: translateY(-50%) scale(1.05); }
+        .nav-arrow.left { left: -20px; padding-right: 4px; }
+        .nav-arrow.right { right: -20px; padding-left: 4px; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .showcase-container { width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; position: relative; }
+        .showcase-slide { display: none; opacity: 0; transition: opacity 0.5s ease; flex-direction: column; align-items: center; }
+        .showcase-slide.active { display: flex; opacity: 1; }
+        .showcase-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.3s ease; }
+
+        /* DEVICES */
+        .device-phone { width: 240px; height: 480px; background: #1a1a1a; border-radius: 36px; padding: 10px; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.12); border: 1px solid #333; }
+        .phone-screen { width: 100%; height: 100%; background: black; border-radius: 28px; overflow: hidden; position: relative; }
+        .phone-notch { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 90px; height: 25px; background: #1a1a1a; border-radius: 20px; z-index: 10; }
+        .phone-home-bar { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); width: 100px; height: 4px; background: rgba(255,255,255,0.4); border-radius: 10px; }
+        
+        .device-laptop { width: 460px; perspective: 1200px; }
+        .laptop-body { background: #1a1a1a; border-radius: 12px 12px 0 0; padding: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.12); }
+        .laptop-bezel { background: #0a0a0a; border-radius: 8px; padding: 6px; }
+        .laptop-screen { background: black; border-radius: 4px; width: 100%; aspect-ratio: 16/10; overflow: hidden; }
+        .laptop-base { width: 100%; height: 16px; background: #2a2a2a; border-radius: 0 0 8px 8px; border-bottom: 2px solid #111; }
+        
+        /* DOWNLOAD BUTTON */
+        .action-area { margin-bottom: 80px; }
+        .btn-download { 
+            background: var(--text-main); color: white; border: none; 
+            padding: 16px 40px; border-radius: 50px; font-size: 1.1rem; font-weight: 700; 
+            font-family: inherit; cursor: pointer; transition: var(--transition-smooth); 
+            display: flex; align-items: center; gap: 12px; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.2); 
+        }
+        .btn-download:hover { background: #334155; transform: translateY(-3px); box-shadow: 0 15px 30px rgba(15, 23, 42, 0.3); }
+        .btn-download:active { transform: scale(0.96); }
+        .btn-download.loading { opacity: 0.8; cursor: wait; transform: none; }
+
+        /* GRID HEADER */
+        .grid-title {
+            width: 100%; max-width: 1100px; text-align: left; margin-bottom: 20px;
+            font-size: 1.6rem; font-weight: 700; color: var(--text-main);
+            border-bottom: 2px solid var(--border-light); padding-bottom: 10px;
+        }
 
         /* MAIN WALLPAPER GRID */
         .main-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; width: 100%; margin-bottom: 40px;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; width: 100%; margin-bottom: 60px;
         }
         .grid-item {
             position: relative; aspect-ratio: 4/5; background: var(--border-light); 
@@ -88,108 +123,54 @@
             box-shadow: var(--shadow-sm); border: 1px solid var(--border-focus);
             transition: var(--transition-smooth);
         }
-        .grid-item:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+        .grid-item:hover { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
         .grid-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
         
-        /* ACTION BUTTONS ON IMAGES */
+        /* HOVER ACTION BUTTONS */
         .grid-actions {
-            position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
-            display: flex; gap: 15px; background: rgba(15, 23, 42, 0.75);
-            padding: 8px 20px; border-radius: 30px; backdrop-filter: blur(6px);
+            position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 10px; background: rgba(15, 23, 42, 0.85);
+            padding: 8px 16px; border-radius: 50px; backdrop-filter: blur(8px);
             opacity: 0; transition: opacity 0.2s ease, transform 0.2s ease;
+            white-space: nowrap;
         }
         .grid-item:hover .grid-actions { opacity: 1; }
-        @media (hover: none) { .grid-actions { opacity: 1; background: rgba(15, 23, 42, 0.85); gap: 20px; padding: 10px 24px;} }
+        @media (hover: none) { .grid-actions { opacity: 1; } } /* Always visible on mobile */
 
         .action-btn {
-            background: none; border: none; font-size: 1.4rem; cursor: pointer;
-            color: white; transition: transform 0.1s ease; padding: 2px;
+            background: none; border: none; font-size: 0.85rem; font-weight: 700; font-family: inherit;
+            cursor: pointer; color: white; transition: 0.2s ease; padding: 4px 8px;
+            display: flex; align-items: center; gap: 6px; border-radius: 20px;
         }
-        .action-btn:hover { transform: scale(1.2); }
-        .action-btn:active { transform: scale(0.9); }
+        .action-btn:hover { background: rgba(255,255,255,0.2); }
 
-        /* PUZZLE STYLING */
-        .puzzle-container {
-            width: 100%; max-width: 600px; background: var(--surface); padding: 40px 20px;
-            border-radius: var(--radius-md); border: 1px solid var(--border-light);
-            box-shadow: var(--shadow-sm); text-align: center; margin-bottom: 40px;
-        }
-        .puzzle-container h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
-        #puzzleStatus { color: var(--text-muted); font-weight: 500; margin-bottom: 20px; }
-
-        #puzzleBoard {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
-            max-width: 300px; aspect-ratio: 4/5; margin: 0 auto;
-            background: var(--border-light); border: 3px solid var(--text-main);
-            border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-sm);
-        }
-        .puzzle-piece {
-            width: 100%; height: 100%; background-size: 300% 300%;
-            cursor: pointer; transition: transform 0.15s ease, opacity 0.15s ease;
-        }
-        .puzzle-piece.selected { transform: scale(0.85); opacity: 0.7; border-radius: 6px; }
-
-        /* MOCKUP POPUP MODAL */
-        .mockup-popup {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.95); backdrop-filter: blur(8px);
-            z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-            display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px;
-        }
-        .mockup-popup.active { opacity: 1; pointer-events: auto; }
-        
-        .close-popup { 
-            position: absolute; top: 20px; right: 30px;
-            background: none; border: none; font-size: 2.5rem; cursor: pointer; 
-            color: var(--text-main); transition: 0.2s; z-index: 110;
-        }
-        .close-popup:hover { transform: rotate(90deg); }
-
-        /* 3D DEVICE VIEWER */
-        .hero-showcase {
-            position: relative; display: flex; align-items: center; justify-content: center;
-            width: 100%; max-width: 900px; height: 500px;
-        }
-        .showcase-container { width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; position: relative; }
-        .showcase-slide { display: none; opacity: 0; transition: opacity 0.5s ease; flex-direction: column; align-items: center; }
-        .showcase-slide.active { display: flex; opacity: 1; }
-        .showcase-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.3s ease; }
-
-        .device-phone { width: 240px; height: 480px; background: #1a1a1a; border-radius: 36px; padding: 10px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.15); border: 1px solid #333; }
-        .phone-screen { width: 100%; height: 100%; background: black; border-radius: 28px; overflow: hidden; position: relative; }
-        .phone-notch { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 90px; height: 25px; background: #1a1a1a; border-radius: 20px; z-index: 10; }
-        .phone-home-bar { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); width: 100px; height: 4px; background: rgba(255,255,255,0.4); border-radius: 10px; }
-        
-        .device-laptop { width: 420px; perspective: 1200px; }
-        .laptop-body { background: #1a1a1a; border-radius: 12px 12px 0 0; padding: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
-        .laptop-bezel { background: #0a0a0a; border-radius: 8px; padding: 6px; }
-        .laptop-screen { background: black; border-radius: 4px; width: 100%; aspect-ratio: 16/10; overflow: hidden; }
-        .laptop-base { width: 100%; height: 16px; background: #2a2a2a; border-radius: 0 0 8px 8px; border-bottom: 2px solid #111; }
-        
         /* FOOTER */
         .main-footer {
-            margin-top: auto; padding: 40px 0 20px 0; width: 100%; max-width: 1100px;
+            margin-top: auto; padding: 50px 0 30px 0; width: 100%; max-width: 1100px;
             display: flex; justify-content: space-between; align-items: flex-start;
-            border-top: 1px solid var(--border-light); gap: 20px; flex-wrap: wrap;
+            border-top: 1px solid var(--border-light); gap: 30px; flex-wrap: wrap;
         }
-        .footer-about { text-align: left; max-width: 450px; font-size: 0.9rem; color: var(--text-muted); }
-        .footer-about strong { color: var(--text-main); display: block; margin-bottom: 8px; font-size: 1.1rem; letter-spacing: -0.02em;}
-        .footer-about p { margin-bottom: 12px; line-height: 1.5; }
+        .footer-about { text-align: left; max-width: 450px; font-size: 0.95rem; color: var(--text-muted); }
+        .footer-about strong { color: var(--text-main); display: block; margin-bottom: 10px; font-size: 1.2rem; letter-spacing: -0.02em;}
+        .footer-about p { margin-bottom: 15px; line-height: 1.6; }
         
         .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 15px; }
-        .footer-links { display: flex; gap: 15px; flex-wrap: wrap; justify-content: flex-end; }
-        .footer-links a { color: var(--text-main); font-weight: 600; text-decoration: none; font-size: 0.85rem; transition: 0.2s;}
-        .footer-links a:hover { opacity: 0.7; }
+        .footer-links { display: flex; gap: 20px; flex-wrap: wrap; justify-content: flex-end; }
+        .footer-links a { color: var(--text-main); font-weight: 700; text-decoration: none; font-size: 0.9rem; transition: 0.2s;}
+        .footer-links a:hover { opacity: 0.6; }
         .footer-copy { font-size: 0.85rem; color: var(--text-muted); }
 
         /* STRICT MOBILE-FIRST OVERRIDES */
         @media (max-width: 700px) {
-            header h1 { font-size: 1.8rem; margin-top: 10px;}
+            header h1 { font-size: 2rem;}
+            .soft-instruction { font-size: 0.85rem; padding: 10px 20px; }
             .main-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
             
-            .device-phone { width: 200px; height: 400px; }
-            .device-laptop { width: 320px; }
-            .hero-showcase { height: 420px; }
+            .nav-arrow { width: 44px; height: 44px; font-size: 1.5rem; }
+            .nav-arrow.left { left: 0px; } .nav-arrow.right { right: 0px; }
+            .device-phone { width: 220px; height: 440px; }
+            .device-laptop { width: 340px; }
+            .hero-showcase { height: 440px; }
             
             .main-footer { flex-direction: column; align-items: center; text-align: center; }
             .footer-about { max-width: 100%; text-align: center; }
@@ -200,57 +181,20 @@
 </head>
 <body>
     <main class="container">
+        
         <header>
             <h1>WallRank</h1>
-            <p>Daily AI Wallpapers & Art</p>
+            <p>Premium AI Wallpapers</p>
         </header>
 
-        <nav class="content-tabs">
-            <button class="tab-link active" onclick="switchAppTab('wallpapersTab', this)">🖼️ Wallpapers</button>
-            <button class="tab-link" id="puzzleNavBtn" onclick="switchAppTab('puzzleTab', this)">🧩 Puzzle Game</button>
-        </nav>
+        <p class="soft-instruction">
+            ✨ Preview our collection on real devices below. Scroll down to view the full gallery.
+        </p>
 
-        <section id="wallpapersTab" class="app-section active-section">
-            <div class="main-grid" id="mainWallpaperGrid">
-                </div>
-        </section>
+        <section class="hero-showcase" id="heroViewer">
+            <button class="nav-arrow left" id="prevWall">‹</button>
+            <button class="nav-arrow right" id="nextWall">›</button>
 
-        <section id="puzzleTab" class="app-section">
-            <div class="puzzle-container">
-                <h2>Swap Puzzle</h2>
-                <div id="puzzleStatus">Tap two pieces to swap them!</div>
-                
-                <div id="puzzleBoard"></div>
-                <p id="puzzleCongrats" style="display:none; color: #16a34a; font-weight: 800; font-size: 1.3rem; margin-top: 20px;">🎉 Perfect Match!</p>
-                
-                <div style="margin-top: 30px;">
-                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; font-weight: 600;">Reference Image</p>
-                    <img id="puzzlePreview" style="max-width: 120px; border-radius: 8px; box-shadow: var(--shadow-sm); opacity: 0.8;" alt="Puzzle Reference">
-                </div>
-            </div>
-        </section>
-
-        <footer class="main-footer">
-            <div class="footer-about">
-                <strong>About WallRank</strong>
-                <p>Welcome to WallRank. I'm James. I believe in building fast, useful tools that actually add value without the clutter. I'm actively looking to connect with like-minded people for business collaborations and life improvement. Let's build something great together.</p>
-            </div>
-            <div class="footer-right">
-                <div class="footer-links">
-                    <a href="/privacy-policy.html">Privacy Policy</a>
-                    <a href="/terms.html">Terms of Service</a>
-                    <a href="mailto:kabanijames9@gmail.com">Contact</a>
-                </div>
-                <div class="footer-copy">
-                    © 2026 WallRank.club
-                </div>
-            </div>
-        </footer>
-    </main>
-
-    <div class="mockup-popup" id="mockupPopup">
-        <button class="close-popup" id="closeMockupBtn">&times;</button>
-        <div class="hero-showcase">
             <div class="showcase-container">
                 <div class="showcase-slide active" id="sc-slide-phone">
                     <div class="device-phone">
@@ -274,14 +218,44 @@
                     </div>
                 </div>
             </div>
+        </section>
+        
+        <div class="action-area">
+            <button class="btn-download" id="mainDownloadBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span id="downloadText">Download This Image</span>
+            </button>
         </div>
-    </div>
+
+        <div class="grid-title">Browse Collection</div>
+        <section style="width: 100%;">
+            <div class="main-grid" id="mainWallpaperGrid">
+                </div>
+        </section>
+
+        <footer class="main-footer">
+            <div class="footer-about">
+                <strong>About WallRank</strong>
+                <p>Welcome to WallRank. I'm James. I believe in building fast, useful tools that actually add value without the clutter. I'm actively looking to connect with like-minded people for business collaborations and life improvement. Let's build something great together.</p>
+            </div>
+            <div class="footer-right">
+                <div class="footer-links">
+                    <a href="/privacy-policy.html">Privacy Policy</a>
+                    <a href="/terms.html">Terms of Service</a>
+                    <a href="mailto:kabanijames9@gmail.com">Contact</a>
+                </div>
+                <div class="footer-copy">
+                    © 2026 WallRank.club
+                </div>
+            </div>
+        </footer>
+    </main>
 
     <script>
         (function() {
             'use strict';
             
-            // 15 WALLPAPERS ARRAY
+            // GENERATE WALLPAPER ARRAY (1 to 15)
             const wallpapers = [];
             for(let i = 1; i <= 15; i++) {
                 wallpapers.push({ 
@@ -298,22 +272,33 @@
                 document.getElementById('sc-slide-phone'),
                 document.getElementById('sc-slide-laptop')
             ];
-            const mockupPopup = document.getElementById('mockupPopup');
-            const closeMockupBtn = document.getElementById('closeMockupBtn');
+            
+            const prevBtn = document.getElementById('prevWall');
+            const nextBtn = document.getElementById('nextWall');
+            const downloadBtn = document.getElementById('mainDownloadBtn');
+            const downloadText = document.getElementById('downloadText');
 
-            // --- 1. APP TAB SWITCHER LOGIC ---
-            window.switchAppTab = function(tabId, btnElement) {
-                // Hide all sections
-                document.querySelectorAll('.app-section').forEach(s => s.classList.remove('active-section'));
-                // Show target section
-                document.getElementById(tabId).classList.add('active-section');
+            // --- 1. SAFE HERO IMAGE UPDATER (NO CRASHES) ---
+            function updateDisplayImage() {
+                const imgUrl = wallpapers[currentWallIndex].filename;
                 
-                // Update Button styles
-                document.querySelectorAll('.tab-link').forEach(btn => btn.classList.remove('active'));
-                btnElement.classList.add('active');
-            };
+                showcaseImages.forEach(img => {
+                    img.style.opacity = '0.5'; 
+                    setTimeout(() => {
+                        img.src = imgUrl;
+                        // If image fails in Hero, show a blank placeholder safely
+                        img.onerror = function() { this.src = 'https://via.placeholder.com/400x800?text=Image+Coming+Soon'; };
+                        img.style.opacity = '1';
+                    }, 150);
+                });
+            }
 
-            // --- 2. RENDER MAIN GRID ---
+            function changeWallpaper(direction) {
+                currentWallIndex = (currentWallIndex + direction + wallpapers.length) % wallpapers.length;
+                updateDisplayImage();
+            }
+
+            // --- 2. RENDER THE CLEAN GRID ---
             function renderMainGrid() {
                 const grid = document.getElementById('mainWallpaperGrid');
                 grid.innerHTML = '';
@@ -322,114 +307,44 @@
                     const item = document.createElement('div');
                     item.className = 'grid-item';
                     
-                    // Auto-hide broken images (e.g. 14.png) gracefully
+                    // SAFE ONERROR: Hides the box completely if you haven't uploaded 9.png - 15.png yet
                     item.innerHTML = `
                         <img src="${wp.filename}" alt="Wallpaper ${wp.id}" loading="lazy" onerror="this.parentElement.style.display='none'">
                         <div class="grid-actions">
-                            <button class="action-btn" title="Play Puzzle" onclick="triggerPuzzle(${index})">🧩</button>
-                            <button class="action-btn" title="View in Mockups" onclick="openMockup(${index})">📱</button>
-                            <button class="action-btn" title="Download" onclick="downloadImage(${index}, this)">⬇️</button>
+                            <button class="action-btn" title="Preview" onclick="viewInHero(${index})">👁️ Preview</button>
+                            <button class="action-btn" title="Download" onclick="downloadImage(${index}, this)">⬇️ Get</button>
                         </div>
                     `;
                     grid.appendChild(item);
                 });
             }
 
-            // --- 3. MOCKUP VIEWER LOGIC ---
-            window.openMockup = function(index) {
+            // --- 3. VIEW IN HERO FUNCTION ---
+            window.viewInHero = function(index) {
                 currentWallIndex = index;
-                const imgUrl = wallpapers[currentWallIndex].filename;
-                
-                showcaseImages.forEach(img => {
-                    img.style.opacity = '0'; 
-                    setTimeout(() => { img.src = imgUrl; img.style.opacity = '1'; }, 150);
-                });
-                
-                mockupPopup.classList.add('active');
+                updateDisplayImage();
+                // Smoothly scroll the user to the top to see the 3D phone
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             };
 
-            // --- 4. THE PUZZLE ENGINE ---
-            let selectedPiece = null;
-
-            window.triggerPuzzle = function(index) {
-                // Switch Tab UI to Puzzle automatically
-                const puzzleBtn = document.getElementById('puzzleNavBtn');
-                window.switchAppTab('puzzleTab', puzzleBtn);
-                
-                // Build the Game
-                buildPuzzle(index);
-            };
-
-            function buildPuzzle(index) {
-                const wp = wallpapers[index];
-                document.getElementById('puzzleStatus').innerHTML = `Playing with Image #${wp.id}. Tap two pieces to swap!`;
-                document.getElementById('puzzleStatus').style.color = "var(--text-muted)";
-                document.getElementById('puzzlePreview').src = wp.filename;
-                document.getElementById('puzzleCongrats').style.display = 'none';
-
-                const board = document.getElementById('puzzleBoard');
-                board.innerHTML = '';
-                
-                const cols = 3; const rows = 3;
-                let pieces = [];
-
-                for (let i = 0; i < cols * rows; i++) {
-                    let piece = document.createElement('div');
-                    piece.className = 'puzzle-piece';
-                    piece.style.backgroundImage = `url(${wp.filename})`;
-                    
-                    let x = (i % cols) * 50;
-                    let y = Math.floor(i / cols) * 50;
-                    piece.style.backgroundPosition = `${x}% ${y}%`;
-                    piece.dataset.correctIndex = i;
-                    pieces.push(piece);
-                }
-
-                // Shuffle randomly
-                pieces.sort(() => Math.random() - 0.5);
-                pieces.forEach(p => board.appendChild(p));
-                selectedPiece = null; 
-            }
-
-            // Swap Click Logic
-            document.getElementById('puzzleBoard').addEventListener('click', function(e) {
-                if (!e.target.classList.contains('puzzle-piece')) return;
-                
-                if (!selectedPiece) {
-                    selectedPiece = e.target;
-                    selectedPiece.classList.add('selected');
-                } else {
-                    if (selectedPiece !== e.target) {
-                        // Swap DOM elements
-                        let temp = document.createElement('div');
-                        selectedPiece.parentNode.insertBefore(temp, selectedPiece);
-                        e.target.parentNode.insertBefore(selectedPiece, e.target);
-                        temp.parentNode.insertBefore(e.target, temp);
-                        temp.parentNode.removeChild(temp);
-                        
-                        checkWinCondition();
-                    }
-                    selectedPiece.classList.remove('selected');
-                    selectedPiece = null;
-                }
-            });
-
-            function checkWinCondition() {
-                const currentPieces = Array.from(document.getElementById('puzzleBoard').children);
-                const won = currentPieces.every((p, idx) => p.dataset.correctIndex == idx);
-                if (won) {
-                    document.getElementById('puzzleCongrats').style.display = 'block';
-                    document.getElementById('puzzleStatus').innerHTML = '🏆 Solved!';
-                    document.getElementById('puzzleStatus').style.color = '#16a34a';
-                }
-            }
-
-            // --- 5. DOWNLOAD LOGIC ---
+            // --- 4. SECURE DOWNLOAD LOGIC ---
             window.downloadImage = async function(index, btnElement) {
                 const wp = wallpapers[index];
-                if(btnElement.style.opacity === '0.5') return; 
                 
-                btnElement.style.opacity = '0.5';
+                // If it's the main button, update text. If grid button, just change opacity.
+                const isMainBtn = (btnElement.id === 'mainDownloadBtn');
+                
+                if (isMainBtn && btnElement.classList.contains('loading')) return;
+                if (!isMainBtn && btnElement.style.opacity === '0.5') return;
+                
+                if (isMainBtn) {
+                    btnElement.classList.add('loading');
+                    downloadText.innerText = 'Downloading...';
+                } else {
+                    btnElement.style.opacity = '0.5';
+                    btnElement.innerText = '⏳';
+                }
+
                 try {
                     const response = await fetch(wp.filename);
                     if (!response.ok) throw new Error('Network error');
@@ -448,27 +363,34 @@
                 } catch (error) {
                     window.open(wp.filename, '_blank');
                 } finally {
-                    btnElement.style.opacity = '1';
+                    if (isMainBtn) {
+                        btnElement.classList.remove('loading');
+                        downloadText.innerText = 'Download This Image';
+                    } else {
+                        btnElement.style.opacity = '1';
+                        btnElement.innerHTML = '⬇️ Get';
+                    }
                 }
             };
 
-            // --- Init & Events ---
-            closeMockupBtn.addEventListener('click', () => mockupPopup.classList.remove('active'));
-            mockupPopup.addEventListener('click', (e) => { if(e.target === mockupPopup) mockupPopup.classList.remove('active'); });
+            // --- 5. EVENT LISTENERS & INITIALIZATION ---
+            prevBtn.addEventListener('click', () => changeWallpaper(-1));
+            nextBtn.addEventListener('click', () => changeWallpaper(1));
+            downloadBtn.addEventListener('click', () => downloadImage(currentWallIndex, downloadBtn));
 
+            // Auto-rotate 3D Devices
             setInterval(() => {
-                if(mockupPopup.classList.contains('active')) {
-                    currentDeviceIndex = (currentDeviceIndex + 1) % showcaseSlides.length;
-                    showcaseSlides.forEach((slide, idx) => {
-                        if (slide) slide.classList.toggle('active', idx === currentDeviceIndex);
-                    });
-                }
-            }, 3000);
+                currentDeviceIndex = (currentDeviceIndex + 1) % showcaseSlides.length;
+                showcaseSlides.forEach((slide, idx) => {
+                    if (slide) slide.classList.toggle('active', idx === currentDeviceIndex);
+                });
+            }, 3500);
 
-            // Start up
+            // Init
+            updateDisplayImage();
             renderMainGrid();
-            buildPuzzle(0); // Secretly load the first image into the puzzle so it's ready!
-            
+
+            // Fire Google Analytics
             gtag('event', 'page_view', { 'page_title': 'Daily Wallpapers', 'page_location': 'https://wallrank.club' });
         })();
     </script>
