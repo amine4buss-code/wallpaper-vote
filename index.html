@@ -13,13 +13,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <title>Free 4K AI Wallpapers for Phone & Desktop | WallRank</title>
-    <meta name="description" content="Download unique 4K AI wallpapers for iPhone, Android, and Desktop. Preview on real devices and download instantly for free.">
+    <meta name="description" content="Download unique 4K AI wallpapers for iPhone, Android, and Desktop. Free, high-quality backgrounds.">
     <link rel="canonical" href="https://wallrank.club">
     
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* ---------- ULTRA MINIMAL & PREMIUM SPACING ---------- */
+        /* ---------- ULTRA MINIMAL CSS ---------- */
         :root {
             --bg-color: #fafafa;
             --surface: #ffffff;
@@ -27,7 +27,6 @@
             --text-muted: #94a3b8;
             --border-light: #f1f5f9;
             --border-focus: #e2e8f0;
-            --accent-subtle: #f8fafc;
             --radius-md: 16px;
             --shadow-sm: 0 8px 24px rgba(0, 0, 0, 0.04);
             --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -40,78 +39,20 @@
             font-family: 'Quicksand', sans-serif;
             background: var(--bg-color);
             color: var(--text-main);
-            padding: 40px 24px;
+            padding: 30px 24px;
             display: flex; flex-direction: column; align-items: center;
             min-height: 100vh; -webkit-font-smoothing: antialiased;
         }
         
-        .container { max-width: 1100px; width: 100%; display: flex; flex-direction: column; align-items: center; position: relative; flex: 1; }
+        .container { max-width: 1200px; width: 100%; display: flex; flex-direction: column; position: relative; flex: 1; }
 
-        /* HEADER */
-        header { text-align: center; margin-bottom: 20px; width: 100%; }
-        header h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.04em; }
-        header p { color: var(--text-muted); font-weight: 500; margin-top: 4px; font-size: 1.05rem; }
-
-        .soft-instruction {
-            text-align: center; color: var(--text-muted); font-size: 0.95rem; 
-            margin-bottom: 40px; max-width: 500px; line-height: 1.5;
-            background: var(--surface); padding: 12px 24px; border-radius: 50px;
-            box-shadow: var(--shadow-sm); border: 1px solid var(--border-light);
+        /* HEADER - TOP LEFT */
+        header { 
+            width: 100%; display: flex; flex-direction: column; align-items: flex-start;
+            margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border-light);
         }
-
-        /* 3D DEVICE HERO SECTION */
-        .hero-showcase {
-            position: relative; display: flex; align-items: center; justify-content: center;
-            width: 100%; max-width: 900px; height: 480px; margin-bottom: 30px;
-        }
-        
-        .nav-arrow {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            background: var(--surface); border: 1px solid var(--border-light);
-            width: 56px; height: 56px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 2rem; color: var(--text-muted); cursor: pointer;
-            transition: var(--transition-smooth); z-index: 20; box-shadow: var(--shadow-sm);
-        }
-        .nav-arrow:hover { color: var(--text-main); transform: translateY(-50%) scale(1.05); }
-        .nav-arrow.left { left: -20px; padding-right: 4px; }
-        .nav-arrow.right { right: -20px; padding-left: 4px; }
-
-        .showcase-container { width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; position: relative; }
-        .showcase-slide { display: none; opacity: 0; transition: opacity 0.5s ease; flex-direction: column; align-items: center; }
-        .showcase-slide.active { display: flex; opacity: 1; }
-        .showcase-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.3s ease; }
-
-        /* DEVICES */
-        .device-phone { width: 240px; height: 480px; background: #1a1a1a; border-radius: 36px; padding: 10px; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.12); border: 1px solid #333; }
-        .phone-screen { width: 100%; height: 100%; background: black; border-radius: 28px; overflow: hidden; position: relative; }
-        .phone-notch { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 90px; height: 25px; background: #1a1a1a; border-radius: 20px; z-index: 10; }
-        .phone-home-bar { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); width: 100px; height: 4px; background: rgba(255,255,255,0.4); border-radius: 10px; }
-        
-        .device-laptop { width: 460px; perspective: 1200px; }
-        .laptop-body { background: #1a1a1a; border-radius: 12px 12px 0 0; padding: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.12); }
-        .laptop-bezel { background: #0a0a0a; border-radius: 8px; padding: 6px; }
-        .laptop-screen { background: black; border-radius: 4px; width: 100%; aspect-ratio: 16/10; overflow: hidden; }
-        .laptop-base { width: 100%; height: 16px; background: #2a2a2a; border-radius: 0 0 8px 8px; border-bottom: 2px solid #111; }
-        
-        /* DOWNLOAD BUTTON */
-        .action-area { margin-bottom: 80px; }
-        .btn-download { 
-            background: var(--text-main); color: white; border: none; 
-            padding: 16px 40px; border-radius: 50px; font-size: 1.1rem; font-weight: 700; 
-            font-family: inherit; cursor: pointer; transition: var(--transition-smooth); 
-            display: flex; align-items: center; gap: 12px; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.2); 
-        }
-        .btn-download:hover { background: #334155; transform: translateY(-3px); box-shadow: 0 15px 30px rgba(15, 23, 42, 0.3); }
-        .btn-download:active { transform: scale(0.96); }
-        .btn-download.loading { opacity: 0.8; cursor: wait; transform: none; }
-
-        /* GRID HEADER */
-        .grid-title {
-            width: 100%; max-width: 1100px; text-align: left; margin-bottom: 20px;
-            font-size: 1.6rem; font-weight: 700; color: var(--text-main);
-            border-bottom: 2px solid var(--border-light); padding-bottom: 10px;
-        }
+        header h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.04em; }
+        header p { color: var(--text-muted); font-weight: 600; font-size: 0.95rem; margin-top: 4px;}
 
         /* MAIN WALLPAPER GRID */
         .main-grid {
@@ -126,27 +67,27 @@
         .grid-item:hover { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
         .grid-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
         
-        /* HOVER ACTION BUTTONS */
+        /* HOVER DOWNLOAD BUTTON */
         .grid-actions {
             position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%);
-            display: flex; gap: 10px; background: rgba(15, 23, 42, 0.85);
-            padding: 8px 16px; border-radius: 50px; backdrop-filter: blur(8px);
+            display: flex; justify-content: center; width: 85%;
             opacity: 0; transition: opacity 0.2s ease, transform 0.2s ease;
-            white-space: nowrap;
         }
         .grid-item:hover .grid-actions { opacity: 1; }
         @media (hover: none) { .grid-actions { opacity: 1; } } /* Always visible on mobile */
 
         .action-btn {
-            background: none; border: none; font-size: 0.85rem; font-weight: 700; font-family: inherit;
-            cursor: pointer; color: white; transition: 0.2s ease; padding: 4px 8px;
-            display: flex; align-items: center; gap: 6px; border-radius: 20px;
+            background: rgba(15, 23, 42, 0.85); border: none; font-size: 0.9rem; font-weight: 700; font-family: inherit;
+            cursor: pointer; color: white; transition: 0.2s ease; padding: 10px 20px; width: 100%;
+            display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 50px;
+            backdrop-filter: blur(8px); box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
-        .action-btn:hover { background: rgba(255,255,255,0.2); }
+        .action-btn:hover { background: #000; transform: translateY(-2px); }
+        .action-btn.loading { opacity: 0.8; cursor: wait; transform: none; }
 
         /* FOOTER */
         .main-footer {
-            margin-top: auto; padding: 50px 0 30px 0; width: 100%; max-width: 1100px;
+            margin-top: auto; padding: 40px 0; width: 100%; max-width: 1200px;
             display: flex; justify-content: space-between; align-items: flex-start;
             border-top: 1px solid var(--border-light); gap: 30px; flex-wrap: wrap;
         }
@@ -161,16 +102,10 @@
         .footer-copy { font-size: 0.85rem; color: var(--text-muted); }
 
         /* STRICT MOBILE-FIRST OVERRIDES */
+        @media (max-width: 900px) { .main-grid { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 700px) {
-            header h1 { font-size: 2rem;}
-            .soft-instruction { font-size: 0.85rem; padding: 10px 20px; }
+            header { align-items: center; text-align: center; }
             .main-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            
-            .nav-arrow { width: 44px; height: 44px; font-size: 1.5rem; }
-            .nav-arrow.left { left: 0px; } .nav-arrow.right { right: 0px; }
-            .device-phone { width: 220px; height: 440px; }
-            .device-laptop { width: 340px; }
-            .hero-showcase { height: 440px; }
             
             .main-footer { flex-direction: column; align-items: center; text-align: center; }
             .footer-about { max-width: 100%; text-align: center; }
@@ -184,50 +119,9 @@
         
         <header>
             <h1>WallRank</h1>
-            <p>Premium AI Wallpapers</p>
+            <p>Premium 4K AI Wallpapers</p>
         </header>
 
-        <p class="soft-instruction">
-            ✨ Preview our collection on real devices below. Scroll down to view the full gallery.
-        </p>
-
-        <section class="hero-showcase" id="heroViewer">
-            <button class="nav-arrow left" id="prevWall">‹</button>
-            <button class="nav-arrow right" id="nextWall">›</button>
-
-            <div class="showcase-container">
-                <div class="showcase-slide active" id="sc-slide-phone">
-                    <div class="device-phone">
-                        <div class="phone-screen">
-                            <div class="phone-notch"></div>
-                            <img class="showcase-img" src="" alt="Wallpaper Display">
-                            <div class="phone-home-bar"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="showcase-slide" id="sc-slide-laptop">
-                    <div class="device-laptop">
-                        <div class="laptop-body">
-                            <div class="laptop-bezel">
-                                <div class="laptop-screen">
-                                    <img class="showcase-img" src="" alt="Wallpaper Display">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="laptop-base"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <div class="action-area">
-            <button class="btn-download" id="mainDownloadBtn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                <span id="downloadText">Download This Image</span>
-            </button>
-        </div>
-
-        <div class="grid-title">Browse Collection</div>
         <section style="width: 100%;">
             <div class="main-grid" id="mainWallpaperGrid">
                 </div>
@@ -263,42 +157,8 @@
                     filename: `https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/${i}.png` 
                 });
             }
-            
-            let currentWallIndex = 0;
-            let currentDeviceIndex = 0;
 
-            const showcaseImages = document.querySelectorAll('.showcase-img');
-            const showcaseSlides = [
-                document.getElementById('sc-slide-phone'),
-                document.getElementById('sc-slide-laptop')
-            ];
-            
-            const prevBtn = document.getElementById('prevWall');
-            const nextBtn = document.getElementById('nextWall');
-            const downloadBtn = document.getElementById('mainDownloadBtn');
-            const downloadText = document.getElementById('downloadText');
-
-            // --- 1. SAFE HERO IMAGE UPDATER (NO CRASHES) ---
-            function updateDisplayImage() {
-                const imgUrl = wallpapers[currentWallIndex].filename;
-                
-                showcaseImages.forEach(img => {
-                    img.style.opacity = '0.5'; 
-                    setTimeout(() => {
-                        img.src = imgUrl;
-                        // If image fails in Hero, show a blank placeholder safely
-                        img.onerror = function() { this.src = 'https://via.placeholder.com/400x800?text=Image+Coming+Soon'; };
-                        img.style.opacity = '1';
-                    }, 150);
-                });
-            }
-
-            function changeWallpaper(direction) {
-                currentWallIndex = (currentWallIndex + direction + wallpapers.length) % wallpapers.length;
-                updateDisplayImage();
-            }
-
-            // --- 2. RENDER THE CLEAN GRID ---
+            // --- 1. RENDER THE PURE GRID ---
             function renderMainGrid() {
                 const grid = document.getElementById('mainWallpaperGrid');
                 grid.innerHTML = '';
@@ -307,43 +167,29 @@
                     const item = document.createElement('div');
                     item.className = 'grid-item';
                     
-                    // SAFE ONERROR: Hides the box completely if you haven't uploaded 9.png - 15.png yet
+                    // Auto-hide broken images (e.g. 14.png) without crashing
                     item.innerHTML = `
                         <img src="${wp.filename}" alt="Wallpaper ${wp.id}" loading="lazy" onerror="this.parentElement.style.display='none'">
                         <div class="grid-actions">
-                            <button class="action-btn" title="Preview" onclick="viewInHero(${index})">👁️ Preview</button>
-                            <button class="action-btn" title="Download" onclick="downloadImage(${index}, this)">⬇️ Get</button>
+                            <button class="action-btn" onclick="downloadImage(${index}, this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                Download Free
+                            </button>
                         </div>
                     `;
                     grid.appendChild(item);
                 });
             }
 
-            // --- 3. VIEW IN HERO FUNCTION ---
-            window.viewInHero = function(index) {
-                currentWallIndex = index;
-                updateDisplayImage();
-                // Smoothly scroll the user to the top to see the 3D phone
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            };
-
-            // --- 4. SECURE DOWNLOAD LOGIC ---
+            // --- 2. SECURE DOWNLOAD LOGIC ---
             window.downloadImage = async function(index, btnElement) {
                 const wp = wallpapers[index];
                 
-                // If it's the main button, update text. If grid button, just change opacity.
-                const isMainBtn = (btnElement.id === 'mainDownloadBtn');
+                if (btnElement.classList.contains('loading')) return;
                 
-                if (isMainBtn && btnElement.classList.contains('loading')) return;
-                if (!isMainBtn && btnElement.style.opacity === '0.5') return;
-                
-                if (isMainBtn) {
-                    btnElement.classList.add('loading');
-                    downloadText.innerText = 'Downloading...';
-                } else {
-                    btnElement.style.opacity = '0.5';
-                    btnElement.innerText = '⏳';
-                }
+                btnElement.classList.add('loading');
+                const originalContent = btnElement.innerHTML;
+                btnElement.innerHTML = '⏳ Downloading...';
 
                 try {
                     const response = await fetch(wp.filename);
@@ -363,35 +209,16 @@
                 } catch (error) {
                     window.open(wp.filename, '_blank');
                 } finally {
-                    if (isMainBtn) {
-                        btnElement.classList.remove('loading');
-                        downloadText.innerText = 'Download This Image';
-                    } else {
-                        btnElement.style.opacity = '1';
-                        btnElement.innerHTML = '⬇️ Get';
-                    }
+                    btnElement.classList.remove('loading');
+                    btnElement.innerHTML = originalContent;
                 }
             };
 
-            // --- 5. EVENT LISTENERS & INITIALIZATION ---
-            prevBtn.addEventListener('click', () => changeWallpaper(-1));
-            nextBtn.addEventListener('click', () => changeWallpaper(1));
-            downloadBtn.addEventListener('click', () => downloadImage(currentWallIndex, downloadBtn));
-
-            // Auto-rotate 3D Devices
-            setInterval(() => {
-                currentDeviceIndex = (currentDeviceIndex + 1) % showcaseSlides.length;
-                showcaseSlides.forEach((slide, idx) => {
-                    if (slide) slide.classList.toggle('active', idx === currentDeviceIndex);
-                });
-            }, 3500);
-
             // Init
-            updateDisplayImage();
             renderMainGrid();
 
             // Fire Google Analytics
-            gtag('event', 'page_view', { 'page_title': 'Daily Wallpapers', 'page_location': 'https://wallrank.club' });
+            gtag('event', 'page_view', { 'page_title': 'Pure Gallery', 'page_location': 'https://wallrank.club' });
         })();
     </script>
 </body>
