@@ -136,4 +136,341 @@
             z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
             display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px;
         }
-        .mockup-popup.active { opacity:
+        .mockup-popup.active { opacity: 1; pointer-events: auto; }
+        
+        .close-popup { 
+            position: absolute; top: 20px; right: 30px;
+            background: none; border: none; font-size: 2.5rem; cursor: pointer; 
+            color: var(--text-main); transition: 0.2s; z-index: 110;
+        }
+        .close-popup:hover { transform: rotate(90deg); }
+
+        /* 3D DEVICE VIEWER */
+        .hero-showcase {
+            position: relative; display: flex; align-items: center; justify-content: center;
+            width: 100%; max-width: 900px; height: 500px;
+        }
+        .showcase-container { width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; position: relative; }
+        .showcase-slide { display: none; opacity: 0; transition: opacity 0.5s ease; flex-direction: column; align-items: center; }
+        .showcase-slide.active { display: flex; opacity: 1; }
+        .showcase-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.3s ease; }
+
+        .device-phone { width: 240px; height: 480px; background: #1a1a1a; border-radius: 36px; padding: 10px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.15); border: 1px solid #333; }
+        .phone-screen { width: 100%; height: 100%; background: black; border-radius: 28px; overflow: hidden; position: relative; }
+        .phone-notch { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 90px; height: 25px; background: #1a1a1a; border-radius: 20px; z-index: 10; }
+        .phone-home-bar { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); width: 100px; height: 4px; background: rgba(255,255,255,0.4); border-radius: 10px; }
+        
+        .device-laptop { width: 420px; perspective: 1200px; }
+        .laptop-body { background: #1a1a1a; border-radius: 12px 12px 0 0; padding: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+        .laptop-bezel { background: #0a0a0a; border-radius: 8px; padding: 6px; }
+        .laptop-screen { background: black; border-radius: 4px; width: 100%; aspect-ratio: 16/10; overflow: hidden; }
+        .laptop-base { width: 100%; height: 16px; background: #2a2a2a; border-radius: 0 0 8px 8px; border-bottom: 2px solid #111; }
+        
+        /* FOOTER */
+        .main-footer {
+            margin-top: auto; padding: 40px 0 20px 0; width: 100%; max-width: 1100px;
+            display: flex; justify-content: space-between; align-items: flex-start;
+            border-top: 1px solid var(--border-light); gap: 20px; flex-wrap: wrap;
+        }
+        .footer-about { text-align: left; max-width: 450px; font-size: 0.9rem; color: var(--text-muted); }
+        .footer-about strong { color: var(--text-main); display: block; margin-bottom: 8px; font-size: 1.1rem; letter-spacing: -0.02em;}
+        .footer-about p { margin-bottom: 12px; line-height: 1.5; }
+        
+        .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 15px; }
+        .footer-links { display: flex; gap: 15px; flex-wrap: wrap; justify-content: flex-end; }
+        .footer-links a { color: var(--text-main); font-weight: 600; text-decoration: none; font-size: 0.85rem; transition: 0.2s;}
+        .footer-links a:hover { opacity: 0.7; }
+        .footer-copy { font-size: 0.85rem; color: var(--text-muted); }
+
+        /* STRICT MOBILE-FIRST OVERRIDES */
+        @media (max-width: 700px) {
+            header h1 { font-size: 1.8rem; margin-top: 10px;}
+            .main-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            
+            .device-phone { width: 200px; height: 400px; }
+            .device-laptop { width: 320px; }
+            .hero-showcase { height: 420px; }
+            
+            .main-footer { flex-direction: column; align-items: center; text-align: center; }
+            .footer-about { max-width: 100%; text-align: center; }
+            .footer-right { align-items: center; width: 100%; }
+            .footer-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>WallRank</h1>
+            <p>Daily AI Wallpapers & Art</p>
+        </header>
+
+        <nav class="content-tabs">
+            <button class="tab-link active" onclick="switchAppTab('wallpapersTab', this)">🖼️ Wallpapers</button>
+            <button class="tab-link" id="puzzleNavBtn" onclick="switchAppTab('puzzleTab', this)">🧩 Puzzle Game</button>
+        </nav>
+
+        <section id="wallpapersTab" class="app-section active-section">
+            <div class="main-grid" id="mainWallpaperGrid">
+                </div>
+        </section>
+
+        <section id="puzzleTab" class="app-section">
+            <div class="puzzle-container">
+                <h2>Swap Puzzle</h2>
+                <div id="puzzleStatus">Tap two pieces to swap them!</div>
+                
+                <div id="puzzleBoard"></div>
+                <p id="puzzleCongrats" style="display:none; color: #16a34a; font-weight: 800; font-size: 1.3rem; margin-top: 20px;">🎉 Perfect Match!</p>
+                
+                <div style="margin-top: 30px;">
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; font-weight: 600;">Reference Image</p>
+                    <img id="puzzlePreview" style="max-width: 120px; border-radius: 8px; box-shadow: var(--shadow-sm); opacity: 0.8;" alt="Puzzle Reference">
+                </div>
+            </div>
+        </section>
+
+        <footer class="main-footer">
+            <div class="footer-about">
+                <strong>About WallRank</strong>
+                <p>Welcome to WallRank. I'm James. I believe in building fast, useful tools that actually add value without the clutter. I'm actively looking to connect with like-minded people for business collaborations and life improvement. Let's build something great together.</p>
+            </div>
+            <div class="footer-right">
+                <div class="footer-links">
+                    <a href="/privacy-policy.html">Privacy Policy</a>
+                    <a href="/terms.html">Terms of Service</a>
+                    <a href="mailto:kabanijames9@gmail.com">Contact</a>
+                </div>
+                <div class="footer-copy">
+                    © 2026 WallRank.club
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <div class="mockup-popup" id="mockupPopup">
+        <button class="close-popup" id="closeMockupBtn">&times;</button>
+        <div class="hero-showcase">
+            <div class="showcase-container">
+                <div class="showcase-slide active" id="sc-slide-phone">
+                    <div class="device-phone">
+                        <div class="phone-screen">
+                            <div class="phone-notch"></div>
+                            <img class="showcase-img" src="" alt="Wallpaper Display">
+                            <div class="phone-home-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="showcase-slide" id="sc-slide-laptop">
+                    <div class="device-laptop">
+                        <div class="laptop-body">
+                            <div class="laptop-bezel">
+                                <div class="laptop-screen">
+                                    <img class="showcase-img" src="" alt="Wallpaper Display">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="laptop-base"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+            
+            // 15 WALLPAPERS ARRAY
+            const wallpapers = [];
+            for(let i = 1; i <= 15; i++) {
+                wallpapers.push({ 
+                    id: i, 
+                    filename: `https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/${i}.png` 
+                });
+            }
+            
+            let currentWallIndex = 0;
+            let currentDeviceIndex = 0;
+
+            const showcaseImages = document.querySelectorAll('.showcase-img');
+            const showcaseSlides = [
+                document.getElementById('sc-slide-phone'),
+                document.getElementById('sc-slide-laptop')
+            ];
+            const mockupPopup = document.getElementById('mockupPopup');
+            const closeMockupBtn = document.getElementById('closeMockupBtn');
+
+            // --- 1. APP TAB SWITCHER LOGIC ---
+            window.switchAppTab = function(tabId, btnElement) {
+                // Hide all sections
+                document.querySelectorAll('.app-section').forEach(s => s.classList.remove('active-section'));
+                // Show target section
+                document.getElementById(tabId).classList.add('active-section');
+                
+                // Update Button styles
+                document.querySelectorAll('.tab-link').forEach(btn => btn.classList.remove('active'));
+                btnElement.classList.add('active');
+            };
+
+            // --- 2. RENDER MAIN GRID ---
+            function renderMainGrid() {
+                const grid = document.getElementById('mainWallpaperGrid');
+                grid.innerHTML = '';
+                
+                wallpapers.forEach((wp, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'grid-item';
+                    
+                    // Auto-hide broken images (e.g. 14.png) gracefully
+                    item.innerHTML = `
+                        <img src="${wp.filename}" alt="Wallpaper ${wp.id}" loading="lazy" onerror="this.parentElement.style.display='none'">
+                        <div class="grid-actions">
+                            <button class="action-btn" title="Play Puzzle" onclick="triggerPuzzle(${index})">🧩</button>
+                            <button class="action-btn" title="View in Mockups" onclick="openMockup(${index})">📱</button>
+                            <button class="action-btn" title="Download" onclick="downloadImage(${index}, this)">⬇️</button>
+                        </div>
+                    `;
+                    grid.appendChild(item);
+                });
+            }
+
+            // --- 3. MOCKUP VIEWER LOGIC ---
+            window.openMockup = function(index) {
+                currentWallIndex = index;
+                const imgUrl = wallpapers[currentWallIndex].filename;
+                
+                showcaseImages.forEach(img => {
+                    img.style.opacity = '0'; 
+                    setTimeout(() => { img.src = imgUrl; img.style.opacity = '1'; }, 150);
+                });
+                
+                mockupPopup.classList.add('active');
+            };
+
+            // --- 4. THE PUZZLE ENGINE ---
+            let selectedPiece = null;
+
+            window.triggerPuzzle = function(index) {
+                // Switch Tab UI to Puzzle automatically
+                const puzzleBtn = document.getElementById('puzzleNavBtn');
+                window.switchAppTab('puzzleTab', puzzleBtn);
+                
+                // Build the Game
+                buildPuzzle(index);
+            };
+
+            function buildPuzzle(index) {
+                const wp = wallpapers[index];
+                document.getElementById('puzzleStatus').innerHTML = `Playing with Image #${wp.id}. Tap two pieces to swap!`;
+                document.getElementById('puzzleStatus').style.color = "var(--text-muted)";
+                document.getElementById('puzzlePreview').src = wp.filename;
+                document.getElementById('puzzleCongrats').style.display = 'none';
+
+                const board = document.getElementById('puzzleBoard');
+                board.innerHTML = '';
+                
+                const cols = 3; const rows = 3;
+                let pieces = [];
+
+                for (let i = 0; i < cols * rows; i++) {
+                    let piece = document.createElement('div');
+                    piece.className = 'puzzle-piece';
+                    piece.style.backgroundImage = `url(${wp.filename})`;
+                    
+                    let x = (i % cols) * 50;
+                    let y = Math.floor(i / cols) * 50;
+                    piece.style.backgroundPosition = `${x}% ${y}%`;
+                    piece.dataset.correctIndex = i;
+                    pieces.push(piece);
+                }
+
+                // Shuffle randomly
+                pieces.sort(() => Math.random() - 0.5);
+                pieces.forEach(p => board.appendChild(p));
+                selectedPiece = null; 
+            }
+
+            // Swap Click Logic
+            document.getElementById('puzzleBoard').addEventListener('click', function(e) {
+                if (!e.target.classList.contains('puzzle-piece')) return;
+                
+                if (!selectedPiece) {
+                    selectedPiece = e.target;
+                    selectedPiece.classList.add('selected');
+                } else {
+                    if (selectedPiece !== e.target) {
+                        // Swap DOM elements
+                        let temp = document.createElement('div');
+                        selectedPiece.parentNode.insertBefore(temp, selectedPiece);
+                        e.target.parentNode.insertBefore(selectedPiece, e.target);
+                        temp.parentNode.insertBefore(e.target, temp);
+                        temp.parentNode.removeChild(temp);
+                        
+                        checkWinCondition();
+                    }
+                    selectedPiece.classList.remove('selected');
+                    selectedPiece = null;
+                }
+            });
+
+            function checkWinCondition() {
+                const currentPieces = Array.from(document.getElementById('puzzleBoard').children);
+                const won = currentPieces.every((p, idx) => p.dataset.correctIndex == idx);
+                if (won) {
+                    document.getElementById('puzzleCongrats').style.display = 'block';
+                    document.getElementById('puzzleStatus').innerHTML = '🏆 Solved!';
+                    document.getElementById('puzzleStatus').style.color = '#16a34a';
+                }
+            }
+
+            // --- 5. DOWNLOAD LOGIC ---
+            window.downloadImage = async function(index, btnElement) {
+                const wp = wallpapers[index];
+                if(btnElement.style.opacity === '0.5') return; 
+                
+                btnElement.style.opacity = '0.5';
+                try {
+                    const response = await fetch(wp.filename);
+                    if (!response.ok) throw new Error('Network error');
+                    const blob = await response.blob();
+                    const blobUrl = URL.createObjectURL(blob);
+                    
+                    const link = document.createElement('a');
+                    link.href = blobUrl;
+                    link.download = `wallrank-art-${wp.id}.png`;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    setTimeout(() => URL.revokeObjectURL(blobUrl), 100);
+                    gtag('event', 'download', { 'event_category': 'conversion', 'event_label': `ID: ${wp.id}` });
+                } catch (error) {
+                    window.open(wp.filename, '_blank');
+                } finally {
+                    btnElement.style.opacity = '1';
+                }
+            };
+
+            // --- Init & Events ---
+            closeMockupBtn.addEventListener('click', () => mockupPopup.classList.remove('active'));
+            mockupPopup.addEventListener('click', (e) => { if(e.target === mockupPopup) mockupPopup.classList.remove('active'); });
+
+            setInterval(() => {
+                if(mockupPopup.classList.contains('active')) {
+                    currentDeviceIndex = (currentDeviceIndex + 1) % showcaseSlides.length;
+                    showcaseSlides.forEach((slide, idx) => {
+                        if (slide) slide.classList.toggle('active', idx === currentDeviceIndex);
+                    });
+                }
+            }, 3000);
+
+            // Start up
+            renderMainGrid();
+            buildPuzzle(0); // Secretly load the first image into the puzzle so it's ready!
+            
+            gtag('event', 'page_view', { 'page_title': 'Daily Wallpapers', 'page_location': 'https://wallrank.club' });
+        })();
+    </script>
+</body>
+</html>
