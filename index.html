@@ -30,7 +30,7 @@
             --border-focus: #e2e8f0;
             --accent-subtle: #f8fafc;
             --radius-md: 12px;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.03);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
             --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -48,52 +48,101 @@
         
         .container { max-width: 1100px; width: 100%; display: flex; flex-direction: column; align-items: center; position: relative; }
 
-        /* HEADER & CORNER MENU */
-        header { text-align: center; margin-bottom: 30px; position: relative; width: 100%; }
+        /* HEADER */
+        header { text-align: center; margin-bottom: 30px; width: 100%; }
         header h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.03em; }
         header p { color: var(--text-muted); font-weight: 500; margin-top: 4px; }
 
-        .corner-menu-btn {
-            position: absolute; top: 0; right: 0;
-            background: var(--surface); border: 1px solid var(--border-light);
-            width: 44px; height: 44px; border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.4rem; cursor: pointer; color: var(--text-main);
-            transition: var(--transition-smooth); box-shadow: var(--shadow-sm);
-        }
-        .corner-menu-btn:hover { background: var(--accent-subtle); transform: translateY(-2px); }
-
         /* CONTENT TABS */
         .content-tabs {
-            display: flex; gap: 10px; margin-bottom: 30px;
+            display: flex; gap: 10px; margin-bottom: 20px;
             background: var(--surface); padding: 8px; border-radius: 50px;
             box-shadow: var(--shadow-sm); border: 1px solid var(--border-light);
             flex-wrap: wrap; justify-content: center;
         }
         .tab-link {
             text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 0.9rem;
-            padding: 8px 16px; border-radius: 30px; transition: var(--transition-smooth);
+            padding: 8px 20px; border-radius: 30px; transition: var(--transition-smooth);
         }
         .tab-link.active { background: var(--text-main); color: white; }
         .tab-link:hover:not(.active) { color: var(--text-main); background: var(--accent-subtle); }
 
-        /* CUTE INSTRUCTION TEXT */
         .soft-instruction {
             text-align: center; color: var(--text-muted); font-size: 0.95rem; 
-            margin-bottom: 25px; max-width: 500px; line-height: 1.5;
+            margin-bottom: 30px; max-width: 500px; line-height: 1.5;
             animation: fadeIn 1s ease;
         }
-        .soft-instruction b { color: var(--text-main); font-weight: 700; }
-
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* MAIN DISPLAY STAGE */
+        /* MAIN WALLPAPER GRID */
+        .main-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; width: 100%; margin-bottom: 60px;
+        }
+        .grid-item {
+            position: relative; aspect-ratio: 4/5; background: var(--border-light); 
+            border-radius: var(--radius-md); overflow: hidden; 
+            box-shadow: var(--shadow-sm); border: 1px solid var(--border-focus);
+            transition: var(--transition-smooth);
+        }
+        .grid-item:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+        .grid-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        
+        /* TINY ACTION BUTTONS ON IMAGES */
+        .grid-actions {
+            position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 8px; background: rgba(15, 23, 42, 0.7);
+            padding: 6px 12px; border-radius: 30px; backdrop-filter: blur(6px);
+            opacity: 0; transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .grid-item:hover .grid-actions { opacity: 1; }
+        
+        /* Keep visible on mobile screens natively */
+        @media (hover: none) { .grid-actions { opacity: 1; background: rgba(15, 23, 42, 0.85); } }
+
+        .action-btn {
+            background: none; border: none; font-size: 1.2rem; cursor: pointer;
+            color: white; transition: transform 0.1s ease; padding: 4px;
+        }
+        .action-btn:hover { transform: scale(1.2); }
+        .action-btn:active { transform: scale(0.9); }
+
+        /* SECTIONS */
+        .content-section {
+            width: 100%; max-width: 900px; margin-bottom: 60px;
+            text-align: center; scroll-margin-top: 40px;
+            background: var(--surface); padding: 40px; border-radius: var(--radius-md);
+            border: 1px solid var(--border-light); box-shadow: var(--shadow-sm);
+        }
+        .content-section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
+        .content-section p { color: var(--text-muted); font-weight: 500; margin-bottom: 24px; }
+
+        /* FOOTAGE GRID STYLING */
+        .footage-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 20px; }
+        .footage-item { aspect-ratio: 16/9; background: var(--border-light); border-radius: 8px; position: relative; overflow: hidden; border: 1px solid var(--border-focus); box-shadow: var(--shadow-sm); }
+        .footage-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .btn-render-video { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: rgba(15, 23, 42, 0.85); color: white; border: none; padding: 6px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; cursor: pointer; backdrop-filter: blur(4px); transition: var(--transition-smooth); white-space: nowrap; }
+        
+        /* MOCKUP POPUP MODAL */
+        .mockup-popup {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(8px);
+            z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px;
+        }
+        .mockup-popup.active { opacity: 1; pointer-events: auto; }
+        
+        .close-popup { 
+            position: absolute; top: 20px; right: 30px;
+            background: none; border: none; font-size: 2.5rem; cursor: pointer; 
+            color: var(--text-main); transition: 0.2s; z-index: 110;
+        }
+        .close-popup:hover { transform: rotate(90deg); }
+
+        /* 3D DEVICE VIEWER (Inside Popup) */
         .hero-showcase {
             position: relative; display: flex; align-items: center; justify-content: center;
-            width: 100%; max-width: 900px; min-height: 520px; scroll-margin-top: 100px;
+            width: 100%; max-width: 900px; height: 500px;
         }
-
-        /* NAVIGATION ARROWS */
         .nav-arrow {
             position: absolute; top: 50%; transform: translateY(-50%);
             background: var(--surface); border: 1px solid var(--border-light);
@@ -103,15 +152,15 @@
             transition: var(--transition-smooth); z-index: 20; box-shadow: var(--shadow-sm);
         }
         .nav-arrow:hover { color: var(--text-main); background: var(--accent-subtle); box-shadow: var(--shadow-sm); }
-        .nav-arrow.left { left: -20px; padding-right: 4px; }
-        .nav-arrow.right { right: -20px; padding-left: 4px; }
+        .nav-arrow.left { left: 0px; padding-right: 4px; }
+        .nav-arrow.right { right: 0px; padding-left: 4px; }
 
-        .showcase-container { width: 100%; display: flex; justify-content: center; align-items: center; position: relative; }
+        .showcase-container { width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; position: relative; }
         .showcase-slide { display: none; opacity: 0; transition: opacity 0.5s ease; flex-direction: column; align-items: center; }
         .showcase-slide.active { display: flex; opacity: 1; }
         .showcase-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.3s ease; }
 
-        /* DEVICE MOCKUPS */
+        /* DEVICES */
         .device-phone { width: 240px; height: 480px; background: #1a1a1a; border-radius: 36px; padding: 10px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.15); border: 1px solid #333; }
         .phone-screen { width: 100%; height: 100%; background: black; border-radius: 28px; overflow: hidden; position: relative; }
         .phone-notch { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 90px; height: 25px; background: #1a1a1a; border-radius: 20px; z-index: 10; }
@@ -123,100 +172,7 @@
         .laptop-screen { background: black; border-radius: 4px; width: 100%; aspect-ratio: 16/10; overflow: hidden; }
         .laptop-base { width: 100%; height: 16px; background: #2a2a2a; border-radius: 0 0 8px 8px; border-bottom: 2px solid #111; }
         
-        .device-monitor { width: 420px; }
-        .monitor-body { background: #1a1a1a; border-radius: 8px; padding: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
-        .monitor-bezel { background: #0a0a0a; border-radius: 4px; padding: 6px; }
-        .monitor-screen { background: black; border-radius: 2px; width: 100%; aspect-ratio: 16/9; overflow: hidden; }
-        .monitor-stand { width: 60px; height: 40px; background: #2a2a2a; margin: 0 auto; }
-        .monitor-base { width: 140px; height: 8px; background: #333; margin: 0 auto; border-radius: 4px; }
-        
-        .device-tablet { width: 300px; height: 420px; background: #1a1a1a; border-radius: 24px; padding: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
-        .tablet-bezel { background: #0a0a0a; border-radius: 16px; padding: 6px; height: 100%; }
-        .tablet-screen { background: black; border-radius: 12px; width: 100%; height: 100%; overflow: hidden; position: relative; }
-        .tablet-home-bar { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: rgba(255,255,255,0.4); border-radius: 10px; }
-        
-        /* DOWNLOAD BUTTON */
-        .action-area { margin-top: 40px; margin-bottom: 60px; }
-        .btn-download { background: var(--text-main); color: white; border: none; padding: 12px 32px; border-radius: 50px; font-size: 1rem; font-weight: 700; font-family: inherit; cursor: pointer; transition: var(--transition-smooth); display: flex; align-items: center; gap: 10px; box-shadow: var(--shadow-sm); }
-        .btn-download:hover { background: #334155; transform: translateY(-2px); }
-        .btn-download:active { transform: scale(0.96); }
-        .btn-download.loading { opacity: 0.8; cursor: not-allowed; transform: none; }
-
-        /* SECTIONS */
-        .content-section {
-            width: 100%; max-width: 900px; margin-bottom: 60px;
-            text-align: center; scroll-margin-top: 40px;
-            background: var(--surface); padding: 40px; border-radius: var(--radius-md);
-            border: 1px solid var(--border-light); box-shadow: var(--shadow-sm);
-        }
-        .content-section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
-        .content-section p { color: var(--text-muted); font-weight: 500; margin-bottom: 24px; }
-        
-        .btn-secondary {
-            background: var(--border-light); color: var(--text-main); border: 1px solid var(--border-focus);
-            padding: 10px 24px; border-radius: 50px; font-size: 0.95rem; font-weight: 700; font-family: inherit;
-            cursor: pointer; transition: var(--transition-smooth);
-        }
-        .btn-secondary:hover { background: var(--border-focus); transform: translateY(-2px); }
-
-        /* FOOTAGE GRID STYLING */
-        .footage-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 20px; }
-        .footage-item { aspect-ratio: 16/9; background: var(--border-light); border-radius: 8px; position: relative; overflow: hidden; border: 1px solid var(--border-focus); box-shadow: var(--shadow-sm); }
-        .footage-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .btn-render-video { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: rgba(15, 23, 42, 0.85); color: white; border: none; padding: 6px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; cursor: pointer; backdrop-filter: blur(4px); transition: var(--transition-smooth); white-space: nowrap; }
-        .btn-render-video:hover { background: #000; }
-        
-        /* POPUP OVERLAYS */
-        .wallpaper-popup {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.95); backdrop-filter: blur(5px);
-            z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-            display: flex; justify-content: center; padding: 40px 20px;
-        }
-        .wallpaper-popup.active { opacity: 1; pointer-events: auto; }
-        .popup-content { max-width: 900px; width: 100%; height: 100%; display: flex; flex-direction: column; }
-        .popup-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .popup-title { font-size: 1.5rem; font-weight: 700; }
-        .close-popup { background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text-muted); transition: 0.2s; }
-        .close-popup:hover { color: var(--text-main); transform: rotate(90deg); }
-        .popup-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; overflow-y: auto; padding-bottom: 20px; }
-        .grid-item { aspect-ratio: 4/5; background: var(--border-light); border-radius: var(--radius-md); overflow: hidden; cursor: pointer; border: 2px solid transparent; transition: var(--transition-smooth); }
-        .grid-item:hover { border-color: var(--text-main); transform: scale(0.98); }
-        .grid-item img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* ✅ REBUILT 3D HTML/CSS T-SHIRT MOCKUP (FOOLPROOF & NO LAG) */
-        .mockup-3d-scene { perspective: 800px; display: flex; justify-content: center; margin: 40px 0; }
-        .tshirt-mockup {
-            position: relative; width: 160px; height: 220px;
-            animation: floatingShirt 4s ease-in-out infinite alternate;
-            transform-style: preserve-3d;
-        }
-        /* The Neck Hole */
-        .tshirt-collar {
-            position: absolute; top: -5px; left: 50%; transform: translateX(-50%);
-            width: 50px; height: 15px; background: var(--bg-color); border-radius: 0 0 25px 25px; z-index: 5;
-        }
-        /* Main Body of the Shirt */
-        .tshirt-body {
-            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-            width: 140px; height: 220px; background: #1a1a1a;
-            border-radius: 15px 15px 10px 10px; box-shadow: 0 15px 25px rgba(0,0,0,0.2);
-            display: flex; justify-content: center; padding-top: 40px; overflow: hidden; z-index: 2;
-        }
-        /* The Sleeves */
-        .tshirt-sleeves {
-            position: absolute; top: 10px; left: -15px; width: 190px; height: 60px;
-            background: #1a1a1a; border-radius: 20px; z-index: 1;
-        }
-        /* The Graphic Print */
-        .tshirt-body img { width: 80%; height: 110px; object-fit: cover; border-radius: 6px; opacity: 0.95; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
-
-        @keyframes floatingShirt {
-            0% { transform: translateY(0px) rotateY(-10deg) rotateX(5deg); }
-            100% { transform: translateY(-15px) rotateY(10deg) rotateX(-5deg); }
-        }
-
-        /* FIXED FOOTER STYLING */
+        /* FOOTER */
         .main-footer {
             margin-top: auto; padding: 40px 0 20px 0; width: 100%; max-width: 900px;
             display: flex; justify-content: space-between; align-items: flex-start;
@@ -235,18 +191,13 @@
         /* STRICT MOBILE-FIRST OVERRIDES */
         @media (max-width: 700px) {
             header h1 { font-size: 1.8rem; margin-top: 10px;}
-            .corner-menu-btn { width: 36px; height: 36px; top: 0px; right: 0px; font-size: 1.1rem; }
-            .content-tabs { gap: 8px; }
+            .main-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .footage-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             
             .nav-arrow { width: 40px; height: 40px; font-size: 1.4rem; }
-            .nav-arrow.left { left: 0; } .nav-arrow.right { right: 0; }
             .device-phone { width: 200px; height: 400px; }
-            .device-laptop, .device-monitor { width: 320px; }
-            .device-tablet { width: 240px; height: 340px; }
+            .device-laptop { width: 320px; }
             .hero-showcase { min-height: 420px; }
-            
-            .popup-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .footage-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             
             .main-footer { flex-direction: column; align-items: center; text-align: center; }
             .footer-about { max-width: 100%; text-align: center; }
@@ -260,25 +211,58 @@
         <header>
             <h1>WallRank</h1>
             <p>Daily AI Wallpapers & Footage</p>
-            <button class="corner-menu-btn" id="openMenuBtn" aria-label="Browse All Wallpapers" title="AI Stock Photos">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-            </button>
         </header>
 
         <nav class="content-tabs">
             <a href="#wallpapers" class="tab-link active" onclick="setActiveTab(this)">🖼️ Wallpapers</a>
             <a href="#puzzle" class="tab-link" onclick="setActiveTab(this)">🧩 Puzzle</a>
             <a href="#footage" class="tab-link" onclick="setActiveTab(this)">🎬 Footage</a>
-            <a href="#shirts" class="tab-link" onclick="setActiveTab(this)">👕 Shirts</a>
-            <a href="#gifts" class="tab-link" onclick="setActiveTab(this)">🎁 Gifts</a>
         </nav>
 
         <p class="soft-instruction">
-            ✨ Swipe <b>&lt; left or right &gt;</b> to view different styles on real devices.<br>
-            Fall in love? Just hit <b>Download</b> to make it yours!
+            ✨ Hover over an image (or tap) to Play the Puzzle, View on a Phone, or Download instantly!
         </p>
 
-        <section id="wallpapers" class="hero-showcase">
+        <section id="wallpapers" style="width: 100%;">
+            <div class="main-grid" id="mainWallpaperGrid">
+                </div>
+        </section>
+
+        <section id="puzzle" class="content-section">
+            <h2>🧩 Image Puzzle</h2>
+            <p>Select the puzzle icon 🧩 on any wallpaper above to start playing.</p>
+            <div id="puzzleStatus" style="color: var(--text-main); font-weight: 600;">Waiting for selection...</div>
+            <img id="puzzlePreview" style="max-width: 200px; border-radius: 12px; display: none; margin: 15px auto 0 auto; box-shadow: var(--shadow-sm);" alt="Puzzle Preview">
+        </section>
+
+        <section id="footage" class="content-section">
+            <h2>🎬 Footage-Style Stills</h2>
+            <p>High-quality assets for video editors. Generated directly inside your browser to save bandwidth!</p>
+            <div class="footage-grid" id="footageGrid"></div>
+        </section>
+
+        <footer class="main-footer">
+            <div class="footer-about">
+                <strong>About WallRank</strong>
+                <p>Welcome to WallRank. I'm James. I believe in building fast, useful tools that actually add value without the clutter. I'm actively looking to connect with like-minded people for business collaborations and life improvement. Let's build something great together.</p>
+            </div>
+            <div class="footer-right">
+                <div class="footer-links">
+                    <a href="/privacy-policy.html">Privacy Policy</a>
+                    <a href="/terms.html">Terms of Service</a>
+                    <a href="mailto:kabanijames9@gmail.com">Contact</a>
+                </div>
+                <div class="footer-copy">
+                    © 2026 WallRank.club
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <div class="mockup-popup" id="mockupPopup">
+        <button class="close-popup" id="closeMockupBtn">&times;</button>
+        
+        <div class="hero-showcase">
             <button class="nav-arrow left" id="prevWall">‹</button>
             <button class="nav-arrow right" id="nextWall">›</button>
 
@@ -304,110 +288,7 @@
                         <div class="laptop-base"></div>
                     </div>
                 </div>
-                <div class="showcase-slide" id="sc-slide-monitor">
-                    <div class="device-monitor">
-                        <div class="monitor-body">
-                            <div class="monitor-bezel">
-                                <div class="monitor-screen">
-                                    <img class="showcase-img" src="" alt="Wallpaper Display">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="monitor-stand"></div>
-                        <div class="monitor-base"></div>
-                    </div>
-                </div>
-                <div class="showcase-slide" id="sc-slide-tablet">
-                    <div class="device-tablet">
-                        <div class="tablet-bezel">
-                            <div class="tablet-screen">
-                                <img class="showcase-img" src="" alt="Wallpaper Display">
-                                <div class="tablet-home-bar"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </section>
-        
-        <div class="action-area">
-            <button class="btn-download" id="mainDownloadBtn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                <span id="downloadText">Download Wallpaper</span>
-            </button>
-        </div>
-
-        <section id="puzzle" class="content-section">
-            <h2>🧩 Image Puzzle</h2>
-            <p>Select any wallpaper from our library to start playing.</p>
-            <button class="btn-secondary" id="openPuzzleMenuBtn">Choose Image to Play</button>
-            <div id="puzzleStatus" style="margin-top: 15px; color: var(--text-main); font-weight: 600;"></div>
-        </section>
-
-        <section id="shirts" class="content-section">
-            <h2>👕 Print on Demand Mockups</h2>
-            <p>See how today's wallpaper looks as a premium T-Shirt graphic.</p>
-            
-            <div class="mockup-3d-scene">
-                <div class="tshirt-mockup">
-                    <div class="tshirt-collar"></div>
-                    <div class="tshirt-sleeves"></div>
-                    <div class="tshirt-body">
-                        <img id="shirtDesignImg" src="" alt="T-Shirt Design">
-                    </div>
-                </div>
-            </div>
-            
-            <button class="btn-secondary" onclick="alert('Redirecting to your Print on Demand store...')">Get this T-Shirt</button>
-        </section>
-
-        <section id="footage" class="content-section">
-            <h2>🎬 Footage-Style Stills</h2>
-            <p>High-quality assets for video editors. Generated directly inside your browser to save bandwidth!</p>
-            <div class="footage-grid" id="footageGrid"></div>
-        </section>
-
-        <section id="gifts" class="content-section">
-            <h2>🎁 Birthday Gift Ideas</h2>
-            <p>Curated inspiration for the perfect birthday present.</p>
-            <div class="popup-grid" id="giftsGrid" style="margin-top: 20px;"></div>
-        </section>
-        
-        <footer class="main-footer">
-            <div class="footer-about">
-                <strong>About WallRank</strong>
-                <p>Welcome to WallRank. I'm James. I believe in building fast, useful tools that actually add value without the clutter. I'm actively looking to connect with like-minded people for business collaborations and life improvement. Let's build something great together.</p>
-            </div>
-            <div class="footer-right">
-                <div class="footer-links">
-                    <a href="/privacy-policy.html">Privacy Policy</a>
-                    <a href="/terms.html">Terms of Service</a>
-                    <a href="mailto:kabanijames9@gmail.com">Contact</a>
-                </div>
-                <div class="footer-copy">
-                    © 2026 WallRank.club
-                </div>
-            </div>
-        </footer>
-    </main>
-
-    <div class="wallpaper-popup" id="wallPopup">
-        <div class="popup-content">
-            <div class="popup-header">
-                <div class="popup-title">All Wallpapers</div>
-                <button class="close-popup" id="closeMenuBtn">&times;</button>
-            </div>
-            <div class="popup-grid" id="popupGrid"></div>
-        </div>
-    </div>
-
-    <div class="wallpaper-popup" id="puzzlePopup">
-        <div class="popup-content">
-            <div class="popup-header">
-                <div class="popup-title">Choose Puzzle Image</div>
-                <button class="close-popup" id="closePuzzleMenuBtn">&times;</button>
-            </div>
-            <div class="popup-grid" id="puzzleGrid"></div>
         </div>
     </div>
 
@@ -415,7 +296,7 @@
         (function() {
             'use strict';
             
-            // AUTOMATICALLY GENERATE 15 WALLPAPERS
+            // 15 WALLPAPERS ARRAY
             const wallpapers = [];
             for(let i = 1; i <= 15; i++) {
                 wallpapers.push({ 
@@ -423,50 +304,67 @@
                     filename: `https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/${i}.png` 
                 });
             }
-
-            // AUTOMATICALLY GENERATE 4 BIRTHDAY GIFTS (b1 to b4)
-            const gifts = [];
-            for(let i = 1; i <= 4; i++) {
-                gifts.push({ 
-                    id: `b${i}`, 
-                    filename: `https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/b${i}.png` 
-                });
-            }
             
             let currentWallIndex = 0;
             let currentDeviceIndex = 0;
 
             const showcaseImages = document.querySelectorAll('.showcase-img');
-            const shirtDesignImg = document.getElementById('shirtDesignImg');
-            
             const showcaseSlides = [
                 document.getElementById('sc-slide-phone'),
-                document.getElementById('sc-slide-laptop'),
-                document.getElementById('sc-slide-monitor'),
-                document.getElementById('sc-slide-tablet')
+                document.getElementById('sc-slide-laptop')
             ];
             
             const prevBtn = document.getElementById('prevWall');
             const nextBtn = document.getElementById('nextWall');
-            const downloadBtn = document.getElementById('mainDownloadBtn');
-            const downloadText = document.getElementById('downloadText');
-            
-            const wallPopup = document.getElementById('wallPopup');
-            const openMenuBtn = document.getElementById('openMenuBtn');
-            const closeMenuBtn = document.getElementById('closeMenuBtn');
-            const popupGrid = document.getElementById('popupGrid');
+            const mockupPopup = document.getElementById('mockupPopup');
+            const closeMockupBtn = document.getElementById('closeMockupBtn');
 
-            const puzzlePopup = document.getElementById('puzzlePopup');
-            const openPuzzleMenuBtn = document.getElementById('openPuzzleMenuBtn');
-            const closePuzzleMenuBtn = document.getElementById('closePuzzleMenuBtn');
-            const puzzleGrid = document.getElementById('puzzleGrid');
-            const puzzleStatus = document.getElementById('puzzleStatus');
+            // --- 1. RENDER MAIN GRID WITH ACTION BUTTONS ---
+            function renderMainGrid() {
+                const grid = document.getElementById('mainWallpaperGrid');
+                grid.innerHTML = '';
+                
+                wallpapers.forEach((wp, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'grid-item';
+                    
+                    // Auto-hide broken images (e.g. 14.png) without crashing
+                    item.innerHTML = `
+                        <img src="${wp.filename}" alt="Wallpaper ${wp.id}" loading="lazy" onerror="this.parentElement.style.display='none'">
+                        <div class="grid-actions">
+                            <button class="action-btn" title="Play Puzzle" onclick="startPuzzle(${index})">🧩</button>
+                            <button class="action-btn" title="View in Mockups" onclick="openMockup(${index})">📱</button>
+                            <button class="action-btn" title="Download" onclick="downloadImage(${index}, this)">⬇️</button>
+                        </div>
+                    `;
+                    grid.appendChild(item);
+                });
+            }
 
-            // --- Core Functions with Auto-Skip for Broken Images ---
+            // --- 2. RENDER FOOTAGE ---
+            function renderFootageGrid() {
+                const fGrid = document.getElementById('footageGrid');
+                fGrid.innerHTML = '';
+                wallpapers.slice(0, 4).forEach((wp) => {
+                    const item = document.createElement('div');
+                    item.className = 'footage-item';
+                    item.innerHTML = `
+                        <img src="${wp.filename}" alt="Footage ${wp.id}" loading="lazy" crossorigin="anonymous" onerror="this.parentElement.style.display='none'">
+                        <button class="btn-render-video" onclick="generateVideoLoop('${wp.filename}', this, ${wp.id})">🎬 Render 5s Loop</button>
+                    `;
+                    fGrid.appendChild(item);
+                });
+            }
+
+            // --- 3. MOCKUP VIEWER LOGIC ---
+            window.openMockup = function(index) {
+                currentWallIndex = index;
+                updateDisplayImage();
+                mockupPopup.classList.add('active');
+            };
+
             function updateDisplayImage() {
                 const imgUrl = wallpapers[currentWallIndex].filename;
-                
-                // Preloader prevents broken images from showing
                 const tempImg = new Image();
                 tempImg.src = imgUrl;
                 
@@ -478,12 +376,11 @@
                             img.style.opacity = '1';
                         }, 150);
                     });
-                    shirtDesignImg.src = imgUrl;
                 };
                 
-                // ✅ AUTO-SKIP: If image fails (like 14.png or 15.png), skip to the next one instantly!
+                // Auto-skip inside the 3D viewer if image is broken
                 tempImg.onerror = () => {
-                    console.warn(`Image ${imgUrl} failed to load. Skipping...`);
+                    console.warn(`Skipping broken image ${imgUrl}`);
                     changeWallpaper(1); 
                 };
             }
@@ -493,17 +390,27 @@
                 updateDisplayImage();
             }
 
-            async function downloadCurrent() {
-                const wp = wallpapers[currentWallIndex];
-                if (downloadBtn.classList.contains('loading')) return;
+            // --- 4. PUZZLE TRIGGER LOGIC ---
+            window.startPuzzle = function(index) {
+                const wp = wallpapers[index];
+                document.getElementById('puzzleStatus').innerHTML = `✅ Selected Image #${wp.id} for Puzzle. (Game Engine Ready!)`;
+                document.getElementById('puzzlePreview').src = wp.filename;
+                document.getElementById('puzzlePreview').style.display = 'block';
                 
-                downloadBtn.classList.add('loading');
-                const originalText = downloadText.innerText;
-                downloadText.innerText = 'Downloading...';
+                // Switch Tabs Automatically
+                setActiveTab(document.querySelector('.tab-link[href="#puzzle"]'));
+                window.location.hash = '#puzzle';
+            };
 
+            // --- 5. INDIVIDUAL DOWNLOAD LOGIC ---
+            window.downloadImage = async function(index, btnElement) {
+                const wp = wallpapers[index];
+                if(btnElement.style.opacity === '0.5') return; // Prevent double click
+                
+                btnElement.style.opacity = '0.5';
                 try {
                     const response = await fetch(wp.filename);
-                    if (!response.ok) throw new Error('Network response was not ok');
+                    if (!response.ok) throw new Error('Network error');
                     const blob = await response.blob();
                     const blobUrl = URL.createObjectURL(blob);
                     
@@ -517,109 +424,44 @@
                     setTimeout(() => URL.revokeObjectURL(blobUrl), 100);
                     gtag('event', 'download', { 'event_category': 'conversion', 'event_label': `ID: ${wp.id}` });
                 } catch (error) {
-                    const link = document.createElement('a');
-                    link.href = wp.filename;
-                    link.target = '_blank';
-                    link.click();
+                    window.open(wp.filename, '_blank');
                 } finally {
-                    downloadBtn.classList.remove('loading');
-                    downloadText.innerText = originalText;
+                    btnElement.style.opacity = '1';
                 }
-            }
+            };
 
-            // --- Render Popup Grids (Fast Lazy Loading) ---
-            function renderPopupGrid(gridElement, popupElement, isPuzzleMode = false) {
-                gridElement.innerHTML = '';
-                wallpapers.forEach((wp, index) => {
-                    const item = document.createElement('div');
-                    item.className = 'grid-item';
-                    // Added strict lazy loading and an onerror tag to hide broken popup images
-                    item.innerHTML = `<img src="${wp.filename}" alt="Wallpaper ${wp.id}" loading="lazy" onerror="this.parentElement.style.display='none'">`;
-                    
-                    item.addEventListener('click', () => {
-                        if (isPuzzleMode) {
-                            puzzleStatus.innerHTML = `✅ Selected Image #${wp.id} for Puzzle. (JS Game Engine Loading soon!)`;
-                        } else {
-                            currentWallIndex = index;
-                            updateDisplayImage();
-                        }
-                        popupElement.classList.remove('active');
-                    });
-                    gridElement.appendChild(item);
-                });
-            }
-
-            function renderFootageGrid() {
-                const fGrid = document.getElementById('footageGrid');
-                fGrid.innerHTML = '';
-                wallpapers.slice(0, 4).forEach((wp) => {
-                    const item = document.createElement('div');
-                    item.className = 'footage-item';
-                    item.innerHTML = `
-                        <img src="${wp.filename}" alt="Footage Base ${wp.id}" loading="lazy" crossorigin="anonymous" onerror="this.parentElement.style.display='none'">
-                        <button class="btn-render-video" onclick="generateVideoLoop('${wp.filename}', this, ${wp.id})">🎬 Render 5s Loop</button>
-                    `;
-                    fGrid.appendChild(item);
-                });
-            }
-
-            function renderGiftsGrid() {
-                const gGrid = document.getElementById('giftsGrid');
-                gGrid.innerHTML = '';
-                gifts.forEach((gift) => {
-                    const item = document.createElement('div');
-                    item.className = 'grid-item';
-                    item.innerHTML = `<img src="${gift.filename}" alt="Gift ${gift.id}" loading="lazy" onerror="this.parentElement.style.display='none'">`;
-                    gGrid.appendChild(item);
-                });
-            }
-
-            // --- Event Listeners ---
+            // --- Event Listeners & Loops ---
             prevBtn.addEventListener('click', () => changeWallpaper(-1));
             nextBtn.addEventListener('click', () => changeWallpaper(1));
-            downloadBtn.addEventListener('click', downloadCurrent);
-            
-            openMenuBtn.addEventListener('click', () => {
-                renderPopupGrid(popupGrid, wallPopup, false); 
-                wallPopup.classList.add('active');
-            });
-            closeMenuBtn.addEventListener('click', () => wallPopup.classList.remove('active'));
-            wallPopup.addEventListener('click', (e) => { if(e.target === wallPopup) wallPopup.classList.remove('active'); });
-
-            openPuzzleMenuBtn.addEventListener('click', () => {
-                renderPopupGrid(puzzleGrid, puzzlePopup, true); 
-                puzzlePopup.classList.add('active');
-            });
-            closePuzzleMenuBtn.addEventListener('click', () => puzzlePopup.classList.remove('active'));
-            puzzlePopup.addEventListener('click', (e) => { if(e.target === puzzlePopup) puzzlePopup.classList.remove('active'); });
-
-            // --- Initialization & Auto-Loops ---
-            updateDisplayImage();
-            renderFootageGrid();
-            renderGiftsGrid();
+            closeMockupBtn.addEventListener('click', () => mockupPopup.classList.remove('active'));
+            mockupPopup.addEventListener('click', (e) => { if(e.target === mockupPopup) mockupPopup.classList.remove('active'); });
 
             setInterval(() => {
-                currentDeviceIndex = (currentDeviceIndex + 1) % showcaseSlides.length;
-                showcaseSlides.forEach((slide, idx) => {
-                    if (slide) slide.classList.toggle('active', idx === currentDeviceIndex);
-                });
+                if(mockupPopup.classList.contains('active')) {
+                    currentDeviceIndex = (currentDeviceIndex + 1) % showcaseSlides.length;
+                    showcaseSlides.forEach((slide, idx) => {
+                        if (slide) slide.classList.toggle('active', idx === currentDeviceIndex);
+                    });
+                }
             }, 3000);
+
+            // Init
+            renderMainGrid();
+            renderFootageGrid();
 
             gtag('event', 'page_view', { 'page_title': 'Daily Wallpapers', 'page_location': 'https://wallrank.club' });
         })();
 
-        // TAB NAVIGATION LOGIC
         function setActiveTab(clickedTab) {
             document.querySelectorAll('.tab-link').forEach(tab => tab.classList.remove('active'));
             clickedTab.classList.add('active');
         }
 
-        // THE ZERO-SERVER-COST VIDEO GENERATOR
+        // ZERO-SERVER-COST VIDEO GENERATOR
         window.generateVideoLoop = function(imageUrl, btnElement, id) {
             if(btnElement.classList.contains('loading')) return;
-            
             const originalText = btnElement.innerText;
-            btnElement.innerText = '⏳ Rendering... Wait 5s';
+            btnElement.innerText = '⏳ Wait 5s...';
             btnElement.classList.add('loading');
 
             const canvas = document.createElement('canvas');
@@ -636,18 +478,15 @@
                 const chunks = [];
 
                 recorder.ondataavailable = e => chunks.push(e.data);
-                
                 recorder.onstop = () => {
                     const blob = new Blob(chunks, { type: 'video/webm' });
                     const videoUrl = URL.createObjectURL(blob);
-                    
                     const a = document.createElement('a');
                     a.href = videoUrl;
                     a.download = `wallrank-loop-${id}.webm`;
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
-                    
                     setTimeout(() => URL.revokeObjectURL(videoUrl), 100);
                     btnElement.innerText = originalText;
                     btnElement.classList.remove('loading');
@@ -660,19 +499,15 @@
                     const x = (canvas.width - w) / 2; const y = (canvas.height - h) / 2;
                     ctx.drawImage(img, x, y, w, h);
                     scale += 0.0008; 
-
-                    if (recorder.state === 'recording') {
-                        requestAnimationFrame(animateFrame);
-                    }
+                    if (recorder.state === 'recording') requestAnimationFrame(animateFrame);
                 }
 
                 recorder.start();
                 animateFrame();
                 setTimeout(() => { recorder.stop(); }, 5000); 
             };
-
             img.onerror = () => {
-                btnElement.innerText = '❌ Error Loading';
+                btnElement.innerText = '❌ Error';
                 btnElement.classList.remove('loading');
                 setTimeout(() => btnElement.innerText = originalText, 3000);
             };
