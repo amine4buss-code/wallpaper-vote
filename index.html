@@ -85,36 +85,6 @@
         .action-btn:hover { background: #000; transform: translateY(-2px); }
         .action-btn.loading { opacity: 0.8; cursor: wait; transform: none; }
 
-        /* ---------- COMMENTS SECTION ---------- */
-        .comments-section {
-            width: 100%; max-width: 800px; margin: 0 auto 60px auto;
-            background: var(--surface); padding: 40px; border-radius: var(--radius-md);
-            box-shadow: var(--shadow-sm); border: 1px solid var(--border-light);
-        }
-        .comments-section h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 24px; color: var(--text-main); }
-        
-        .comment-form { display: flex; gap: 12px; margin-bottom: 40px; }
-        .comment-input {
-            flex: 1; padding: 14px 20px; border-radius: 50px; border: 1px solid var(--border-focus);
-            font-family: inherit; font-size: 0.95rem; font-weight: 500; outline: none; 
-            transition: var(--transition-smooth); background: var(--bg-color);
-        }
-        .comment-input:focus { border-color: var(--text-main); background: var(--surface); }
-        .comment-submit {
-            background: var(--text-main); color: white; border: none; padding: 0 28px;
-            border-radius: 50px; font-weight: 700; font-family: inherit; cursor: pointer; transition: 0.2s;
-        }
-        .comment-submit:hover { opacity: 0.8; transform: translateY(-2px); }
-
-        .comments-list { display: flex; flex-direction: column; gap: 16px; }
-        .comment-item { 
-            padding: 16px 20px; background: var(--bg-color); border-radius: 12px; 
-            border: 1px solid var(--border-light);
-        }
-        .comment-user { font-weight: 800; font-size: 0.9rem; margin-bottom: 6px; color: var(--text-main); display: flex; align-items: center; gap: 8px;}
-        .comment-user::before { content: ''; display: inline-block; width: 8px; height: 8px; background: #10b981; border-radius: 50%; }
-        .comment-text { font-size: 0.95rem; color: var(--text-muted); line-height: 1.5; font-weight: 500; }
-
         /* FOOTER */
         .main-footer {
             margin-top: auto; padding: 40px 0; width: 100%; max-width: 1200px;
@@ -137,10 +107,6 @@
             header { align-items: center; text-align: center; }
             .main-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
             
-            .comments-section { padding: 24px 16px; }
-            .comment-form { flex-direction: column; }
-            .comment-submit { padding: 14px; width: 100%; }
-
             .main-footer { flex-direction: column; align-items: center; text-align: center; }
             .footer-about { max-width: 100%; text-align: center; }
             .footer-right { align-items: center; width: 100%; }
@@ -158,16 +124,6 @@
 
         <section style="width: 100%;">
             <div class="main-grid" id="mainWallpaperGrid">
-                </div>
-        </section>
-
-        <section class="comments-section">
-            <h2>💬 Community Feedback</h2>
-            <form class="comment-form" id="commentForm">
-                <input type="text" id="commentInput" class="comment-input" placeholder="What do you think about today's drop?" required autocomplete="off">
-                <button type="submit" class="comment-submit">Post</button>
-            </form>
-            <div class="comments-list" id="commentsList">
                 </div>
         </section>
 
@@ -211,9 +167,10 @@
                     const item = document.createElement('div');
                     item.className = 'grid-item';
                     
-                    // Auto-hide broken images gracefully
+                    // The "onerror" tag that hid images is completely removed. 
+                    // All 15 boxes will now be forced to display.
                     item.innerHTML = `
-                        <img src="${wp.filename}" alt="Wallpaper ${wp.id}" loading="lazy" onerror="this.parentElement.style.display='none'">
+                        <img src="${wp.filename}" alt="Wallpaper ${wp.id}" loading="lazy">
                         <div class="grid-actions">
                             <button class="action-btn" onclick="downloadImage(${index}, this)">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
@@ -258,54 +215,8 @@
                 }
             };
 
-            // --- 4. COMMENTS SYSTEM (Social Proof) ---
-            const commentForm = document.getElementById('commentForm');
-            const commentInput = document.getElementById('commentInput');
-            const commentsList = document.getElementById('commentsList');
-
-            // Generate Random Username for this device
-            let currentUsername = localStorage.getItem('wallrank_username');
-            if (!currentUsername) {
-                currentUsername = 'user' + Math.floor(Math.random() * 10000);
-                localStorage.setItem('wallrank_username', currentUsername);
-            }
-
-            // Pre-load dummy comments for instant trust
-            let comments = JSON.parse(localStorage.getItem('wallrank_comments')) || [
-                { user: 'user109', text: 'These are crazy good. Finally a site that doesn\'t make you watch 5 ads to download.' },
-                { user: 'user842', text: 'Downloaded the dark academia one for my setup. Looks perfectly crisp on a 4K monitor 🔥' }
-            ];
-
-            function renderComments() {
-                commentsList.innerHTML = '';
-                comments.forEach(c => {
-                    const div = document.createElement('div');
-                    div.className = 'comment-item';
-                    div.innerHTML = `
-                        <div class="comment-user">${c.user}</div>
-                        <div class="comment-text">${c.text}</div>
-                    `;
-                    commentsList.appendChild(div);
-                });
-            }
-
-            commentForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const text = commentInput.value.trim();
-                if (text) {
-                    comments.unshift({ user: currentUsername, text: text });
-                    // Keep only latest 10 to save memory
-                    if (comments.length > 10) comments.pop();
-                    localStorage.setItem('wallrank_comments', JSON.stringify(comments));
-                    commentInput.value = '';
-                    renderComments();
-                }
-            });
-
-
-            // Init
+            // Init Everything
             renderMainGrid();
-            renderComments();
 
             // Fire Google Analytics
             gtag('event', 'page_view', { 'page_title': 'Pure Gallery', 'page_location': 'https://wallrank.club' });
