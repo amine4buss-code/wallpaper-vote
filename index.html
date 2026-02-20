@@ -149,12 +149,15 @@
         (function() {
             'use strict';
             
-            // --- 1. GENERATE WALLPAPER ARRAY (1 to 15) ---
+            // --- 1. GENERATE WALLPAPER ARRAY (SMART EXTENSIONS) ---
             const wallpapers = [];
             for(let i = 1; i <= 15; i++) {
+                // Images 1 through 8 are .png, images 9 through 15 are .jpg
+                let fileExtension = (i <= 8) ? 'png' : 'jpg';
+                
                 wallpapers.push({ 
                     id: i, 
-                    filename: `https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/${i}.png` 
+                    filename: `https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/${i}.${fileExtension}` 
                 });
             }
 
@@ -167,8 +170,6 @@
                     const item = document.createElement('div');
                     item.className = 'grid-item';
                     
-                    // The "onerror" tag that hid images is completely removed. 
-                    // All 15 boxes will now be forced to display.
                     item.innerHTML = `
                         <img src="${wp.filename}" alt="Wallpaper ${wp.id}" loading="lazy">
                         <div class="grid-actions">
@@ -200,7 +201,7 @@
                     
                     const link = document.createElement('a');
                     link.href = blobUrl;
-                    link.download = `wallrank-art-${wp.id}.png`;
+                    link.download = `wallrank-art-${wp.id}.${wp.filename.split('.').pop()}`; // Keeps original extension
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
