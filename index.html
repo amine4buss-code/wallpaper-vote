@@ -151,9 +151,9 @@
             
             // --- 1. GENERATE WALLPAPER ARRAY (SMART EXTENSIONS) ---
             const wallpapers = [];
-            for(let i = 1; i <= 15; i++) {
-                // Images 1 through 8 are .png, images 9 through 15 are .jpg
-                let fileExtension = (i <= 8) ? 'png' : 'jpg';
+            for(let i = 1; i <= 19; i++) {
+                // Images 9 through 15 are .jpg. Everything else (1-8, and 16-19) is .png
+                let fileExtension = (i >= 9 && i <= 15) ? 'jpg' : 'png';
                 
                 wallpapers.push({ 
                     id: i, 
