@@ -45,7 +45,7 @@
         
         .container { max-width: 1200px; width: 100%; display: flex; flex-direction: column; position: relative; flex: 1; }
 
-        /* HEADER - CUTE CATEGORY BUTTON INTEGRATION */
+        /* HEADER */
         header { 
             width: 100%; display: flex; flex-direction: column; align-items: flex-start;
             margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border-light);
@@ -54,9 +54,7 @@
             display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
         }
         header h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.04em; }
-        header p { color: var(--text-muted); font-weight: 600; font-size: 0.95rem; margin-top: 8px;}
-
-        /* JAPANESE STYLE TRIGGER BUTTON */
+        
         .cat-trigger-btn {
             background: #fdf2f8; border: 2px solid #fce7f3; color: #db2777;
             padding: 6px 16px; border-radius: 50px; font-size: 0.95rem; font-weight: 700;
@@ -64,6 +62,8 @@
             transition: var(--transition-smooth); box-shadow: 0 4px 10px rgba(219, 39, 119, 0.1);
         }
         .cat-trigger-btn:hover { background: #fce7f3; transform: translateY(-2px); box-shadow: 0 6px 14px rgba(219, 39, 119, 0.15); }
+        
+        header p { color: var(--text-muted); font-weight: 600; font-size: 0.95rem; margin-top: 8px;}
 
         /* MAIN WALLPAPER GRID */
         .main-grid {
@@ -83,10 +83,10 @@
         }
         .img-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; }
         
-        /* HOVER DOWNLOAD BUTTON */
+        /* HOVER BUTTONS */
         .grid-actions {
             position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%);
-            display: flex; justify-content: center; width: 85%;
+            display: flex; justify-content: center; gap: 8px; width: 90%;
             opacity: 0; transition: opacity 0.2s ease, transform 0.2s ease;
         }
         .grid-item:hover .grid-actions { opacity: 1; }
@@ -94,18 +94,20 @@
 
         .action-btn {
             background: rgba(15, 23, 42, 0.85); border: none; font-size: 0.9rem; font-weight: 700; font-family: inherit;
-            cursor: pointer; color: white; transition: 0.2s ease; padding: 10px 20px; width: 100%;
+            cursor: pointer; color: white; transition: 0.2s ease; padding: 10px 16px; 
             display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 50px;
             backdrop-filter: blur(8px); box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
         .action-btn:hover { background: #000; transform: translateY(-2px); }
+        .action-btn.dl-btn { flex: 1; } /* Makes download button take most of the space */
+        .action-btn.preview-btn { padding: 10px; border-radius: 50%; width: 42px; height: 42px; font-size: 1.1rem; }
 
         /* SEO TEXT AREA */
         .seo-info { padding: 16px; text-align: left; }
         .seo-info h2 { font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .seo-info p { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-        /* CATEGORIES MODAL (GLASSMORPHISM) */
+        /* CATEGORIES MODAL */
         .cat-popup {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(255,255,255,0.85); backdrop-filter: blur(10px);
@@ -113,31 +115,73 @@
             display: flex; justify-content: center; align-items: center; padding: 20px;
         }
         .cat-popup.active { opacity: 1; pointer-events: auto; }
-        
         .cat-content {
-            background: var(--surface); width: 100%; max-width: 450px;
-            border-radius: 24px; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border: 1px solid var(--border-light); position: relative;
+            background: var(--surface); width: 100%; max-width: 450px; border-radius: 24px; padding: 30px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 1px solid var(--border-light); position: relative;
             transform: translateY(20px); transition: transform 0.3s ease;
         }
         .cat-popup.active .cat-content { transform: translateY(0); }
-
         .cat-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
         .cat-header-flex h2 { font-size: 1.4rem; font-weight: 800; color: var(--text-main); }
         .close-cat-btn { background: none; border: none; font-size: 2.2rem; cursor: pointer; color: var(--text-muted); transition: 0.2s; line-height: 1;}
         .close-cat-btn:hover { color: var(--text-main); transform: rotate(90deg); }
-
         .cat-grid-ui { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        
         .cat-btn {
-            background: var(--bg-color); border: 1px solid var(--border-focus);
-            padding: 14px; border-radius: 16px; font-size: 0.95rem; font-weight: 700;
-            color: var(--text-main); cursor: pointer; display: flex; align-items: center; gap: 10px;
-            transition: var(--transition-smooth); font-family: inherit;
+            background: var(--bg-color); border: 1px solid var(--border-focus); padding: 14px; border-radius: 16px; font-size: 0.95rem; font-weight: 700;
+            color: var(--text-main); cursor: pointer; display: flex; align-items: center; gap: 10px; transition: var(--transition-smooth); font-family: inherit;
         }
         .cat-btn:hover { background: #fdf2f8; border-color: #fbcfe8; color: #db2777; transform: translateY(-2px); }
         .cat-btn.full-width { grid-column: 1 / -1; justify-content: center; background: #0f172a; color: white; border-color: #0f172a; }
-        .cat-btn.full-width:hover { background: #334155; transform: translateY(-2px); }
+
+        /* 8-SECOND ROOM MOCKUP POPUP */
+        .mockup-popup {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.92); backdrop-filter: blur(8px);
+            z-index: 300; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+            display: flex; justify-content: center; align-items: center; padding: 20px;
+        }
+        .mockup-popup.active { opacity: 1; pointer-events: auto; cursor: pointer; }
+        
+        .mockup-env {
+            position: relative; width: 100%; max-width: 900px; aspect-ratio: 16/9;
+            /* High-quality dark room aesthetic image */
+            background-image: url('https://images.unsplash.com/photo-1616423640778-28d1b53229bd?q=80&w=1920&auto=format&fit=crop'); 
+            background-size: cover; background-position: center;
+            border-radius: 16px; box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            display: flex; justify-content: center; align-items: center; overflow: hidden;
+            transform: scale(0.95); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mockup-popup.active .mockup-env { transform: scale(1); }
+        
+        /* Dark overlay to make the monitor pop */
+        .mockup-env::before { content: ''; position: absolute; inset: 0; background: rgba(15, 23, 42, 0.7); }
+
+        /* The flat monitor screen */
+        .mockup-screen {
+            position: relative; width: 55%; aspect-ratio: 16/9;
+            background: #000; border: 12px solid #0a0a0a; border-radius: 12px;
+            box-shadow: 0 0 50px rgba(255,255,255,0.1), 0 20px 40px rgba(0,0,0,0.5); z-index: 2;
+            overflow: hidden;
+        }
+        /* Base stand for the monitor */
+        .mockup-screen::after {
+            content: ''; position: absolute; bottom: -24px; left: 50%; transform: translateX(-50%);
+            width: 80px; height: 12px; background: #222; border-radius: 0 0 4px 4px;
+        }
+        .mockup-screen img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        
+        /* The 8-second countdown timer bar */
+        .mockup-timer {
+            position: absolute; bottom: 0; left: 0; height: 6px; background: #db2777;
+            width: 100%; transform-origin: left; z-index: 10;
+        }
+        @keyframes shrinkTimer { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+        .mockup-popup.active .mockup-timer { animation: shrinkTimer 8s linear forwards; }
+        
+        .mockup-hint {
+            position: absolute; top: 30px; color: rgba(255,255,255,0.6);
+            font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; z-index: 5;
+        }
 
         /* FOOTER */
         .main-footer {
@@ -146,9 +190,8 @@
             border-top: 1px solid var(--border-light); gap: 30px; flex-wrap: wrap;
         }
         .footer-about { text-align: left; max-width: 450px; font-size: 0.95rem; color: var(--text-muted); }
-        .footer-about strong { color: var(--text-main); display: block; margin-bottom: 10px; font-size: 1.2rem; letter-spacing: -0.02em;}
+        .footer-about strong { color: var(--text-main); display: block; margin-bottom: 10px; font-size: 1.2rem; }
         .footer-about p { margin-bottom: 15px; line-height: 1.6; }
-        
         .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 15px; }
         .footer-links { display: flex; gap: 20px; flex-wrap: wrap; justify-content: flex-end; }
         .footer-links a { color: var(--text-main); font-weight: 700; text-decoration: none; font-size: 0.9rem; transition: 0.2s;}
@@ -167,6 +210,11 @@
             .footer-right { align-items: center; width: 100%; }
             .footer-links { justify-content: center; }
             .cat-grid-ui { grid-template-columns: 1fr; }
+            
+            /* Adjust mockup for mobile */
+            .mockup-env { aspect-ratio: 4/5; }
+            .mockup-screen { width: 85%; aspect-ratio: 9/16; border-width: 6px; }
+            .mockup-hint { font-size: 0.8rem; top: 20px; text-align: center; width: 100%; }
         }
     </style>
 </head>
@@ -225,14 +273,26 @@
         </div>
     </div>
 
+    <div class="mockup-popup" id="mockupPopup">
+        <div class="mockup-hint">Tap anywhere to close early</div>
+        <div class="mockup-env">
+            <div class="mockup-screen">
+                <img id="mockupScreenImg" src="" alt="Live Preview">
+            </div>
+        </div>
+        <div class="mockup-timer"></div>
+    </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             'use strict';
 
-            // --- 0. CATEGORY MODAL LOGIC ---
+            // --- 0. UI ELEMENTS LOGIC ---
             const catPopup = document.getElementById('catPopup');
             const openCatBtn = document.getElementById('openCatBtn');
             const closeCatBtn = document.getElementById('closeCatBtn');
+            const mockupPopup = document.getElementById('mockupPopup');
+            const mockupScreenImg = document.getElementById('mockupScreenImg');
 
             openCatBtn.addEventListener('click', () => catPopup.classList.add('active'));
             closeCatBtn.addEventListener('click', () => catPopup.classList.remove('active'));
@@ -240,6 +300,12 @@
                 if(e.target === catPopup) catPopup.classList.remove('active');
             });
             
+            // Allow user to click anywhere to close the 8s preview early
+            mockupPopup.addEventListener('click', () => {
+                mockupPopup.classList.remove('active');
+                clearTimeout(window.previewTimer);
+            });
+
             // --- 1. FULL SEO DATA ARRAY ---
             const seoData = [
                 { id: 1, ext: 'png', title: "Enchanted Waterfall & Rainbow", desc: "4K fantasy nature wallpaper featuring a magical waterfall, vivid rainbow, and sunlit forest." },
@@ -273,12 +339,11 @@
                 { id: 29, ext: 'jpg', title: "Goku Ultra Instinct", desc: "Incredible 4K DBZ anime wallpaper of Goku in Mastered Ultra Instinct form with glowing blue energy." }
             ];
 
-            // --- 2. RENDER THE GRID FUNCTION ---
+            // --- 2. RENDER THE GRID ---
             const grid = document.getElementById('mainWallpaperGrid');
             
             function renderGallery(dataArray) {
-                grid.innerHTML = ''; // Clear current grid
-                
+                grid.innerHTML = ''; 
                 if (dataArray.length === 0) {
                     grid.innerHTML = `<p style="text-align: center; width: 100%; color: var(--text-muted); grid-column: 1 / -1; padding: 40px 0;">No wallpapers found in this category yet. Check back soon!</p>`;
                     return;
@@ -292,9 +357,10 @@
                             <div class="img-wrapper">
                                 <img src="${filename}" alt="${wp.title} - ${wp.desc}" loading="lazy" onerror="this.closest('.grid-item').style.display='none'">
                                 <div class="grid-actions">
-                                    <button class="action-btn" onclick="downloadImage('${filename}', '${wp.id}.${wp.ext}', this)">
+                                    <button class="action-btn preview-btn" onclick="showPreview('${filename}')" title="Preview in Room">👁️</button>
+                                    <button class="action-btn dl-btn" onclick="downloadImage('${filename}', '${wp.id}.${wp.ext}', this)">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                                        Download Free
+                                        Download
                                     </button>
                                 </div>
                             </div>
@@ -310,12 +376,10 @@
 
             // --- 3. FILTER LOGIC ---
             window.filterGallery = function(category) {
-                catPopup.classList.remove('active'); // Close modal
-                
+                catPopup.classList.remove('active'); 
                 if (category === 'all') {
                     renderGallery(seoData);
                 } else {
-                    // Keywords map intelligently to the titles and descriptions we wrote earlier
                     const searchTerms = {
                         'anime': ['anime', 'dragon ball', 'naruto', 'goku', 'vegeta'],
                         'cozy': ['cozy', 'lofi', 'coffee', 'desk'],
@@ -327,26 +391,37 @@
                         'dark': ['dark', 'amoled', 'black'],
                         'pastel': ['pastel', 'ethereal', 'butterfly', 'pink']
                     };
-                    
                     const terms = searchTerms[category] || [];
-                    
                     const filteredData = seoData.filter(wp => {
                         const textToSearch = (wp.title + " " + wp.desc).toLowerCase();
-                        // Returns true if ANY of the search terms are found in the title or description
                         return terms.some(term => textToSearch.includes(term));
                     });
-                    
                     renderGallery(filteredData);
                 }
-                
-                // Smooth scroll back to top of gallery after filtering
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             };
 
-            // Initial render on page load
             renderGallery(seoData);
 
-            // --- 4. SECURE DOWNLOAD LOGIC ---
+            // --- 4. 8-SECOND PREVIEW LOGIC ---
+            window.previewTimer = null;
+            window.showPreview = function(imgUrl) {
+                // Stop the event from scrolling the page
+                event.stopPropagation();
+                
+                mockupScreenImg.src = imgUrl; // Inject clicked image into the monitor
+                mockupPopup.classList.add('active'); // Show popup
+                
+                // Clear existing timer so it doesn't bug out if clicked quickly
+                clearTimeout(window.previewTimer);
+                
+                // Auto hide after exactly 8 seconds
+                window.previewTimer = setTimeout(() => {
+                    mockupPopup.classList.remove('active');
+                }, 8000);
+            };
+
+            // --- 5. SECURE DOWNLOAD LOGIC ---
             window.downloadImage = async function(fileUrl, fileName, btnElement) {
                 if (btnElement.innerText === '⏳ Fetching...') return;
                 const originalContent = btnElement.innerHTML;
