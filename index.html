@@ -45,13 +45,25 @@
         
         .container { max-width: 1200px; width: 100%; display: flex; flex-direction: column; position: relative; flex: 1; }
 
-        /* HEADER - TOP LEFT */
+        /* HEADER - CUTE CATEGORY BUTTON INTEGRATION */
         header { 
             width: 100%; display: flex; flex-direction: column; align-items: flex-start;
             margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border-light);
         }
+        .header-title-row {
+            display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+        }
         header h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.04em; }
-        header p { color: var(--text-muted); font-weight: 600; font-size: 0.95rem; margin-top: 4px;}
+        header p { color: var(--text-muted); font-weight: 600; font-size: 0.95rem; margin-top: 8px;}
+
+        /* JAPANESE STYLE TRIGGER BUTTON */
+        .cat-trigger-btn {
+            background: #fdf2f8; border: 2px solid #fce7f3; color: #db2777;
+            padding: 6px 16px; border-radius: 50px; font-size: 0.95rem; font-weight: 700;
+            font-family: inherit; cursor: pointer; display: flex; align-items: center; gap: 6px;
+            transition: var(--transition-smooth); box-shadow: 0 4px 10px rgba(219, 39, 119, 0.1);
+        }
+        .cat-trigger-btn:hover { background: #fce7f3; transform: translateY(-2px); box-shadow: 0 6px 14px rgba(219, 39, 119, 0.15); }
 
         /* MAIN WALLPAPER GRID */
         .main-grid {
@@ -87,12 +99,45 @@
             backdrop-filter: blur(8px); box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
         .action-btn:hover { background: #000; transform: translateY(-2px); }
-        .action-btn.loading { opacity: 0.8; cursor: wait; transform: none; }
 
         /* SEO TEXT AREA */
         .seo-info { padding: 16px; text-align: left; }
         .seo-info h2 { font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .seo-info p { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+        /* CATEGORIES MODAL (GLASSMORPHISM) */
+        .cat-popup {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255,255,255,0.85); backdrop-filter: blur(10px);
+            z-index: 200; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+            display: flex; justify-content: center; align-items: center; padding: 20px;
+        }
+        .cat-popup.active { opacity: 1; pointer-events: auto; }
+        
+        .cat-content {
+            background: var(--surface); width: 100%; max-width: 450px;
+            border-radius: 24px; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-light); position: relative;
+            transform: translateY(20px); transition: transform 0.3s ease;
+        }
+        .cat-popup.active .cat-content { transform: translateY(0); }
+
+        .cat-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        .cat-header-flex h2 { font-size: 1.4rem; font-weight: 800; color: var(--text-main); }
+        .close-cat-btn { background: none; border: none; font-size: 2.2rem; cursor: pointer; color: var(--text-muted); transition: 0.2s; line-height: 1;}
+        .close-cat-btn:hover { color: var(--text-main); transform: rotate(90deg); }
+
+        .cat-grid-ui { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        
+        .cat-btn {
+            background: var(--bg-color); border: 1px solid var(--border-focus);
+            padding: 14px; border-radius: 16px; font-size: 0.95rem; font-weight: 700;
+            color: var(--text-main); cursor: pointer; display: flex; align-items: center; gap: 10px;
+            transition: var(--transition-smooth); font-family: inherit;
+        }
+        .cat-btn:hover { background: #fdf2f8; border-color: #fbcfe8; color: #db2777; transform: translateY(-2px); }
+        .cat-btn.full-width { grid-column: 1 / -1; justify-content: center; background: #0f172a; color: white; border-color: #0f172a; }
+        .cat-btn.full-width:hover { background: #334155; transform: translateY(-2px); }
 
         /* FOOTER */
         .main-footer {
@@ -110,10 +155,10 @@
         .footer-links a:hover { opacity: 0.6; }
         .footer-copy { font-size: 0.85rem; color: var(--text-muted); }
 
-        /* STRICT MOBILE-FIRST OVERRIDES */
         @media (max-width: 900px) { .main-grid { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 700px) {
             header { align-items: center; text-align: center; }
+            .header-title-row { justify-content: center; }
             .main-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
             .seo-info { padding: 12px; }
             .seo-info h2 { font-size: 0.95rem; }
@@ -121,13 +166,17 @@
             .footer-about { max-width: 100%; text-align: center; }
             .footer-right { align-items: center; width: 100%; }
             .footer-links { justify-content: center; }
+            .cat-grid-ui { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <main class="container">
         <header>
-            <h1>WallRank</h1>
+            <div class="header-title-row">
+                <h1>WallRank</h1>
+                <button class="cat-trigger-btn" id="openCatBtn">🍡 Categories</button>
+            </div>
             <p>Premium 4K AI Wallpapers</p>
         </header>
 
@@ -155,16 +204,48 @@
         </footer>
     </main>
 
+    <div class="cat-popup" id="catPopup">
+        <div class="cat-content">
+            <div class="cat-header-flex">
+                <h2>Explore Styles</h2>
+                <button class="close-cat-btn" id="closeCatBtn">&times;</button>
+            </div>
+            <div class="cat-grid-ui">
+                <button class="cat-btn" onclick="filterGallery('anime')">🌸 Anime Art</button>
+                <button class="cat-btn" onclick="filterGallery('cozy')">🍵 Cozy Lofi</button>
+                <button class="cat-btn" onclick="filterGallery('cyberpunk')">🏙️ Cyberpunk</button>
+                <button class="cat-btn" onclick="filterGallery('samurai')">⚔️ Samurai</button>
+                <button class="cat-btn" onclick="filterGallery('nature')">🌿 Zen Nature</button>
+                <button class="cat-btn" onclick="filterGallery('tropical')">🌅 Tropical Sunset</button>
+                <button class="cat-btn" onclick="filterGallery('abstract')">🎨 Abstract</button>
+                <button class="cat-btn" onclick="filterGallery('dark')">🖤 Dark AMOLED</button>
+                <button class="cat-btn" onclick="filterGallery('pastel')">🎀 Pastels</button>
+                <button class="cat-btn full-width" onclick="filterGallery('all')">✨ Show All Wallpapers</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             'use strict';
+
+            // --- 0. CATEGORY MODAL LOGIC ---
+            const catPopup = document.getElementById('catPopup');
+            const openCatBtn = document.getElementById('openCatBtn');
+            const closeCatBtn = document.getElementById('closeCatBtn');
+
+            openCatBtn.addEventListener('click', () => catPopup.classList.add('active'));
+            closeCatBtn.addEventListener('click', () => catPopup.classList.remove('active'));
+            catPopup.addEventListener('click', (e) => {
+                if(e.target === catPopup) catPopup.classList.remove('active');
+            });
             
-            // --- HIGH QUALITY SEO TITLES AND DESCRIPTIONS ---
+            // --- 1. FULL SEO DATA ARRAY ---
             const seoData = [
                 { id: 1, ext: 'png', title: "Enchanted Waterfall & Rainbow", desc: "4K fantasy nature wallpaper featuring a magical waterfall, vivid rainbow, and sunlit forest." },
                 { id: 2, ext: 'png', title: "Starry Night Mountain Lake", desc: "Stunning 4K landscape wallpaper of a starry galaxy sky reflected in a peaceful mountain lake." },
                 { id: 3, ext: 'png', title: "Tropical Sunset Beach", desc: "Vibrant 4K summer wallpaper with a tropical beach, palm trees, and a pink sunset ocean." },
-                { id: 4, ext: 'png', title: "Majestic Mountain Sunrise", desc: "Serene 4K landscape wallpaper showing a purple sunrise reflecting on a still mountain lake." },
+                { id: 4, ext: 'png', title: "Majestic Mountain Sunrise", desc: "Serene 4K landscape nature wallpaper showing a purple sunrise reflecting on a still mountain lake." },
                 { id: 5, ext: 'png', title: "Sunlit Forest Stream", desc: "Peaceful 4K nature wallpaper of a lush green forest with sunlight glowing through the trees." },
                 { id: 6, ext: 'png', title: "Clear Blue Tropical Oasis", desc: "Bright 4K summer aesthetic wallpaper featuring a pristine beach, blue ocean, and palm trees." },
                 { id: 7, ext: 'png', title: "Alpine Lake & Snowy Peaks", desc: "Crisp 4K nature photography wallpaper of a majestic snow-capped mountain and crystal clear lake." },
@@ -179,45 +260,93 @@
                 { id: 16, ext: 'png', title: "Lofi Spring Desktop Setup", desc: "Aesthetic 4K anime wallpaper of a cozy computer desk setup with blooming cherry blossoms outside." },
                 { id: 17, ext: 'png', title: "Pastel Anime Girl", desc: "Cute 4K anime wallpaper featuring a beautiful girl in a pastel hoodie with soft, ethereal lighting." },
                 { id: 18, ext: 'png', title: "Cyberpunk Neon Rain", desc: "Dark AMOLED 4K wallpaper of a rainy cyberpunk city alley reflecting glowing neon blue and purple lights." },
-                { id: 19, ext: 'png', title: "Iridescent Liquid Glass", desc: "Elegant 4K abstract wallpaper featuring smooth, flowing iridescent liquid glass waves." },
+                { id: 19, ext: 'png', title: "Iridescent Liquid Glass", desc: "Elegant 4K abstract wallpaper featuring smooth, flowing iridescent pastel liquid glass waves." },
                 { id: 20, ext: 'jpg', title: "Aurora Borealis Night Sky", desc: "Stunning 4K nature wallpaper of the glowing green aurora borealis lights over a dark landscape." },
                 { id: 21, ext: 'jpg', title: "Samurai Under Blood Sun", desc: "Epic 4K dark fantasy wallpaper of a lone samurai warrior standing beneath a glowing red sun." },
                 { id: 22, ext: 'jpg', title: "Cherry Blossom Samurai", desc: "Cinematic 4K anime wallpaper of a fierce samurai surrounded by falling pink cherry blossoms." },
                 { id: 23, ext: 'jpg', title: "Ronin Sunset Silhouette", desc: "Dramatic 4K digital art of a samurai swordsman silhouetted against a vibrant golden hour sunset." },
                 { id: 24, ext: 'jpg', title: "Dark Samurai Warrior", desc: "Intense 4K Japanese aesthetic wallpaper of a battle-ready samurai in traditional dark armor." },
                 { id: 25, ext: 'jpg', title: "Crimson Sun Swordsman", desc: "Powerful 4K wallpaper of an anime samurai warrior drawing his katana against a blood-red sun." },
-                { id: 26, ext: 'jpg', title: "Vegeta Ultra Ego Aura", desc: "Badass 4K Dragon Ball Super wallpaper featuring Vegeta in Ultra Ego form with glowing purple aura." },
+                { id: 26, ext: 'jpg', title: "Vegeta Ultra Ego Aura", desc: "Badass 4K Dragon Ball Super anime wallpaper featuring Vegeta in Ultra Ego form with glowing purple aura." },
                 { id: 27, ext: 'jpg', title: "Naruto Cyberpunk City", desc: "Unique 4K anime crossover wallpaper of Naruto looking out over a futuristic neon cyberpunk skyline." },
-                { id: 28, ext: 'jpg', title: "Goku vs Vegeta Clash", desc: "Epic 4K Dragon Ball Z wallpaper showing a high-energy battle clash between Goku and Vegeta." },
-                { id: 29, ext: 'jpg', title: "Goku Ultra Instinct", desc: "Incredible 4K DBZ wallpaper of Goku in Mastered Ultra Instinct form with glowing blue energy." }
+                { id: 28, ext: 'jpg', title: "Goku vs Vegeta Clash", desc: "Epic 4K Dragon Ball Z anime wallpaper showing a high-energy battle clash between Goku and Vegeta." },
+                { id: 29, ext: 'jpg', title: "Goku Ultra Instinct", desc: "Incredible 4K DBZ anime wallpaper of Goku in Mastered Ultra Instinct form with glowing blue energy." }
             ];
 
+            // --- 2. RENDER THE GRID FUNCTION ---
             const grid = document.getElementById('mainWallpaperGrid');
-            let htmlContent = '';
             
-            seoData.forEach((wp) => {
-                const filename = `https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/${wp.id}.${wp.ext}`;
-                htmlContent += `
-                    <div class="grid-item">
-                        <div class="img-wrapper">
-                            <img src="${filename}" alt="${wp.title} - ${wp.desc}" loading="lazy" onerror="this.closest('.grid-item').style.display='none'">
-                            <div class="grid-actions">
-                                <button class="action-btn" onclick="downloadImage('${filename}', '${wp.id}.${wp.ext}', this)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                                    Download Free
-                                </button>
+            function renderGallery(dataArray) {
+                grid.innerHTML = ''; // Clear current grid
+                
+                if (dataArray.length === 0) {
+                    grid.innerHTML = `<p style="text-align: center; width: 100%; color: var(--text-muted); grid-column: 1 / -1; padding: 40px 0;">No wallpapers found in this category yet. Check back soon!</p>`;
+                    return;
+                }
+
+                let htmlContent = '';
+                dataArray.forEach((wp) => {
+                    const filename = `https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/${wp.id}.${wp.ext}`;
+                    htmlContent += `
+                        <div class="grid-item">
+                            <div class="img-wrapper">
+                                <img src="${filename}" alt="${wp.title} - ${wp.desc}" loading="lazy" onerror="this.closest('.grid-item').style.display='none'">
+                                <div class="grid-actions">
+                                    <button class="action-btn" onclick="downloadImage('${filename}', '${wp.id}.${wp.ext}', this)">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                        Download Free
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="seo-info">
+                                <h2>${wp.title}</h2>
+                                <p>${wp.desc}</p>
                             </div>
                         </div>
-                        <div class="seo-info">
-                            <h2>${wp.title}</h2>
-                            <p>${wp.desc}</p>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            grid.innerHTML = htmlContent;
+                    `;
+                });
+                grid.innerHTML = htmlContent;
+            }
 
+            // --- 3. FILTER LOGIC ---
+            window.filterGallery = function(category) {
+                catPopup.classList.remove('active'); // Close modal
+                
+                if (category === 'all') {
+                    renderGallery(seoData);
+                } else {
+                    // Keywords map intelligently to the titles and descriptions we wrote earlier
+                    const searchTerms = {
+                        'anime': ['anime', 'dragon ball', 'naruto', 'goku', 'vegeta'],
+                        'cozy': ['cozy', 'lofi', 'coffee', 'desk'],
+                        'cyberpunk': ['cyberpunk', 'neon', 'synthwave'],
+                        'samurai': ['samurai', 'ronin', 'katana', 'japanese'],
+                        'nature': ['nature', 'mountain', 'forest', 'lake', 'waterfall', 'aurora'],
+                        'tropical': ['tropical', 'beach', 'sunset', 'ocean', 'summer'],
+                        'abstract': ['abstract', 'liquid', 'marble', 'glass'],
+                        'dark': ['dark', 'amoled', 'black'],
+                        'pastel': ['pastel', 'ethereal', 'butterfly', 'pink']
+                    };
+                    
+                    const terms = searchTerms[category] || [];
+                    
+                    const filteredData = seoData.filter(wp => {
+                        const textToSearch = (wp.title + " " + wp.desc).toLowerCase();
+                        // Returns true if ANY of the search terms are found in the title or description
+                        return terms.some(term => textToSearch.includes(term));
+                    });
+                    
+                    renderGallery(filteredData);
+                }
+                
+                // Smooth scroll back to top of gallery after filtering
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            // Initial render on page load
+            renderGallery(seoData);
+
+            // --- 4. SECURE DOWNLOAD LOGIC ---
             window.downloadImage = async function(fileUrl, fileName, btnElement) {
                 if (btnElement.innerText === '⏳ Fetching...') return;
                 const originalContent = btnElement.innerHTML;
@@ -241,6 +370,7 @@
                     btnElement.innerHTML = originalContent;
                 }
             };
+            
             gtag('event', 'page_view', { 'page_title': 'Pure Gallery', 'page_location': 'https://wallrank.club' });
         });
     </script>
