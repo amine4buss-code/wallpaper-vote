@@ -41,6 +41,7 @@
             padding: 30px 24px;
             display: flex; flex-direction: column; align-items: center;
             min-height: 100vh; -webkit-font-smoothing: antialiased;
+            overflow-x: hidden; /* prevents scrollbar during love animation */
         }
         
         .container { max-width: 1200px; width: 100%; display: flex; flex-direction: column; position: relative; flex: 1; }
@@ -50,11 +51,15 @@
             width: 100%; display: flex; flex-direction: column; align-items: flex-start;
             margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border-light);
         }
+        .header-top {
+            width: 100%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;
+        }
         .header-title-row {
             display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
         }
         header h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.04em; }
         
+        /* CUTE BUTTONS */
         .cat-trigger-btn {
             background: #fdf2f8; border: 2px solid #fce7f3; color: #db2777;
             padding: 6px 16px; border-radius: 50px; font-size: 0.95rem; font-weight: 700;
@@ -63,6 +68,14 @@
         }
         .cat-trigger-btn:hover { background: #fce7f3; transform: translateY(-2px); box-shadow: 0 6px 14px rgba(219, 39, 119, 0.15); }
         
+        .thanks-btn {
+            background: #fff1f2; border: 2px solid #ffe4e6; color: #e11d48;
+            padding: 8px 18px; border-radius: 14px; font-size: 0.95rem; font-weight: 800;
+            font-family: inherit; cursor: pointer; display: flex; align-items: center; gap: 6px;
+            transition: var(--transition-smooth); box-shadow: 0 4px 10px rgba(225, 29, 72, 0.1);
+        }
+        .thanks-btn:hover { background: #ffe4e6; transform: scale(1.05) rotate(3deg); box-shadow: 0 6px 14px rgba(225, 29, 72, 0.2); }
+
         header p { color: var(--text-muted); font-weight: 600; font-size: 0.95rem; margin-top: 8px;}
 
         /* MAIN WALLPAPER GRID */
@@ -144,7 +157,6 @@
         
         .mockup-env {
             position: relative; width: 100%; max-width: 900px; aspect-ratio: 16/9;
-            /* High-quality dark room aesthetic image */
             background-image: url('https://images.unsplash.com/photo-1616423640778-28d1b53229bd?q=80&w=1920&auto=format&fit=crop'); 
             background-size: cover; background-position: center;
             border-radius: 16px; box-shadow: 0 30px 60px rgba(0,0,0,0.8);
@@ -152,23 +164,18 @@
             transform: scale(0.95); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .mockup-popup.active .mockup-env { transform: scale(1); }
-        
-        /* Dark overlay */
         .mockup-env::before { content: ''; position: absolute; inset: 0; background: rgba(15, 23, 42, 0.7); }
 
         /* DYNAMIC MONITOR SCREEN */
         .mockup-screen {
             position: relative; 
-            /* Start state (Phone aspect ratio) */
-            width: 25%; aspect-ratio: 9/16; 
+            width: 25%; aspect-ratio: 9/16; /* Starts as Phone */
             background: #000; border: 12px solid #0a0a0a; border-radius: 16px;
             box-shadow: 0 0 50px rgba(255,255,255,0.1), 0 20px 40px rgba(0,0,0,0.5); z-index: 2;
             overflow: hidden;
-            /* Smooth transition when shape changes */
             transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
         }
         
-        /* Base stand for the monitor (appears only in desktop mode) */
         .mockup-screen::after {
             content: ''; position: absolute; bottom: -24px; left: 50%; transform: translateX(-50%);
             width: 80px; height: 12px; background: #222; border-radius: 0 0 4px 4px;
@@ -178,13 +185,12 @@
         /* DEVICE STATES */
         .mockup-screen.is-tablet { width: 45%; aspect-ratio: 4/3; border-radius: 12px; }
         .mockup-screen.is-desktop { width: 55%; aspect-ratio: 16/9; border-radius: 8px; }
-        .mockup-screen.is-desktop::after { opacity: 1; } /* Show stand */
+        .mockup-screen.is-desktop::after { opacity: 1; } 
 
         .mockup-screen img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 10s ease; }
-        /* Add a slight slow zoom to the image inside to make it feel alive */
         .mockup-popup.active .mockup-screen img { transform: scale(1.05); } 
 
-        /* The 8-second countdown timer bar */
+        /* TIMER BAR */
         .mockup-timer {
             position: absolute; bottom: 0; left: 0; height: 6px; background: #db2777;
             width: 100%; transform-origin: left; z-index: 10;
@@ -195,6 +201,16 @@
         .mockup-hint {
             position: absolute; top: 30px; color: rgba(255,255,255,0.6);
             font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; z-index: 5;
+        }
+
+        /* LOVE ANIMATION ELEMENTS */
+        .floating-love {
+            position: fixed; bottom: -50px; z-index: 9999;
+            pointer-events: none; animation: floatUp 4.5s ease-in forwards;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0.8) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-110vh) scale(1.5) rotate(360deg); opacity: 0; }
         }
 
         /* FOOTER */
@@ -215,6 +231,7 @@
         @media (max-width: 900px) { .main-grid { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 700px) {
             header { align-items: center; text-align: center; }
+            .header-top { justify-content: center; flex-direction: column; gap: 20px; }
             .header-title-row { justify-content: center; }
             .main-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
             .seo-info { padding: 12px; }
@@ -228,7 +245,6 @@
             /* Adjust mockup for mobile */
             .mockup-env { aspect-ratio: 4/5; }
             .mockup-hint { font-size: 0.8rem; top: 20px; text-align: center; width: 100%; }
-            /* Resize device states for smaller screen */
             .mockup-screen { width: 55%; border-width: 6px; } 
             .mockup-screen.is-tablet { width: 75%; }
             .mockup-screen.is-desktop { width: 90%; }
@@ -238,9 +254,12 @@
 <body>
     <main class="container">
         <header>
-            <div class="header-title-row">
-                <h1>WallRank</h1>
-                <button class="cat-trigger-btn" id="openCatBtn">🍡 Categories</button>
+            <div class="header-top">
+                <div class="header-title-row">
+                    <h1>WallRank</h1>
+                    <button class="cat-trigger-btn" id="openCatBtn">🍡 Categories</button>
+                </div>
+                <button class="thanks-btn" id="thanksBtn">💌 Thanks!</button>
             </div>
             <p>Premium 4K AI Wallpapers</p>
         </header>
@@ -311,6 +330,7 @@
             const mockupPopup = document.getElementById('mockupPopup');
             const mockupScreenImg = document.getElementById('mockupScreenImg');
             const mockupScreenContainer = document.getElementById('mockupScreenContainer');
+            const thanksBtn = document.getElementById('thanksBtn');
 
             openCatBtn.addEventListener('click', () => catPopup.classList.add('active'));
             closeCatBtn.addEventListener('click', () => catPopup.classList.remove('active'));
@@ -318,9 +338,38 @@
                 if(e.target === catPopup) catPopup.classList.remove('active');
             });
             
-            // Allow user to click anywhere to close the 8s preview early
             mockupPopup.addEventListener('click', () => {
                 closePreview();
+            });
+
+            // --- THE 5-SECOND LOVE ANIMATION ---
+            thanksBtn.addEventListener('click', () => {
+                if (thanksBtn.disabled) return;
+                thanksBtn.disabled = true; // Prevent spamming
+                
+                const loveContainer = document.createElement('div');
+                document.body.appendChild(loveContainer);
+                
+                const icons = ['💖', '✨', '🌸', '💌', '🥰'];
+                
+                // Generate 30 floating elements over a short sequence
+                for(let i = 0; i < 30; i++) {
+                    setTimeout(() => {
+                        const icon = document.createElement('div');
+                        icon.className = 'floating-love';
+                        icon.innerText = icons[Math.floor(Math.random() * icons.length)];
+                        icon.style.left = Math.random() * 95 + 'vw';
+                        icon.style.fontSize = (Math.random() * 1.5 + 1.5) + 'rem';
+                        icon.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                        loveContainer.appendChild(icon);
+                    }, i * 100);
+                }
+                
+                // Clean up after 5 seconds
+                setTimeout(() => {
+                    loveContainer.remove();
+                    thanksBtn.disabled = false;
+                }, 5500);
             });
 
             // --- 1. FULL SEO DATA ARRAY ---
@@ -421,38 +470,40 @@
             renderGallery(seoData);
 
             // --- 4. 8-SECOND DYNAMIC PREVIEW LOGIC ---
-            window.previewTimers = []; // Array to hold animation timers
+            window.previewTimers = []; 
             
             function closePreview() {
                 mockupPopup.classList.remove('active');
-                // Clear all running animation timers
                 window.previewTimers.forEach(timer => clearTimeout(timer));
                 window.previewTimers = [];
             }
 
             window.showPreview = function(imgUrl) {
                 event.stopPropagation();
+                closePreview(); 
                 
-                // Reset screen to Phone state
-                mockupScreenContainer.className = 'mockup-screen';
+                // 1. FORCED REFLOW FIX: Ensure it instantly snaps back to Phone shape
+                mockupScreenContainer.style.transition = 'none'; // Turn off animation temporarily
+                mockupScreenContainer.className = 'mockup-screen'; // Set to phone
+                void mockupScreenContainer.offsetWidth; // Force the browser to register the change instantly
+                mockupScreenContainer.style.transition = 'all 0.6s cubic-bezier(0.25, 1, 0.5, 1)'; // Turn animation back on
+                
+                // 2. Load the image and show popup
                 mockupScreenImg.src = imgUrl; 
-                mockupPopup.classList.add('active'); 
-                
-                closePreview(); // Clear existing timers to prevent bugs
                 mockupPopup.classList.add('active');
 
-                // Sequence the device shape changes
-                // 1. Switch to Tablet at 2.5 seconds
+                // 3. Perfect 8-Second Timing Sequence
+                // Change to Tablet shape at 2 seconds
                 window.previewTimers.push(setTimeout(() => {
                     mockupScreenContainer.classList.add('is-tablet');
-                }, 2500));
+                }, 2000));
 
-                // 2. Switch to Desktop at 5 seconds
+                // Change to Desktop shape at 4 seconds
                 window.previewTimers.push(setTimeout(() => {
                     mockupScreenContainer.classList.replace('is-tablet', 'is-desktop');
-                }, 5000));
+                }, 4000));
 
-                // 3. Close completely at 8 seconds
+                // Close automatically at exactly 8 seconds
                 window.previewTimers.push(setTimeout(() => {
                     closePreview();
                 }, 8000));
