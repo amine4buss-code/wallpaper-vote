@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | WallRank</title>
+    <style>
+        body { font-family: 'Quicksand', sans-serif; padding: 40px 20px; max-width: 800px; margin: auto; color: #0f172a; line-height: 1.6; }
+        a { color: #db2777; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Privacy Policy</h1>
+    <p>Last updated: 2026</p>
+    <p>Welcome to WallRank. We respect your privacy. We use standard Google Analytics to understand how many people visit our site to download our free 4K wallpapers. We do not ask for, collect, or sell your personal information (like names or emails) to use our gallery.</p>
+    <br>
+    <a href="/">&larr; Back to WallRank Gallery</a>
+</body>
+</html>
