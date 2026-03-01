@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://www.wallrank.club/sitemap.xml
+Sitemap: https://wallrank.club/sitemap.xml
