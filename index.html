@@ -223,6 +223,17 @@
             font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; z-index: 5;
         }
 
+        /* DRAG AND DROP OVERLAY */
+        .drop-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(79, 70, 229, 0.85); backdrop-filter: blur(8px);
+            color: white; font-size: 2.5rem; font-weight: 800; letter-spacing: -0.02em;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.2s ease;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .drop-overlay.active { opacity: 1; pointer-events: all; }
+
         /* LOVE ANIMATION ELEMENTS */
         .floating-love {
             position: fixed; bottom: -50px; z-index: 9999;
@@ -261,6 +272,7 @@
             .footer-right { align-items: center; width: 100%; }
             .footer-links { justify-content: center; }
             .cat-grid-ui { grid-template-columns: 1fr; }
+            .drop-overlay { font-size: 1.8rem; text-align: center; padding: 20px; }
             
             /* Adjust mockup for mobile */
             .mockup-env { aspect-ratio: 4/5; }
@@ -273,6 +285,8 @@
     </style>
 </head>
 <body>
+    <div class="drop-overlay" id="dropOverlay">📁 Drop image here to test!</div>
+
     <main class="container">
         <header>
             <div class="header-top">
@@ -357,6 +371,7 @@
             const thanksBtn = document.getElementById('thanksBtn');
             const testOwnBtn = document.getElementById('testOwnBtn');
             const customImageInput = document.getElementById('customImageInput');
+            const dropOverlay = document.getElementById('dropOverlay');
 
             openCatBtn.addEventListener('click', () => catPopup.classList.add('active'));
             closeCatBtn.addEventListener('click', () => catPopup.classList.remove('active'));
@@ -368,7 +383,34 @@
                 closePreview();
             });
 
-            // --- CUSTOM IMAGE UPLOAD LOGIC ---
+            // --- GLOBAL DRAG AND DROP LOGIC ---
+            window.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropOverlay.classList.add('active');
+            });
+
+            window.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                // Ensure it only disappears when leaving the main window
+                if (e.clientX === 0 || e.clientY === 0) {
+                    dropOverlay.classList.remove('active');
+                }
+            });
+
+            window.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropOverlay.classList.remove('active');
+                
+                if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                    const file = e.dataTransfer.files[0];
+                    if (file.type.startsWith('image/')) {
+                        const imgUrl = URL.createObjectURL(file);
+                        window.showPreview(imgUrl);
+                    }
+                }
+            });
+
+            // --- CUSTOM IMAGE UPLOAD LOGIC (BUTTON CLICK) ---
             testOwnBtn.addEventListener('click', () => {
                 customImageInput.click();
             });
@@ -377,11 +419,8 @@
                 const file = e.target.files[0];
                 if (file) {
                     const imgUrl = URL.createObjectURL(file);
-                    // Trigger the existing preview function with the user's custom image
                     window.showPreview(imgUrl);
-                    
-                    // Reset the input so they can upload the same file again if they want
-                    this.value = '';
+                    this.value = ''; // Reset input
                 }
             });
 
@@ -395,7 +434,6 @@
                 
                 const icons = ['💖', '✨', '🌸', '💌', '🥰'];
                 
-                // Generate 30 floating elements over a short sequence
                 for(let i = 0; i < 30; i++) {
                     setTimeout(() => {
                         const icon = document.createElement('div');
@@ -408,7 +446,6 @@
                     }, i * 100);
                 }
                 
-                // Clean up after 5 seconds
                 setTimeout(() => {
                     loveContainer.remove();
                     thanksBtn.disabled = false;
