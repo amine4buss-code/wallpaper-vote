@@ -70,6 +70,14 @@
         }
         .cat-trigger-btn:hover { background: #fce7f3; transform: translateY(-2px); box-shadow: 0 6px 14px rgba(219, 39, 119, 0.15); }
         
+        .test-own-btn {
+            background: #eef2ff; border: 2px solid #e0e7ff; color: #4f46e5;
+            padding: 6px 16px; border-radius: 50px; font-size: 0.95rem; font-weight: 700;
+            font-family: inherit; cursor: pointer; display: flex; align-items: center; gap: 6px;
+            transition: var(--transition-smooth); box-shadow: 0 4px 10px rgba(79, 70, 229, 0.1);
+        }
+        .test-own-btn:hover { background: #e0e7ff; transform: translateY(-2px); box-shadow: 0 6px 14px rgba(79, 70, 229, 0.15); }
+
         .thanks-btn {
             background: #fff1f2; border: 2px solid #ffe4e6; color: #e11d48;
             padding: 8px 18px; border-radius: 14px; font-size: 0.95rem; font-weight: 800;
@@ -260,6 +268,7 @@
                 <div class="header-title-row">
                     <h1>WallRank</h1>
                     <button class="cat-trigger-btn" id="openCatBtn">🍡 Categories</button>
+                    <button class="test-own-btn" id="testOwnBtn">✨ Test Your Own</button>
                 </div>
                 <button class="thanks-btn" id="thanksBtn">💌 Thanks!</button>
             </div>
@@ -289,6 +298,8 @@
             </div>
         </footer>
     </main>
+
+    <input type="file" id="customImageInput" accept="image/*" style="display: none;">
 
     <div class="cat-popup" id="catPopup">
         <div class="cat-content">
@@ -333,6 +344,8 @@
             const mockupScreenImg = document.getElementById('mockupScreenImg');
             const mockupScreenContainer = document.getElementById('mockupScreenContainer');
             const thanksBtn = document.getElementById('thanksBtn');
+            const testOwnBtn = document.getElementById('testOwnBtn');
+            const customImageInput = document.getElementById('customImageInput');
 
             openCatBtn.addEventListener('click', () => catPopup.classList.add('active'));
             closeCatBtn.addEventListener('click', () => catPopup.classList.remove('active'));
@@ -342,6 +355,23 @@
             
             mockupPopup.addEventListener('click', () => {
                 closePreview();
+            });
+
+            // --- CUSTOM IMAGE UPLOAD LOGIC ---
+            testOwnBtn.addEventListener('click', () => {
+                customImageInput.click();
+            });
+
+            customImageInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const imgUrl = URL.createObjectURL(file);
+                    // Trigger the existing preview function with the user's custom image
+                    window.showPreview(imgUrl);
+                    
+                    // Reset the input so they can upload the same file again if they want
+                    this.value = '';
+                }
             });
 
             // --- THE 5-SECOND LOVE ANIMATION ---
@@ -483,7 +513,9 @@
             }
 
             window.showPreview = function(imgUrl) {
-                event.stopPropagation();
+                // If the click came from an event (like on the gallery), stop it from bubbling
+                if (window.event) window.event.stopPropagation();
+                
                 closePreview(); 
                 
                 // 1. FORCED REFLOW FIX: Ensure it instantly snaps back to Phone shape
