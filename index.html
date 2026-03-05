@@ -36,14 +36,18 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
 
+        /* ELIMINATE THE SCROLLBAR */
+        ::-webkit-scrollbar { display: none; }
         body {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
             font-family: 'Quicksand', sans-serif;
             background: var(--bg-color);
             color: var(--text-main);
             padding: 30px 24px;
             display: flex; flex-direction: column; align-items: center;
             min-height: 100vh; -webkit-font-smoothing: antialiased;
-            overflow-x: hidden; /* prevents scrollbar during love animation */
+            overflow-x: hidden; 
         }
         
         .container { max-width: 1200px; width: 100%; display: flex; flex-direction: column; position: relative; flex: 1; }
@@ -57,26 +61,28 @@
             width: 100%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;
         }
         .header-title-row {
-            display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+            display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
         }
-        header h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.04em; }
+        header h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.04em; margin-right: 10px; }
         
         /* CUTE BUTTONS */
-        .cat-trigger-btn {
-            background: #fdf2f8; border: 2px solid #fce7f3; color: #db2777;
-            padding: 6px 16px; border-radius: 50px; font-size: 0.95rem; font-weight: 700;
+        .header-btn {
+            padding: 6px 14px; border-radius: 50px; font-size: 0.9rem; font-weight: 700;
             font-family: inherit; cursor: pointer; display: flex; align-items: center; gap: 6px;
-            transition: var(--transition-smooth); box-shadow: 0 4px 10px rgba(219, 39, 119, 0.1);
+            transition: var(--transition-smooth); 
         }
+        
+        .cat-trigger-btn { background: #fdf2f8; border: 2px solid #fce7f3; color: #db2777; box-shadow: 0 4px 10px rgba(219, 39, 119, 0.1); }
         .cat-trigger-btn:hover { background: #fce7f3; transform: translateY(-2px); box-shadow: 0 6px 14px rgba(219, 39, 119, 0.15); }
         
-        .test-own-btn {
-            background: #eef2ff; border: 2px solid #e0e7ff; color: #4f46e5;
-            padding: 6px 16px; border-radius: 50px; font-size: 0.95rem; font-weight: 700;
-            font-family: inherit; cursor: pointer; display: flex; align-items: center; gap: 6px;
-            transition: var(--transition-smooth); box-shadow: 0 4px 10px rgba(79, 70, 229, 0.1);
-        }
+        .test-own-btn { background: #eef2ff; border: 2px solid #e0e7ff; color: #4f46e5; box-shadow: 0 4px 10px rgba(79, 70, 229, 0.1); }
         .test-own-btn:hover { background: #e0e7ff; transform: translateY(-2px); box-shadow: 0 6px 14px rgba(79, 70, 229, 0.15); }
+
+        .puzzle-btn { background: #fffbeb; border: 2px solid #fef3c7; color: #d97706; box-shadow: 0 4px 10px rgba(217, 119, 6, 0.1); }
+        .puzzle-btn:hover { background: #fef3c7; transform: translateY(-2px); box-shadow: 0 6px 14px rgba(217, 119, 6, 0.15); }
+
+        .footage-btn { background: #f0fdf4; border: 2px solid #dcfce7; color: #16a34a; box-shadow: 0 4px 10px rgba(22, 163, 74, 0.1); }
+        .footage-btn:hover { background: #dcfce7; transform: translateY(-2px); box-shadow: 0 6px 14px rgba(22, 163, 74, 0.15); }
 
         .thanks-btn {
             background: #fff1f2; border: 2px solid #ffe4e6; color: #e11d48;
@@ -90,7 +96,7 @@
 
         /* MAIN WALLPAPER GRID */
         .main-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; width: 100%; margin-bottom: 60px;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; width: 100%; margin-bottom: 30px;
         }
         .grid-item {
             position: relative; background: var(--surface); 
@@ -129,6 +135,36 @@
         .seo-info { padding: 16px; text-align: left; }
         .seo-info h2 { font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .seo-info p { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+        /* GAMING UI PAGINATION CONTROLS */
+        .pagination-controls {
+            display: flex; justify-content: center; align-items: center; gap: 20px;
+            width: 100%; margin-bottom: 50px;
+        }
+        .page-btn {
+            background: #0f172a; color: #00ffcc; border: 2px solid #00ffcc;
+            padding: 10px 24px; font-weight: 800; font-size: 1.1rem; letter-spacing: 2px;
+            text-transform: uppercase; border-radius: 8px; cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.2), inset 0 0 10px rgba(0, 255, 204, 0.1);
+            transition: all 0.2s ease; position: relative; overflow: hidden; outline: none;
+        }
+        .page-btn:hover {
+            background: #00ffcc; color: #0f172a;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.6); transform: translateY(-2px);
+        }
+        .page-btn.alive-reaction {
+            animation: gamingPulse 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .page-info {
+            font-weight: 800; color: var(--text-muted); font-size: 1rem; letter-spacing: 2px;
+            background: var(--surface); padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border-focus);
+        }
+
+        @keyframes gamingPulse {
+            0% { transform: scale(0.9); box-shadow: 0 0 40px #00ffcc; background: #ffffff; color: #0f172a; }
+            50% { transform: scale(1.1); box-shadow: 0 0 20px #00ffcc; }
+            100% { transform: scale(1); box-shadow: 0 0 10px rgba(0,255,204,0.2); }
+        }
 
         /* CATEGORIES MODAL */
         .cat-popup {
@@ -176,7 +212,6 @@
         .mockup-popup.active .mockup-env { transform: scale(1); }
         .mockup-env::before { content: ''; position: absolute; inset: 0; background: rgba(15, 23, 42, 0.7); }
 
-        /* NEW: STUNNING ANIMATED LABEL */
         .mockup-label {
             position: absolute; top: 40px; color: #ffffff;
             font-size: 1.6rem; font-weight: 800; letter-spacing: 2px;
@@ -188,53 +223,35 @@
         }
         .mockup-label.hidden { opacity: 0; transform: translateY(-15px); }
 
-        /* DYNAMIC MONITOR SCREEN & ALL SHAPES */
         .mockup-screen {
-            position: relative; 
-            width: 25%; aspect-ratio: 9/16; /* 1. Phone (Default) */
+            position: relative; width: 25%; aspect-ratio: 9/16; 
             background: #000; border: 12px solid #0a0a0a; border-radius: 16px;
             box-shadow: 0 0 50px rgba(255,255,255,0.1), 0 20px 40px rgba(0,0,0,0.5); z-index: 2;
-            overflow: hidden;
-            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); 
+            overflow: hidden; transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); 
         }
-        
-        .mockup-screen::after { /* The Desktop Stand */
+        .mockup-screen::after { 
             content: ''; position: absolute; bottom: -24px; left: 50%; transform: translateX(-50%);
             width: 80px; height: 12px; background: #222; border-radius: 0 0 4px 4px;
             opacity: 0; transition: opacity 0.3s;
         }
 
-        /* 2. Tablet */
         .mockup-screen.is-tablet { width: 45%; aspect-ratio: 4/3; border-radius: 12px; }
-        
-        /* 3. Desktop */
         .mockup-screen.is-desktop { width: 55%; aspect-ratio: 16/9; border-radius: 8px; }
         .mockup-screen.is-desktop::after { opacity: 1; } 
-        
-        /* 4. Social Profile */
         .mockup-screen.is-profile { width: 30%; aspect-ratio: 1/1; border-radius: 50%; border: 6px solid #ffffff; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
         .mockup-screen.is-profile::after { opacity: 0; } 
-
-        /* 5. Book Cover */
         .mockup-screen.is-book { width: 32%; aspect-ratio: 2/3; border-radius: 4px 18px 18px 4px; border: none; box-shadow: inset 15px 0 25px rgba(0,0,0,0.5), 0 15px 40px rgba(0,0,0,0.7); }
         .mockup-screen.is-book::after { opacity: 0; }
-
-        /* 6. Phone Case */
         .mockup-screen.is-phonecase { width: 24%; aspect-ratio: 9/19.5; border-radius: 36px; border: 6px solid #1a1a1a; box-shadow: inset 0 0 20px rgba(255,255,255,0.1), 0 20px 50px rgba(0,0,0,0.5); }
         .mockup-screen.is-phonecase::after { opacity: 0; }
-
-        /* 7. Mouse Pad */
         .mockup-screen.is-mousepad { width: 75%; aspect-ratio: 21/9; border-radius: 12px; border: 2px solid #111; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
         .mockup-screen.is-mousepad::after { opacity: 0; }
-
-        /* 8. Basic Table / Mat */
         .mockup-screen.is-table { width: 100%; aspect-ratio: 16/9; border-radius: 0; border: none; box-shadow: none; }
         .mockup-screen.is-table::after { opacity: 0; }
 
         .mockup-screen img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 20s ease; }
         .mockup-popup.active .mockup-screen img { transform: scale(1.1); } 
 
-        /* TIMER BAR (UPDATED TO 20 SECONDS) */
         .mockup-timer {
             position: absolute; bottom: 0; left: 0; height: 6px; background: #db2777;
             width: 100%; transform-origin: left; z-index: 10;
@@ -258,15 +275,11 @@
         }
         .drop-overlay.active { opacity: 1; pointer-events: all; }
 
-        /* LOVE ANIMATION ELEMENTS */
+        /* LOVE ANIMATION */
         .floating-love {
-            position: fixed; bottom: -50px; z-index: 9999;
-            pointer-events: none; animation: floatUp 4.5s ease-in forwards;
+            position: fixed; bottom: -50px; z-index: 9999; pointer-events: none; animation: floatUp 4.5s ease-in forwards;
         }
-        @keyframes floatUp {
-            0% { transform: translateY(0) scale(0.8) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-110vh) scale(1.5) rotate(360deg); opacity: 0; }
-        }
+        @keyframes floatUp { 0% { transform: translateY(0) scale(0.8) rotate(0deg); opacity: 1; } 100% { transform: translateY(-110vh) scale(1.5) rotate(360deg); opacity: 0; } }
 
         /* FOOTER */
         .main-footer {
@@ -288,7 +301,7 @@
             header { align-items: center; text-align: center; }
             .header-top { justify-content: center; flex-direction: column; gap: 20px; }
             .header-title-row { justify-content: center; }
-            .main-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .main-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px;}
             .seo-info { padding: 12px; }
             .seo-info h2 { font-size: 0.95rem; }
             .main-footer { flex-direction: column; align-items: center; text-align: center; }
@@ -297,6 +310,8 @@
             .footer-links { justify-content: center; }
             .cat-grid-ui { grid-template-columns: 1fr; }
             .drop-overlay { font-size: 1.8rem; text-align: center; padding: 20px; }
+            .pagination-controls { flex-direction: row; gap: 10px; }
+            .page-btn { padding: 8px 16px; font-size: 0.9rem; }
             
             /* Adjust mockup sizes for mobile to fit on screen */
             .mockup-env { aspect-ratio: 4/5; }
@@ -320,8 +335,10 @@
             <div class="header-top">
                 <div class="header-title-row">
                     <h1>WallRank</h1>
-                    <button class="cat-trigger-btn" id="openCatBtn">🍡 Categories</button>
-                    <button class="test-own-btn" id="testOwnBtn">✨ Test Your Own</button>
+                    <button class="header-btn cat-trigger-btn" id="openCatBtn">🍡 Categories</button>
+                    <button class="header-btn test-own-btn" id="testOwnBtn">✨ Test Your Own</button>
+                    <button class="header-btn puzzle-btn" onclick="alert('Puzzle feature coming soon!')">🧩 Play Puzzle</button>
+                    <button class="header-btn footage-btn" onclick="alert('Stock footage coming soon!')">🎥 Footage</button>
                 </div>
                 <button class="thanks-btn" id="thanksBtn">💌 Thanks!</button>
             </div>
@@ -332,6 +349,9 @@
             <div class="main-grid" id="mainWallpaperGrid">
                 <p style="text-align: center; width: 100%; color: var(--text-muted); grid-column: 1 / -1;">Loading high quality gallery...</p>
             </div>
+            
+            <div class="pagination-controls" id="paginationControls">
+                </div>
         </section>
 
         <footer class="main-footer">
@@ -390,7 +410,6 @@
         document.addEventListener("DOMContentLoaded", function() {
             'use strict';
 
-            // --- 0. UI ELEMENTS LOGIC ---
             const catPopup = document.getElementById('catPopup');
             const openCatBtn = document.getElementById('openCatBtn');
             const closeCatBtn = document.getElementById('closeCatBtn');
@@ -409,28 +428,16 @@
                 if(e.target === catPopup) catPopup.classList.remove('active');
             });
             
-            mockupPopup.addEventListener('click', () => {
-                closePreview();
-            });
+            mockupPopup.addEventListener('click', () => { closePreview(); });
 
             // --- GLOBAL DRAG AND DROP LOGIC ---
-            window.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                dropOverlay.classList.add('active');
-            });
-
+            window.addEventListener('dragover', (e) => { e.preventDefault(); dropOverlay.classList.add('active'); });
             window.addEventListener('dragleave', (e) => {
                 e.preventDefault();
-                // Ensure it only disappears when leaving the main window
-                if (e.clientX === 0 || e.clientY === 0) {
-                    dropOverlay.classList.remove('active');
-                }
+                if (e.clientX === 0 || e.clientY === 0) dropOverlay.classList.remove('active');
             });
-
             window.addEventListener('drop', (e) => {
-                e.preventDefault();
-                dropOverlay.classList.remove('active');
-                
+                e.preventDefault(); dropOverlay.classList.remove('active');
                 if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
                     const file = e.dataTransfer.files[0];
                     if (file.type.startsWith('image/')) {
@@ -440,28 +447,23 @@
                 }
             });
 
-            // --- CUSTOM IMAGE UPLOAD LOGIC (BUTTON CLICK) ---
-            testOwnBtn.addEventListener('click', () => {
-                customImageInput.click();
-            });
-
+            // --- CUSTOM IMAGE UPLOAD LOGIC ---
+            testOwnBtn.addEventListener('click', () => { customImageInput.click(); });
             customImageInput.addEventListener('change', function(e) {
                 const file = e.target.files[0];
                 if (file) {
                     const imgUrl = URL.createObjectURL(file);
                     window.showPreview(imgUrl);
-                    this.value = ''; // Reset input
+                    this.value = ''; 
                 }
             });
 
             // --- THE 5-SECOND LOVE ANIMATION ---
             thanksBtn.addEventListener('click', () => {
                 if (thanksBtn.disabled) return;
-                thanksBtn.disabled = true; // Prevent spamming
-                
+                thanksBtn.disabled = true; 
                 const loveContainer = document.createElement('div');
                 document.body.appendChild(loveContainer);
-                
                 const icons = ['💖', '✨', '🌸', '💌', '🥰'];
                 
                 for(let i = 0; i < 30; i++) {
@@ -475,11 +477,7 @@
                         loveContainer.appendChild(icon);
                     }, i * 100);
                 }
-                
-                setTimeout(() => {
-                    loveContainer.remove();
-                    thanksBtn.disabled = false;
-                }, 5500);
+                setTimeout(() => { loveContainer.remove(); thanksBtn.disabled = false; }, 5500);
             });
 
             // --- 1. FULL SEO DATA ARRAY ---
@@ -518,18 +516,32 @@
                 { id: 33, ext: 'jpg', title: "Spring Cherry Blossom Desk", desc: "Aesthetic 4K cozy minimalist desk setup with pastel pink cherry blossoms and bright morning nature sunlight." }
             ];
 
-            // --- 2. RENDER THE GRID ---
+            // --- 2. PAGINATION & RENDER LOGIC ---
             const grid = document.getElementById('mainWallpaperGrid');
+            const paginationControls = document.getElementById('paginationControls');
             
-            function renderGallery(dataArray) {
+            let currentData = seoData; // Holds active filtered category
+            let currentPage = 1;
+            const itemsPerPage = 8; // STRICTLY 8 ITEMS PER PAGE
+
+            function renderGallery(dataArray, page = 1) {
+                currentData = dataArray;
+                currentPage = page;
                 grid.innerHTML = ''; 
+                
                 if (dataArray.length === 0) {
                     grid.innerHTML = `<p style="text-align: center; width: 100%; color: var(--text-muted); grid-column: 1 / -1; padding: 40px 0;">No wallpapers found in this category yet. Check back soon!</p>`;
+                    paginationControls.innerHTML = '';
                     return;
                 }
 
+                // Slice the data for the current page
+                const startIndex = (page - 1) * itemsPerPage;
+                const endIndex = startIndex + itemsPerPage;
+                const pageItems = dataArray.slice(startIndex, endIndex);
+
                 let htmlContent = '';
-                dataArray.forEach((wp) => {
+                pageItems.forEach((wp) => {
                     const filename = `https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/${wp.id}.${wp.ext}`;
                     htmlContent += `
                         <div class="grid-item">
@@ -551,13 +563,51 @@
                     `;
                 });
                 grid.innerHTML = htmlContent;
+                renderPagination(dataArray.length, page);
             }
+
+            function renderPagination(totalItems, page) {
+                const totalPages = Math.ceil(totalItems / itemsPerPage);
+                paginationControls.innerHTML = '';
+
+                if (totalPages <= 1) return; // Hide buttons if only 1 page
+
+                let buttonsHTML = '';
+                
+                if (page > 1) {
+                    buttonsHTML += `<button class="page-btn" onclick="changePage(${page - 1}, this)">◀ PREV</button>`;
+                } else {
+                    buttonsHTML += `<div style="width: 100px;"></div>`; // Spacer to keep center balanced
+                }
+
+                buttonsHTML += `<span class="page-info">PAGE ${page} / ${totalPages}</span>`;
+
+                if (page < totalPages) {
+                    buttonsHTML += `<button class="page-btn" onclick="changePage(${page + 1}, this)">NEXT ▶</button>`;
+                } else {
+                    buttonsHTML += `<div style="width: 100px;"></div>`; // Spacer
+                }
+
+                paginationControls.innerHTML = buttonsHTML;
+            }
+
+            // GAMING UI CLICK REACTION
+            window.changePage = function(newPage, btnElement) {
+                btnElement.classList.add('alive-reaction');
+                
+                // Wait for the pulse animation to finish before snapping to the top
+                setTimeout(() => {
+                    btnElement.classList.remove('alive-reaction');
+                    renderGallery(currentData, newPage);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 300);
+            };
 
             // --- 3. FILTER LOGIC ---
             window.filterGallery = function(category) {
                 catPopup.classList.remove('active'); 
                 if (category === 'all') {
-                    renderGallery(seoData);
+                    renderGallery(seoData, 1); // Reset to page 1
                 } else {
                     const searchTerms = {
                         'anime': ['anime', 'dragon ball', 'naruto', 'goku', 'vegeta'],
@@ -575,14 +625,15 @@
                         const textToSearch = (wp.title + " " + wp.desc).toLowerCase();
                         return terms.some(term => textToSearch.includes(term));
                     });
-                    renderGallery(filteredData);
+                    renderGallery(filteredData, 1); // Reset to page 1
                 }
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             };
 
-            renderGallery(seoData);
+            // INITIAL LOAD
+            renderGallery(seoData, 1);
 
-            // --- 4. NEW 20-SECOND DYNAMIC PREVIEW LOGIC ---
+            // --- 4. 20-SECOND DYNAMIC PREVIEW LOGIC ---
             window.previewTimers = []; 
             
             function closePreview() {
@@ -612,15 +663,14 @@
                 mockupScreenImg.src = imgUrl; 
                 mockupPopup.classList.add('active');
 
-                // Helper function to handle the beautiful text fade & shape morph
                 function nextState(className, text, delay) {
                     window.previewTimers.push(setTimeout(() => {
-                        mockupLabel.classList.add('hidden'); // Fade text out
+                        mockupLabel.classList.add('hidden'); 
                         setTimeout(() => {
                             mockupLabel.innerText = text;
-                            mockupLabel.classList.remove('hidden'); // Fade new text in
-                            mockupScreenContainer.className = 'mockup-screen ' + className; // Morph shape
-                        }, 400); // Wait for the fade out to finish
+                            mockupLabel.classList.remove('hidden'); 
+                            mockupScreenContainer.className = 'mockup-screen ' + className; 
+                        }, 400); 
                     }, delay));
                 }
 
@@ -633,10 +683,7 @@
                 nextState('is-mousepad', '🖱️ Gaming Mouse Pad', 15000);
                 nextState('is-table', '🪑 Desk Surface', 17500);
 
-                // Auto-close at exactly 20 seconds
-                window.previewTimers.push(setTimeout(() => {
-                    closePreview();
-                }, 20000));
+                window.previewTimers.push(setTimeout(() => { closePreview(); }, 20000));
             };
 
             // --- 5. SECURE DOWNLOAD LOGIC ---
