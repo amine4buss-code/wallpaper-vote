@@ -39,8 +39,8 @@
         /* ELIMINATE THE SCROLLBAR */
         ::-webkit-scrollbar { display: none; }
         body {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+            -ms-overflow-style: none;  
+            scrollbar-width: none;  
             font-family: 'Quicksand', sans-serif;
             background: var(--bg-color);
             color: var(--text-main);
@@ -65,7 +65,7 @@
         }
         header h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.04em; margin-right: 10px; }
         
-        /* CUTE BUTTONS */
+        /* HEADER BUTTONS */
         .header-btn {
             padding: 6px 14px; border-radius: 50px; font-size: 0.9rem; font-weight: 700;
             font-family: inherit; cursor: pointer; display: flex; align-items: center; gap: 6px;
@@ -98,14 +98,44 @@
         .main-grid {
             display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; width: 100%; margin-bottom: 30px;
         }
-        .grid-item {
-            position: relative; background: var(--surface); 
-            border-radius: var(--radius-md); overflow: hidden; 
-            box-shadow: var(--shadow-sm); border: 1px solid var(--border-focus);
-            transition: var(--transition-smooth); display: flex; flex-direction: column;
-        }
-        .grid-item:hover { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
         
+        /* 3D CUBE SCENE ENGINE */
+        .cube-scene {
+            perspective: 1200px;
+            width: 100%; position: relative;
+            transition: opacity 0.4s ease; /* Smooth fade if empty */
+        }
+        
+        @keyframes floatCube {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .cube {
+            width: 100%; position: relative;
+            transform-style: preserve-3d;
+            /* Gaming elastic bounce turn */
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); 
+        }
+
+        .cube-face {
+            width: 100%;
+            backface-visibility: hidden;
+            border-radius: var(--radius-md); overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); border: 1px solid var(--border-focus);
+            background: var(--surface);
+            display: flex; flex-direction: column;
+        }
+
+        .cube-face-front {
+            position: relative; z-index: 2;
+        }
+        
+        .cube-face-back {
+            position: absolute; top: 0; left: 0; height: 100%;
+            transform: rotateY(180deg); z-index: 1;
+        }
+
         /* IMAGE WRAPPER */
         .img-wrapper {
             position: relative; width: 100%; aspect-ratio: 4/5; background: var(--border-light); overflow: hidden;
@@ -118,7 +148,7 @@
             display: flex; justify-content: center; gap: 8px; width: 90%;
             opacity: 0; transition: opacity 0.2s ease, transform 0.2s ease;
         }
-        .grid-item:hover .grid-actions { opacity: 1; }
+        .cube-scene:hover .grid-actions { opacity: 1; }
         @media (hover: none) { .grid-actions { opacity: 1; } } 
 
         .action-btn {
@@ -143,21 +173,21 @@
         }
         .page-btn {
             background: #0f172a; color: #00ffcc; border: 2px solid #00ffcc;
-            padding: 10px 24px; font-weight: 800; font-size: 1.1rem; letter-spacing: 2px;
+            padding: 12px 28px; font-weight: 800; font-size: 1.1rem; letter-spacing: 2px;
             text-transform: uppercase; border-radius: 8px; cursor: pointer;
             box-shadow: 0 0 10px rgba(0, 255, 204, 0.2), inset 0 0 10px rgba(0, 255, 204, 0.1);
             transition: all 0.2s ease; position: relative; overflow: hidden; outline: none;
         }
         .page-btn:hover {
             background: #00ffcc; color: #0f172a;
-            box-shadow: 0 0 20px rgba(0, 255, 204, 0.6); transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.6); transform: translateY(-3px);
         }
         .page-btn.alive-reaction {
-            animation: gamingPulse 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: gamingPulse 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .page-info {
-            font-weight: 800; color: var(--text-muted); font-size: 1rem; letter-spacing: 2px;
-            background: var(--surface); padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border-focus);
+            font-weight: 800; color: var(--text-muted); font-size: 1.1rem; letter-spacing: 2px;
+            background: var(--surface); padding: 10px 20px; border-radius: 8px; border: 1px solid var(--border-focus);
         }
 
         @keyframes gamingPulse {
@@ -299,7 +329,7 @@
         @media (max-width: 900px) { .main-grid { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 700px) {
             header { align-items: center; text-align: center; }
-            .header-top { justify-content: center; flex-direction: column; gap: 20px; }
+            .header-top { justify-content: center; flex-direction: column; gap: 15px; }
             .header-title-row { justify-content: center; }
             .main-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px;}
             .seo-info { padding: 12px; }
@@ -311,7 +341,8 @@
             .cat-grid-ui { grid-template-columns: 1fr; }
             .drop-overlay { font-size: 1.8rem; text-align: center; padding: 20px; }
             .pagination-controls { flex-direction: row; gap: 10px; }
-            .page-btn { padding: 8px 16px; font-size: 0.9rem; }
+            .page-btn { padding: 10px 16px; font-size: 0.9rem; }
+            .page-info { padding: 10px; font-size: 0.9rem; }
             
             /* Adjust mockup sizes for mobile to fit on screen */
             .mockup-env { aspect-ratio: 4/5; }
@@ -347,7 +378,7 @@
 
         <section style="width: 100%;">
             <div class="main-grid" id="mainWallpaperGrid">
-                <p style="text-align: center; width: 100%; color: var(--text-muted); grid-column: 1 / -1;">Loading high quality gallery...</p>
+                <p style="text-align: center; width: 100%; color: var(--text-muted); grid-column: 1 / -1;">Initializing Premium Gallery...</p>
             </div>
             
             <div class="pagination-controls" id="paginationControls">
@@ -516,68 +547,138 @@
                 { id: 33, ext: 'jpg', title: "Spring Cherry Blossom Desk", desc: "Aesthetic 4K cozy minimalist desk setup with pastel pink cherry blossoms and bright morning nature sunlight." }
             ];
 
-            // --- 2. PAGINATION & RENDER LOGIC ---
-            const grid = document.getElementById('mainWallpaperGrid');
-            const paginationControls = document.getElementById('paginationControls');
-            
-            let currentData = seoData; // Holds active filtered category
+            // --- 2. 3D CUBE ENGINE & PAGINATION LOGIC ---
+            let isGridInitialized = false;
+            let currentRotation = 0;
+            let isFront = true;
+            const itemsPerPage = 8;
+            let currentData = [];
             let currentPage = 1;
-            const itemsPerPage = 8; // STRICTLY 8 ITEMS PER PAGE
 
-            function renderGallery(dataArray, page = 1) {
+            function initGrid() {
+                const grid = document.getElementById('mainWallpaperGrid');
+                let gridHTML = '';
+                // Generate exactly 8 cube slots
+                for(let i=0; i<8; i++) {
+                    gridHTML += `
+                        <div class="cube-scene" id="scene-${i}" style="animation: floatCube ${3 + Math.random()}s ease-in-out infinite; animation-delay: ${Math.random()}s;">
+                            <div class="cube" id="cube-${i}">
+                                <div class="cube-face cube-face-front" id="front-${i}"></div>
+                                <div class="cube-face cube-face-back" id="back-${i}"></div>
+                            </div>
+                        </div>
+                    `;
+                }
+                grid.innerHTML = gridHTML;
+                isGridInitialized = true;
+            }
+
+            function generateCardHTML(item) {
+                if (!item) {
+                    // Invisible structural clone to maintain grid height when empty
+                    return `
+                        <div class="img-wrapper" style="opacity:0"></div>
+                        <div class="seo-info" style="opacity:0"><h2>A</h2><p>B</p></div>
+                    `;
+                }
+                const filename = `https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/${item.id}.${item.ext}`;
+                return `
+                    <div class="img-wrapper">
+                        <img src="${filename}" alt="${item.title}" loading="lazy" onerror="this.closest('.cube-scene').style.opacity='0'">
+                        <div class="grid-actions">
+                            <button class="action-btn preview-btn" onclick="showPreview('${filename}')" title="Preview in Room">👁️</button>
+                            <button class="action-btn dl-btn" onclick="downloadImage('${filename}', '${item.id}.${item.ext}', this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                Download
+                            </button>
+                        </div>
+                    </div>
+                    <div class="seo-info">
+                        <h2>${item.title}</h2>
+                        <p>${item.desc}</p>
+                    </div>
+                `;
+            }
+
+            function renderGallery(dataArray, page = 1, animate = false) {
                 currentData = dataArray;
                 currentPage = page;
-                grid.innerHTML = ''; 
+                const grid = document.getElementById('mainWallpaperGrid');
+                const paginationControls = document.getElementById('paginationControls');
                 
                 if (dataArray.length === 0) {
                     grid.innerHTML = `<p style="text-align: center; width: 100%; color: var(--text-muted); grid-column: 1 / -1; padding: 40px 0;">No wallpapers found in this category yet. Check back soon!</p>`;
                     paginationControls.innerHTML = '';
+                    isGridInitialized = false;
                     return;
                 }
 
-                // Slice the data for the current page
-                const startIndex = (page - 1) * itemsPerPage;
-                const endIndex = startIndex + itemsPerPage;
-                const pageItems = dataArray.slice(startIndex, endIndex);
+                if (!isGridInitialized) initGrid();
 
-                let htmlContent = '';
-                pageItems.forEach((wp) => {
-                    const filename = `https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/${wp.id}.${wp.ext}`;
-                    htmlContent += `
-                        <div class="grid-item">
-                            <div class="img-wrapper">
-                                <img src="${filename}" alt="${wp.title} - ${wp.desc}" loading="lazy" onerror="this.closest('.grid-item').style.display='none'">
-                                <div class="grid-actions">
-                                    <button class="action-btn preview-btn" onclick="showPreview('${filename}')" title="Preview in Room">👁️</button>
-                                    <button class="action-btn dl-btn" onclick="downloadImage('${filename}', '${wp.id}.${wp.ext}', this)">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                                        Download
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="seo-info">
-                                <h2>${wp.title}</h2>
-                                <p>${wp.desc}</p>
-                            </div>
-                        </div>
-                    `;
-                });
-                grid.innerHTML = htmlContent;
+                const startIndex = (page - 1) * itemsPerPage;
+                const pageItems = dataArray.slice(startIndex, startIndex + itemsPerPage);
+
+                const nextIsFront = animate ? !isFront : isFront; 
+                const targetFaceClass = nextIsFront ? 'front' : 'back';
+
+                // Load content into the side we are ABOUT to look at
+                for(let i=0; i<8; i++) {
+                    const item = pageItems[i];
+                    const faceEl = document.getElementById(`${targetFaceClass}-${i}`);
+                    faceEl.innerHTML = generateCardHTML(item);
+                }
+
+                if (animate) {
+                    currentRotation -= 180;
+                    for(let i=0; i<8; i++) {
+                        const cube = document.getElementById(`cube-${i}`);
+                        const sceneEl = document.getElementById(`scene-${i}`);
+                        const item = pageItems[i];
+                        
+                        // Simultaneous sharp spin
+                        cube.style.transform = `rotateY(${currentRotation}deg)`;
+                        
+                        if (item) {
+                            sceneEl.style.opacity = '1';
+                            sceneEl.style.pointerEvents = 'auto';
+                        } else {
+                            // If this slot is missing, let it spin slightly, then fade to invisible
+                            setTimeout(() => {
+                                sceneEl.style.opacity = '0';
+                                sceneEl.style.pointerEvents = 'none';
+                            }, 200); 
+                        }
+                    }
+                    isFront = nextIsFront;
+                } else {
+                    for(let i=0; i<8; i++) {
+                        const sceneEl = document.getElementById(`scene-${i}`);
+                        if (!pageItems[i]) {
+                            sceneEl.style.opacity = '0';
+                            sceneEl.style.pointerEvents = 'none';
+                        } else {
+                            sceneEl.style.opacity = '1';
+                            sceneEl.style.pointerEvents = 'auto';
+                        }
+                    }
+                }
+                
                 renderPagination(dataArray.length, page);
             }
 
             function renderPagination(totalItems, page) {
                 const totalPages = Math.ceil(totalItems / itemsPerPage);
+                const paginationControls = document.getElementById('paginationControls');
                 paginationControls.innerHTML = '';
 
-                if (totalPages <= 1) return; // Hide buttons if only 1 page
+                if (totalPages <= 1) return;
 
                 let buttonsHTML = '';
                 
                 if (page > 1) {
                     buttonsHTML += `<button class="page-btn" onclick="changePage(${page - 1}, this)">◀ PREV</button>`;
                 } else {
-                    buttonsHTML += `<div style="width: 100px;"></div>`; // Spacer to keep center balanced
+                    buttonsHTML += `<div style="width: 120px;"></div>`;
                 }
 
                 buttonsHTML += `<span class="page-info">PAGE ${page} / ${totalPages}</span>`;
@@ -585,7 +686,7 @@
                 if (page < totalPages) {
                     buttonsHTML += `<button class="page-btn" onclick="changePage(${page + 1}, this)">NEXT ▶</button>`;
                 } else {
-                    buttonsHTML += `<div style="width: 100px;"></div>`; // Spacer
+                    buttonsHTML += `<div style="width: 120px;"></div>`;
                 }
 
                 paginationControls.innerHTML = buttonsHTML;
@@ -593,21 +694,22 @@
 
             // GAMING UI CLICK REACTION
             window.changePage = function(newPage, btnElement) {
+                if (btnElement.classList.contains('alive-reaction')) return;
                 btnElement.classList.add('alive-reaction');
                 
-                // Wait for the pulse animation to finish before snapping to the top
+                // Wait for the pulse animation to hit maximum dopamine before spinning the cubes
                 setTimeout(() => {
                     btnElement.classList.remove('alive-reaction');
-                    renderGallery(currentData, newPage);
+                    renderGallery(currentData, newPage, true);
                     window.scrollTo({ top: 0, behavior: 'smooth' });
-                }, 300);
+                }, 250);
             };
 
             // --- 3. FILTER LOGIC ---
             window.filterGallery = function(category) {
                 catPopup.classList.remove('active'); 
                 if (category === 'all') {
-                    renderGallery(seoData, 1); // Reset to page 1
+                    renderGallery(seoData, 1, isGridInitialized);
                 } else {
                     const searchTerms = {
                         'anime': ['anime', 'dragon ball', 'naruto', 'goku', 'vegeta'],
@@ -625,13 +727,13 @@
                         const textToSearch = (wp.title + " " + wp.desc).toLowerCase();
                         return terms.some(term => textToSearch.includes(term));
                     });
-                    renderGallery(filteredData, 1); // Reset to page 1
+                    renderGallery(filteredData, 1, isGridInitialized); 
                 }
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             };
 
             // INITIAL LOAD
-            renderGallery(seoData, 1);
+            renderGallery(seoData, 1, false);
 
             // --- 4. 20-SECOND DYNAMIC PREVIEW LOGIC ---
             window.previewTimers = []; 
@@ -646,14 +748,14 @@
                 if (window.event) window.event.stopPropagation();
                 closePreview(); 
                 
-                // 1. INSTANT RESET (Back to Phone)
+                // 1. INSTANT RESET
                 mockupScreenContainer.style.transition = 'none'; 
                 mockupScreenContainer.className = 'mockup-screen'; 
                 mockupLabel.style.transition = 'none';
                 mockupLabel.classList.remove('hidden');
                 mockupLabel.innerText = '📱 Phone Wallpaper';
                 
-                void mockupScreenContainer.offsetWidth; // Force reflow
+                void mockupScreenContainer.offsetWidth; 
                 
                 // Re-enable smooth CSS animations
                 mockupScreenContainer.style.transition = 'all 0.8s cubic-bezier(0.25, 1, 0.5, 1)'; 
