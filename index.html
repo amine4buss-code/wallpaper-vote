@@ -10,7 +10,7 @@
     </script>
     
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <meta name="p:domain_verify" content="0d9886b7f80f7c798950f6eda489bba6"/>
     
@@ -25,7 +25,8 @@
             --bg-color: #fafafa;
             --surface: #ffffff;
             --text-main: #0f172a;
-            --text-muted: #64748b;
+            /* CONTRAST FIX: Darkened from #64748b to #475569 for 100/100 Accessibility */
+            --text-muted: #475569; 
             --border-light: #f1f5f9;
             --border-focus: #e2e8f0;
             --radius-md: 16px;
@@ -35,6 +36,9 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
+
+        /* BUTTON HACK: Prevents double-tap zoom on mobile while keeping accessibility intact */
+        button, a { touch-action: manipulation; }
 
         /* ELIMINATE THE SCROLLBAR */
         ::-webkit-scrollbar { display: none; }
@@ -115,7 +119,7 @@
         .cube {
             width: 100%; height: 100%; position: relative;
             transform-style: preserve-3d;
-            transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1); /* Gaming elastic bounce */
+            transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1); 
         }
 
         .cube-face {
