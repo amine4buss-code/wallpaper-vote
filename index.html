@@ -56,6 +56,18 @@
         .nav-links a { color: var(--text-muted); font-weight: 700; text-decoration: none; font-size: 1rem; transition: 0.2s;}
         .nav-links a:hover { color: var(--text-main); }
 
+        /* 25-SECOND ELECTRICITY PULSE */
+        @keyframes electricPulse {
+            0%, 95% { box-shadow: var(--shadow-sm); border-color: var(--border-focus); }
+            96% { box-shadow: 0 0 15px var(--accent), inset 0 0 10px var(--accent); border-color: var(--accent); }
+            97% { box-shadow: var(--shadow-sm); border-color: var(--border-focus); }
+            98% { box-shadow: 0 0 25px var(--accent), inset 0 0 15px var(--accent); border-color: var(--accent); }
+            100% { box-shadow: var(--shadow-sm); border-color: var(--border-focus); }
+        }
+        .electric-box {
+            animation: electricPulse 25s infinite;
+        }
+
         /* THE NEW APP CONSOLE (CONTROLS) */
         .app-console {
             background: var(--surface); padding: 30px; border-radius: 24px; box-shadow: var(--shadow-sm);
@@ -125,23 +137,44 @@
         .d-profile { width: 60%; aspect-ratio: 1/1; border-radius: 50%; border: 8px solid #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .d-case { width: 50%; aspect-ratio: 9/19.5; border-radius: 36px; border: 6px solid #1a1a1a; box-shadow: inset 0 0 20px rgba(255,255,255,0.2), 0 20px 40px rgba(0,0,0,0.2); }
 
-        /* ARTICLES SECTION */
+        /* ARTICLES SECTION - ACCORDION CARDS */
         .articles-section {
-            width: 100%; max-width: 900px; margin: 0 auto 80px auto; display: flex; flex-direction: column; gap: 50px;
+            width: 100%; max-width: 900px; margin: 0 auto 80px auto; display: flex; flex-direction: column; gap: 20px;
         }
-        .article { background: var(--surface); padding: 40px; border-radius: 24px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-light); }
-        .article h2 { font-size: 2rem; color: var(--text-main); margin-bottom: 20px; font-weight: 800; letter-spacing: -0.02em; }
-        .article h3 { font-size: 1.4rem; color: var(--text-main); margin: 25px 0 10px 0; }
-        .article p { font-size: 1.1rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 15px; }
-        .article ul { margin-left: 20px; margin-bottom: 20px; color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; }
-        .article li { margin-bottom: 8px; }
-        .article strong { color: var(--text-main); }
+        .article-card {
+            background: var(--surface); border-radius: 24px; box-shadow: var(--shadow-sm); 
+            border: 1px solid var(--border-focus); overflow: hidden;
+        }
+        .article-card summary {
+            padding: 25px; font-size: 1.3rem; font-weight: 800; color: var(--text-main); cursor: pointer;
+            list-style: none; display: flex; justify-content: space-between; align-items: center; outline: none;
+            transition: background 0.2s;
+        }
+        .article-card summary:hover { background: var(--border-light); }
+        .article-card summary::-webkit-details-marker { display: none; }
+        .article-card summary::after { content: '+'; color: var(--accent-dark); font-size: 1.8rem; font-weight: 800; }
+        .article-card[open] summary::after { content: '−'; }
+        
+        .article-content { padding: 0 25px 25px 25px; }
+        .article-content h3 { font-size: 1.2rem; color: var(--text-main); margin: 20px 0 10px 0; }
+        .article-content p { font-size: 1.05rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 15px; }
+        .article-content ul { margin-left: 20px; margin-bottom: 20px; color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; }
+        .article-content li { margin-bottom: 8px; }
+        .article-content strong { color: var(--text-main); }
 
         /* HIDDEN SEO BLOCK */
         .seo-vault { display: none; }
 
-        /* FOOTER */
-        .main-footer { margin-top: auto; padding: 40px 0; width: 100%; border-top: 1px solid var(--border-light); text-align: center; color: var(--text-muted); }
+        /* RESTORED FOOTER */
+        .main-footer {
+            margin-top: auto; padding: 40px 0; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            border-top: 1px solid var(--border-light); gap: 20px; flex-wrap: wrap;
+        }
+        .footer-brand { font-size: 1.2rem; font-weight: 800; color: var(--text-main); }
+        .footer-links { display: flex; gap: 25px; flex-wrap: wrap; }
+        .footer-links a { color: var(--text-muted); font-weight: 700; text-decoration: none; font-size: 0.95rem; transition: 0.2s;}
+        .footer-links a:hover { color: var(--text-main); }
 
         @media (max-width: 900px) {
             .span-phone, .span-tablet, .span-profile, .span-case { grid-column: span 12; }
@@ -153,8 +186,9 @@
             .d-desktop { width: 100%; border-width: 8px; border-bottom-width: 16px;}
             .d-tablet { width: 100%; }
             .app-console h2 { font-size: 1.5rem; }
-            .article { padding: 25px; }
-            .article h2 { font-size: 1.5rem; }
+            .article-card summary { font-size: 1.1rem; padding: 20px; }
+            .main-footer { flex-direction: column; text-align: center; }
+            .footer-links { justify-content: center; }
         }
     </style>
 </head>
@@ -165,11 +199,11 @@
             <h1>WallRank</h1>
             <div class="nav-links">
                 <a href="#app">The App</a>
-                <a href="#articles">Blog & Guides</a>
+                <a href="#articles">Guides</a>
             </div>
         </header>
 
-        <section id="app" class="app-console">
+        <section id="app" class="app-console electric-box">
             <h2 id="wp-title">Loading...</h2>
             <p id="wp-desc">Preparing ultra-high quality mockups...</p>
             
@@ -181,83 +215,93 @@
         </section>
 
         <section class="live-grid">
-            <div class="mockup-card span-desktop">
+            <div class="mockup-card span-desktop electric-box">
                 <h3>🖥️ Pro Desktop Setup</h3>
                 <div class="m-screen d-desktop"><img class="live-img" src="" alt="Desktop Mockup"></div>
             </div>
             
-            <div class="mockup-card span-phone">
+            <div class="mockup-card span-phone electric-box">
                 <h3>📱 Mobile Display</h3>
                 <div class="m-screen d-phone"><img class="live-img" src="" alt="Phone Mockup"></div>
             </div>
             
-            <div class="mockup-card span-tablet">
+            <div class="mockup-card span-tablet electric-box">
                 <h3>📟 Tablet Canvas</h3>
                 <div class="m-screen d-tablet"><img class="live-img" src="" alt="Tablet Mockup"></div>
             </div>
 
-            <div class="mockup-card span-mousepad">
+            <div class="mockup-card span-mousepad electric-box">
                 <h3>🖱️ Ultrawide Mousepad</h3>
                 <div class="m-screen d-mousepad"><img class="live-img" src="" alt="Mousepad Mockup"></div>
             </div>
 
-            <div class="mockup-card span-profile">
+            <div class="mockup-card span-profile electric-box">
                 <h3>👤 Social Avatar</h3>
                 <div class="m-screen d-profile"><img class="live-img" src="" alt="Profile Mockup"></div>
             </div>
 
-            <div class="mockup-card span-case">
+            <div class="mockup-card span-case electric-box">
                 <h3>🤳 Phone Case</h3>
                 <div class="m-screen d-case"><img class="live-img" src="" alt="Case Mockup"></div>
             </div>
         </section>
 
         <section id="articles" class="articles-section">
-            <div class="article">
-                <h2>About WallRank: The Ultimate UI Preview Tool</h2>
-                <p>Welcome to <strong>WallRank</strong>. We realized there was a fundamental flaw in how people search for wallpapers online. Usually, you look at a tiny thumbnail, download it, set it as your background, and realize it looks terrible because the clock blocks the main subject or the icons blend into the colors.</p>
-                <p>WallRank solves this. We built a live, interactive <strong>Experience Engine</strong>. Instead of scrolling through endless static images, WallRank applies our curated 4K AI-generated art directly onto real-world device mockups in real-time. You instantly see exactly how an image will look on an iPhone 16 Pro, an Ultrawide 32:9 Monitor, an iPad, or even printed on a custom phone case or gaming mousepad.</p>
-                <p><strong>How to navigate:</strong> Simply use the "Next Wallpaper" and "Prev" buttons at the top of the screen. Our engine will instantly swap the wallpaper across all mockups simultaneously. When you find the perfect fit for your setup, click "Download 4K" to get the raw, uncompressed file entirely for free.</p>
-            </div>
+            
+            <details class="article-card electric-box">
+                <summary>About WallRank: The UI Preview Tool</summary>
+                <div class="article-content">
+                    <p>Welcome to <strong>WallRank</strong>. We realized there was a fundamental flaw in how people search for wallpapers online. Usually, you look at a tiny thumbnail, download it, set it as your background, and realize it looks terrible because the clock blocks the main subject or the icons blend into the colors.</p>
+                    <p>WallRank solves this. We built a live, interactive <strong>Experience Engine</strong>. Instead of scrolling through endless static images, WallRank applies our curated 4K AI-generated art directly onto real-world device mockups in real-time. You instantly see exactly how an image will look on an iPhone 16 Pro, an Ultrawide 32:9 Monitor, an iPad, or even printed on a custom phone case.</p>
+                    <p><strong>How to navigate:</strong> Simply use the "Next Wallpaper" and "Prev" buttons at the top of the screen. Our engine will instantly swap the wallpaper across all mockups simultaneously. When you find the perfect fit, click "Download 4K" to get the raw, uncompressed file entirely for free.</p>
+                </div>
+            </details>
 
-            <div class="article">
-                <h2>The Top 7 AI Image Generators in 2026 (Ranked)</h2>
-                <p>The landscape of AI image generation changes weekly. If you are looking to create your own high-fidelity wallpapers or digital art, here are the top 7 platforms currently dominating the market:</p>
-                <ul>
-                    <li><strong>7. Adobe Firefly:</strong> Best for safe, commercial use and graphic designers already inside the Photoshop ecosystem. Highly restrictive on creative freedom.</li>
-                    <li><strong>6. Google Imagen 3:</strong> Excellent at understanding complex text prompts, but sometimes lacks the "artistic soul" needed for premium wallpapers.</li>
-                    <li><strong>5. DALL-E 3 (via ChatGPT):</strong> Incredibly easy to use. Best for beginners, but it often produces a "plastic" AI look that makes it obvious it wasn't made by a human.</li>
-                    <li><strong>4. Stable Diffusion 3:</strong> The open-source king. Best for users with heavy local PC hardware who want 100% uncensored control.</li>
-                    <li><strong>3. Flux.1:</strong> The newest heavyweight. Incredible photorealism and anatomy, though it requires massive computational power.</li>
-                    <li><strong>2. Leonardo AI:</strong> The best UI in the business. It offers granular control, custom models, and is vastly cheaper and faster than its competitors. Perfect for churning out assets.</li>
-                    <li><strong>1. Midjourney v6:</strong> The undisputed king of aesthetics.</li>
-                </ul>
-                <h3>The Verdict</h3>
-                <p>If you want the absolute highest artistic quality, <strong>Midjourney v6</strong> is the winner, regardless of the monthly subscription cost. However, if you are a creator building a business and need speed, built-in upscaling, and a clean web interface, <strong>Leonardo AI</strong> is the tool that truly deserves your time and workflow integration.</p>
-            </div>
+            <details class="article-card electric-box">
+                <summary>Top 7 AI Image Generators Ranked (2026)</summary>
+                <div class="article-content">
+                    <p>If you are looking to create your own high-fidelity wallpapers or digital art, here are the top 7 platforms currently dominating the market:</p>
+                    <ul>
+                        <li><strong>7. Adobe Firefly:</strong> Best for safe, commercial use and graphic designers already inside the Photoshop ecosystem. Highly restrictive on creative freedom.</li>
+                        <li><strong>6. Google Imagen 3:</strong> Excellent at understanding complex text prompts, but sometimes lacks the "artistic soul" needed for premium wallpapers.</li>
+                        <li><strong>5. DALL-E 3 (via ChatGPT):</strong> Incredibly easy to use. Best for beginners, but it often produces a "plastic" AI look.</li>
+                        <li><strong>4. Stable Diffusion 3:</strong> The open-source king. Best for users with heavy local PC hardware who want 100% uncensored control.</li>
+                        <li><strong>3. Flux.1:</strong> The newest heavyweight. Incredible photorealism and anatomy, though it requires massive computational power.</li>
+                        <li><strong>2. Leonardo AI:</strong> The best UI in the business. It offers granular control, custom models, and is vastly cheaper and faster than its competitors. Perfect for churning out assets.</li>
+                        <li><strong>1. Midjourney v6:</strong> The undisputed king of aesthetics.</li>
+                    </ul>
+                    <h3>The Verdict</h3>
+                    <p>If you want absolute artistic quality, <strong>Midjourney v6</strong> is the winner. However, if you are a creator building a business and need speed and a clean web interface, <strong>Leonardo AI</strong> is the tool that truly deserves your time.</p>
+                </div>
+            </details>
 
-            <div class="article">
-                <h2>The Pro Guide to AI Prompting for Wallpapers</h2>
-                <p>Generating a good image is easy. Generating a masterpiece requires mastering the prompt. AI tools do not think like humans; they think in tokens and tags. Here is why prompting matters and the formula to get exactly what you want.</p>
-                <h3>The Formula</h3>
-                <p>Stop writing sentences like: <em>"Make me a cool picture of a cyberpunk city."</em> Start using the <strong>Pro Formula: [Subject] + [Environment] + [Lighting] + [Color Palette] + [Camera/Style]</strong>.</p>
-                <h3>Example Prompt</h3>
-                <p><strong>Instead of:</strong> "Anime girl in rain."</p>
-                <p><strong>Use:</strong> <em>"1girl, standing in a neon-lit cyberpunk alleyway, heavy rain reflecting off puddles, cinematic rim lighting, deep cyan and magenta color palette, 8k resolution, Studio Ghibli illustration style, perfect desktop wallpaper composition."</em></p>
-                <h3>The Golden Rules:</h3>
-                <ul>
-                    <li><strong>Aspect Ratio Matters:</strong> Always tell the AI the shape you need. Use `--ar 16:9` for desktop or `--ar 9:16` for mobile.</li>
-                    <li><strong>Negative Prompts:</strong> Tell the AI what you DON'T want. Add negative tags like: <em>"text, watermark, messy, blurry, low resolution, extra fingers."</em></li>
-                    <li><strong>Lighting is Everything:</strong> Add terms like "volumetric lighting," "golden hour," "cinematic lighting," or "soft ambient glow." This alone upgrades an image from amateur to professional.</li>
-                </ul>
-            </div>
+            <details class="article-card electric-box">
+                <summary>The Pro Guide to AI Prompting</summary>
+                <div class="article-content">
+                    <p>Generating a good image is easy. Generating a masterpiece requires mastering the prompt. AI tools think in tokens and tags. Here is why prompting matters and the formula to get exactly what you want.</p>
+                    <h3>The Formula</h3>
+                    <p>Stop writing sentences like: <em>"Make me a cool picture of a cyberpunk city."</em> Start using the <strong>Pro Formula: [Subject] + [Environment] + [Lighting] + [Color Palette] + [Camera/Style]</strong>.</p>
+                    <h3>Example Prompt</h3>
+                    <p><strong>Instead of:</strong> "Anime girl in rain."</p>
+                    <p><strong>Use:</strong> <em>"1girl, standing in a neon-lit cyberpunk alleyway, heavy rain reflecting off puddles, cinematic rim lighting, deep cyan and magenta color palette, 8k resolution, Studio Ghibli illustration style, perfect desktop wallpaper composition."</em></p>
+                    <h3>The Golden Rules:</h3>
+                    <ul>
+                        <li><strong>Aspect Ratio Matters:</strong> Always tell the AI the shape you need. Use `--ar 16:9` for desktop or `--ar 9:16` for mobile.</li>
+                        <li><strong>Negative Prompts:</strong> Tell the AI what you DON'T want. Add negative tags like: <em>"text, watermark, messy, blurry, low resolution, extra fingers."</em></li>
+                        <li><strong>Lighting is Everything:</strong> Add terms like "volumetric lighting," "golden hour," or "cinematic lighting." This alone upgrades an image from amateur to professional.</li>
+                    </ul>
+                </div>
+            </details>
 
-            <div class="article">
-                <h2>The Future of Screen Tech: Why 4K is Just the Beginning</h2>
-                <p>We are currently entering the golden age of display technology. As developers create higher quality 4K and 8K wallpapers, screen manufacturers are pushing the boundaries of how those pixels are illuminated.</p>
-                <p><strong>OLED and QD-OLED:</strong> Traditional LED screens have a backlight that is always on, meaning black colors look dark gray. OLED panels turn off individual pixels completely, creating "True Black." This is why Dark Mode and AMOLED wallpapers (like cyberpunk neon or space galaxies) look so incredible on modern smartphones like the iPhone 15 Pro and Galaxy S24 Ultra.</p>
-                <p><strong>The Future - MicroLED:</strong> Looking forward, MicroLED is the Holy Grail. It provides the infinite contrast of OLED without the risk of "burn-in," while being three times brighter. As displays push towards 10,000 nits of peak brightness with HDR (High Dynamic Range), wallpapers will no longer just be background images—they will be highly immersive light sources for your room.</p>
-            </div>
+            <details class="article-card electric-box">
+                <summary>The Future of Screen Technology</summary>
+                <div class="article-content">
+                    <p>We are currently entering the golden age of display technology. As developers create higher quality 4K and 8K wallpapers, screen manufacturers are pushing the boundaries of how those pixels are illuminated.</p>
+                    <p><strong>OLED and QD-OLED:</strong> Traditional LED screens have a backlight that is always on, meaning black colors look dark gray. OLED panels turn off individual pixels completely, creating "True Black." This is why Dark Mode and AMOLED wallpapers (like cyberpunk neon or space galaxies) look so incredible on modern smartphones like the iPhone 15 Pro and Galaxy S24 Ultra.</p>
+                    <p><strong>The Future - MicroLED:</strong> Looking forward, MicroLED is the Holy Grail. It provides the infinite contrast of OLED without the risk of "burn-in," while being three times brighter. As displays push towards 10,000 nits of peak brightness with HDR, wallpapers will no longer just be background images—they will be highly immersive light sources for your room.</p>
+                </div>
+            </details>
+
         </section>
 
         <section class="seo-vault" aria-hidden="true">
@@ -267,7 +311,12 @@
         </section>
 
         <footer class="main-footer">
-            <p>© 2026 WallRank.club | Built for the perfect UI preview.</p>
+            <div class="footer-brand">WallRank © 2026</div>
+            <div class="footer-links">
+                <a href="/privacy-policy.html">Privacy Policy</a>
+                <a href="/terms.html">Terms of Service</a>
+                <a href="mailto:kabanijames9@gmail.com">Contact Us</a>
+            </div>
         </footer>
     </main>
 
