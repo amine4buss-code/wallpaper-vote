@@ -13,8 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="p:domain_verify" content="0d9886b7f80f7c798950f6eda489bba6"/>
     
-    <title>Free 4K AI Wallpapers for Phone & Desktop | WallRank</title>
-    <meta name="description" content="Test and download unique 4K AI wallpapers on live device mockups. iPhone, Android, Desktop, and Ultrawide.">
+    <title>Free Library Assets & 4K AI Mockups | WallRank</title>
+    <meta name="description" content="Discover free library assets free for use. Test 4K wallpapers, design assets, and stock images on live 3D device mockups instantly.">
     <link rel="canonical" href="https://wallrank.club">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700;800&display=swap" rel="stylesheet">
     
@@ -51,7 +51,19 @@
             width: 100%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;
             margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border-light);
         }
+        .header-title-row { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
         header h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.04em; }
+        
+        .header-btn {
+            padding: 6px 14px; border-radius: 50px; font-size: 0.9rem; font-weight: 700;
+            font-family: inherit; cursor: pointer; display: flex; align-items: center; gap: 6px;
+            transition: var(--transition-smooth); 
+        }
+        .puzzle-btn { background: #fffbeb; border: 2px solid #fef3c7; color: #d97706; box-shadow: 0 4px 10px rgba(217, 119, 6, 0.1); }
+        .puzzle-btn:hover { background: #fef3c7; transform: translateY(-2px); box-shadow: 0 6px 14px rgba(217, 119, 6, 0.15); }
+        .footage-btn { background: #f0fdf4; border: 2px solid #dcfce7; color: #16a34a; box-shadow: 0 4px 10px rgba(22, 163, 74, 0.1); }
+        .footage-btn:hover { background: #dcfce7; transform: translateY(-2px); box-shadow: 0 6px 14px rgba(22, 163, 74, 0.15); }
+
         .nav-links { display: flex; gap: 15px; }
         .nav-links a { color: var(--text-muted); font-weight: 700; text-decoration: none; font-size: 1rem; transition: 0.2s;}
         .nav-links a:hover { color: var(--text-main); }
@@ -64,9 +76,7 @@
             98% { box-shadow: 0 0 25px var(--accent), inset 0 0 15px var(--accent); border-color: var(--accent); }
             100% { box-shadow: var(--shadow-sm); border-color: var(--border-focus); }
         }
-        .electric-box {
-            animation: electricPulse 25s infinite;
-        }
+        .electric-box { animation: electricPulse 25s infinite; }
 
         /* THE NEW APP CONSOLE (CONTROLS) */
         .app-console {
@@ -75,7 +85,7 @@
             align-items: center; text-align: center; gap: 20px;
         }
         .app-console h2 { font-size: 2rem; font-weight: 800; color: var(--text-main); }
-        .app-console p { font-size: 1.1rem; color: var(--text-muted); font-weight: 600; max-width: 600px; }
+        .app-console p { font-size: 1.1rem; color: var(--text-muted); font-weight: 600; max-width: 700px; line-height: 1.6;}
         
         .control-buttons { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; width: 100%; }
         
@@ -105,7 +115,7 @@
 
         /* THE LIVE MOCKUP GRID */
         .live-grid {
-            display: grid; grid-template-columns: repeat(12, 1fr); gap: 30px; width: 100%; margin-bottom: 80px;
+            display: grid; grid-template-columns: repeat(12, 1fr); gap: 30px; width: 100%; margin-bottom: 40px;
         }
         
         .mockup-card {
@@ -136,6 +146,34 @@
         .d-mousepad { width: 100%; aspect-ratio: 21/9; border-radius: 12px; border: 3px solid #222; }
         .d-profile { width: 60%; aspect-ratio: 1/1; border-radius: 50%; border: 8px solid #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .d-case { width: 50%; aspect-ratio: 9/19.5; border-radius: 36px; border: 6px solid #1a1a1a; box-shadow: inset 0 0 20px rgba(255,255,255,0.2), 0 20px 40px rgba(0,0,0,0.2); }
+
+        .future-notice {
+            text-align: center; color: var(--text-muted); font-size: 0.95rem; font-weight: 600;
+            margin-bottom: 80px; padding: 15px; background: #eef2ff; border-radius: 12px; border: 1px solid #e0e7ff;
+        }
+
+        /* PUZZLE MODAL */
+        .puzzle-popup {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px);
+            z-index: 999; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .puzzle-popup.active { opacity: 1; pointer-events: all; }
+        
+        .puzzle-header { display: flex; justify-content: space-between; width: 100%; max-width: 500px; margin-bottom: 20px; align-items: center; padding: 0 20px;}
+        .puzzle-header h2 { color: white; font-size: 1.5rem; }
+        .close-puzzle { background: none; border: none; color: white; font-size: 2rem; cursor: pointer; }
+        
+        .puzzle-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+            width: 90vw; max-width: 500px; aspect-ratio: 4/5; background: #000; border: 4px solid #334155; border-radius: 12px; overflow: hidden;
+        }
+        .puzzle-piece {
+            width: 100%; height: 100%; background-size: 300% 300%;
+            cursor: pointer; transition: transform 0.1s, border 0.1s; box-sizing: border-box; border: 1px solid rgba(0,0,0,0.5);
+        }
+        .puzzle-piece:hover { opacity: 0.9; }
 
         /* ARTICLES SECTION - ACCORDION CARDS */
         .articles-section {
@@ -181,6 +219,7 @@
             .d-phone, .d-profile, .d-case { width: 70%; }
         }
         @media (max-width: 600px) {
+            .header-title-row { justify-content: center; width: 100%;}
             .control-buttons { flex-direction: column; }
             .btn-gaming, .btn-secondary, .btn-download { width: 100%; }
             .d-desktop { width: 100%; border-width: 8px; border-bottom-width: 16px;}
@@ -196,21 +235,28 @@
 
     <main class="container">
         <header>
-            <h1>WallRank</h1>
+            <div class="header-title-row">
+                <h1>WallRank</h1>
+                <button class="header-btn puzzle-btn" onclick="openPuzzle()">🧩 Play Puzzle</button>
+                <button class="header-btn footage-btn" onclick="alert('Free stock video footage library coming soon!')">🎥 Stock Footage</button>
+            </div>
             <div class="nav-links">
-                <a href="#app">The App</a>
+                <a href="#app">Asset Library</a>
                 <a href="#articles">Guides</a>
             </div>
         </header>
 
         <section id="app" class="app-console electric-box">
-            <h2 id="wp-title">Loading...</h2>
-            <p id="wp-desc">Preparing ultra-high quality mockups...</p>
+            <h2>Free Library Assets & Mockup Engine</h2>
+            <p>Welcome to your central hub for <strong>free library assets free for use</strong>. Explore our growing database of 4K wallpapers, design assets, and stock photos. View them instantly on live device mockups below before you download.</p>
             
+            <h3 id="wp-title" style="margin-top: 15px; font-size: 1.5rem; color: var(--text-main);">Loading...</h3>
+            <p id="wp-desc" style="font-size: 0.95rem; margin-bottom: 20px;">Fetching high quality assets...</p>
+
             <div class="control-buttons">
                 <button class="btn-secondary" onclick="changeWallpaper(-1)">◀ Prev</button>
-                <button class="btn-gaming" id="nextBtn" onclick="changeWallpaper(1)">Next Wallpaper ▶</button>
-                <button class="btn-download" id="dlBtn" onclick="triggerDownload()">💾 Download 4K</button>
+                <button class="btn-gaming" id="nextBtn" onclick="changeWallpaper(1)">Next Asset ▶</button>
+                <button class="btn-download" id="dlBtn" onclick="triggerDownload()">💾 Download HD</button>
             </div>
         </section>
 
@@ -246,14 +292,18 @@
             </div>
         </section>
 
+        <div class="future-notice">
+            🚀 Coming Soon: Test images on custom coffee mugs, IG Story templates, and printed poster frames!
+        </div>
+
         <section id="articles" class="articles-section">
             
             <details class="article-card electric-box">
-                <summary>About WallRank: The UI Preview Tool</summary>
+                <summary>About WallRank: The Ultimate Free Asset Library</summary>
                 <div class="article-content">
-                    <p>Welcome to <strong>WallRank</strong>. We realized there was a fundamental flaw in how people search for wallpapers online. Usually, you look at a tiny thumbnail, download it, set it as your background, and realize it looks terrible because the clock blocks the main subject or the icons blend into the colors.</p>
-                    <p>WallRank solves this. We built a live, interactive <strong>Experience Engine</strong>. Instead of scrolling through endless static images, WallRank applies our curated 4K AI-generated art directly onto real-world device mockups in real-time. You instantly see exactly how an image will look on an iPhone 16 Pro, an Ultrawide 32:9 Monitor, an iPad, or even printed on a custom phone case.</p>
-                    <p><strong>How to navigate:</strong> Simply use the "Next Wallpaper" and "Prev" buttons at the top of the screen. Our engine will instantly swap the wallpaper across all mockups simultaneously. When you find the perfect fit, click "Download 4K" to get the raw, uncompressed file entirely for free.</p>
+                    <p>Welcome to <strong>WallRank</strong>. We realized there was a fundamental flaw in how creators search for assets online. Usually, you look at a tiny thumbnail, download it, try to apply it to your project, and realize it doesn't fit. </p>
+                    <p>WallRank solves this. We are building a massive repository of <strong>free library assets free for use</strong>. But more importantly, we built a live, interactive <strong>Experience Engine</strong>. Instead of just giving you a flat file, WallRank applies our curated 4K AI-generated art, design assets, and future stock photos directly onto real-world device mockups in real-time.</p>
+                    <p><strong>How to navigate:</strong> Use the "Next Asset" button to browse the library. Our engine instantly maps the image across all mockups simultaneously. When you find the perfect fit for your design, click "Download HD" to get the raw, uncompressed file entirely for free.</p>
                 </div>
             </details>
 
@@ -261,86 +311,56 @@
                 <summary>Building the Perfect Aesthetic PC Setup</summary>
                 <div class="article-content">
                     <p>When you sit down at your desk, the largest and brightest objects in your peripheral vision are your monitors. The wallpaper you choose doesn't just decorate your screen; it dictates the entire mood, lighting, and aesthetic of your physical room. Here is how to construct a flawless setup.</p>
-                    
                     <h3>1. The Psychology of Display Color</h3>
-                    <p>If you are working from home or studying late into the night, bright white backgrounds will drastically increase eye fatigue. Opting for "Cozy Lofi" or "Dark Academia" themes with warm earthy tones (oranges, browns, deep greens) creates a calming environment. Conversely, if you want an energized gaming setup, deep blacks contrasting with vivid neon cyan and magenta (Cyberpunk aesthetics) will make your RGB desk lighting pop.</p>
-                    
+                    <p>If you are working from home or studying late into the night, bright white backgrounds will drastically increase eye fatigue. Opting for "Cozy Lofi" or "Dark Academia" themes with warm earthy tones creates a calming environment. Conversely, if you want an energized gaming setup, deep blacks contrasting with vivid neon cyan and magenta (Cyberpunk aesthetics) will make your RGB desk lighting pop.</p>
                     <h3>2. The Ultrawide and Dual-Monitor Challenge</h3>
-                    <p>As monitors get larger, traditional 16:9 wallpapers fall apart. If you run a dual-monitor setup or a massive 32:9 Super Ultrawide (like the Samsung Odyssey), you cannot simply stretch a standard 1080p image. Stretching destroys pixel density. You must source native 4K or 8K images designed for wide horizontal spans. When searching for these, prioritize panoramic landscapes, abstract flowing liquids, or space vistas, as these subjects naturally handle the extreme horizontal stretch without looking distorted.</p>
-                    
-                    <h3>3. Desk Synergy</h3>
-                    <p>The ultimate pro-move for desk aesthetics is hardware synergy. Match your on-screen wallpaper to your physical gaming mousepad. (You can use WallRank's Mousepad Mockup tool to preview exactly how this will look before you order a custom print). Sync your mechanical keyboard's RGB lighting to the primary accent color of your wallpaper for a cohesive, premium workspace.</p>
+                    <p>If you run a massive 32:9 Super Ultrawide, you cannot simply stretch a standard 1080p image. You must source native 4K design assets built for wide spans. Prioritize panoramic landscapes or abstract liquids that handle extreme horizontal stretch.</p>
                 </div>
             </details>
 
             <details class="article-card electric-box">
                 <summary>The Science of AMOLED: Saving Battery</summary>
                 <div class="article-content">
-                    <p>Changing your wallpaper isn't just about making your phone look good—it is actually a highly effective technical trick to drastically extend your device's daily battery life. But there is a catch: it only works if you understand your screen's technology.</p>
-                    
-                    <h3>1. OLED vs. LCD Technology</h3>
-                    <p>Traditional LCD screens (found on older phones and budget monitors) use a global backlight. This means even if you have a completely black wallpaper, the backlight is still turned on, pushing light through the dark pixels. It saves zero battery.</p>
-                    <p>However, modern flagship devices (like the iPhone 15/16 Pro, Samsung Galaxy S24 Ultra, and Google Pixel series) use <strong>OLED or AMOLED</strong> screens. On these displays, every single pixel acts as its own independent lightbulb. When a pixel needs to display the color "True Black" (Hex code #000000), that specific pixel completely turns off. It draws absolutely zero power.</p>
-                    
+                    <p>Changing your wallpaper isn't just about aesthetics—it is actually a technical trick to drastically extend your device's daily battery life. But there is a catch: it only works if you have an OLED or AMOLED screen.</p>
+                    <h3>1. OLED Technology</h3>
+                    <p>Traditional LCD screens use a global backlight. This means even if you have a completely black wallpaper, the backlight is still turned on. However, on modern devices (like the iPhone 15 Pro, Samsung Galaxy S24 Ultra), every pixel acts as its own independent lightbulb. When a pixel needs to display "True Black" (Hex code #000000), it completely turns off. It draws zero power.</p>
                     <h3>2. The Battery Saving Math</h3>
-                    <p>If you choose a "True Black" Dark Mode wallpaper—like a minimalist neon logo on a pure black background—up to 70% of the pixels on your phone screen are physically turned off while you are looking at your home screen. Over the course of a 14-hour day, this can save you a significant percentage of battery life compared to running a bright, white, or highly complex pastel background.</p>
-                    
-                    <h3>3. Reducing Digital Eye Strain</h3>
-                    <p>Beyond battery life, deep AMOLED wallpapers drastically reduce the amount of blue light firing directly into your retinas. High-contrast OLED wallpapers (pitch black background with vivid, sharp subjects) make your app icons and widgets highly legible without requiring you to turn your screen brightness up to 100%, protecting your circadian rhythm during evening use.</p>
+                    <p>If you choose a "True Black" Dark Mode asset—like a minimalist neon logo on a pure black background—up to 70% of the pixels on your phone screen are physically turned off. Over a 14-hour day, this can save you a significant percentage of battery life.</p>
                 </div>
             </details>
 
             <details class="article-card electric-box">
                 <summary>Top 7 AI Image Generators Ranked (2026)</summary>
                 <div class="article-content">
-                    <p>If you are looking to create your own high-fidelity wallpapers or digital art, here are the top 7 platforms currently dominating the market:</p>
+                    <p>If you are looking to create your own high-fidelity wallpapers or stock images, here are the top 7 platforms currently dominating the market:</p>
                     <ul>
-                        <li><strong>7. Adobe Firefly:</strong> Best for safe, commercial use and graphic designers already inside the Photoshop ecosystem. Highly restrictive on creative freedom.</li>
-                        <li><strong>6. Google Imagen 3:</strong> Excellent at understanding complex text prompts, but sometimes lacks the "artistic soul" needed for premium wallpapers.</li>
-                        <li><strong>5. DALL-E 3 (via ChatGPT):</strong> Incredibly easy to use. Best for beginners, but it often produces a "plastic" AI look.</li>
-                        <li><strong>4. Stable Diffusion 3:</strong> The open-source king. Best for users with heavy local PC hardware who want 100% uncensored control.</li>
-                        <li><strong>3. Flux.1:</strong> The newest heavyweight. Incredible photorealism and anatomy, though it requires massive computational power.</li>
-                        <li><strong>2. Leonardo AI:</strong> The best UI in the business. It offers granular control, custom models, and is vastly cheaper and faster than its competitors. Perfect for churning out assets.</li>
+                        <li><strong>7. Adobe Firefly:</strong> Best for safe, commercial use. Highly restrictive on creative freedom.</li>
+                        <li><strong>6. Google Imagen 3:</strong> Excellent at complex text prompts, lacks slightly in artistic soul.</li>
+                        <li><strong>5. DALL-E 3:</strong> Best for beginners, but often produces a "plastic" AI look.</li>
+                        <li><strong>4. Stable Diffusion 3:</strong> The open-source king for users with heavy local PC hardware.</li>
+                        <li><strong>3. Flux.1:</strong> The newest heavyweight. Incredible photorealism and anatomy.</li>
+                        <li><strong>2. Leonardo AI:</strong> The best UI in the business. Vastly cheaper and faster, perfect for generating design assets.</li>
                         <li><strong>1. Midjourney v6:</strong> The undisputed king of aesthetics.</li>
                     </ul>
-                    <h3>The Verdict</h3>
-                    <p>If you want absolute artistic quality, <strong>Midjourney v6</strong> is the winner. However, if you are a creator building a business and need speed and a clean web interface, <strong>Leonardo AI</strong> is the tool that truly deserves your time.</p>
                 </div>
             </details>
 
             <details class="article-card electric-box">
                 <summary>The Pro Guide to AI Prompting</summary>
                 <div class="article-content">
-                    <p>Generating a good image is easy. Generating a masterpiece requires mastering the prompt. AI tools think in tokens and tags. Here is why prompting matters and the formula to get exactly what you want.</p>
+                    <p>Generating a masterpiece requires mastering the prompt. Here is why prompting matters and the formula to get exactly what you want for your free library assets.</p>
                     <h3>The Formula</h3>
-                    <p>Stop writing sentences like: <em>"Make me a cool picture of a cyberpunk city."</em> Start using the <strong>Pro Formula: [Subject] + [Environment] + [Lighting] + [Color Palette] + [Camera/Style]</strong>.</p>
+                    <p>Stop writing sentences like: <em>"Make me a cool picture."</em> Start using the <strong>Pro Formula: [Subject] + [Environment] + [Lighting] + [Color Palette] + [Camera/Style]</strong>.</p>
                     <h3>Example Prompt</h3>
-                    <p><strong>Instead of:</strong> "Anime girl in rain."</p>
                     <p><strong>Use:</strong> <em>"1girl, standing in a neon-lit cyberpunk alleyway, heavy rain reflecting off puddles, cinematic rim lighting, deep cyan and magenta color palette, 8k resolution, Studio Ghibli illustration style, perfect desktop wallpaper composition."</em></p>
-                    <h3>The Golden Rules:</h3>
-                    <ul>
-                        <li><strong>Aspect Ratio Matters:</strong> Always tell the AI the shape you need. Use `--ar 16:9` for desktop or `--ar 9:16` for mobile.</li>
-                        <li><strong>Negative Prompts:</strong> Tell the AI what you DON'T want. Add negative tags like: <em>"text, watermark, messy, blurry, low resolution, extra fingers."</em></li>
-                        <li><strong>Lighting is Everything:</strong> Add terms like "volumetric lighting," "golden hour," or "cinematic lighting." This alone upgrades an image from amateur to professional.</li>
-                    </ul>
                 </div>
             </details>
-
-            <details class="article-card electric-box">
-                <summary>The Future of Screen Technology</summary>
-                <div class="article-content">
-                    <p>We are currently entering the golden age of display technology. As developers create higher quality 4K and 8K wallpapers, screen manufacturers are pushing the boundaries of how those pixels are illuminated.</p>
-                    <p><strong>OLED and QD-OLED:</strong> Traditional LED screens have a backlight that is always on, meaning black colors look dark gray. OLED panels turn off individual pixels completely, creating "True Black." This is why Dark Mode and AMOLED wallpapers (like cyberpunk neon or space galaxies) look so incredible on modern smartphones like the iPhone 15 Pro and Galaxy S24 Ultra.</p>
-                    <p><strong>The Future - MicroLED:</strong> Looking forward, MicroLED is the Holy Grail. It provides the infinite contrast of OLED without the risk of "burn-in," while being three times brighter. As displays push towards 10,000 nits of peak brightness with HDR, wallpapers will no longer just be background images—they will be highly immersive light sources for your room.</p>
-                </div>
-            </details>
-
         </section>
 
         <section class="seo-vault" aria-hidden="true">
-            <h2>Supported Devices and Dimensions for Wallpapers</h2>
-            <p>Download free wallpapers for all devices. Top dimensions: 1080x1920 FHD, 1440x2560 QHD, 2160x3840 4K UHD, 1920x1080 desktop, 2560x1440 2K monitor, 3840x2160 4K monitor, 5120x2880 5K iMac, 7680x4320 8K display, 1170x2532, 1284x2778, 1290x2796, 1080x2340, 1440x3088, 1440x3120, 2732x2048, 21:9 ultrawide, 32:9 super ultrawide.</p>
-            <p>Compatible with top devices: iPhone 16 Pro Max wallpapers, iPhone 16 Plus, iPhone 15 Pro Max, iPhone 14 Pro, iPhone 13, Samsung Galaxy S24 Ultra wallpapers, Galaxy S23 Ultra, Galaxy Z Fold 6 backgrounds, Galaxy Z Flip 6, Google Pixel 9 Pro XL, Pixel 8 Pro, OnePlus 12, iPad Pro 13-inch M4, iPad Air, MacBook Pro 16-inch, MacBook Air M3, Alienware 32 4K QD-OLED monitor, Samsung Odyssey OLED G8, LG OLED TV backgrounds, Sony Bravia, Windows 11 Desktop aesthetic, macOS Sonoma desktop, dual monitor setup wallpapers, triple monitor spanned backgrounds.</p>
+            <h2>Free Library Assets Free For Use</h2>
+            <p>Download free library assets free for use. Find top-tier design assets, free stock photos, stock videos, royalty-free images, 4K wallpapers, UI elements, and digital art. High resolution assets for graphic designers, video editors, and content creators.</p>
+            <p>Supported devices: iPhone 16 Pro Max, Samsung Galaxy S24 Ultra, Ultrawide 32:9 monitors, Dual monitors, iPad Pro M4, MacBook M3, Alienware QD-OLED. Dimensions: 1080x1920, 2160x3840 4K UHD, 1920x1080 desktop, 5120x2880 5K, 7680x4320 8K. Categories: Cyberpunk, Lofi, Anime, Nature, Dark AMOLED.</p>
         </section>
 
         <footer class="main-footer">
@@ -353,43 +373,53 @@
         </footer>
     </main>
 
+    <div class="puzzle-popup" id="puzzlePopup">
+        <div class="puzzle-header">
+            <h2>🧩 Image Puzzle</h2>
+            <button class="close-puzzle" onclick="closePuzzle()">&times;</button>
+        </div>
+        <p style="color:var(--text-muted); margin-bottom:15px; font-weight:600;">Click two pieces to swap them!</p>
+        <div class="puzzle-grid" id="puzzleGrid">
+            </div>
+    </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             'use strict';
 
             // FULL DATABASE
             const seoData = [
-                { id: 1, ext: 'png', title: "Enchanted Waterfall & Rainbow", desc: "4K fantasy nature wallpaper featuring a magical waterfall, vivid rainbow, and sunlit forest." },
-                { id: 2, ext: 'png', title: "Starry Night Mountain Lake", desc: "Stunning 4K landscape wallpaper of a starry galaxy sky reflected in a peaceful mountain lake." },
-                { id: 3, ext: 'png', title: "Tropical Sunset Beach", desc: "Vibrant 4K summer wallpaper with a tropical beach, palm trees, and a pink sunset ocean." },
-                { id: 4, ext: 'png', title: "Majestic Mountain Sunrise", desc: "Serene 4K landscape nature wallpaper showing a purple sunrise reflecting on a still mountain lake." },
+                { id: 1, ext: 'png', title: "Enchanted Waterfall & Rainbow", desc: "4K fantasy nature design asset featuring a magical waterfall, vivid rainbow, and sunlit forest." },
+                { id: 2, ext: 'png', title: "Starry Night Mountain Lake", desc: "Stunning 4K landscape asset of a starry galaxy sky reflected in a peaceful mountain lake." },
+                { id: 3, ext: 'png', title: "Tropical Sunset Beach", desc: "Vibrant 4K summer stock photo with a tropical beach, palm trees, and a pink sunset ocean." },
+                { id: 4, ext: 'png', title: "Majestic Mountain Sunrise", desc: "Serene 4K landscape nature asset showing a purple sunrise reflecting on a still mountain lake." },
                 { id: 5, ext: 'png', title: "Sunlit Forest Stream", desc: "Peaceful 4K nature wallpaper of a lush green forest with sunlight glowing through the trees." },
-                { id: 6, ext: 'png', title: "Clear Blue Tropical Oasis", desc: "Bright 4K summer aesthetic wallpaper featuring a pristine beach, blue ocean, and palm trees." },
-                { id: 7, ext: 'png', title: "Alpine Lake & Snowy Peaks", desc: "Crisp 4K nature photography wallpaper of a majestic snow-capped mountain and crystal clear lake." },
-                { id: 8, ext: 'png', title: "Golden Hour Forest Lake", desc: "Warm 4K landscape wallpaper capturing a vibrant golden sunset over a peaceful forest river." },
-                { id: 9, ext: 'jpg', title: "Cozy Rainy Anime Room", desc: "Lofi aesthetic 4K wallpaper of a cozy anime bedroom with rain falling outside the window at night." },
-                { id: 10, ext: 'jpg', title: "Dark Academia Coffee & Book", desc: "Moody 4K wallpaper featuring a steaming cup of coffee and an open book in a dark, atmospheric study." },
-                { id: 11, ext: 'jpg', title: "Minimalist Black Desk Setup", desc: "Clean 4K dark mode wallpaper featuring a sleek black mechanical keyboard and minimalist desk setup." },
-                { id: 12, ext: 'jpg', title: "Morning Coffee Aesthetic", desc: "Cozy 4K wallpaper of a rustic coffee mug resting on a wooden table with soft morning lighting." },
+                { id: 6, ext: 'png', title: "Clear Blue Tropical Oasis", desc: "Bright 4K summer aesthetic asset featuring a pristine beach, blue ocean, and palm trees." },
+                { id: 7, ext: 'png', title: "Alpine Lake & Snowy Peaks", desc: "Crisp 4K nature photography asset of a majestic snow-capped mountain and crystal clear lake." },
+                { id: 8, ext: 'png', title: "Golden Hour Forest Lake", desc: "Warm 4K landscape stock photo capturing a vibrant golden sunset over a peaceful forest river." },
+                { id: 9, ext: 'jpg', title: "Cozy Rainy Anime Room", desc: "Lofi aesthetic 4K background of a cozy anime bedroom with rain falling outside the window at night." },
+                { id: 10, ext: 'jpg', title: "Dark Academia Coffee & Book", desc: "Moody 4K asset featuring a steaming cup of coffee and an open book in a dark, atmospheric study." },
+                { id: 11, ext: 'jpg', title: "Minimalist Black Desk Setup", desc: "Clean 4K dark mode asset featuring a sleek black mechanical keyboard and minimalist desk setup." },
+                { id: 12, ext: 'jpg', title: "Morning Coffee Aesthetic", desc: "Cozy 4K asset of a rustic coffee mug resting on a wooden table with soft morning lighting." },
                 { id: 13, ext: 'jpg', title: "Ethereal Butterfly Portrait", desc: "Beautiful 4K fantasy digital art portrait of a woman surrounded by glowing butterflies." },
-                { id: 14, ext: 'jpg', title: "Black and Gold Marble", desc: "Premium 4K abstract wallpaper featuring elegant black and gold liquid marble textures." },
-                { id: 15, ext: 'jpg', title: "Synthwave Neon Sunset", desc: "Retro 80s vaporwave 4K wallpaper featuring a neon grid, glowing pink sun, and palm trees." },
-                { id: 16, ext: 'png', title: "Lofi Spring Desktop Setup", desc: "Aesthetic 4K anime wallpaper of a cozy computer desk setup with blooming cherry blossoms outside." },
-                { id: 17, ext: 'png', title: "Pastel Anime Girl", desc: "Cute 4K anime wallpaper featuring a beautiful girl in a pastel hoodie with soft, ethereal lighting." },
-                { id: 18, ext: 'png', title: "Cyberpunk Neon Rain", desc: "Dark AMOLED 4K wallpaper of a rainy cyberpunk city alley reflecting glowing neon blue and purple lights." },
-                { id: 19, ext: 'png', title: "Iridescent Liquid Glass", desc: "Elegant 4K abstract wallpaper featuring smooth, flowing iridescent pastel liquid glass waves." },
-                { id: 20, ext: 'jpg', title: "Aurora Borealis Night Sky", desc: "Stunning 4K nature wallpaper of the glowing green aurora borealis lights over a dark landscape." },
-                { id: 21, ext: 'jpg', title: "Samurai Under Blood Sun", desc: "Epic 4K dark fantasy wallpaper of a lone samurai warrior standing beneath a glowing red sun." },
-                { id: 22, ext: 'jpg', title: "Cherry Blossom Samurai", desc: "Cinematic 4K anime wallpaper of a fierce samurai surrounded by falling pink cherry blossoms." },
+                { id: 14, ext: 'jpg', title: "Black and Gold Marble", desc: "Premium 4K abstract asset featuring elegant black and gold liquid marble textures." },
+                { id: 15, ext: 'jpg', title: "Synthwave Neon Sunset", desc: "Retro 80s vaporwave 4K graphic featuring a neon grid, glowing pink sun, and palm trees." },
+                { id: 16, ext: 'png', title: "Lofi Spring Desktop Setup", desc: "Aesthetic 4K anime graphic of a cozy computer desk setup with blooming cherry blossoms outside." },
+                { id: 17, ext: 'png', title: "Pastel Anime Girl", desc: "Cute 4K anime design asset featuring a beautiful girl in a pastel hoodie with soft, ethereal lighting." },
+                { id: 18, ext: 'png', title: "Cyberpunk Neon Rain", desc: "Dark AMOLED 4K asset of a rainy cyberpunk city alley reflecting glowing neon blue and purple lights." },
+                { id: 19, ext: 'png', title: "Iridescent Liquid Glass", desc: "Elegant 4K abstract design asset featuring smooth, flowing iridescent pastel liquid glass waves." },
+                { id: 20, ext: 'jpg', title: "Aurora Borealis Night Sky", desc: "Stunning 4K nature background of the glowing green aurora borealis lights over a dark landscape." },
+                { id: 21, ext: 'jpg', title: "Samurai Under Blood Sun", desc: "Epic 4K dark fantasy graphic of a lone samurai warrior standing beneath a glowing red sun." },
+                { id: 22, ext: 'jpg', title: "Cherry Blossom Samurai", desc: "Cinematic 4K anime graphic of a fierce samurai surrounded by falling pink cherry blossoms." },
                 { id: 23, ext: 'jpg', title: "Ronin Sunset Silhouette", desc: "Dramatic 4K digital art of a samurai swordsman silhouetted against a vibrant golden hour sunset." },
-                { id: 24, ext: 'jpg', title: "Dark Samurai Warrior", desc: "Intense 4K Japanese aesthetic wallpaper of a battle-ready samurai in traditional dark armor." },
-                { id: 25, ext: 'jpg', title: "Crimson Sun Swordsman", desc: "Powerful 4K wallpaper of an anime samurai warrior drawing his katana against a blood-red sun." },
-                { id: 26, ext: 'jpg', title: "Vegeta Ultra Ego Aura", desc: "Badass 4K Dragon Ball Super anime wallpaper featuring Vegeta in Ultra Ego form with glowing purple aura." },
-                { id: 27, ext: 'jpg', title: "Naruto Cyberpunk City", desc: "Unique 4K anime crossover wallpaper of Naruto looking out over a futuristic neon cyberpunk skyline." },
-                { id: 28, ext: 'jpg', title: "Goku vs Vegeta Clash", desc: "Epic 4K Dragon Ball Z anime wallpaper showing a high-energy battle clash between Goku and Vegeta." },
-                { id: 29, ext: 'jpg', title: "Goku Ultra Instinct", desc: "Incredible 4K DBZ anime wallpaper of Goku in Mastered Ultra Instinct form with glowing blue energy." },
-                { id: 30, ext: 'jpg', title: "Cozy Lofi Night Desk", desc: "Aesthetic 4K cozy lofi wallpaper featuring a relaxing desk setup with warm lighting and a calm study vibe." },
-                { id: 31, ext: 'jpg', title: "Lofi Urban Rain Room", desc: "Perfect 4K cozy aesthetic wallpaper of a lofi desktop setup with city rain outside the window." },
+                { id: 24, ext: 'jpg', title: "Dark Samurai Warrior", desc: "Intense 4K Japanese aesthetic asset of a battle-ready samurai in traditional dark armor." },
+                { id: 25, ext: 'jpg', title: "Crimson Sun Swordsman", desc: "Powerful 4K graphic of an anime samurai warrior drawing his katana against a blood-red sun." },
+                { id: 26, ext: 'jpg', title: "Vegeta Ultra Ego Aura", desc: "Badass 4K anime design asset featuring Vegeta in Ultra Ego form with glowing purple aura." },
+                { id: 27, ext: 'jpg', title: "Naruto Cyberpunk City", desc: "Unique 4K anime crossover asset of Naruto looking out over a futuristic neon cyberpunk skyline." },
+                { id: 28, ext: 'jpg', title: "Goku vs Vegeta Clash", desc: "Epic 4K anime asset showing a high-energy battle clash between Goku and Vegeta." },
+                { id: 29, ext: 'jpg', title: "Goku Ultra Instinct", desc: "Incredible 4K anime asset of Goku in Mastered Ultra Instinct form with glowing blue energy." },
+                { id: 30, ext: 'jpg', title: "Cozy Lofi Night Desk", desc: "Aesthetic 4K cozy lofi asset featuring a relaxing desk setup with warm lighting and a calm study vibe." },
+                { id: 31, ext: 'jpg', title: "Lofi Urban Rain Room", desc: "Perfect 4K cozy aesthetic asset of a lofi desktop setup with city rain outside the window." },
                 { id: 33, ext: 'jpg', title: "Spring Cherry Blossom Desk", desc: "Aesthetic 4K cozy minimalist desk setup with pastel pink cherry blossoms and bright morning nature sunlight." }
             ];
 
@@ -398,18 +428,15 @@
             const titleEl = document.getElementById('wp-title');
             const descEl = document.getElementById('wp-desc');
             const allMockupImgs = document.querySelectorAll('.live-img');
-            const nextBtn = document.getElementById('nextBtn');
 
             // LOAD ACTIVE WALLPAPER
             function loadActiveWallpaper() {
                 const currentData = seoData[currentIndex];
                 const imgUrl = `https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/${currentData.id}.${currentData.ext}`;
                 
-                // Update Console Text
                 titleEl.innerText = currentData.title;
                 descEl.innerText = currentData.desc;
 
-                // Create a brief fade effect for smooth transitions
                 allMockupImgs.forEach(img => {
                     img.style.opacity = '0.4';
                     setTimeout(() => {
@@ -421,13 +448,9 @@
 
             // CONTROLS
             window.changeWallpaper = function(direction) {
-                // Direction is 1 (Next) or -1 (Prev)
                 currentIndex = currentIndex + direction;
-                
-                // Infinite Loop bounds checking
                 if (currentIndex >= seoData.length) currentIndex = 0;
                 if (currentIndex < 0) currentIndex = seoData.length - 1;
-                
                 loadActiveWallpaper();
             };
 
@@ -441,7 +464,7 @@
                 
                 const currentData = seoData[currentIndex];
                 const imgUrl = `https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/${currentData.id}.${currentData.ext}`;
-                const fileName = `${currentData.id}.${currentData.ext}`;
+                const fileName = `wallrank-asset-${currentData.id}.${currentData.ext}`;
 
                 try {
                     const response = await fetch(imgUrl);
@@ -450,12 +473,12 @@
                     const blobUrl = URL.createObjectURL(blob);
                     const link = document.createElement('a');
                     link.href = blobUrl;
-                    link.download = `wallrank-${fileName}`; 
+                    link.download = fileName; 
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
                     setTimeout(() => URL.revokeObjectURL(blobUrl), 100);
-                    gtag('event', 'download', { 'event_category': 'conversion', 'event_label': `Image_${fileName}` });
+                    gtag('event', 'download', { 'event_category': 'conversion', 'event_label': `Asset_${currentData.id}` });
                 } catch (error) {
                     window.open(imgUrl, '_blank');
                 } finally {
@@ -463,9 +486,57 @@
                 }
             };
 
+            // PUZZLE LOGIC
+            const puzzlePopup = document.getElementById('puzzlePopup');
+            const puzzleGrid = document.getElementById('puzzleGrid');
+            let selectedPiece = null;
+
+            window.openPuzzle = function() {
+                const currentData = seoData[currentIndex];
+                const imgUrl = `https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/${currentData.id}.${currentData.ext}`;
+                
+                puzzleGrid.innerHTML = '';
+                let positions = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+                positions.sort(() => Math.random() - 0.5); // Quick shuffle
+
+                positions.forEach((pos) => {
+                    let piece = document.createElement('div');
+                    piece.className = 'puzzle-piece';
+                    piece.style.backgroundImage = `url(${imgUrl})`;
+                    
+                    // Map 0-8 to % coordinates (3x3 grid)
+                    let x = (pos % 3) * 50; 
+                    let y = Math.floor(pos / 3) * 50;
+                    piece.style.backgroundPosition = `${x}% ${y}%`;
+                    
+                    piece.onclick = function() {
+                        if (!selectedPiece) {
+                            selectedPiece = piece;
+                            piece.style.border = '3px solid var(--accent)';
+                        } else {
+                            // Swap backgrounds
+                            let tempBg = selectedPiece.style.backgroundPosition;
+                            selectedPiece.style.backgroundPosition = piece.style.backgroundPosition;
+                            piece.style.backgroundPosition = tempBg;
+                            
+                            selectedPiece.style.border = '1px solid rgba(0,0,0,0.5)';
+                            selectedPiece = null;
+                        }
+                    };
+                    puzzleGrid.appendChild(piece);
+                });
+
+                puzzlePopup.classList.add('active');
+            };
+
+            window.closePuzzle = function() {
+                puzzlePopup.classList.remove('active');
+                selectedPiece = null;
+            };
+
             // INITIAL BOOT
             loadActiveWallpaper();
-            gtag('event', 'page_view', { 'page_title': 'App Engine', 'page_location': 'https://wallrank.club' });
+            gtag('event', 'page_view', { 'page_title': 'Asset Library', 'page_location': 'https://wallrank.club' });
         });
     </script>
 </body>
