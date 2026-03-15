@@ -22,7 +22,7 @@
         /* ---------- ULTRA MINIMAL CSS ---------- */
         :root {
             --bg-color: #fafafa;
-            --surface: #ffffff;
+            --surface: rgba(255, 255, 255, 0.95);
             --text-main: #0f172a;
             --text-muted: #475569; 
             --border-light: #f1f5f9;
@@ -40,11 +40,44 @@
 
         body {
             font-family: 'Quicksand', sans-serif; background: var(--bg-color); color: var(--text-main);
-            padding: 30px 24px; display: flex; flex-direction: column; align-items: center;
+            padding: 20px 24px; display: flex; flex-direction: column; align-items: center;
             min-height: 100vh; -webkit-font-smoothing: antialiased; overflow-x: hidden; 
         }
         
         .container { max-width: 1200px; width: 100%; display: flex; flex-direction: column; position: relative; flex: 1; }
+
+        /* APPLE-STYLE ANNOUNCEMENT BANNER */
+        .announcement-banner {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            border-radius: 50px;
+            padding: 10px 24px;
+            margin: 0 auto 30px auto;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-width: 300px;
+            max-width: 90%;
+        }
+        
+        .announcement-text {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+            /* The Honey-Like Transition */
+            transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .announcement-text.hidden {
+            opacity: 0;
+            transform: translateY(-8px);
+        }
 
         /* HEADER */
         header { 
@@ -152,7 +185,7 @@
             margin-bottom: 80px; padding: 15px; background: #eef2ff; border-radius: 12px; border: 1px solid #e0e7ff;
         }
 
-        /* ARTICLES / NEW SECTIONS */
+        /* NEW SECTIONS */
         .articles-section {
             width: 100%; max-width: 900px; margin: 0 auto 80px auto; display: flex; flex-direction: column; gap: 20px;
         }
@@ -226,6 +259,8 @@
             .d-phone, .d-profile, .d-case { width: 70%; }
         }
         @media (max-width: 600px) {
+            .announcement-banner { width: 100%; padding: 12px 15px; }
+            .announcement-text { font-size: 0.85rem; }
             .header-title-row { justify-content: center; width: 100%;}
             .nav-links { justify-content: center; width: 100%; }
             .control-buttons { flex-direction: column; }
@@ -242,6 +277,11 @@
 <body>
 
     <main class="container">
+        
+        <div class="announcement-banner">
+            <span class="announcement-text" id="announceText">✨ We've added 78 assets this month you can use for free</span>
+        </div>
+
         <header>
             <div class="header-title-row">
                 <h1>WallRank</h1>
@@ -443,6 +483,27 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             'use strict';
+
+            // APPLE-STYLE DYNAMIC BANNER LOGIC
+            const messages = [
+                "✨ We've added 78 assets this month you can use for free",
+                "🔥 Hot 3 articles of this month are ready to read"
+            ];
+            let msgIndex = 0;
+            const announceText = document.getElementById('announceText');
+
+            // Set interval to change message every 6 seconds
+            setInterval(() => {
+                // 1. Gently dissolve and float away
+                announceText.classList.add('hidden');
+                
+                // 2. Wait for the CSS transition to finish (1.2s), then swap text and fade back in
+                setTimeout(() => {
+                    msgIndex = (msgIndex + 1) % messages.length;
+                    announceText.innerText = messages[msgIndex];
+                    announceText.classList.remove('hidden');
+                }, 1200); 
+            }, 6000); 
 
             // FULL DATABASE
             const seoData = [
