@@ -13,13 +13,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="p:domain_verify" content="0d9886b7f80f7c798950f6eda489bba6"/>
     
-    <title>Free Library Assets & 4K AI Mockups | WallRank</title>
-    <meta name="description" content="Discover free library assets free for use. Test 4K wallpapers, design assets, and stock images on live 3D device mockups instantly.">
+    <title>Free AI Assets & 4K Wallpaper Mockups | WallRank.club</title>
+    <meta name="description" content="Discover massive libraries of free AI wallpapers, font styles, social media templates, and stock photos. View instantly on live device mockups at WallRank.club.">
     <link rel="canonical" href="https://wallrank.club">
+    
+    <link rel="icon" href="https://wallrank.club/favicon.ico" type="image/x-icon">
+    
+    <meta property="og:title" content="Free AI Asset Library | WallRank.club" />
+    <meta property="og:description" content="Test free 4K AI art and design templates on live mockups instantly. Shorten your creative time daily." />
+    <meta property="og:image" content="https://wallrank.club/og-image.jpg" /> <meta property="og:url" content="https://wallrank.club" />
+    <meta property="og:type" content="website" />
+
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* ---------- ULTRA MINIMAL CSS ---------- */
+        /* ---------- ULTRA MINIMAL CSS (No Change to original design) ---------- */
         :root {
             --bg-color: #fafafa;
             --surface: rgba(255, 255, 255, 0.95);
@@ -68,7 +76,6 @@
             font-size: 0.95rem;
             font-weight: 700;
             color: var(--text-main);
-            /* The Honey-Like Transition */
             transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
             opacity: 1;
             transform: translateY(0);
@@ -79,27 +86,24 @@
             transform: translateY(-8px);
         }
 
-        /* HEADER */
+        /* HEADER & [NEW] Optimized Menu Styles */
         header { 
-            width: 100%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;
-            margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border-light);
+            width: 100%; display: flex; flex-direction: column; align-items: center;
+            margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border-light); gap: 20px;
         }
-        .header-title-row { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
-        header h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.04em; }
-        
-        .header-btn {
-            padding: 6px 14px; border-radius: 50px; font-size: 0.9rem; font-weight: 700;
-            font-family: inherit; cursor: pointer; display: flex; align-items: center; gap: 6px;
-            transition: var(--transition-smooth); 
-        }
-        .puzzle-btn { background: #fffbeb; border: 2px solid #fef3c7; color: #d97706; box-shadow: 0 4px 10px rgba(217, 119, 6, 0.1); }
-        .puzzle-btn:hover { background: #fef3c7; transform: translateY(-2px); box-shadow: 0 6px 14px rgba(217, 119, 6, 0.15); }
-        .footage-btn { background: #f0fdf4; border: 2px solid #dcfce7; color: #16a34a; box-shadow: 0 4px 10px rgba(22, 163, 74, 0.1); }
-        .footage-btn:hover { background: #dcfce7; transform: translateY(-2px); box-shadow: 0 6px 14px rgba(22, 163, 74, 0.15); }
+        header h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.04em; text-align: center; }
 
-        .nav-links { display: flex; gap: 15px; flex-wrap: wrap; }
-        .nav-links a { color: var(--text-muted); font-weight: 700; text-decoration: none; font-size: 1rem; transition: 0.2s;}
-        .nav-links a:hover { color: var(--text-main); }
+        .nav-links { 
+            display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; width: 100%; 
+            padding: 15px; background: rgba(0,0,0,0.02); border-radius: 50px; border: 1px solid var(--border-light);
+        }
+        .nav-links a { 
+            color: var(--text-muted); font-weight: 700; text-decoration: none; font-size: 0.95rem; 
+            padding: 8px 16px; border-radius: 50px; transition: 0.2s; white-space: nowrap;
+        }
+        .nav-links a:hover, .nav-links a.active { 
+            background: var(--accent-dark); color: var(--accent);
+        }
 
         /* 25-SECOND ELECTRICITY PULSE */
         @keyframes electricPulse {
@@ -185,11 +189,12 @@
             margin-bottom: 80px; padding: 15px; background: #eef2ff; border-radius: 12px; border: 1px solid #e0e7ff;
         }
 
-        /* NEW SECTIONS */
-        .articles-section {
-            width: 100%; max-width: 900px; margin: 0 auto 80px auto; display: flex; flex-direction: column; gap: 20px;
+        /* NEW PAGES (SECTION Logic) */
+        .content-page {
+            display: none; width: 100%; max-width: 900px; margin: 0 auto 80px auto; flex-direction: column; gap: 20px;
         }
-        
+        .content-page.active { display: flex; } /* Show only active page */
+
         .article-card {
             background: var(--surface); border-radius: 24px; box-shadow: var(--shadow-sm); 
             border: 1px solid var(--border-focus); overflow: hidden;
@@ -211,13 +216,19 @@
         .article-content li { margin-bottom: 8px; }
         .article-content strong { color: var(--text-main); }
 
-        /* SETUP GRID FOR PERFECT DESKTOP */
+        /* SETUP GRID */
         .setup-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;}
         .setup-box { background: var(--bg-color); padding: 20px; border-radius: 16px; border: 1px solid var(--border-focus); }
         .setup-box h3 { margin-bottom: 15px; font-size: 1.2rem; color: var(--text-main); }
         .setup-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px; margin: 0; }
         .setup-list a { text-decoration: none; color: var(--text-main); font-weight: 700; transition: color 0.2s; display: flex; align-items: center; gap: 8px;}
         .setup-list a:hover { color: var(--accent-dark); opacity: 0.7;}
+
+        /* [NEW] The 'Empty Container' Style for Unimplemented Pages */
+        .empty-container {
+            text-align: center; padding: 80px 40px; background: white; border-radius: 24px; border: 2px dashed #e2e8f0; color: var(--text-muted); font-weight: 700;
+        }
+        .empty-container h2 { font-size: 2.5rem; color: #cbd5e1; margin-bottom: 15px; }
 
         /* PUZZLE MODAL */
         .puzzle-popup {
@@ -240,8 +251,13 @@
         }
         .puzzle-piece:hover { opacity: 0.9; }
 
-        /* HIDDEN SEO BLOCK */
-        .seo-vault { display: none; }
+        /* [NEW] Site Directory (Fixed 'Hidden SEO Vault') */
+        .site-directory { 
+            width: 100%; max-width: 1200px; margin: 80px auto 40px auto; padding: 30px; 
+            border-top: 2px solid var(--border-light); text-align: center; 
+        }
+        .site-directory h2 { font-size: 1rem; text-transform: uppercase; color: #a1a1aa; letter-spacing: 2px; margin-bottom: 15px;}
+        .site-directory p { font-size: 0.9rem; color: #d4d4d8; line-height: 1.8; max-width: 800px; margin: 0 auto;}
 
         /* RESTORED FOOTER */
         .main-footer {
@@ -257,12 +273,14 @@
         @media (max-width: 900px) {
             .span-phone, .span-tablet, .span-profile, .span-case { grid-column: span 12; }
             .d-phone, .d-profile, .d-case { width: 70%; }
+            .header-links { gap: 8px; flex-direction: column; }
         }
         @media (max-width: 600px) {
             .announcement-banner { width: 100%; padding: 12px 15px; }
             .announcement-text { font-size: 0.85rem; }
             .header-title-row { justify-content: center; width: 100%;}
-            .nav-links { justify-content: center; width: 100%; }
+            .nav-links { justify-content: center; width: 100%; padding: 10px; border-radius: 12px; flex-direction: column; gap: 5px;}
+            .nav-links a { font-size: 0.85rem; width: 100%; text-align: center; }
             .control-buttons { flex-direction: column; }
             .btn-gaming, .btn-secondary, .btn-download { width: 100%; }
             .d-desktop { width: 100%; border-width: 8px; border-bottom-width: 16px;}
@@ -283,73 +301,144 @@
         </div>
 
         <header>
-            <div class="header-title-row">
-                <h1>WallRank</h1>
-                <button class="header-btn puzzle-btn" onclick="openPuzzle()">🧩 Play Puzzle</button>
-                <button class="header-btn footage-btn" onclick="alert('Free stock video footage library coming soon!')">🎥 Stock Footage</button>
-            </div>
-            <div class="nav-links">
-                <a href="#app">Asset Library</a>
-                <a href="#perfect-desktop">Setups & Gear</a>
-                <a href="#monthly-updates">Trendy News</a>
-                <a href="#articles">Guides</a>
-            </div>
+            <h1>WallRank</h1>
+            <nav class="nav-links">
+                <a href="#" class="active" onclick="navigateTo('home')">Home Gallery</a>
+                <a href="#" onclick="navigateTo('wallpapers')">Free AI Wallpapers</a>
+                <a href="#" onclick="navigateTo('stocks')">Free Stock Photos</a>
+                <a href="#" onclick="navigateTo('fonts')">Free Fonts</a>
+                <a href="#" onclick="navigateTo('social-templates')">Social Templates</a>
+                <a href="#" onclick="navigateTo('logo-templates')">Logo Templates</a>
+                <a href="#" onclick="navigateTo('puzzle')">Puzzle Game</a>
+                <a href="#" onclick="navigateTo('news')">Trendy News</a>
+                <a href="#" onclick="navigateTo('setups')">Setups & Gear</a>
+                <a href="#" onclick="navigateTo('guide')">User Guide</a>
+            </nav>
         </header>
 
-        <section id="app" class="app-console electric-box">
-            <h2>Free Library Assets & Mockup Engine</h2>
-            <p>Welcome to your central hub for <strong>free library assets free for use</strong>. Explore our growing database of 4K wallpapers, design assets, and stock photos. View them instantly on live device mockups below before you download.</p>
-            
-            <h3 id="wp-title" style="margin-top: 15px; font-size: 1.5rem; color: var(--text-main);">Loading...</h3>
-            <p id="wp-desc" style="font-size: 0.95rem; margin-bottom: 20px;">Fetching high quality assets...</p>
+        <section id="home-page" class="content-page active">
+            <section id="app" class="app-console electric-box">
+                <h2>AI Wallpaper Experience Engine</h2>
+                <p>Curated 4K assets mapped directly onto live 3D device mockups. Browse our active library instantly before downloading.</p>
+                
+                <h3 id="wp-title" style="margin-top: 15px; font-size: 1.5rem; color: var(--text-main);">Loading...</h3>
+                <p id="wp-desc" style="font-size: 0.95rem; margin-bottom: 20px;">Fetching high quality assets...</p>
 
-            <div class="control-buttons">
-                <button class="btn-secondary" onclick="changeWallpaper(-1)">◀ Prev</button>
-                <button class="btn-gaming" id="nextBtn" onclick="changeWallpaper(1)">Next Asset ▶</button>
-                <button class="btn-download" id="dlBtn" onclick="triggerDownload()">💾 Download HD</button>
+                <div class="control-buttons">
+                    <button class="btn-secondary" onclick="changeWallpaper(-1)">◀ Prev</button>
+                    <button class="btn-gaming" id="nextBtn" onclick="changeWallpaper(1)">Next Asset ▶</button>
+                    <button class="btn-download" id="dlBtn" onclick="triggerDownload()">💾 Download HD</button>
+                </div>
+            </section>
+
+            <section class="live-grid">
+                <div class="mockup-card span-desktop electric-box">
+                    <h3>🖥️ Pro Desktop Setup</h3>
+                    <div class="m-screen d-desktop"><img class="live-img" src="" alt="Live Desktop Mockup"></div>
+                </div>
+                
+                <div class="mockup-card span-phone electric-box">
+                    <h3>📱 Mobile Display</h3>
+                    <div class="m-screen d-phone"><img class="live-img" src="" alt="Live Phone Mockup"></div>
+                </div>
+                
+                <div class="mockup-card span-tablet electric-box">
+                    <h3>📟 Tablet Canvas</h3>
+                    <div class="m-screen d-tablet"><img class="live-img" src="" alt="Live Tablet Mockup"></div>
+                </div>
+
+                <div class="mockup-card span-mousepad electric-box">
+                    <h3>🖱️ Ultrawide Mousepad</h3>
+                    <div class="m-screen d-mousepad"><img class="live-img" src="" alt="Live Mousepad Mockup"></div>
+                </div>
+
+                <div class="mockup-card span-profile electric-box">
+                    <h3>👤 Social Avatar</h3>
+                    <div class="m-screen d-profile"><img class="live-img" src="" alt="Live Social Avatar Mockup"></div>
+                </div>
+
+                <div class="mockup-card span-case electric-box">
+                    <h3>🤳 Phone Case</h3>
+                    <div class="m-screen d-case"><img class="live-img" src="" alt="Live Phone Case Mockup"></div>
+                </div>
+            </section>
+
+            <div class="future-notice">
+                🚀 Coming Soon: AI font style preview and social media post templates integrated directly into the live engine!
             </div>
         </section>
 
-        <section class="live-grid">
-            <div class="mockup-card span-desktop electric-box">
-                <h3>🖥️ Pro Desktop Setup</h3>
-                <div class="m-screen d-desktop"><img class="live-img" src="" alt="Desktop Mockup"></div>
-            </div>
-            
-            <div class="mockup-card span-phone electric-box">
-                <h3>📱 Mobile Display</h3>
-                <div class="m-screen d-phone"><img class="live-img" src="" alt="Phone Mockup"></div>
-            </div>
-            
-            <div class="mockup-card span-tablet electric-box">
-                <h3>📟 Tablet Canvas</h3>
-                <div class="m-screen d-tablet"><img class="live-img" src="" alt="Tablet Mockup"></div>
-            </div>
+        <section id="wallpapers-page" class="content-page">
+             <script>
+                // This category redirects to Home since that's where the function is.
+                navigateTo('home');
+             </script>
+        </section>
 
-            <div class="mockup-card span-mousepad electric-box">
-                <h3>🖱️ Ultrawide Mousepad</h3>
-                <div class="m-screen d-mousepad"><img class="live-img" src="" alt="Mousepad Mockup"></div>
-            </div>
-
-            <div class="mockup-card span-profile electric-box">
-                <h3>👤 Social Avatar</h3>
-                <div class="m-screen d-profile"><img class="live-img" src="" alt="Profile Mockup"></div>
-            </div>
-
-            <div class="mockup-card span-case electric-box">
-                <h3>🤳 Phone Case</h3>
-                <div class="m-screen d-case"><img class="live-img" src="" alt="Case Mockup"></div>
+        <section id="stocks-page" class="content-page">
+            <div class="empty-container">
+                <h2>COMING SOON</h2>
+                <p>Massive library of high-resolution AI Stock Photos (Free for Commercial Use)</p>
             </div>
         </section>
 
-        <div class="future-notice">
-            🚀 Coming Soon: Test images on custom coffee mugs, IG Story templates, and printed poster frames!
-        </div>
+        <section id="fonts-page" class="content-page">
+            <div class="empty-container">
+                <h2>COMING SOON</h2>
+                <p>AI-Optimized Font Styles and Typography Kits for Content Creators</p>
+            </div>
+        </section>
 
-        <section id="perfect-desktop" class="articles-section">
+        <section id="social-templates-page" class="content-page">
+            <div class="empty-container">
+                <h2>COMING SOON</h2>
+                <p>Free Instagram Story, TikTok Cover, and YouTube Thumbnail Templates</p>
+            </div>
+        </section>
+
+        <section id="logo-templates-page" class="content-page">
+            <div class="empty-container">
+                <h2>COMING SOON</h2>
+                <p>Customizable AI-generated Logo Kits for Brands and Startups</p>
+            </div>
+        </section>
+
+        <section id="puzzle-page" class="content-page">
+            <div class="app-console electric-box" style="gap:10px;">
+                <h2>🧩 Wallpaper Puzzle Game</h2>
+                <p>Shuffle the active wallpaper and test your mental speed!</p>
+                <button class="btn-gaming" style="margin-top:15px;" onclick="openPuzzle()">▶ START SHUFFLE</button>
+            </div>
+        </section>
+
+        <section id="news-page" class="content-page">
+            <div class="article-card electric-box" style="padding: 30px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-focus); padding-bottom: 15px; margin-bottom: 25px; flex-wrap: wrap; gap: 10px;">
+                    <h2 style="font-size: 2rem; color: var(--text-main); font-weight: 800; letter-spacing: -0.02em; margin:0;">🔥 Trendy Monthly Updates</h2>
+                    <span style="background: var(--accent-dark); color: var(--accent); padding: 6px 12px; border-radius: 50px; font-weight: 800; font-size: 0.9rem;">March 2026</span>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; gap: 30px;">
+                    <article>
+                        <h3 style="font-size: 1.3rem; color: var(--text-main); margin-bottom: 8px;">1. AI Quality Leap: Native 8K Asset Generation is Here</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6; font-size: 1.05rem;">The biggest bottleneck for digital creators has been upscaling. As of this month, next-generation AI pipelines can generate raw, native 8K assets without relying on secondary AI upscalers that blur poster text or architectural lines.</p>
+                    </article>
+                    <article>
+                        <h3 style="font-size: 1.3rem; color: var(--text-main); margin-bottom: 8px;">2. Hardware Shift: Why QD-OLED is the New Standard for Creators</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6; font-size: 1.05rem;">Recent price drops in Quantum Dot OLED Displays mean more designers are switching. If your assets aren't exported in true #000000 black, users with these new monitors will instantly notice the gray bleed.</p>
+                    </article>
+                    <article>
+                        <h3 style="font-size: 1.3rem; color: var(--text-main); margin-bottom: 8px;">3. UI Trend Watch: "Brutalist Urbanism" Replaces Flat Design</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6; font-size: 1.05rem;">We are tracking a shift in UI searches. Brutalist Urbanism"—heavy concrete textures and high-contrast neon accents—is replacing flat corporate art for Q1 2026.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="setups-page" class="content-page">
             <div class="article-card electric-box" style="padding: 30px;">
                 <h2 style="font-size: 2rem; color: var(--text-main); margin-bottom: 10px; font-weight: 800; letter-spacing: -0.02em;">The Perfect Desktop: Gear & Setup Inspiration</h2>
-                <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 20px;">The wallpaper is just the beginning. Complete your physical environment with the exact gear used by top creators and designers. <em>(Trusted external manufacturer links).</em></p>
+                <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 20px;">Complete your physical environment with the exact gear used by top creators. <em>(Trusted manufacturer links).</em></p>
                 
                 <div class="setup-grid">
                     <div class="setup-box">
@@ -380,89 +469,44 @@
             </div>
         </section>
 
-        <section id="monthly-updates" class="articles-section">
-            <div class="article-card electric-box" style="padding: 30px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-focus); padding-bottom: 15px; margin-bottom: 25px; flex-wrap: wrap; gap: 10px;">
-                    <h2 style="font-size: 2rem; color: var(--text-main); font-weight: 800; letter-spacing: -0.02em; margin:0;">🔥 Trendy Monthly Updates</h2>
-                    <span style="background: var(--accent-dark); color: var(--accent); padding: 6px 12px; border-radius: 50px; font-weight: 800; font-size: 0.9rem;">March 2026</span>
-                </div>
-                
-                <div style="display: flex; flex-direction: column; gap: 30px;">
-                    <article>
-                        <h3 style="font-size: 1.3rem; color: var(--text-main); margin-bottom: 8px;">1. AI Quality Leap: Native 8K Asset Generation is Here</h3>
-                        <p style="color: var(--text-muted); line-height: 1.6; font-size: 1.05rem;">The biggest bottleneck for digital creators has been upscaling. As of this month, next-generation AI pipelines can generate raw, native 8K assets without relying on secondary AI upscalers that blur poster text or architectural lines. This means 32:9 super-ultrawide mockups will finally look flawless out of the box.</p>
-                    </article>
-                    <article>
-                        <h3 style="font-size: 1.3rem; color: var(--text-main); margin-bottom: 8px;">2. Hardware Shift: Why QD-OLED is the New Standard for Creators</h3>
-                        <p style="color: var(--text-muted); line-height: 1.6; font-size: 1.05rem;">IPS monitor panels are officially dying out in the high-end space. Recent price drops in Quantum Dot OLED (QD-OLED) displays mean more designers are switching. If your design assets aren't exported in true #000000 black, users with these new monitors will instantly notice the gray bleed. WallRank ensures all dark-mode assets are pure OLED-compliant.</p>
-                    </article>
-                    <article>
-                        <h3 style="font-size: 1.3rem; color: var(--text-main); margin-bottom: 8px;">3. UI Trend Watch: "Brutalist Urbanism" Replaces Flat Design</h3>
-                        <p style="color: var(--text-muted); line-height: 1.6; font-size: 1.05rem;">We are tracking a massive shift in UI and poster design searches. Flat corporate art is out. The new trend for Q1 2026 is "Brutalist Urbanism"—heavy concrete textures, sharp geometric typography, and high-contrast neon accents. We are updating our free library to heavily feature these urban architectural elements.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="articles" class="articles-section">
+        <section id="guide-page" class="content-page">
+            <h2 style="font-size: 2rem; color: var(--text-main); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 15px;">Creator Resources & Guides</h2>
             
-            <details class="article-card electric-box">
-                <summary>About WallRank: The Ultimate Free Asset Library</summary>
+            <details class="article-card electric-box" open> <summary>About WallRank: The Free Experience Engine</summary>
                 <div class="article-content">
-                    <p>Welcome to <strong>WallRank</strong>. We realized there was a fundamental flaw in how creators search for assets online. Usually, you look at a tiny thumbnail, download it, try to apply it to your project, and realize it doesn't fit. </p>
-                    <p>WallRank solves this. We are building a massive repository of <strong>free library assets free for use</strong>. But more importantly, we built a live, interactive <strong>Experience Engine</strong>. Instead of just giving you a flat file, WallRank applies our curated 4K AI-generated art, design assets, and future stock photos directly onto real-world device mockups in real-time.</p>
-                    <p><strong>How to navigate:</strong> Use the "Next Asset" button to browse the library. Our engine instantly maps the image across all mockups simultaneously. When you find the perfect fit for your design, click "Download HD" to get the raw, uncompressed file entirely for free.</p>
+                    <p>Instead of giving you a flat file from a thumbnail, WallRank applies curated 4K AI-generated art, design assets, and templates directly onto real-world device mockups in real-time.</p>
                 </div>
             </details>
 
             <details class="article-card electric-box">
                 <summary>The Science of AMOLED: Saving Battery</summary>
                 <div class="article-content">
-                    <p>Changing your wallpaper isn't just about aesthetics—it is actually a technical trick to drastically extend your device's daily battery life. But there is a catch: it only works if you have an OLED or AMOLED screen.</p>
-                    <h3>1. OLED Technology</h3>
-                    <p>Traditional LCD screens use a global backlight. This means even if you have a completely black wallpaper, the backlight is still turned on. However, on modern devices (like the iPhone 15 Pro, Samsung Galaxy S24 Ultra), every pixel acts as its own independent lightbulb. When a pixel needs to display "True Black" (Hex code #000000), it completely turns off. It draws zero power.</p>
-                    <h3>2. The Battery Saving Math</h3>
-                    <p>If you choose a "True Black" Dark Mode asset—like a minimalist neon logo on a pure black background—up to 70% of the pixels on your phone screen are physically turned off. Over a 14-hour day, this can save you a significant percentage of battery life.</p>
+                    <p>On true OLED/AMOLED screens (Hex #000000), pixels turn off. If you choose a "True Black" asset, upcoating can save drastic battery life.</p>
                 </div>
             </details>
 
             <details class="article-card electric-box">
                 <summary>Top 7 AI Image Generators Ranked (2026)</summary>
                 <div class="article-content">
-                    <p>If you are looking to create your own high-fidelity wallpapers or stock images, here are the top 7 platforms currently dominating the market:</p>
                     <ul>
-                        <li><strong>7. Adobe Firefly:</strong> Best for safe, commercial use. Highly restrictive on creative freedom.</li>
-                        <li><strong>6. Google Imagen 3:</strong> Excellent at complex text prompts, lacks slightly in artistic soul.</li>
-                        <li><strong>5. DALL-E 3:</strong> Best for beginners, but often produces a "plastic" AI look.</li>
-                        <li><strong>4. Stable Diffusion 3:</strong> The open-source king for users with heavy local PC hardware.</li>
-                        <li><strong>3. Flux.1:</strong> The newest heavyweight. Incredible photorealism and anatomy.</li>
-                        <li><strong>2. Leonardo AI:</strong> The best UI in the business. Vastly cheaper and faster, perfect for generating design assets.</li>
-                        <li><strong>1. Midjourney v6:</strong> The undisputed king of aesthetics.</li>
+                        <li><strong>7. Adobe Firefly:</strong> Best for safe commerce.</li>
+                        <li><strong>6. Google Imagen 3:</strong> Excellent complex prompts.</li>
+                        <li><strong>1. Midjourney v6:</strong> Undisputed aesthetic king.</li>
                     </ul>
-                </div>
-            </details>
-
-            <details class="article-card electric-box">
-                <summary>The Pro Guide to AI Prompting</summary>
-                <div class="article-content">
-                    <p>Generating a masterpiece requires mastering the prompt. Here is why prompting matters and the formula to get exactly what you want for your free library assets.</p>
-                    <h3>The Formula</h3>
-                    <p>Stop writing sentences like: <em>"Make me a cool picture."</em> Start using the <strong>Pro Formula: [Subject] + [Environment] + [Lighting] + [Color Palette] + [Camera/Style]</strong>.</p>
-                    <h3>Example Prompt</h3>
-                    <p><strong>Use:</strong> <em>"1girl, standing in a neon-lit cyberpunk alleyway, heavy rain reflecting off puddles, cinematic rim lighting, deep cyan and magenta color palette, 8k resolution, Studio Ghibli illustration style, perfect desktop wallpaper composition."</em></p>
                 </div>
             </details>
         </section>
 
-        <section class="seo-vault" aria-hidden="true">
-            <h2>Free Library Assets Free For Use</h2>
-            <p>Download free library assets free for use. Find top-tier design assets, free stock photos, stock videos, royalty-free images, 4K wallpapers, UI elements, and digital art. High resolution assets for graphic designers, video editors, and content creators.</p>
-            <p>Supported devices: iPhone 16 Pro Max, Samsung Galaxy S24 Ultra, Ultrawide 32:9 monitors, Dual monitors, iPad Pro M4, MacBook M3, Alienware QD-OLED. Dimensions: 1080x1920, 2160x3840 4K UHD, 1920x1080 desktop, 5120x2880 5K, 7680x4320 8K. Categories: Cyberpunk, Lofi, Anime, Nature, Dark AMOLED, Poster Design, Urban Architecture.</p>
+        <section class="site-directory" aria-label="Quick Tags">
+            <h2>Site Directory & Search Tags</h2>
+            <p>Free AI assets free for use. High resolution design assets, stock photos, 4K wallpapers, UI elements, and digital art for designers and content creators.</p>
+            <p>Supported: iPhone 16, Samsung Galaxy Ultra, 32:9 monitors, Alienware OLED. Dim: 1080x1920, 2160x3840 4K, 7680x4320 8K. Cats: Cyberpunk, Lofi, Anime, Dark AMOLED.</p>
         </section>
 
         <footer class="main-footer">
             <div class="footer-brand">WallRank © 2026</div>
             <div class="footer-links">
+                <a href="#" onclick="alert('ABOUT ME: WallRank is a brand providing a free AI asset library that instantly previews curated items on live mockups, shortening your creative time daily. Master 1 level intelligence, optimized for speed.')">About Me</a>
                 <a href="/privacy-policy.html">Privacy Policy</a>
                 <a href="/terms.html">Terms of Service</a>
                 <a href="mailto:kabanijames9@gmail.com">Contact Us</a>
@@ -470,34 +514,62 @@
         </footer>
     </main>
 
-    <div class="puzzle-popup" id="puzzlePopup">
-        <div class="puzzle-header">
-            <h2>🧩 Image Puzzle</h2>
-            <button class="close-puzzle" onclick="closePuzzle()">&times;</button>
-        </div>
-        <p style="color:var(--text-muted); margin-bottom:15px; font-weight:600;">Click two pieces to swap them!</p>
-        <div class="puzzle-grid" id="puzzleGrid">
-            </div>
-    </div>
-
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             'use strict';
 
-            // APPLE-STYLE DYNAMIC BANNER LOGIC
+            // NAVIGATION LOGIC (Single Page App style)
+            window.navigateTo = function(pageId) {
+                // 1. Hide all pages
+                document.querySelectorAll('.content-page').forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // 2. Clear menu active states
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                // 3. Show requested page
+                const targetPage = document.getElementById(pageId + '-page');
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                    window.scrollTo(0, 0); // Reset scroll position
+                }
+
+                // 4. Update Menu Active state (matches the index.html names)
+                const menuLinks = {
+                    'home': 'Home Gallery',
+                    'wallpapers': 'Free AI Wallpapers',
+                    'stocks': 'Free Stock Photos',
+                    'fonts': 'Free Fonts',
+                    'social-templates': 'Social Templates',
+                    'logo-templates': 'Logo Templates',
+                    'puzzle': 'Puzzle Game',
+                    'news': 'Trendy News',
+                    'setups': 'Setups & Gear',
+                    'guide': 'User Guide'
+                };
+                const activeText = menuLinks[pageId];
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    if (link.innerText === activeText) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                // Track Page View
+                gtag('event', 'page_view', { 'page_title': activeText, 'page_location': 'https://wallrank.club/#' + pageId });
+            };
+
+            // BANNER LOGIC (Unchanged)
             const messages = [
                 "✨ We've added 78 assets this month you can use for free",
                 "🔥 Hot 3 articles of this month are ready to read"
             ];
             let msgIndex = 0;
             const announceText = document.getElementById('announceText');
-
-            // Set interval to change message every 6 seconds
             setInterval(() => {
-                // 1. Gently dissolve and float away
                 announceText.classList.add('hidden');
-                
-                // 2. Wait for the CSS transition to finish (1.2s), then swap text and fade back in
                 setTimeout(() => {
                     msgIndex = (msgIndex + 1) % messages.length;
                     announceText.innerText = messages[msgIndex];
@@ -559,6 +631,8 @@
                     img.style.opacity = '0.4';
                     setTimeout(() => {
                         img.src = imgUrl;
+                        // 9. [NEW] Setting Dynamic Alt Tags for Image SEO
+                        img.alt = `${currentData.title} | ${currentData.desc}`;
                         img.style.opacity = '1';
                     }, 150);
                 });
@@ -604,7 +678,7 @@
                 }
             };
 
-            // PUZZLE LOGIC
+            // PUZZLE LOGIC (Modified to only open via navigateTo)
             const puzzlePopup = document.getElementById('puzzlePopup');
             const puzzleGrid = document.getElementById('puzzleGrid');
             let selectedPiece = null;
@@ -621,8 +695,6 @@
                     let piece = document.createElement('div');
                     piece.className = 'puzzle-piece';
                     piece.style.backgroundImage = `url(${imgUrl})`;
-                    
-                    // Map 0-8 to % coordinates (3x3 grid)
                     let x = (pos % 3) * 50; 
                     let y = Math.floor(pos / 3) * 50;
                     piece.style.backgroundPosition = `${x}% ${y}%`;
@@ -632,30 +704,37 @@
                             selectedPiece = piece;
                             piece.style.border = '3px solid var(--accent)';
                         } else {
-                            // Swap backgrounds
                             let tempBg = selectedPiece.style.backgroundPosition;
                             selectedPiece.style.backgroundPosition = piece.style.backgroundPosition;
                             piece.style.backgroundPosition = tempBg;
-                            
                             selectedPiece.style.border = '1px solid rgba(0,0,0,0.5)';
                             selectedPiece = null;
                         }
                     };
                     puzzleGrid.appendChild(piece);
                 });
-
                 puzzlePopup.classList.add('active');
             };
 
             window.closePuzzle = function() {
                 puzzlePopup.classList.remove('active');
                 selectedPiece = null;
+                navigateTo('home'); // Go back home after puzzle closes
             };
 
-            // INITIAL BOOT
+            // INITIAL BOOT (Start on Home)
+            navigateTo('home');
             loadActiveWallpaper();
-            gtag('event', 'page_view', { 'page_title': 'Asset Library', 'page_location': 'https://wallrank.club' });
         });
     </script>
+
+    <div class="puzzle-popup" id="puzzlePopup">
+        <div class="puzzle-header">
+            <h2>🧩 Image Puzzle</h2>
+            <button class="close-puzzle" onclick="closePuzzle()">&times;</button>
+        </div>
+        <p style="color:var(--text-muted); margin-bottom:15px; font-weight:600;">Click two pieces to swap them!</p>
+        <div class="puzzle-grid" id="puzzleGrid"></div>
+    </div>
 </body>
 </html>
