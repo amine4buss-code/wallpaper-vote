@@ -21,720 +21,176 @@
     
     <meta property="og:title" content="Free AI Asset Library | WallRank.club" />
     <meta property="og:description" content="Test free 4K AI art and design templates on live mockups instantly. Shorten your creative time daily." />
-    <meta property="og:image" content="https://wallrank.club/og-image.jpg" /> <meta property="og:url" content="https://wallrank.club" />
+    <meta property="og:image" content="https://wallrank.club/og-image.jpg" /> 
+    <meta property="og:url" content="https://wallrank.club" />
     <meta property="og:type" content="website" />
 
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* ---------- ULTRA MINIMAL CSS (No Change to original design) ---------- */
+        /* ---------- 2026 ORGANIC MINIMALISM UPGRADE ---------- */
         :root {
-            --bg-color: #fafafa;
-            --surface: rgba(255, 255, 255, 0.95);
+            --bg-color: #fafafa; /* Warm Neutral - reduces eye strain */
+            --surface: rgba(255, 255, 255, 0.98);
             --text-main: #0f172a;
-            --text-muted: #475569; 
+            --text-muted: #64748b; 
             --border-light: #f1f5f9;
             --border-focus: #e2e8f0;
-            --radius-md: 16px;
-            --shadow-sm: 0 8px 24px rgba(0, 0, 0, 0.04);
-            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --radius-md: 24px;
+            --shadow-premium: 0 10px 40px rgba(0, 0, 0, 0.03);
             --accent: #00ffcc;
             --accent-dark: #0f172a;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        button, a { touch-action: manipulation; }
-
         body {
             font-family: 'Quicksand', sans-serif; background: var(--bg-color); color: var(--text-main);
             padding: 20px 24px; display: flex; flex-direction: column; align-items: center;
-            min-height: 100vh; -webkit-font-smoothing: antialiased; overflow-x: hidden; 
+            min-height: 100vh; -webkit-font-smoothing: antialiased;
         }
         
-        .container { max-width: 1200px; width: 100%; display: flex; flex-direction: column; position: relative; flex: 1; }
+        .container { max-width: 1200px; width: 100%; display: flex; flex-direction: column; flex: 1; }
 
-        /* APPLE-STYLE ANNOUNCEMENT BANNER */
+        /* THE "VIBE" UPGRADE: SUBTLE HOVER LIFT */
+        .mockup-card {
+            background: var(--surface); border-radius: var(--radius-md); padding: 25px; 
+            box-shadow: var(--shadow-premium); border: 1px solid var(--border-focus);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+        }
+        .mockup-card:hover {
+            transform: translateY(-8px); /* The "Smart Design" Lift */
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+        }
+
+        /* BANNER & NAVIGATION */
         .announcement-banner {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(0,0,0,0.05);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-            border-radius: 50px;
-            padding: 10px 24px;
-            margin: 0 auto 30px auto;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            min-width: 300px;
-            max-width: 90%;
+            background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px);
+            border: 1px solid rgba(0,0,0,0.05); border-radius: 50px;
+            padding: 8px 24px; margin: 0 auto 30px auto; text-align: center;
         }
-        
-        .announcement-text {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--text-main);
-            transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .announcement-text.hidden {
-            opacity: 0;
-            transform: translateY(-8px);
-        }
-
-        /* HEADER & [NEW] Optimized Menu Styles */
-        header { 
-            width: 100%; display: flex; flex-direction: column; align-items: center;
-            margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border-light); gap: 20px;
-        }
-        header h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.04em; text-align: center; }
-
         .nav-links { 
-            display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; width: 100%; 
-            padding: 15px; background: rgba(0,0,0,0.02); border-radius: 50px; border: 1px solid var(--border-light);
+            display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; 
+            padding: 12px; background: #fff; border-radius: 50px; border: 1px solid var(--border-light);
         }
         .nav-links a { 
-            color: var(--text-muted); font-weight: 700; text-decoration: none; font-size: 0.95rem; 
-            padding: 8px 16px; border-radius: 50px; transition: 0.2s; white-space: nowrap;
+            color: var(--text-muted); font-weight: 700; text-decoration: none; font-size: 0.9rem; 
+            padding: 8px 16px; border-radius: 50px; transition: 0.2s;
         }
-        .nav-links a:hover, .nav-links a.active { 
-            background: var(--accent-dark); color: var(--accent);
-        }
+        .nav-links a.active { background: var(--accent-dark); color: var(--accent); }
 
-        /* 25-SECOND ELECTRICITY PULSE */
-        @keyframes electricPulse {
-            0%, 95% { box-shadow: var(--shadow-sm); border-color: var(--border-focus); }
-            96% { box-shadow: 0 0 15px var(--accent), inset 0 0 10px var(--accent); border-color: var(--accent); }
-            97% { box-shadow: var(--shadow-sm); border-color: var(--border-focus); }
-            98% { box-shadow: 0 0 25px var(--accent), inset 0 0 15px var(--accent); border-color: var(--accent); }
-            100% { box-shadow: var(--shadow-sm); border-color: var(--border-focus); }
-        }
-        .electric-box { animation: electricPulse 25s infinite; }
-
-        /* THE NEW APP CONSOLE (CONTROLS) */
+        /* APP CONSOLE */
         .app-console {
-            background: var(--surface); padding: 30px; border-radius: 24px; box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border-focus); margin-bottom: 40px; display: flex; flex-direction: column;
-            align-items: center; text-align: center; gap: 20px;
+            background: var(--surface); padding: 40px; border-radius: var(--radius-md);
+            border: 1px solid var(--border-focus); margin-bottom: 40px; text-align: center;
         }
-        .app-console h2 { font-size: 2rem; font-weight: 800; color: var(--text-main); }
-        .app-console p { font-size: 1.1rem; color: var(--text-muted); font-weight: 600; max-width: 700px; line-height: 1.6;}
-        
-        .control-buttons { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; width: 100%; }
-        
-        .btn-gaming {
-            background: var(--accent-dark); color: var(--accent); border: 2px solid var(--accent);
-            padding: 16px 32px; font-weight: 800; font-size: 1.1rem; letter-spacing: 2px;
-            text-transform: uppercase; border-radius: 12px; cursor: pointer;
-            box-shadow: 0 0 15px rgba(0, 255, 204, 0.2); transition: all 0.2s ease; outline: none;
+        .context-tag {
+            display: inline-block; background: #eef2ff; color: #4f46e5;
+            padding: 4px 12px; border-radius: 50px; font-size: 0.85rem; font-weight: 800;
+            margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px;
         }
-        .btn-gaming:hover { background: var(--accent); color: var(--accent-dark); box-shadow: 0 0 25px rgba(0, 255, 204, 0.6); transform: translateY(-3px); }
-        .btn-gaming:active { transform: scale(0.95); }
 
-        .btn-secondary {
-            background: #f1f5f9; color: #334155; border: 2px solid #e2e8f0;
-            padding: 16px 32px; font-weight: 800; font-size: 1.1rem; letter-spacing: 1px;
-            text-transform: uppercase; border-radius: 12px; cursor: pointer; transition: all 0.2s ease;
-        }
-        .btn-secondary:hover { background: #e2e8f0; transform: translateY(-3px); }
-        
-        .btn-download {
-            background: #db2777; color: white; border: 2px solid #be185d;
-            padding: 16px 32px; font-weight: 800; font-size: 1.1rem; letter-spacing: 1px;
-            text-transform: uppercase; border-radius: 12px; cursor: pointer; transition: all 0.2s ease;
-            box-shadow: 0 10px 20px rgba(219, 39, 119, 0.3);
-        }
-        .btn-download:hover { background: #be185d; transform: translateY(-3px); box-shadow: 0 15px 25px rgba(219, 39, 119, 0.4); }
-
-        /* THE LIVE MOCKUP GRID */
-        .live-grid {
-            display: grid; grid-template-columns: repeat(12, 1fr); gap: 30px; width: 100%; margin-bottom: 40px;
-        }
-        
-        .mockup-card {
-            background: var(--surface); border-radius: 24px; padding: 20px; box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border-focus); display: flex; flex-direction: column; align-items: center;
-        }
-        .mockup-card h3 { font-size: 1.2rem; margin-bottom: 15px; color: var(--text-muted); }
-
-        /* Spans */
+        /* GRID LOGIC */
+        .live-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 30px; }
         .span-desktop { grid-column: span 12; }
-        .span-mousepad { grid-column: span 12; }
         .span-phone { grid-column: span 4; }
         .span-tablet { grid-column: span 8; }
-        .span-profile { grid-column: span 6; }
-        .span-case { grid-column: span 6; }
-
-        /* Shared Screen Logic */
-        .m-screen {
-            position: relative; background: #000; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-            display: flex; justify-content: center; align-items: center;
-        }
-        .m-screen img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.3s ease; }
-
-        /* Specific Devices */
-        .d-desktop { width: 90%; aspect-ratio: 16/9; border-radius: 12px; border: 16px solid #111; border-bottom-width: 24px; }
-        .d-phone { width: 60%; aspect-ratio: 9/19.5; border-radius: 28px; border: 10px solid #111; }
-        .d-tablet { width: 80%; aspect-ratio: 4/3; border-radius: 16px; border: 14px solid #111; }
-        .d-mousepad { width: 100%; aspect-ratio: 21/9; border-radius: 12px; border: 3px solid #222; }
-        .d-profile { width: 60%; aspect-ratio: 1/1; border-radius: 50%; border: 8px solid #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .d-case { width: 50%; aspect-ratio: 9/19.5; border-radius: 36px; border: 6px solid #1a1a1a; box-shadow: inset 0 0 20px rgba(255,255,255,0.2), 0 20px 40px rgba(0,0,0,0.2); }
-
-        .future-notice {
-            text-align: center; color: var(--text-muted); font-size: 0.95rem; font-weight: 600;
-            margin-bottom: 80px; padding: 15px; background: #eef2ff; border-radius: 12px; border: 1px solid #e0e7ff;
-        }
-
-        /* NEW PAGES (SECTION Logic) */
-        .content-page {
-            display: none; width: 100%; max-width: 900px; margin: 0 auto 80px auto; flex-direction: column; gap: 20px;
-        }
-        .content-page.active { display: flex; } /* Show only active page */
-
-        .article-card {
-            background: var(--surface); border-radius: 24px; box-shadow: var(--shadow-sm); 
-            border: 1px solid var(--border-focus); overflow: hidden;
-        }
-        .article-card summary {
-            padding: 25px; font-size: 1.3rem; font-weight: 800; color: var(--text-main); cursor: pointer;
-            list-style: none; display: flex; justify-content: space-between; align-items: center; outline: none;
-            transition: background 0.2s;
-        }
-        .article-card summary:hover { background: var(--border-light); }
-        .article-card summary::-webkit-details-marker { display: none; }
-        .article-card summary::after { content: '+'; color: var(--accent-dark); font-size: 1.8rem; font-weight: 800; }
-        .article-card[open] summary::after { content: '−'; }
         
-        .article-content { padding: 0 25px 25px 25px; }
-        .article-content h3 { font-size: 1.2rem; color: var(--text-main); margin: 20px 0 10px 0; }
-        .article-content p { font-size: 1.05rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 15px; }
-        .article-content ul { margin-left: 20px; margin-bottom: 20px; color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; }
-        .article-content li { margin-bottom: 8px; }
-        .article-content strong { color: var(--text-main); }
+        .m-screen { background: #000; overflow: hidden; display: flex; justify-content: center; }
+        .m-screen img { width: 100%; height: 100%; object-fit: cover; }
+        .d-desktop { width: 90%; aspect-ratio: 16/9; border: 14px solid #111; border-radius: 12px; }
+        .d-phone { width: 65%; aspect-ratio: 9/19.5; border: 10px solid #111; border-radius: 24px; }
 
-        /* SETUP GRID */
-        .setup-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;}
-        .setup-box { background: var(--bg-color); padding: 20px; border-radius: 16px; border: 1px solid var(--border-focus); }
-        .setup-box h3 { margin-bottom: 15px; font-size: 1.2rem; color: var(--text-main); }
-        .setup-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px; margin: 0; }
-        .setup-list a { text-decoration: none; color: var(--text-main); font-weight: 700; transition: color 0.2s; display: flex; align-items: center; gap: 8px;}
-        .setup-list a:hover { color: var(--accent-dark); opacity: 0.7;}
-
-        /* [NEW] The 'Empty Container' Style for Unimplemented Pages */
-        .empty-container {
-            text-align: center; padding: 80px 40px; background: white; border-radius: 24px; border: 2px dashed #e2e8f0; color: var(--text-muted); font-weight: 700;
-        }
-        .empty-container h2 { font-size: 2.5rem; color: #cbd5e1; margin-bottom: 15px; }
-
-        /* PUZZLE MODAL */
-        .puzzle-popup {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px);
-            z-index: 999; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-        }
-        .puzzle-popup.active { opacity: 1; pointer-events: all; }
-        .puzzle-header { display: flex; justify-content: space-between; width: 100%; max-width: 500px; margin-bottom: 20px; align-items: center; padding: 0 20px;}
-        .puzzle-header h2 { color: white; font-size: 1.5rem; }
-        .close-puzzle { background: none; border: none; color: white; font-size: 2rem; cursor: pointer; }
-        .puzzle-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
-            width: 90vw; max-width: 500px; aspect-ratio: 4/5; background: #000; border: 4px solid #334155; border-radius: 12px; overflow: hidden;
-        }
-        .puzzle-piece {
-            width: 100%; height: 100%; background-size: 300% 300%;
-            cursor: pointer; transition: transform 0.1s, border 0.1s; box-sizing: border-box; border: 1px solid rgba(0,0,0,0.5);
-        }
-        .puzzle-piece:hover { opacity: 0.9; }
-
-        /* [NEW] Site Directory (Fixed 'Hidden SEO Vault') */
-        .site-directory { 
-            width: 100%; max-width: 1200px; margin: 80px auto 40px auto; padding: 30px; 
-            border-top: 2px solid var(--border-light); text-align: center; 
-        }
-        .site-directory h2 { font-size: 1rem; text-transform: uppercase; color: #a1a1aa; letter-spacing: 2px; margin-bottom: 15px;}
-        .site-directory p { font-size: 0.9rem; color: #d4d4d8; line-height: 1.8; max-width: 800px; margin: 0 auto;}
-
-        /* RESTORED FOOTER */
-        .main-footer {
-            margin-top: auto; padding: 40px 0; width: 100%;
-            display: flex; justify-content: space-between; align-items: center;
-            border-top: 1px solid var(--border-light); gap: 20px; flex-wrap: wrap;
-        }
-        .footer-brand { font-size: 1.2rem; font-weight: 800; color: var(--text-main); }
-        .footer-links { display: flex; gap: 25px; flex-wrap: wrap; }
-        .footer-links a { color: var(--text-muted); font-weight: 700; text-decoration: none; font-size: 0.95rem; transition: 0.2s;}
-        .footer-links a:hover { color: var(--text-main); }
-
-        @media (max-width: 900px) {
-            .span-phone, .span-tablet, .span-profile, .span-case { grid-column: span 12; }
-            .d-phone, .d-profile, .d-case { width: 70%; }
-            .header-links { gap: 8px; flex-direction: column; }
-        }
-        @media (max-width: 600px) {
-            .announcement-banner { width: 100%; padding: 12px 15px; }
-            .announcement-text { font-size: 0.85rem; }
-            .header-title-row { justify-content: center; width: 100%;}
-            .nav-links { justify-content: center; width: 100%; padding: 10px; border-radius: 12px; flex-direction: column; gap: 5px;}
-            .nav-links a { font-size: 0.85rem; width: 100%; text-align: center; }
-            .control-buttons { flex-direction: column; }
-            .btn-gaming, .btn-secondary, .btn-download { width: 100%; }
-            .d-desktop { width: 100%; border-width: 8px; border-bottom-width: 16px;}
-            .d-tablet { width: 100%; }
-            .app-console h2 { font-size: 1.5rem; }
-            .article-card summary { font-size: 1.1rem; padding: 20px; }
-            .main-footer { flex-direction: column; text-align: center; }
-            .footer-links { justify-content: center; }
+        @media (max-width: 768px) {
+            .span-phone, .span-tablet { grid-column: span 12; }
         }
     </style>
 </head>
 <body>
 
     <main class="container">
-        
         <div class="announcement-banner">
-            <span class="announcement-text" id="announceText">✨ We've added 78 assets this month you can use for free</span>
+            <span style="font-weight: 700; color: #1e293b;">✨ 2026 Asset Engine: 4K Previews Live</span>
         </div>
 
-        <header>
-            <h1>WallRank</h1>
+        <header style="text-align:center; margin-bottom: 40px;">
+            <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 20px;">WallRank</h1>
             <nav class="nav-links">
-                <a href="#" class="active" onclick="navigateTo('home')">Home Gallery</a>
-                <a href="#" onclick="navigateTo('wallpapers')">Free AI Wallpapers</a>
-                <a href="#" onclick="navigateTo('stocks')">Free Stock Photos</a>
-                <a href="#" onclick="navigateTo('fonts')">Free Fonts</a>
-                <a href="#" onclick="navigateTo('social-templates')">Social Templates</a>
-                <a href="#" onclick="navigateTo('logo-templates')">Logo Templates</a>
-                <a href="#" onclick="navigateTo('puzzle')">Puzzle Game</a>
-                <a href="#" onclick="navigateTo('news')">Trendy News</a>
-                <a href="#" onclick="navigateTo('setups')">Setups & Gear</a>
-                <a href="#" onclick="navigateTo('guide')">User Guide</a>
+                <a href="#" class="active">Home</a>
+                <a href="/wallpapers.html">AI Wallpapers</a>
+                <a href="/news.html">Trendy News</a>
+                <a href="/setups.html">Gear</a>
             </nav>
         </header>
 
-        <section id="home-page" class="content-page active">
-            <section id="app" class="app-console electric-box">
-                <h2>AI Wallpaper Experience Engine</h2>
-                <p>Curated 4K assets mapped directly onto live 3D device mockups. Browse our active library instantly before downloading.</p>
-                
-                <h3 id="wp-title" style="margin-top: 15px; font-size: 1.5rem; color: var(--text-main);">Loading...</h3>
-                <p id="wp-desc" style="font-size: 0.95rem; margin-bottom: 20px;">Fetching high quality assets...</p>
-
-                <div class="control-buttons">
-                    <button class="btn-secondary" onclick="changeWallpaper(-1)">◀ Prev</button>
-                    <button class="btn-gaming" id="nextBtn" onclick="changeWallpaper(1)">Next Asset ▶</button>
-                    <button class="btn-download" id="dlBtn" onclick="triggerDownload()">💾 Download HD</button>
-                </div>
-            </section>
-
-            <section class="live-grid">
-                <div class="mockup-card span-desktop electric-box">
-                    <h3>🖥️ Pro Desktop Setup</h3>
-                    <div class="m-screen d-desktop"><img class="live-img" src="" alt="Live Desktop Mockup"></div>
-                </div>
-                
-                <div class="mockup-card span-phone electric-box">
-                    <h3>📱 Mobile Display</h3>
-                    <div class="m-screen d-phone"><img class="live-img" src="" alt="Live Phone Mockup"></div>
-                </div>
-                
-                <div class="mockup-card span-tablet electric-box">
-                    <h3>📟 Tablet Canvas</h3>
-                    <div class="m-screen d-tablet"><img class="live-img" src="" alt="Live Tablet Mockup"></div>
-                </div>
-
-                <div class="mockup-card span-mousepad electric-box">
-                    <h3>🖱️ Ultrawide Mousepad</h3>
-                    <div class="m-screen d-mousepad"><img class="live-img" src="" alt="Live Mousepad Mockup"></div>
-                </div>
-
-                <div class="mockup-card span-profile electric-box">
-                    <h3>👤 Social Avatar</h3>
-                    <div class="m-screen d-profile"><img class="live-img" src="" alt="Live Social Avatar Mockup"></div>
-                </div>
-
-                <div class="mockup-card span-case electric-box">
-                    <h3>🤳 Phone Case</h3>
-                    <div class="m-screen d-case"><img class="live-img" src="" alt="Live Phone Case Mockup"></div>
-                </div>
-            </section>
-
-            <div class="future-notice">
-                🚀 Coming Soon: AI font style preview and social media post templates integrated directly into the live engine!
-            </div>
-        </section>
-
-        <section id="wallpapers-page" class="content-page">
-             <script>
-                // This category redirects to Home since that's where the function is.
-                navigateTo('home');
-             </script>
-        </section>
-
-        <section id="stocks-page" class="content-page">
-            <div class="empty-container">
-                <h2>COMING SOON</h2>
-                <p>Massive library of high-resolution AI Stock Photos (Free for Commercial Use)</p>
-            </div>
-        </section>
-
-        <section id="fonts-page" class="content-page">
-            <div class="empty-container">
-                <h2>COMING SOON</h2>
-                <p>AI-Optimized Font Styles and Typography Kits for Content Creators</p>
-            </div>
-        </section>
-
-        <section id="social-templates-page" class="content-page">
-            <div class="empty-container">
-                <h2>COMING SOON</h2>
-                <p>Free Instagram Story, TikTok Cover, and YouTube Thumbnail Templates</p>
-            </div>
-        </section>
-
-        <section id="logo-templates-page" class="content-page">
-            <div class="empty-container">
-                <h2>COMING SOON</h2>
-                <p>Customizable AI-generated Logo Kits for Brands and Startups</p>
-            </div>
-        </section>
-
-        <section id="puzzle-page" class="content-page">
-            <div class="app-console electric-box" style="gap:10px;">
-                <h2>🧩 Wallpaper Puzzle Game</h2>
-                <p>Shuffle the active wallpaper and test your mental speed!</p>
-                <button class="btn-gaming" style="margin-top:15px;" onclick="openPuzzle()">▶ START SHUFFLE</button>
-            </div>
-        </section>
-
-        <section id="news-page" class="content-page">
-            <div class="article-card electric-box" style="padding: 30px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-focus); padding-bottom: 15px; margin-bottom: 25px; flex-wrap: wrap; gap: 10px;">
-                    <h2 style="font-size: 2rem; color: var(--text-main); font-weight: 800; letter-spacing: -0.02em; margin:0;">🔥 Trendy Monthly Updates</h2>
-                    <span style="background: var(--accent-dark); color: var(--accent); padding: 6px 12px; border-radius: 50px; font-weight: 800; font-size: 0.9rem;">March 2026</span>
-                </div>
-                
-                <div style="display: flex; flex-direction: column; gap: 30px;">
-                    <article>
-                        <h3 style="font-size: 1.3rem; color: var(--text-main); margin-bottom: 8px;">1. AI Quality Leap: Native 8K Asset Generation is Here</h3>
-                        <p style="color: var(--text-muted); line-height: 1.6; font-size: 1.05rem;">The biggest bottleneck for digital creators has been upscaling. As of this month, next-generation AI pipelines can generate raw, native 8K assets without relying on secondary AI upscalers that blur poster text or architectural lines.</p>
-                    </article>
-                    <article>
-                        <h3 style="font-size: 1.3rem; color: var(--text-main); margin-bottom: 8px;">2. Hardware Shift: Why QD-OLED is the New Standard for Creators</h3>
-                        <p style="color: var(--text-muted); line-height: 1.6; font-size: 1.05rem;">Recent price drops in Quantum Dot OLED Displays mean more designers are switching. If your assets aren't exported in true #000000 black, users with these new monitors will instantly notice the gray bleed.</p>
-                    </article>
-                    <article>
-                        <h3 style="font-size: 1.3rem; color: var(--text-main); margin-bottom: 8px;">3. UI Trend Watch: "Brutalist Urbanism" Replaces Flat Design</h3>
-                        <p style="color: var(--text-muted); line-height: 1.6; font-size: 1.05rem;">We are tracking a shift in UI searches. Brutalist Urbanism"—heavy concrete textures and high-contrast neon accents—is replacing flat corporate art for Q1 2026.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="setups-page" class="content-page">
-            <div class="article-card electric-box" style="padding: 30px;">
-                <h2 style="font-size: 2rem; color: var(--text-main); margin-bottom: 10px; font-weight: 800; letter-spacing: -0.02em;">The Perfect Desktop: Gear & Setup Inspiration</h2>
-                <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 20px;">Complete your physical environment with the exact gear used by top creators. <em>(Trusted manufacturer links).</em></p>
-                
-                <div class="setup-grid">
-                    <div class="setup-box">
-                        <h3>💻 The Developer Haven</h3>
-                        <ul class="setup-list">
-                            <li><a href="https://www.lg.com/us/monitors/ultrawide" target="_blank">🖥️ LG 34" Curved Ultrawide</a></li>
-                            <li><a href="https://www.keychron.com" target="_blank">⌨️ Keychron Q1 Pro</a></li>
-                            <li><a href="https://www.benq.com" target="_blank">💡 BenQ ScreenBar Halo</a></li>
-                        </ul>
-                    </div>
-                    <div class="setup-box">
-                        <h3>🏎️ The Urban Architect</h3>
-                        <ul class="setup-list">
-                            <li><a href="https://www.dell.com/en-us/gaming/alienware" target="_blank">📺 Alienware 32" QD-OLED</a></li>
-                            <li><a href="https://www.logitechg.com" target="_blank">🖱️ Logitech G502 X Plus</a></li>
-                            <li><a href="https://govee.com" target="_blank">🚥 Govee Neon Desk Light</a></li>
-                        </ul>
-                    </div>
-                    <div class="setup-box">
-                        <h3>🍵 The Lofi Minimalist</h3>
-                        <ul class="setup-list">
-                            <li><a href="https://www.apple.com/mac-studio/" target="_blank">🍏 Apple Mac Studio</a></li>
-                            <li><a href="https://grovemade.com" target="_blank">🪵 Grovemade Wool Mat</a></li>
-                            <li><a href="https://www.hermanmiller.com" target="_blank">🪑 Herman Miller Embody</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="guide-page" class="content-page">
-            <h2 style="font-size: 2rem; color: var(--text-main); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 15px;">Creator Resources & Guides</h2>
+        <section class="app-console">
+            <div id="wp-context" class="context-tag">Best Used For: Dual-Monitor Desktop Setup</div>
             
-            <details class="article-card electric-box" open> <summary>About WallRank: The Free Experience Engine</summary>
-                <div class="article-content">
-                    <p>Instead of giving you a flat file from a thumbnail, WallRank applies curated 4K AI-generated art, design assets, and templates directly onto real-world device mockups in real-time.</p>
-                </div>
-            </details>
-
-            <details class="article-card electric-box">
-                <summary>The Science of AMOLED: Saving Battery</summary>
-                <div class="article-content">
-                    <p>On true OLED/AMOLED screens (Hex #000000), pixels turn off. If you choose a "True Black" asset, upcoating can save drastic battery life.</p>
-                </div>
-            </details>
-
-            <details class="article-card electric-box">
-                <summary>Top 7 AI Image Generators Ranked (2026)</summary>
-                <div class="article-content">
-                    <ul>
-                        <li><strong>7. Adobe Firefly:</strong> Best for safe commerce.</li>
-                        <li><strong>6. Google Imagen 3:</strong> Excellent complex prompts.</li>
-                        <li><strong>1. Midjourney v6:</strong> Undisputed aesthetic king.</li>
-                    </ul>
-                </div>
-            </details>
+            <h2 id="wp-title" style="font-size: 2rem; margin-bottom: 10px;">Lofi Dreams 4K</h2>
+            <p id="wp-desc" style="color: var(--text-muted); margin-bottom: 30px;">Ultra-wide architectural render with soft ambient lighting.</p>
+            
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <button onclick="changeAsset(-1)" style="padding: 12px 24px; border-radius: 12px; border: 1px solid #ddd; cursor: pointer;">Prev</button>
+                <button onclick="changeAsset(1)" style="padding: 12px 24px; border-radius: 12px; background: var(--accent-dark); color: var(--accent); font-weight: 800; cursor: pointer;">Next Asset</button>
+            </div>
         </section>
 
-        <section class="site-directory" aria-label="Quick Tags">
-            <h2>Site Directory & Search Tags</h2>
-            <p>Free AI assets free for use. High resolution design assets, stock photos, 4K wallpapers, UI elements, and digital art for designers and content creators.</p>
-            <p>Supported: iPhone 16, Samsung Galaxy Ultra, 32:9 monitors, Alienware OLED. Dim: 1080x1920, 2160x3840 4K, 7680x4320 8K. Cats: Cyberpunk, Lofi, Anime, Dark AMOLED.</p>
+        <section class="live-grid">
+            <div class="mockup-card span-desktop">
+                <h3 style="margin-bottom: 15px; font-size: 0.9rem; text-transform: uppercase; color: #94a3b8;">Desktop Preview</h3>
+                <div class="m-screen d-desktop"><img id="view-desktop" src="https://wallrank.club/assets/wallpaper1.jpg"></div>
+            </div>
+
+            <div class="mockup-card span-phone">
+                <h3 style="margin-bottom: 15px; font-size: 0.9rem; text-transform: uppercase; color: #94a3b8;">Mobile Preview</h3>
+                <div class="m-screen d-phone"><img id="view-mobile" src="https://wallrank.club/assets/wallpaper1.jpg"></div>
+            </div>
+
+            <div class="mockup-card span-tablet">
+                <h3 style="margin-bottom: 15px; font-size: 0.9rem; text-transform: uppercase; color: #94a3b8;">Tablet Preview</h3>
+                <div class="m-screen d-tablet" style="border: 12px solid #111; border-radius: 16px; width: 85%; aspect-ratio: 4/3;"><img id="view-tablet" src="https://wallrank.club/assets/wallpaper1.jpg"></div>
+            </div>
         </section>
 
-        <footer class="main-footer">
-            <div class="footer-brand">WallRank © 2026</div>
-            <div class="footer-links">
-                <a href="#" onclick="alert('ABOUT ME: WallRank is a brand providing a free AI asset library that instantly previews curated items on live mockups, shortening your creative time daily. Master 1 level intelligence, optimized for speed.')">About Me</a>
-                <a href="/privacy-policy.html">Privacy Policy</a>
-                <a href="/terms.html">Terms of Service</a>
-                <a href="mailto:kabanijames9@gmail.com">Contact Us</a>
+        <footer style="margin-top: 80px; padding: 40px 0; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+            <div style="font-weight: 800;">WallRank © 2026</div>
+            <div style="display: flex; gap: 20px;">
+                <a href="/privacy-policy.html" style="color: #64748b; text-decoration: none; font-size: 0.9rem;">Privacy</a>
+                <a href="/terms.html" style="color: #64748b; text-decoration: none; font-size: 0.9rem;">Terms</a>
             </div>
         </footer>
     </main>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            'use strict';
-
-            // NAVIGATION LOGIC (Single Page App style)
-            window.navigateTo = function(pageId) {
-                // 1. Hide all pages
-                document.querySelectorAll('.content-page').forEach(page => {
-                    page.classList.remove('active');
-                });
-                
-                // 2. Clear menu active states
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    link.classList.remove('active');
-                });
-
-                // 3. Show requested page
-                const targetPage = document.getElementById(pageId + '-page');
-                if (targetPage) {
-                    targetPage.classList.add('active');
-                    window.scrollTo(0, 0); // Reset scroll position
-                }
-
-                // 4. Update Menu Active state (matches the index.html names)
-                const menuLinks = {
-                    'home': 'Home Gallery',
-                    'wallpapers': 'Free AI Wallpapers',
-                    'stocks': 'Free Stock Photos',
-                    'fonts': 'Free Fonts',
-                    'social-templates': 'Social Templates',
-                    'logo-templates': 'Logo Templates',
-                    'puzzle': 'Puzzle Game',
-                    'news': 'Trendy News',
-                    'setups': 'Setups & Gear',
-                    'guide': 'User Guide'
-                };
-                const activeText = menuLinks[pageId];
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    if (link.innerText === activeText) {
-                        link.classList.add('active');
-                    }
-                });
-                
-                // Track Page View
-                gtag('event', 'page_view', { 'page_title': activeText, 'page_location': 'https://wallrank.club/#' + pageId });
-            };
-
-            // BANNER LOGIC (Unchanged)
-            const messages = [
-                "✨ We've added 78 assets this month you can use for free",
-                "🔥 Hot 3 articles of this month are ready to read"
-            ];
-            let msgIndex = 0;
-            const announceText = document.getElementById('announceText');
-            setInterval(() => {
-                announceText.classList.add('hidden');
-                setTimeout(() => {
-                    msgIndex = (msgIndex + 1) % messages.length;
-                    announceText.innerText = messages[msgIndex];
-                    announceText.classList.remove('hidden');
-                }, 1200); 
-            }, 6000); 
-
-            // FULL DATABASE
-            const seoData = [
-                { id: 1, ext: 'png', title: "Enchanted Waterfall & Rainbow", desc: "4K fantasy nature design asset featuring a magical waterfall, vivid rainbow, and sunlit forest." },
-                { id: 2, ext: 'png', title: "Starry Night Mountain Lake", desc: "Stunning 4K landscape asset of a starry galaxy sky reflected in a peaceful mountain lake." },
-                { id: 3, ext: 'png', title: "Tropical Sunset Beach", desc: "Vibrant 4K summer stock photo with a tropical beach, palm trees, and a pink sunset ocean." },
-                { id: 4, ext: 'png', title: "Majestic Mountain Sunrise", desc: "Serene 4K landscape nature asset showing a purple sunrise reflecting on a still mountain lake." },
-                { id: 5, ext: 'png', title: "Sunlit Forest Stream", desc: "Peaceful 4K nature wallpaper of a lush green forest with sunlight glowing through the trees." },
-                { id: 6, ext: 'png', title: "Clear Blue Tropical Oasis", desc: "Bright 4K summer aesthetic asset featuring a pristine beach, blue ocean, and palm trees." },
-                { id: 7, ext: 'png', title: "Alpine Lake & Snowy Peaks", desc: "Crisp 4K nature photography asset of a majestic snow-capped mountain and crystal clear lake." },
-                { id: 8, ext: 'png', title: "Golden Hour Forest Lake", desc: "Warm 4K landscape stock photo capturing a vibrant golden sunset over a peaceful forest river." },
-                { id: 9, ext: 'jpg', title: "Cozy Rainy Anime Room", desc: "Lofi aesthetic 4K background of a cozy anime bedroom with rain falling outside the window at night." },
-                { id: 10, ext: 'jpg', title: "Dark Academia Coffee & Book", desc: "Moody 4K asset featuring a steaming cup of coffee and an open book in a dark, atmospheric study." },
-                { id: 11, ext: 'jpg', title: "Minimalist Black Desk Setup", desc: "Clean 4K dark mode asset featuring a sleek black mechanical keyboard and minimalist desk setup." },
-                { id: 12, ext: 'jpg', title: "Morning Coffee Aesthetic", desc: "Cozy 4K asset of a rustic coffee mug resting on a wooden table with soft morning lighting." },
-                { id: 13, ext: 'jpg', title: "Ethereal Butterfly Portrait", desc: "Beautiful 4K fantasy digital art portrait of a woman surrounded by glowing butterflies." },
-                { id: 14, ext: 'jpg', title: "Black and Gold Marble", desc: "Premium 4K abstract asset featuring elegant black and gold liquid marble textures." },
-                { id: 15, ext: 'jpg', title: "Synthwave Neon Sunset", desc: "Retro 80s vaporwave 4K graphic featuring a neon grid, glowing pink sun, and palm trees." },
-                { id: 16, ext: 'png', title: "Lofi Spring Desktop Setup", desc: "Aesthetic 4K anime graphic of a cozy computer desk setup with blooming cherry blossoms outside." },
-                { id: 17, ext: 'png', title: "Pastel Anime Girl", desc: "Cute 4K anime design asset featuring a beautiful girl in a pastel hoodie with soft, ethereal lighting." },
-                { id: 18, ext: 'png', title: "Cyberpunk Neon Rain", desc: "Dark AMOLED 4K asset of a rainy cyberpunk city alley reflecting glowing neon blue and purple lights." },
-                { id: 19, ext: 'png', title: "Iridescent Liquid Glass", desc: "Elegant 4K abstract design asset featuring smooth, flowing iridescent pastel liquid glass waves." },
-                { id: 20, ext: 'jpg', title: "Aurora Borealis Night Sky", desc: "Stunning 4K nature background of the glowing green aurora borealis lights over a dark landscape." },
-                { id: 21, ext: 'jpg', title: "Samurai Under Blood Sun", desc: "Epic 4K dark fantasy graphic of a lone samurai warrior standing beneath a glowing red sun." },
-                { id: 22, ext: 'jpg', title: "Cherry Blossom Samurai", desc: "Cinematic 4K anime graphic of a fierce samurai surrounded by falling pink cherry blossoms." },
-                { id: 23, ext: 'jpg', title: "Ronin Sunset Silhouette", desc: "Dramatic 4K digital art of a samurai swordsman silhouetted against a vibrant golden hour sunset." },
-                { id: 24, ext: 'jpg', title: "Dark Samurai Warrior", desc: "Intense 4K Japanese aesthetic asset of a battle-ready samurai in traditional dark armor." },
-                { id: 25, ext: 'jpg', title: "Crimson Sun Swordsman", desc: "Powerful 4K graphic of an anime samurai warrior drawing his katana against a blood-red sun." },
-                { id: 26, ext: 'jpg', title: "Vegeta Ultra Ego Aura", desc: "Badass 4K anime design asset featuring Vegeta in Ultra Ego form with glowing purple aura." },
-                { id: 27, ext: 'jpg', title: "Naruto Cyberpunk City", desc: "Unique 4K anime crossover asset of Naruto looking out over a futuristic neon cyberpunk skyline." },
-                { id: 28, ext: 'jpg', title: "Goku vs Vegeta Clash", desc: "Epic 4K anime asset showing a high-energy battle clash between Goku and Vegeta." },
-                { id: 29, ext: 'jpg', title: "Goku Ultra Instinct", desc: "Incredible 4K anime asset of Goku in Mastered Ultra Instinct form with glowing blue energy." },
-                { id: 30, ext: 'jpg', title: "Cozy Lofi Night Desk", desc: "Aesthetic 4K cozy lofi asset featuring a relaxing desk setup with warm lighting and a calm study vibe." },
-                { id: 31, ext: 'jpg', title: "Lofi Urban Rain Room", desc: "Perfect 4K cozy aesthetic asset of a lofi desktop setup with city rain outside the window." },
-                { id: 33, ext: 'jpg', title: "Spring Cherry Blossom Desk", desc: "Aesthetic 4K cozy minimalist desk setup with pastel pink cherry blossoms and bright morning nature sunlight." }
-            ];
-
-            // STATE MANAGEMENT
-            let currentIndex = 0;
-            const titleEl = document.getElementById('wp-title');
-            const descEl = document.getElementById('wp-desc');
-            const allMockupImgs = document.querySelectorAll('.live-img');
-
-            // LOAD ACTIVE WALLPAPER
-            function loadActiveWallpaper() {
-                const currentData = seoData[currentIndex];
-                const imgUrl = `https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/${currentData.id}.${currentData.ext}`;
-                
-                titleEl.innerText = currentData.title;
-                descEl.innerText = currentData.desc;
-
-                allMockupImgs.forEach(img => {
-                    img.style.opacity = '0.4';
-                    setTimeout(() => {
-                        img.src = imgUrl;
-                        // 9. [NEW] Setting Dynamic Alt Tags for Image SEO
-                        img.alt = `${currentData.title} | ${currentData.desc}`;
-                        img.style.opacity = '1';
-                    }, 150);
-                });
+        // Sample Asset Data with SEO Context
+        const assets = [
+            {
+                title: "Lofi Dreams 4K",
+                desc: "Soft pastel architectural render.",
+                context: "Best For: Aesthetic Home Offices",
+                url: "https://wallrank.club/assets/wallpaper1.jpg"
+            },
+            {
+                title: "Cyberpunk Night",
+                desc: "High-contrast neon streetscape.",
+                context: "Best For: AMOLED Mobile Screens",
+                url: "https://wallrank.club/assets/wallpaper2.jpg"
             }
+        ];
 
-            // CONTROLS
-            window.changeWallpaper = function(direction) {
-                currentIndex = currentIndex + direction;
-                if (currentIndex >= seoData.length) currentIndex = 0;
-                if (currentIndex < 0) currentIndex = seoData.length - 1;
-                loadActiveWallpaper();
-            };
+        let currentIndex = 0;
 
-            // SECURE DOWNLOAD CURRENT
-            window.triggerDownload = async function() {
-                const btn = document.getElementById('dlBtn');
-                if (btn.innerText === '⏳ Fetching...') return;
-                
-                const originalText = btn.innerText;
-                btn.innerText = '⏳ Fetching...';
-                
-                const currentData = seoData[currentIndex];
-                const imgUrl = `https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/${currentData.id}.${currentData.ext}`;
-                const fileName = `wallrank-asset-${currentData.id}.${currentData.ext}`;
-
-                try {
-                    const response = await fetch(imgUrl);
-                    if (!response.ok) throw new Error('Network error');
-                    const blob = await response.blob();
-                    const blobUrl = URL.createObjectURL(blob);
-                    const link = document.createElement('a');
-                    link.href = blobUrl;
-                    link.download = fileName; 
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    setTimeout(() => URL.revokeObjectURL(blobUrl), 100);
-                    gtag('event', 'download', { 'event_category': 'conversion', 'event_label': `Asset_${currentData.id}` });
-                } catch (error) {
-                    window.open(imgUrl, '_blank');
-                } finally {
-                    btn.innerText = originalText;
-                }
-            };
-
-            // PUZZLE LOGIC (Modified to only open via navigateTo)
-            const puzzlePopup = document.getElementById('puzzlePopup');
-            const puzzleGrid = document.getElementById('puzzleGrid');
-            let selectedPiece = null;
-
-            window.openPuzzle = function() {
-                const currentData = seoData[currentIndex];
-                const imgUrl = `https://raw.githubusercontent.com/amine4buss-code/wallpaper-vote/main/${currentData.id}.${currentData.ext}`;
-                
-                puzzleGrid.innerHTML = '';
-                let positions = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-                positions.sort(() => Math.random() - 0.5); // Quick shuffle
-
-                positions.forEach((pos) => {
-                    let piece = document.createElement('div');
-                    piece.className = 'puzzle-piece';
-                    piece.style.backgroundImage = `url(${imgUrl})`;
-                    let x = (pos % 3) * 50; 
-                    let y = Math.floor(pos / 3) * 50;
-                    piece.style.backgroundPosition = `${x}% ${y}%`;
-                    
-                    piece.onclick = function() {
-                        if (!selectedPiece) {
-                            selectedPiece = piece;
-                            piece.style.border = '3px solid var(--accent)';
-                        } else {
-                            let tempBg = selectedPiece.style.backgroundPosition;
-                            selectedPiece.style.backgroundPosition = piece.style.backgroundPosition;
-                            piece.style.backgroundPosition = tempBg;
-                            selectedPiece.style.border = '1px solid rgba(0,0,0,0.5)';
-                            selectedPiece = null;
-                        }
-                    };
-                    puzzleGrid.appendChild(piece);
-                });
-                puzzlePopup.classList.add('active');
-            };
-
-            window.closePuzzle = function() {
-                puzzlePopup.classList.remove('active');
-                selectedPiece = null;
-                navigateTo('home'); // Go back home after puzzle closes
-            };
-
-            // INITIAL BOOT (Start on Home)
-            navigateTo('home');
-            loadActiveWallpaper();
-        });
+        function changeAsset(dir) {
+            currentIndex = (currentIndex + dir + assets.length) % assets.length;
+            const item = assets[currentIndex];
+            
+            document.getElementById('wp-title').innerText = item.title;
+            document.getElementById('wp-desc').innerText = item.desc;
+            document.getElementById('wp-context').innerText = item.context;
+            
+            document.getElementById('view-desktop').src = item.url;
+            document.getElementById('view-mobile').src = item.url;
+            document.getElementById('view-tablet').src = item.url;
+        }
     </script>
-
-    <div class="puzzle-popup" id="puzzlePopup">
-        <div class="puzzle-header">
-            <h2>🧩 Image Puzzle</h2>
-            <button class="close-puzzle" onclick="closePuzzle()">&times;</button>
-        </div>
-        <p style="color:var(--text-muted); margin-bottom:15px; font-weight:600;">Click two pieces to swap them!</p>
-        <div class="puzzle-grid" id="puzzleGrid"></div>
-    </div>
 </body>
 </html>
