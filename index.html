@@ -11,8 +11,8 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free AI Assets & 4K Wallpaper Mockups | WallRank</title>
-    <meta name="description" content="Download free 4K AI wallpapers. Use our interactive mockup engine to preview your brand on premium AI backgrounds.">
+    <title>WallRank | Free 4K AI Wallpapers & Daily 8K Drops</title>
+    <meta name="description" content="Get daily 8K AI wallpaper drops. Use our interactive engine to preview minimalist, cyberpunk, and nature backgrounds instantly.">
     
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700;800&display=swap" rel="stylesheet">
     
@@ -32,16 +32,46 @@
         body { font-family: 'Quicksand', sans-serif; background: var(--bg-color); color: var(--text-main); padding: 15px; }
         .container { max-width: 1100px; margin: 0 auto; }
 
-        header { text-align: center; margin-bottom: 30px; }
-        .nav-links { display: flex; gap: 10px; justify-content: center; margin-top: 15px; flex-wrap: wrap; }
-        .nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 700; font-size: 0.9rem; padding: 8px 16px; border-radius: 50px; background: #fff; border: 1px solid #eee; }
-        .nav-links a.active { background: var(--accent-dark); color: var(--accent); }
+        header { text-align: center; margin-bottom: 20px; }
+        
+        /* 1. DAILY DROP BANNER (Scarcity Loop) */
+        .daily-drop-bar {
+            background: linear-gradient(90deg, #0f172a, #1e293b);
+            color: #00ffcc;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-        /* PERFORMANCE: GHOST LOADING (Step 4) */
-        .blur-load { background-size: cover; background-position: center; filter: blur(10px); transition: filter 0.5s ease-in-out; }
-        .blur-load.loaded { filter: blur(0); }
+        /* 2. CATEGORY SILOS (SEO & UX) */
+        .category-nav {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+            overflow-x: auto;
+            padding: 5px;
+        }
+        .cat-pill {
+            padding: 8px 20px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            transition: 0.2s;
+        }
+        .cat-pill.active { background: var(--accent-dark); color: var(--accent); border-color: var(--accent-dark); }
 
-        /* INTERACTIVE TEXT OVERLAY (Step 1) */
+        .app-console { background: var(--surface); padding: 30px; border-radius: var(--radius-md); box-shadow: var(--shadow); border: 1px solid #f1f5f9; margin-bottom: 30px; text-align: center; }
+        
         .mockup-container { position: relative; width: 100%; height: 100%; }
         .interactive-label { 
             position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);
@@ -49,27 +79,17 @@
             pointer-events: none; opacity: 0.8; width: 80%; text-align: center;
         }
 
-        .app-console { background: var(--surface); padding: 30px; border-radius: var(--radius-md); box-shadow: var(--shadow); border: 1px solid #f1f5f9; margin-bottom: 30px; text-align: center; }
-        
-        /* SEO USAGE GUIDES (Step 3) */
-        .usage-guide { text-align: left; background: #f1f5f9; padding: 15px; border-radius: 12px; margin-top: 20px; display: none; }
-        .toggle-btn { cursor: pointer; color: #4f46e5; font-weight: 700; font-size: 0.85rem; text-decoration: underline; }
-
         .live-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
         .mockup-card { background: #fff; border-radius: var(--radius-md); padding: 20px; border: 1px solid #f1f5f9; }
         .span-full { grid-column: span 12; }
         .span-half { grid-column: span 6; }
         
         .m-screen { background: #000; border-radius: 8px; overflow: hidden; display: flex; }
-        .m-screen img { width: 100%; transition: opacity 0.3s; }
-
-        /* RELATED SUGGESTIONS (Step 2) */
-        .related-box { margin-top: 40px; }
-        .related-grid { display: flex; gap: 15px; overflow-x: auto; padding: 10px 0; }
-        .suggest-item { min-width: 150px; height: 100px; border-radius: 10px; cursor: pointer; background: #ddd; }
+        .m-screen img { width: 100%; opacity: 0; transition: opacity 0.5s ease; }
+        .m-screen img.loaded { opacity: 1; }
 
         .newsletter-bar { background: var(--accent-dark); color: #fff; padding: 40px; border-radius: var(--radius-md); margin-top: 40px; text-align: center; }
-        .newsletter-bar input { padding: 12px; border-radius: 8px; border: none; width: 250px; }
+        .newsletter-bar input { padding: 12px; border-radius: 8px; border: none; width: 250px; margin-bottom: 10px; }
         .newsletter-bar button { padding: 12px 24px; border-radius: 8px; background: var(--accent); border: none; font-weight: 800; cursor: pointer; }
 
         @media (max-width: 768px) { .span-half { grid-column: span 12; } .interactive-label { font-size: 1.5rem; } }
@@ -78,126 +98,121 @@
 <body>
 
 <main class="container">
+    <div class="daily-drop-bar">
+        <span>🔥 TODAY'S EXCLUSIVE 8K DROP</span>
+        <span id="countdown">RESETS IN: 23:59:59</span>
+    </div>
+
     <header>
-        <h1 style="font-size: 2.2rem; font-weight: 800;">WallRank</h1>
-        <nav class="nav-links">
-            <a href="#" class="active">Explore</a>
-            <a href="#">Bundles</a> <a href="#">License</a> <a href="#">Changelog</a>
-        </nav>
+        <h1 style="font-size: 2rem; font-weight: 800;">WallRank</h1>
     </header>
+
+    <nav class="category-nav">
+        <div class="cat-pill active" onclick="filterCat('all', this)">All Assets</div>
+        <div class="cat-pill" onclick="filterCat('lofi', this)">Lofi</div>
+        <div class="cat-pill" onclick="filterCat('neon', this)">Cyberpunk</div>
+        <div class="cat-pill" onclick="filterCat('nature', this)">Nature</div>
+    </nav>
 
     <section class="app-console">
         <h2 id="wp-title">Lofi Dreams 4K</h2>
-        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 20px;">Step into the driver's seat: Customize the preview below.</p>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 20px;">Personalize this space with your brand name.</p>
         
-        <input type="text" id="user-brand" placeholder="Type your name/brand here..." 
+        <input type="text" id="user-brand" placeholder="Your Brand Name..." 
                oninput="updateOverlay(this.value)" 
-               style="padding: 10px; border-radius: 8px; border: 1px solid #ddd; width: 80%; max-width: 400px; margin-bottom: 20px;">
+               style="padding: 12px; border-radius: 8px; border: 1px solid #ddd; width: 90%; max-width: 400px; margin-bottom: 20px; font-family: inherit;">
 
-        <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px;">
-            <button onclick="changeAsset(-1)" style="padding: 10px 20px; border-radius: 10px; border: 1px solid #ddd; background: #fff; cursor: pointer;">Previous</button>
-            <button onclick="changeAsset(1)" style="padding: 10px 20px; border-radius: 10px; background: var(--accent-dark); color: var(--accent); font-weight: 800; border: none; cursor: pointer;">Next Asset</button>
-        </div>
-
-        <span class="toggle-btn" onclick="document.getElementById('guide').style.display='block'">View Usage Guide (SEO)</span>
-        <div id="guide" class="usage-guide">
-            <strong>How to use this asset:</strong>
-            <p id="wp-guide">Perfect for YouTube Lo-fi streams. Set as background and apply a slight "noise" filter for the best aesthetic effect.</p>
+        <div style="display: flex; gap: 10px; justify-content: center;">
+            <button onclick="changeAsset(-1)" style="padding: 12px 24px; border-radius: 12px; border: 1px solid #ddd; background: #fff; cursor: pointer; font-weight: 700;">Prev</button>
+            <button onclick="changeAsset(1)" style="padding: 12px 24px; border-radius: 12px; background: var(--accent-dark); color: var(--accent); font-weight: 800; border: none; cursor: pointer;">Next Asset</button>
         </div>
     </section>
 
     <section class="live-grid">
         <div class="mockup-card span-full">
-            <p style="font-size: 0.7rem; font-weight: 800; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase;">Interactive Desktop Preview</p>
             <div class="m-screen" style="aspect-ratio: 16/9; border: 12px solid #1e293b;">
                 <div class="mockup-container">
-                    <img id="view-desktop" src="https://wallrank.club/assets/wallpaper1.jpg" class="blur-load" onload="this.classList.add('loaded')">
+                    <img id="view-desktop" src="https://wallrank.club/assets/wallpaper1.jpg" onload="this.classList.add('loaded')">
                     <div id="overlay-text" class="interactive-label">YOUR BRAND</div>
                 </div>
             </div>
         </div>
         
         <div class="mockup-card span-half">
-            <p style="font-size: 0.7rem; font-weight: 800; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase;">Mobile OLED View</p>
-            <div class="m-screen" style="width: 60%; margin: 0 auto; aspect-ratio: 9/19; border: 8px solid #1e293b; border-radius: 20px;">
-                <img id="view-mobile" src="https://wallrank.club/assets/wallpaper1.jpg" class="blur-load">
+            <p style="font-size: 0.7rem; font-weight: 800; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase;">OLED Mobile Preview</p>
+            <div class="m-screen" style="width: 55%; margin: 0 auto; aspect-ratio: 9/19; border: 8px solid #1e293b; border-radius: 20px;">
+                <img id="view-mobile" src="https://wallrank.club/assets/wallpaper1.jpg" onload="this.classList.add('loaded')">
             </div>
         </div>
 
         <div class="mockup-card span-half">
-            <p style="font-size: 0.7rem; font-weight: 800; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase;">Smart Suggestions</p>
-            <div id="related-items" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                </div>
+            <p style="font-size: 0.7rem; font-weight: 800; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase;">SEO Usage Tips</p>
+            <p id="wp-guide" style="font-size: 0.85rem; color: #64748b; line-height: 1.6;">Best for study streams. Works perfectly with Windows 11 'Dark Mode' settings.</p>
+            <hr style="margin: 15px 0; border: none; border-top: 1px solid #f1f5f9;">
+            <div id="related-items" style="display: flex; gap: 10px;"></div>
         </div>
     </section>
 
     <section class="newsletter-bar">
-        <h3>Join the 8K Club</h3>
-        <p style="margin-bottom: 20px; font-size: 0.9rem; opacity: 0.8;">Get exclusive bundles and SEO tips delivered weekly.</p>
+        <h3>Never Miss a Daily Drop</h3>
+        <p style="margin-bottom: 20px; font-size: 0.9rem; opacity: 0.8;">Get the direct 8K download link in your inbox every morning.</p>
         <input type="email" placeholder="Email address...">
-        <button>Subscribe</button>
+        <button>Notify Me</button>
     </section>
 </main>
 
 <script>
     const assets = [
-        {
-            title: "Lofi Dreams 4K",
-            category: "lofi",
-            guide: "Best for study streams. Works perfectly with Windows 11 'Dark Mode' settings.",
-            url: "https://wallrank.club/assets/wallpaper1.jpg"
-        },
-        {
-            title: "Cyberpunk Night",
-            category: "neon",
-            guide: "Optimized for AMOLED mobile screens. High contrast reduces battery drain on mobile.",
-            url: "https://wallrank.club/assets/wallpaper2.jpg"
-        }
+        { title: "Lofi Dreams 4K", category: "lofi", guide: "Best for study streams. Use with high-transparency taskbars.", url: "https://wallrank.club/assets/wallpaper1.jpg" },
+        { title: "Cyberpunk Night", category: "neon", guide: "High-contrast neon. Perfect for OLED displays to save battery.", url: "https://wallrank.club/assets/wallpaper2.jpg" },
+        { title: "Mountain Peak", category: "nature", guide: "Clean air aesthetic. Great for minimalist dual-monitor setups.", url: "https://wallrank.club/assets/wallpaper3.jpg" }
     ];
 
+    let filteredAssets = [...assets];
     let currentIndex = 0;
+
+    // Countdown Timer Logic
+    function updateTimer() {
+        const now = new Date();
+        const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+        const diff = tomorrow - now;
+        const h = Math.floor(diff / 3600000).toString().padStart(2, '0');
+        const m = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
+        const s = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
+        document.getElementById('countdown').innerText = `RESETS IN: ${h}:${m}:${s}`;
+    }
+    setInterval(updateTimer, 1000);
+
+    function filterCat(cat, el) {
+        document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+        el.classList.add('active');
+        filteredAssets = cat === 'all' ? [...assets] : assets.filter(a => a.category === cat);
+        currentIndex = 0;
+        renderAsset();
+    }
 
     function updateOverlay(val) {
         document.getElementById('overlay-text').innerText = val || "YOUR BRAND";
     }
 
     function changeAsset(dir) {
-        currentIndex = (currentIndex + dir + assets.length) % assets.length;
-        const item = assets[currentIndex];
-        
-        // Update Content
+        currentIndex = (currentIndex + dir + filteredAssets.length) % filteredAssets.length;
+        renderAsset();
+    }
+
+    function renderAsset() {
+        const item = filteredAssets[currentIndex];
+        if(!item) return;
         document.getElementById('wp-title').innerText = item.title;
         document.getElementById('wp-guide').innerText = item.guide;
         
-        // Ghost Loading Trigger
-        const desktopImg = document.getElementById('view-desktop');
-        desktopImg.classList.remove('loaded');
-        desktopImg.src = item.url;
-        document.getElementById('view-mobile').src = item.url;
-
-        updateRelated(item.category);
+        const dImg = document.getElementById('view-desktop');
+        const mImg = document.getElementById('view-mobile');
+        dImg.classList.remove('loaded');
+        mImg.classList.remove('loaded');
+        dImg.src = item.url;
+        mImg.src = item.url;
     }
-
-    function updateRelated(category) {
-        const relatedDiv = document.getElementById('related-items');
-        relatedDiv.innerHTML = ''; // Clear current
-        // Filter logic for "Smart Suggestions"
-        assets.forEach((a, index) => {
-            if(index !== currentIndex) {
-                const div = document.createElement('div');
-                div.style.height = "60px";
-                div.style.borderRadius = "8px";
-                div.style.backgroundImage = `url(${a.url})`;
-                div.style.backgroundSize = "cover";
-                div.style.cursor = "pointer";
-                div.onclick = () => changeAsset(index > currentIndex ? 1 : -1);
-                relatedDiv.appendChild(div);
-            }
-        });
-    }
-
-    // Initialize
-    updateRelated(assets[0].category);
 </script>
 </body>
 </html>
