@@ -3,141 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>WallRank | Preview & Download Wallpapers</title>
-
+<title>WallRank | Interactive Wallpapers</title>
 <link rel="stylesheet" href="CSS/main.css">
-
 <style>
-body {
-  margin:0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg,#0f172a,#1e293b);
-  color:white;
-}
-
-/* NAVBAR */
-header {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 30px;
-  background:rgba(0,0,0,0.4);
-  backdrop-filter: blur(10px);
-}
-
-.logo {
-  font-size:20px;
-  font-weight:bold;
-}
-
-nav a {
-  margin:0 10px;
-  text-decoration:none;
-  color:#ccc;
-  padding:6px 12px;
-  border-radius:6px;
-  transition:0.2s;
-}
-
-nav a:hover {
-  background:#22c55e;
-  color:black;
-}
-
-/* CENTER */
-.main {
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  height:80vh;
-}
-
-/* DEVICE CONTAINER */
-.device-container {
-  perspective:1200px;
-}
-
-/* DEVICE BASE */
-.device {
-  width:260px;
-  height:520px;
-  border-radius:30px;
-  overflow:hidden;
-  background:black;
-  box-shadow:0 20px 50px rgba(0,0,0,0.5);
-  transition:all 0.6s ease;
-  transform-style:preserve-3d;
-}
-
-/* DESKTOP */
-.device.desktop {
-  width:600px;
-  height:350px;
-  border-radius:14px;
-}
-
-/* PROFILE */
-.device.profile {
-  width:220px;
-  height:220px;
-  border-radius:50%;
-}
-
-/* IMAGE */
-.device img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-/* CONTROLS */
-.controls {
-  margin-top:25px;
-  display:flex;
-  gap:10px;
-}
-
-button {
-  padding:10px 15px;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  background:#22c55e;
-  color:black;
-  font-weight:bold;
-  transition:0.2s;
-}
-
-button:hover {
-  opacity:0.8;
-}
-
-/* FOOTER */
-footer {
-  text-align:center;
-  padding:20px;
-  background:#020617;
-  font-size:13px;
-  color:#aaa;
-}
-
-footer a {
-  color:#22c55e;
-  text-decoration:none;
-  margin:0 8px;
-}
+body {margin:0; font-family: Arial, sans-serif; background: #f5f5f5; color: #333;}
+header {position: sticky; top:0; background: #fff; display:flex; justify-content: space-between; align-items:center; padding: 15px 30px; box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+header .logo {font-weight:bold; font-size:20px;}
+nav a {margin:0 8px; text-decoration:none; color:#555; font-weight:500;}
+nav a:hover {color:#e94e77;}
+.main {max-width:1200px; margin:40px auto; text-align:center;}
+.mockup-container {position:relative; height:520px; margin-bottom:20px; overflow:hidden; background: #ddd; border-radius:20px; display:flex; justify-content:center; align-items:center;}
+.mockup-container img {max-width:100%; max-height:100%; border-radius:20px; transition: transform 0.5s ease;}
+.controls {display:flex; justify-content:center; gap:15px; margin-top:20px;}
+button {padding:10px 15px; border:none; border-radius:8px; background:#e94e77; color:#fff; font-weight:bold; cursor:pointer; transition:0.2s;}
+button:hover {opacity:0.85;}
+footer {margin-top:50px; text-align:center; padding:15px; font-size:13px; color:#666;}
+footer a {color:#e94e77; margin:0 5px; text-decoration:none;}
 </style>
-
 </head>
-
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="logo">WallRank</div>
-
   <nav>
     <a href="pages/lofi.html">Lofi</a>
     <a href="pages/cyberpunk.html">Cyberpunk</a>
@@ -147,38 +34,32 @@ footer a {
   </nav>
 </header>
 
-<!-- MAIN -->
 <div class="main">
+  <h1>Interactive Mockup Gallery</h1>
 
-  <div class="device-container">
-    <div id="device" class="device">
-      <img id="wallpaper" src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1775734597/lucid-origin_lofi_bedroom_with_glowing_computer_screen_plants_vinyl_records_warm_lighting_rai-0_owf33n.jpg">
-    </div>
+  <div class="mockup-container" id="mockup">
+    <img id="wallpaper" src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1775734597/lucid-origin_lofi_bedroom_with_glowing_computer_screen_plants_vinyl_records_warm_lighting_rai-0_owf33n.jpg">
   </div>
 
-  <!-- CONTROLS -->
   <div class="controls">
     <button onclick="prev()">⬅ Prev</button>
     <button onclick="next()">Next ➡</button>
-    <button onclick="setDevice('mobile')">📱 Mobile</button>
-    <button onclick="setDevice('desktop')">💻 Desktop</button>
-    <button onclick="setDevice('profile')">👤 Profile</button>
+    <button onclick="startPuzzle()">🧩 Puzzle</button>
   </div>
-
 </div>
 
-<!-- FOOTER -->
 <footer>
   <p>© 2026 WallRank</p>
   <p>
-    <a href="privacy-policy.html">Privacy</a>
-    <a href="terms.html">Terms</a>
-    <a href="about-us.html">About</a>
+    <a href="privacy-policy.html">Privacy</a> |
+    <a href="terms.html">Terms</a> |
+    <a href="about-us.html">About</a> |
     <a href="contact-us.html">Contact</a>
   </p>
 </footer>
 
 <script>
+// Wallpapers array
 const wallpapers = [
 "https://res.cloudinary.com/dnfzr2kno/image/upload/v1775734597/lucid-origin_lofi_bedroom_with_glowing_computer_screen_plants_vinyl_records_warm_lighting_rai-0_owf33n.jpg",
 "https://res.cloudinary.com/dnfzr2kno/image/upload/v1775734597/lucid-origin_lofi_bedroom_with_glowing_computer_screen_plants_vinyl_records_warm_lighting_rai-0_owf33n.jpg"
@@ -186,36 +67,65 @@ const wallpapers = [
 
 let index = 0;
 
-function show() {
-  document.getElementById("wallpaper").src = wallpapers[index];
+function updateWallpaper() {
+  const img = document.getElementById("wallpaper");
+  img.style.transform = "translateX(100%)";
+  setTimeout(() => {
+    img.src = wallpapers[index];
+    img.style.transform = "translateX(0)";
+  }, 200);
 }
 
 function next() {
   index = (index + 1) % wallpapers.length;
-  animate();
+  updateWallpaper();
 }
 
 function prev() {
   index = (index - 1 + wallpapers.length) % wallpapers.length;
-  animate();
+  updateWallpaper();
 }
 
-function animate() {
-  const device = document.getElementById("device");
-  device.style.transform = "rotateY(90deg)";
-  setTimeout(() => {
-    show();
-    device.style.transform = "rotateY(0deg)";
-  }, 200);
-}
+// PUZZLE
+function startPuzzle() {
+  const container = document.getElementById("mockup");
+  container.innerHTML = "";
+  const img = new Image();
+  img.src = wallpapers[index];
+  img.style.width = "100%";
+  img.style.height = "100%";
+  img.style.display = "none"; // hide full image
+  container.appendChild(img);
 
-function setDevice(type) {
-  const d = document.getElementById("device");
+  const rows = 3;
+  const cols = 3;
+  let pieces = [];
 
-  d.classList.remove("mobile","desktop","profile");
+  for (let r=0;r<rows;r++){
+    for(let c=0;c<cols;c++){
+      const piece = document.createElement("div");
+      piece.style.width = (100/cols)+"%";
+      piece.style.height = (100/rows)+"%";
+      piece.style.backgroundImage = `url(${img.src})`;
+      piece.style.backgroundSize = `${cols*100}% ${rows*100}%`;
+      piece.style.backgroundPosition = `${-c*100}% ${-r*100}%`;
+      piece.style.float="left";
+      piece.style.border="1px solid #fff";
+      piece.style.boxSizing="border-box";
+      piece.onclick = function(){this.remove(); checkWin()};
+      container.appendChild(piece);
+      pieces.push(piece);
+    }
+  }
 
-  if(type === "desktop") d.classList.add("desktop");
-  if(type === "profile") d.classList.add("profile");
+  function checkWin(){
+    if(pieces.every(p => !p.parentNode)){
+      alert("🎉 Congratulations! Puzzle completed!");
+      container.innerHTML="";
+      container.appendChild(img);
+      img.style.display="block";
+    }
+  }
 }
 </script>
 
