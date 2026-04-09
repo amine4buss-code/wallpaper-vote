@@ -3,13 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Site Name - Free Wallpapers & Design Assets</title>
+
+  <title>WallRank | Free Wallpapers & Design Assets</title>
+  <meta name="description" content="Download free wallpapers and design assets. Lofi, Cyberpunk, Nature, Abstract, Minimal.">
+
+  <!-- ✅ FIXED CSS PATH (IMPORTANT) -->
   <link rel="stylesheet" href="CSS/main.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f0f0f;
+      color: white;
+    }
+
+    header {
+      background: #111;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: #00ffcc;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(to bottom, #111, #000);
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #aaa;
+    }
+
+    .categories {
+      padding: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .category-card {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      transition: 0.2s;
+    }
+
+    .category-card:hover {
+      transform: scale(1.05);
+      background: #222;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #111;
+      margin-top: 40px;
+      font-size: 13px;
+      color: #888;
+    }
+  </style>
 </head>
+
 <body>
 
-  <!-- Header / Navbar -->
+  <!-- HEADER -->
   <header>
+    <h2>WallRank</h2>
     <nav>
       <a href="index.html">Home</a>
       <a href="pages/lofi.html">Lofi</a>
@@ -17,55 +99,43 @@
       <a href="pages/nature.html">Nature</a>
       <a href="pages/abstract.html">Abstract</a>
       <a href="pages/minimal.html">Minimal</a>
-      <a href="about-us.html">About Us</a>
-      <a href="contact-us.html">Contact</a>
     </nav>
   </header>
 
-  <!-- Main content -->
-  <main>
-    <section class="hero">
-      <h1>Welcome to Your Site Name</h1>
-      <p>Discover free wallpapers, design assets, and interactive experiences that make your digital life more creative.</p>
-    </section>
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Free Wallpapers & Design Assets</h1>
+    <p>Download high-quality wallpapers and creative assets for your devices.</p>
+  </section>
 
-    <section class="categories">
-      <h2>Explore Categories</h2>
-      <ul>
-        <li><a href="pages/lofi.html">Lofi Wallpapers</a></li>
-        <li><a href="pages/cyberpunk.html">Cyberpunk Wallpapers</a></li>
-        <li><a href="pages/nature.html">Nature Wallpapers</a></li>
-        <li><a href="pages/abstract.html">Abstract Wallpapers</a></li>
-        <li><a href="pages/minimal.html">Minimal Wallpapers</a></li>
-      </ul>
-    </section>
+  <!-- CATEGORIES -->
+  <section class="categories">
+    <h2>Explore Categories</h2>
 
-    <section class="features">
-      <h2>What You Can Do Here</h2>
-      <ul>
-        <li>Download high-quality wallpapers</li>
-        <li>Preview wallpapers on devices (phone, PC, profile pictures)</li>
-        <li>Play mini interactive games with wallpapers</li>
-        <li>Get free design assets like fonts, logo templates, and social media templates</li>
-      </ul>
-    </section>
-  </main>
+    <div class="category-grid">
 
-  <!-- Footer -->
+      <a href="pages/lofi.html" class="category-card">🎧 Lofi</a>
+      <a href="pages/cyberpunk.html" class="category-card">🌆 Cyberpunk</a>
+      <a href="pages/nature.html" class="category-card">🌿 Nature</a>
+      <a href="pages/abstract.html" class="category-card">🎨 Abstract</a>
+      <a href="pages/minimal.html" class="category-card">⚪ Minimal</a>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
-    <p>&copy; 2026 Your Site Name. All Rights Reserved.</p>
-    <nav>
-      <a href="privacy-policy.html">Privacy Policy</a> |
+    <p>© 2026 WallRank</p>
+    <p>
+      <a href="privacy-policy.html">Privacy</a> |
       <a href="terms.html">Terms</a> |
-      <a href="about-us.html">About Us</a> |
-      <a href="contact-us.html">Contact Us</a>
-    </nav>
+      <a href="about-us.html">About</a> |
+      <a href="contact-us.html">Contact</a>
+    </p>
   </footer>
 
-  <style>
-body { background: red !important; }
-</style>
-
+  <!-- ✅ FIXED JS PATH -->
   <script src="JS/main.js"></script>
+
 </body>
 </html>
