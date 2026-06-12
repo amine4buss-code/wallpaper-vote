@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Page not found — WallRank" />
+  <title>404 — Page Not Found | WallRank</title>
+  <link rel="stylesheet" href="CSS/main.css" />
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-19RP0D764T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-19RP0D764T');
+</script>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar__logo">Wall<span>Rank</span></a>
+    <div class="navbar__links">
+      <a href="index.html#trending">Trending</a>
+      <a href="index.html#new">New</a>
+      <a href="index.html#top">Top Rated</a>
+      <a href="pages/lofi.html">Categories</a>
+    </div>
+    <div class="navbar__right">
+      <div class="navbar__search" id="searchToggle">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        Search wallpapers...
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== SEARCH OVERLAY ===== -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-overlay__box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="text" id="searchInput" placeholder="Search wallpapers..." autocomplete="off" />
+      <button id="searchClose">✕</button>
+    </div>
+  </div>
+
+  <!-- ===== 404 CONTENT ===== -->
+  <div class="e404">
+
+    <div class="e404__number">404</div>
+    <h1 class="e404__title">This wallpaper got lost in the void</h1>
+    <p class="e404__sub">The page you're looking for doesn't exist or was moved. Don't worry — there are 12,400+ wallpapers waiting for you.</p>
+
+    <div class="e404__actions">
+      <a href="index.html" class="btn btn--primary">Back to homepage</a>
+      <a href="pages/lofi.html" class="btn btn--ghost">Browse wallpapers</a>
+      <a href="contact.html" class="btn btn--ghost">Report a broken link</a>
+    </div>
+
+    <!-- Quick category links -->
+    <div class="e404__cats">
+      <p class="e404__cats-label">Or jump to a category</p>
+      <div class="e404__cats-row">
+        <a href="pages/lofi.html" class="e404__cat">Lofi</a>
+        <a href="pages/cyberpunk.html" class="e404__cat">Cyberpunk</a>
+        <a href="pages/nature.html" class="e404__cat">Nature</a>
+        <a href="pages/abstract.html" class="e404__cat">Abstract</a>
+        <a href="pages/minimal.html" class="e404__cat">Minimal</a>
+        <a href="pages/space.html" class="e404__cat">Space</a>
+        <a href="pages/anime.html" class="e404__cat">Anime</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+    <span class="footer__copy">© 2026 WallRank — Community ranked wallpapers</span>
+    <div class="footer__links">
+      <a href="about.html">About</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
+
+  <style>
+    .search-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5); z-index: 200;
+      align-items: flex-start; justify-content: center;
+      padding-top: 80px;
+    }
+    .search-overlay.open { display: flex; }
+    .search-overlay__box {
+      background: #fff; border-radius: 12px;
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 20px; width: 100%; max-width: 560px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+    .search-overlay__box svg { width:18px; height:18px; stroke:#aaa; flex-shrink:0; }
+    .search-overlay__box input { flex:1; border:none; outline:none; font-size:16px; font-family:var(--font-main); color:#1a1a1a; }
+    .search-overlay__box button { font-size:16px; color:#aaa; cursor:pointer; background:none; border:none; }
+
+    /* 404 page styles */
+    .e404 {
+      min-height: calc(100vh - 58px - 57px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px;
+      background: var(--bg);
+    }
+
+    .e404__number {
+      font-family: var(--font-display);
+      font-size: 120px;
+      font-weight: 600;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 8px;
+      letter-spacing: -4px;
+      user-select: none;
+    }
+
+    .e404__title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 14px;
+      letter-spacing: -0.4px;
+    }
+
+    .e404__sub {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 460px;
+      margin-bottom: 32px;
+    }
+
+    .e404__actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 48px;
+    }
+
+    .e404__cats {
+      border-top: 0.5px solid var(--border);
+      padding-top: 32px;
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .e404__cats-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+
+    .e404__cats-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .e404__cat {
+      font-size: 13px;
+      padding: 7px 16px;
+      border-radius: var(--radius-pill);
+      border: 0.5px solid var(--border);
+      color: var(--text-secondary);
+      background: var(--surface);
+      transition: all 0.18s ease;
+    }
+
+    .e404__cat:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-bg);
+    }
+
+    /* Auto redirect countdown */
+    .e404__countdown {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 24px;
+    }
+
+    .e404__countdown span {
+      font-weight: 500;
+      color: var(--accent);
+    }
+  </style>
+
+  <script src="JS/main.js"></script>
+  <script>
+    // Auto redirect to homepage after 30 seconds
+    let seconds = 30;
+    const countdown = document.createElement('p');
+    countdown.className = 'e404__countdown';
+    countdown.innerHTML = `Redirecting to homepage in <span id="timer">${seconds}</span> seconds...`;
+    document.querySelector('.e404__cats').after(countdown);
+
+    const timer = setInterval(() => {
+      seconds--;
+      document.getElementById('timer').textContent = seconds;
+      if (seconds <= 0) {
+        clearInterval(timer);
+        window.location.href = 'index.html';
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>

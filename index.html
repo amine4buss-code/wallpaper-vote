@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="WallRank — discover and download the world's best wallpapers, voted and ranked by the community. Free 4K wallpapers in every category." />
+  <meta name="keywords" content="wallpapers, 4K wallpapers, free wallpapers, lofi wallpaper, cyberpunk wallpaper, nature wallpaper, desktop backgrounds" />
+  <meta property="og:title" content="WallRank — Community Ranked Wallpapers" />
+  <meta property="og:description" content="Discover thousands of free wallpapers voted and ranked by the community." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://wallrank.club" />
+  <title>WallRank — Community Ranked Wallpapers</title>
+  <link rel="stylesheet" href="CSS/main.css" />
+  <link rel="canonical" href="https://wallrank.club/" />
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-19RP0D764T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-19RP0D764T');
+</script>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <a href="#" class="navbar__logo">Wall<span>Rank</span></a>
+    <div class="navbar__links">
+      <a href="#trending" class="active">Trending</a>
+      <a href="#new">New</a>
+      <a href="#top">Top Rated</a>
+      <a href="pages/lofi.html">Categories</a>
+    </div>
+    <div class="navbar__right">
+      <div class="navbar__search" id="searchToggle">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        Search wallpapers...
+      </div>
+      <!-- Submit button now opens search, not contact page -->
+      <button class="btn btn--primary" id="navSubmitBtn">Search</button>
+    </div>
+  </nav>
+
+  <!-- ===== SEARCH OVERLAY ===== -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-overlay__box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="text" id="searchInput" placeholder="Search wallpapers, categories, styles..." autocomplete="off" />
+      <button id="searchSubmit" style="background:#1a1a1a;color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:13px;cursor:pointer;font-family:var(--font-main);white-space:nowrap;">Search</button>
+      <button id="searchClose" style="font-size:18px;color:#aaa;cursor:pointer;background:none;border:none;padding:0 4px;">✕</button>
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero__left">
+      <div class="hero__tag">Community ranked</div>
+      <h1 class="hero__title">The world's best wallpapers — voted and ranked</h1>
+      <p class="hero__sub">Thousands of wallpapers tagged, voted, and sorted by the community. Free downloads in every resolution.</p>
+      <div class="hero__actions">
+        <a href="#trending" class="btn btn--primary">Browse all</a>
+        <a href="contact.html" class="btn btn--ghost">Submit yours</a>
+      </div>
+    </div>
+    <div class="hero__right">
+      <div class="hero__preview">
+        <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1775734597/lucid-origin_lofi_bedroom_with_glowing_computer_screen_plants_vinyl_records_warm_lighting_rai-0_owf33n.jpg" alt="Lofi bedroom wallpaper" loading="lazy" />
+      </div>
+      <div class="hero__preview" style="background:#001a10;"></div>
+      <div class="hero__preview" style="background:#0d1a2e;"></div>
+      <div class="hero__preview" style="background:#1a0a10;"></div>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <div class="stats-row">
+    <div class="stat-item">
+      <div class="stat-item__val">12,400+</div>
+      <div class="stat-item__lbl">Wallpapers</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-item__val">840K</div>
+      <div class="stat-item__lbl">Monthly downloads</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-item__val">3.2M</div>
+      <div class="stat-item__lbl">Community votes</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-item__val">48</div>
+      <div class="stat-item__lbl">New today</div>
+    </div>
+  </div>
+
+  <!-- ===== FILTER BAR ===== -->
+  <div class="filter-bar">
+    <span class="filter-bar__label">Filter by</span>
+    <div class="filter-bar__cats">
+      <button class="filter-cat active" data-cat="all">All</button>
+      <button class="filter-cat" data-cat="lofi">Lofi</button>
+      <button class="filter-cat" data-cat="cyberpunk">Cyberpunk</button>
+      <button class="filter-cat" data-cat="nature">Nature</button>
+      <button class="filter-cat" data-cat="abstract">Abstract</button>
+      <button class="filter-cat" data-cat="minimal">Minimal</button>
+      <button class="filter-cat" data-cat="space">Space</button>
+      <button class="filter-cat" data-cat="anime">Anime</button>
+    </div>
+    <div class="filter-bar__sort">
+      <select id="sortSelect">
+        <option value="trending">Trending</option>
+        <option value="new">Newest</option>
+        <option value="top">Top rated</option>
+        <option value="downloads">Most downloaded</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- ===== TRENDING SECTION ===== -->
+  <section class="section section--white" id="trending">
+    <div class="section__head">
+      <h2 class="section__title">Trending this week</h2>
+      <a href="pages/lofi.html" class="section__more">See all →</a>
+    </div>
+
+    <div class="w-grid w-grid--hero" style="margin-bottom:12px;">
+      <div class="wcard" onclick="location.href='wallpaper/template.html'">
+        <div class="wcard__thumb wcard__thumb--tall">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1775734597/lucid-origin_lofi_bedroom_with_glowing_computer_screen_plants_vinyl_records_warm_lighting_rai-0_owf33n.jpg" alt="Lofi bedroom night 4K wallpaper" loading="lazy" />
+          <span class="wcard__badge">🔥 Hot</span>
+          <div class="wcard__overlay">
+            <button class="wcard__dl-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download
+            </button>
+          </div>
+        </div>
+        <div class="wcard__body">
+          <div class="wcard__name">Lofi bedroom — warm night</div>
+          <div class="wcard__meta">
+            <span class="wcard__tag">Lofi · 4K · 3840×2160</span>
+            <span class="wcard__rank">⭐ #1 this week</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div class="wcard" onclick="location.href='wallpaper/template.html'">
+          <div class="wcard__thumb" style="background:#001a10; aspect-ratio:16/7;">
+            <div class="wcard__overlay">
+              <button class="wcard__dl-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download
+              </button>
+            </div>
+          </div>
+          <div class="wcard__body">
+            <div class="wcard__name">Forest fog — dawn light</div>
+            <div class="wcard__meta">
+              <span class="wcard__tag">Nature · 4K</span>
+              <span class="wcard__rank">#2</span>
+            </div>
+          </div>
+        </div>
+        <div class="wcard" onclick="location.href='wallpaper/template.html'">
+          <div class="wcard__thumb" style="background:#0d1a2e; aspect-ratio:16/7;">
+            <div class="wcard__overlay">
+              <button class="wcard__dl-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download
+              </button>
+            </div>
+          </div>
+          <div class="wcard__body">
+            <div class="wcard__name">Deep space nebula</div>
+            <div class="wcard__meta">
+              <span class="wcard__tag">Space · 8K</span>
+              <span class="wcard__rank">#3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-grid" id="wallpaperGrid">
+      <div class="wcard" data-cat="cyberpunk" onclick="location.href='wallpaper/template.html'">
+        <div class="wcard__thumb" style="background:linear-gradient(135deg,#1a0010,#3d1020);">
+          <div class="wcard__overlay"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</button></div>
+        </div>
+        <div class="wcard__body">
+          <div class="wcard__name">Cyberpunk alley rain</div>
+          <div class="wcard__meta"><span class="wcard__tag">Cyberpunk · 4K</span><span class="wcard__votes">↑ 5.7k</span></div>
+        </div>
+      </div>
+      <div class="wcard" data-cat="minimal" onclick="location.href='wallpaper/template.html'">
+        <div class="wcard__thumb" style="background:linear-gradient(135deg,#0a1a0a,#1a3010);">
+          <span class="wcard__badge wcard__badge--new">New</span>
+          <div class="wcard__overlay"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</button></div>
+        </div>
+        <div class="wcard__body">
+          <div class="wcard__name">Minimal green grid</div>
+          <div class="wcard__meta"><span class="wcard__tag">Minimal · 1080p</span><span class="wcard__votes">↑ 4.2k</span></div>
+        </div>
+      </div>
+      <div class="wcard" data-cat="abstract" onclick="location.href='wallpaper/template.html'">
+        <div class="wcard__thumb" style="background:linear-gradient(135deg,#1a0a10,#2d0a20);">
+          <div class="wcard__overlay"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</button></div>
+        </div>
+        <div class="wcard__body">
+          <div class="wcard__name">Abstract fluid waves</div>
+          <div class="wcard__meta"><span class="wcard__tag">Abstract · 4K</span><span class="wcard__votes">↑ 3.9k</span></div>
+        </div>
+      </div>
+      <div class="wcard" data-cat="nature" onclick="location.href='wallpaper/template.html'">
+        <div class="wcard__thumb" style="background:linear-gradient(135deg,#0a2010,#1a4020);">
+          <div class="wcard__overlay"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</button></div>
+        </div>
+        <div class="wcard__body">
+          <div class="wcard__name">Jungle waterfall mist</div>
+          <div class="wcard__meta"><span class="wcard__tag">Nature · 4K</span><span class="wcard__votes">↑ 3.4k</span></div>
+        </div>
+      </div>
+      <div class="wcard" data-cat="space" onclick="location.href='wallpaper/template.html'">
+        <div class="wcard__thumb" style="background:linear-gradient(135deg,#050510,#0a0a2e);">
+          <div class="wcard__overlay"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</button></div>
+        </div>
+        <div class="wcard__body">
+          <div class="wcard__name">Galaxy spiral 8K</div>
+          <div class="wcard__meta"><span class="wcard__tag">Space · 8K</span><span class="wcard__votes">↑ 3.1k</span></div>
+        </div>
+      </div>
+      <div class="wcard" data-cat="lofi" onclick="location.href='wallpaper/template.html'">
+        <div class="wcard__thumb" style="background:linear-gradient(135deg,#1a1035,#2d1b4e);">
+          <div class="wcard__overlay"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</button></div>
+        </div>
+        <div class="wcard__body">
+          <div class="wcard__name">Lofi café window rain</div>
+          <div class="wcard__meta"><span class="wcard__tag">Lofi · 4K</span><span class="wcard__votes">↑ 2.8k</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NEW WALLPAPERS ===== -->
+  <section class="section section--gray" id="new">
+    <div class="section__head">
+      <h2 class="section__title">New this week</h2>
+      <a href="pages/nature.html" class="section__more">See all →</a>
+    </div>
+    <div class="w-grid w-grid--4">
+      <div class="wcard" onclick="location.href='wallpaper/template.html'">
+        <div class="wcard__thumb" style="background:linear-gradient(135deg,#2a1a00,#4a3000);">
+          <span class="wcard__badge wcard__badge--new">New</span>
+        </div>
+        <div class="wcard__body">
+          <div class="wcard__name">Desert dunes sunset</div>
+          <div class="wcard__meta"><span class="wcard__tag">Nature · 4K</span><span class="wcard__votes">↑ 312</span></div>
+        </div>
+      </div>
+      <div class="wcard" onclick="location.href='wallpaper/template.html'">
+        <div class="wcard__thumb" style="background:linear-gradient(135deg,#001020,#002040);">
+          <span class="wcard__badge wcard__badge--new">New</span>
+        </div>
+        <div class="wcard__body">
+          <div class="wcard__name">Ocean depth blue</div>
+          <div class="wcard__meta"><span class="wcard__tag">Abstract · 4K</span><span class="wcard__votes">↑ 289</span></div>
+        </div>
+      </div>
+      <div class="wcard" onclick="location.href='wallpaper/template.html'">
+        <div class="wcard__thumb" style="background:linear-gradient(135deg,#200010,#400020);">
+          <span class="wcard__badge wcard__badge--new">New</span>
+        </div>
+        <div class="wcard__body">
+          <div class="wcard__name">Neon cherry blossom</div>
+          <div class="wcard__meta"><span class="wcard__tag">Anime · 4K</span><span class="wcard__votes">↑ 241</span></div>
+        </div>
+      </div>
+      <div class="wcard" onclick="location.href='wallpaper/template.html'">
+        <div class="wcard__thumb" style="background:linear-gradient(135deg,#101010,#202020);">
+          <span class="wcard__badge wcard__badge--new">New</span>
+        </div>
+        <div class="wcard__body">
+          <div class="wcard__name">Monochrome city grid</div>
+          <div class="wcard__meta"><span class="wcard__tag">Minimal · 1080p</span><span class="wcard__votes">↑ 198</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CATEGORIES ===== -->
+  <section class="section section--white" id="top">
+    <div class="section__head">
+      <h2 class="section__title">Browse by category</h2>
+    </div>
+    <div class="w-grid">
+      <a href="pages/lofi.html" class="cat-card">
+        <div class="cat-card__thumb" style="background:linear-gradient(135deg,#1a1035,#2d1b4e);">
+          <div class="cat-card__overlay"><span class="cat-card__name">Lofi</span><span class="cat-card__count">1,240 wallpapers</span></div>
+        </div>
+      </a>
+      <a href="pages/cyberpunk.html" class="cat-card">
+        <div class="cat-card__thumb" style="background:linear-gradient(135deg,#1a0010,#3d0020);">
+          <div class="cat-card__overlay"><span class="cat-card__name">Cyberpunk</span><span class="cat-card__count">980 wallpapers</span></div>
+        </div>
+      </a>
+      <a href="pages/nature.html" class="cat-card">
+        <div class="cat-card__thumb" style="background:linear-gradient(135deg,#001a10,#003d22);">
+          <div class="cat-card__overlay"><span class="cat-card__name">Nature</span><span class="cat-card__count">2,100 wallpapers</span></div>
+        </div>
+      </a>
+      <a href="pages/abstract.html" class="cat-card">
+        <div class="cat-card__thumb" style="background:linear-gradient(135deg,#1a0a10,#2d0a20);">
+          <div class="cat-card__overlay"><span class="cat-card__name">Abstract</span><span class="cat-card__count">1,560 wallpapers</span></div>
+        </div>
+      </a>
+      <a href="pages/minimal.html" class="cat-card">
+        <div class="cat-card__thumb" style="background:linear-gradient(135deg,#101010,#202020);">
+          <div class="cat-card__overlay"><span class="cat-card__name">Minimal</span><span class="cat-card__count">890 wallpapers</span></div>
+        </div>
+      </a>
+      <a href="pages/space.html" class="cat-card">
+        <div class="cat-card__thumb" style="background:linear-gradient(135deg,#050510,#0a0a2e);">
+          <div class="cat-card__overlay"><span class="cat-card__name">Space</span><span class="cat-card__count">730 wallpapers</span></div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <span class="footer__copy">© 2026 WallRank — Community ranked wallpapers</span>
+    <div class="footer__links">
+      <a href="about.html">About</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
+
+  <style>
+    .search-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5); z-index: 200;
+      align-items: flex-start; justify-content: center;
+      padding-top: 80px;
+    }
+    .search-overlay.open { display: flex; }
+    .search-overlay__box {
+      background: #fff; border-radius: 12px;
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 20px; width: 100%; max-width: 580px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+    .search-overlay__box svg { width:18px; height:18px; stroke:#aaa; flex-shrink:0; }
+    .search-overlay__box input { flex:1; border:none; outline:none; font-size:16px; font-family:var(--font-main); color:#1a1a1a; }
+    .cat-card { display:block; cursor:pointer; border-radius:var(--radius-md); overflow:hidden; }
+    .cat-card__thumb { aspect-ratio:16/9; position:relative; transition:transform 0.3s ease; }
+    .cat-card:hover .cat-card__thumb { transform:scale(1.02); }
+    .cat-card__overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
+      display:flex; flex-direction:column; justify-content:flex-end; padding:16px;
+    }
+    .cat-card__name { font-family:var(--font-display); font-size:18px; font-weight:600; color:#fff; display:block; }
+    .cat-card__count { font-size:12px; color:rgba(255,255,255,0.6); }
+  </style>
+
+  <script src="JS/main.js"></script>
+
+</body>
+</html>
