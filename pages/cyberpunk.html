@@ -64,7 +64,7 @@
     </select>
   </div>
 
-    <div class="filter-bar">
+  <div class="filter-bar">
     <span class="filter-bar__label">Categories</span>
     <div class="filter-bar__cats">
       <a href="lofi.html" class="filter-cat">Lofi</a>
@@ -76,6 +76,15 @@
       <a href="anime.html" class="filter-cat">Anime</a>
     </div>
   </div>
+
+  <section class="section section--white">
+
+    <div class="w-grid w-grid--hero" style="margin-bottom:12px;">
+      <div class="wcard" onclick="location.href='../wallpaper/template.html'">
+        <div class="wcard__thumb wcard__thumb--tall" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1780987355/ChatGPT_Image_Jun_9_2026_12_59_20_AM_xmohbn.png" alt="Neon city rain cyberpunk wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;" />
+          <span class="wcard__badge" style="position:relative;z-index:1;">🔥 #1 Cyberpunk</span>
+          <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
         </div>
         <div class="wcard__body">
           <div class="wcard__name">Neon city rain</div>
@@ -107,7 +116,7 @@
 
     <div class="w-grid">
       <div class="wcard" onclick="location.href='../wallpaper/template.html'">
-        <div class="wcard__thumb" style=""><div class="wcard__overlay"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div></div>
+        <div class="wcard__thumb" style="background:linear-gradient(135deg,#1a0010,#3d0020);"><div class="wcard__overlay"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div></div>
         <div class="wcard__body"><div class="wcard__name">Cyberpunk car chase</div><div class="wcard__meta"><span class="wcard__tag">4K</span><span class="wcard__votes">↑ 2.1k</span></div></div>
       </div>
       <div class="wcard" onclick="location.href='../wallpaper/template.html'">
@@ -126,7 +135,7 @@
 
   </section>
 
-    <footer class="footer">
+  <footer class="footer">
     <span class="footer__copy">© 2026 WallRank — Community ranked wallpapers</span>
     <div class="footer__links">
       <a href="../about.html">About</a>
@@ -144,7 +153,9 @@
     .search-overlay__box input{flex:1;border:none;outline:none;font-size:16px;font-family:var(--font-main);color:#1a1a1a;}
     .search-overlay__box button{font-size:16px;color:#aaa;cursor:pointer;background:none;border:none;}
   </style>
-  <script src="../JS/main.js">
+
+  <script src="../JS/main.js"></script>
+  <script>
     document.getElementById('loadMoreBtn').addEventListener('click', function() {
       this.textContent = 'Loading...';
       setTimeout(() => { this.textContent = 'Check back tomorrow for more!'; this.disabled = true; this.style.opacity = '0.5'; }, 800);
