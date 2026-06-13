@@ -39,7 +39,6 @@
         </svg>
         Search wallpapers...
       </div>
-      <!-- Submit button now opens search, not contact page -->
       <button class="btn btn--primary" id="navSubmitBtn">Search</button>
     </div>
   </nav>
@@ -71,9 +70,15 @@
       <div class="hero__preview">
         <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1775734597/lucid-origin_lofi_bedroom_with_glowing_computer_screen_plants_vinyl_records_warm_lighting_rai-0_owf33n.jpg" alt="Lofi bedroom wallpaper" loading="lazy" />
       </div>
-      <div class="hero__preview" style="background:#001a10;"></div>
-      <div class="hero__preview" style="background:#0d1a2e;"></div>
-      <div class="hero__preview" style="background:#1a0a10;"></div>
+      <div class="hero__preview">
+        <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1780987339/ChatGPT_Image_Jun_9_2026_12_57_19_AM_bbmayz.png" alt="Forest nature wallpaper" loading="lazy" />
+      </div>
+      <div class="hero__preview">
+        <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1780987355/ChatGPT_Image_Jun_9_2026_12_59_20_AM_xmohbn.png" alt="Cyberpunk city wallpaper" loading="lazy" />
+      </div>
+      <div class="hero__preview">
+        <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1780987313/ChatGPT_Image_Jun_9_2026_01_01_42_AM_bmkhms.png" alt="Cyberpunk neon wallpaper" loading="lazy" />
+      </div>
     </div>
   </section>
 
@@ -128,11 +133,12 @@
     </div>
 
     <div class="w-grid w-grid--hero" style="margin-bottom:12px;">
-      <div class="wcard" onclick="location.href='wallpaper/template.html'">
-        <div class="wcard__thumb wcard__thumb--tall">
-          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1775734597/lucid-origin_lofi_bedroom_with_glowing_computer_screen_plants_vinyl_records_warm_lighting_rai-0_owf33n.jpg" alt="Lofi bedroom night 4K wallpaper" loading="lazy" />
-          <span class="wcard__badge">🔥 Hot</span>
-          <div class="wcard__overlay">
+
+      <div class="wcard" data-cat="lofi" onclick="location.href='wallpaper/template.html'">
+        <div class="wcard__thumb wcard__thumb--tall" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1775734597/lucid-origin_lofi_bedroom_with_glowing_computer_screen_plants_vinyl_records_warm_lighting_rai-0_owf33n.jpg" alt="Lofi bedroom night 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <span class="wcard__badge" style="position:relative;z-index:1;">🔥 Hot</span>
+          <div class="wcard__overlay" style="z-index:1;">
             <button class="wcard__dl-btn">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               Download
@@ -149,9 +155,10 @@
       </div>
 
       <div style="display:flex; flex-direction:column; gap:12px;">
-        <div class="wcard" onclick="location.href='wallpaper/template.html'">
-          <div class="wcard__thumb" style="background:#001a10; aspect-ratio:16/7;">
-            <div class="wcard__overlay">
+        <div class="wcard" data-cat="nature" onclick="location.href='wallpaper/template.html'">
+          <div class="wcard__thumb" style="aspect-ratio:16/7;position:relative;overflow:hidden;">
+            <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1780987339/ChatGPT_Image_Jun_9_2026_12_57_19_AM_bbmayz.png" alt="Forest fog dawn wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+            <div class="wcard__overlay" style="z-index:1;">
               <button class="wcard__dl-btn">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 Download
@@ -166,9 +173,11 @@
             </div>
           </div>
         </div>
-        <div class="wcard" onclick="location.href='wallpaper/template.html'">
-          <div class="wcard__thumb" style="background:#0d1a2e; aspect-ratio:16/7;">
-            <div class="wcard__overlay">
+
+        <div class="wcard" data-cat="cyberpunk" onclick="location.href='wallpaper/template.html'">
+          <div class="wcard__thumb" style="aspect-ratio:16/7;position:relative;overflow:hidden;">
+            <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1780987313/ChatGPT_Image_Jun_9_2026_01_01_42_AM_bmkhms.png" alt="Cyberpunk neon wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+            <div class="wcard__overlay" style="z-index:1;">
               <button class="wcard__dl-btn">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 Download
@@ -176,155 +185,204 @@
             </div>
           </div>
           <div class="wcard__body">
-            <div class="wcard__name">Deep space nebula</div>
+            <div class="wcard__name">Neon city night</div>
             <div class="wcard__meta">
-              <span class="wcard__tag">Space · 8K</span>
+              <span class="wcard__tag">Cyberpunk · 8K</span>
               <span class="wcard__rank">#3</span>
             </div>
           </div>
         </div>
       </div>
+
     </div>
 
     <div class="w-grid" id="wallpaperGrid">
+
       <div class="wcard" data-cat="cyberpunk" onclick="location.href='wallpaper/template.html'">
-        <div class="wcard__thumb" style="background:linear-gradient(135deg,#1a0010,#3d1020);">
-          <div class="wcard__overlay"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</button></div>
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1780987355/ChatGPT_Image_Jun_9_2026_12_59_20_AM_xmohbn.png" alt="Cyberpunk alley wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <div class="wcard__overlay" style="z-index:1;">
+            <button class="wcard__dl-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download
+            </button>
+          </div>
         </div>
         <div class="wcard__body">
           <div class="wcard__name">Cyberpunk alley rain</div>
-          <div class="wcard__meta"><span class="wcard__tag">Cyberpunk · 4K</span><span class="wcard__votes">↑ 5.7k</span></div>
+          <div class="wcard__meta">
+            <span class="wcard__tag">Cyberpunk · 4K</span>
+            <span class="wcard__votes">↑ 5.7k</span>
+          </div>
         </div>
       </div>
-      <div class="wcard" data-cat="minimal" onclick="location.href='wallpaper/template.html'">
-        <div class="wcard__thumb" style="background:linear-gradient(135deg,#0a1a0a,#1a3010);">
-          <span class="wcard__badge wcard__badge--new">New</span>
-          <div class="wcard__overlay"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</button></div>
-        </div>
-        <div class="wcard__body">
-          <div class="wcard__name">Minimal green grid</div>
-          <div class="wcard__meta"><span class="wcard__tag">Minimal · 1080p</span><span class="wcard__votes">↑ 4.2k</span></div>
-        </div>
-      </div>
-      <div class="wcard" data-cat="abstract" onclick="location.href='wallpaper/template.html'">
-        <div class="wcard__thumb" style="background:linear-gradient(135deg,#1a0a10,#2d0a20);">
-          <div class="wcard__overlay"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</button></div>
-        </div>
-        <div class="wcard__body">
-          <div class="wcard__name">Abstract fluid waves</div>
-          <div class="wcard__meta"><span class="wcard__tag">Abstract · 4K</span><span class="wcard__votes">↑ 3.9k</span></div>
-        </div>
-      </div>
+
       <div class="wcard" data-cat="nature" onclick="location.href='wallpaper/template.html'">
-        <div class="wcard__thumb" style="background:linear-gradient(135deg,#0a2010,#1a4020);">
-          <div class="wcard__overlay"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</button></div>
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1780987339/ChatGPT_Image_Jun_9_2026_12_57_19_AM_bbmayz.png" alt="Jungle waterfall wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
+          <div class="wcard__overlay" style="z-index:1;">
+            <button class="wcard__dl-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download
+            </button>
+          </div>
         </div>
         <div class="wcard__body">
           <div class="wcard__name">Jungle waterfall mist</div>
-          <div class="wcard__meta"><span class="wcard__tag">Nature · 4K</span><span class="wcard__votes">↑ 3.4k</span></div>
+          <div class="wcard__meta">
+            <span class="wcard__tag">Nature · 4K</span>
+            <span class="wcard__votes">↑ 3.4k</span>
+          </div>
         </div>
       </div>
-      <div class="wcard" data-cat="space" onclick="location.href='wallpaper/template.html'">
-        <div class="wcard__thumb" style="background:linear-gradient(135deg,#050510,#0a0a2e);">
-          <div class="wcard__overlay"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</button></div>
-        </div>
-        <div class="wcard__body">
-          <div class="wcard__name">Galaxy spiral 8K</div>
-          <div class="wcard__meta"><span class="wcard__tag">Space · 8K</span><span class="wcard__votes">↑ 3.1k</span></div>
-        </div>
-      </div>
+
       <div class="wcard" data-cat="lofi" onclick="location.href='wallpaper/template.html'">
-        <div class="wcard__thumb" style="background:linear-gradient(135deg,#1a1035,#2d1b4e);">
-          <div class="wcard__overlay"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</button></div>
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1775734597/lucid-origin_lofi_bedroom_with_glowing_computer_screen_plants_vinyl_records_warm_lighting_rai-0_owf33n.jpg" alt="Lofi cafe wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <div class="wcard__overlay" style="z-index:1;">
+            <button class="wcard__dl-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download
+            </button>
+          </div>
         </div>
         <div class="wcard__body">
           <div class="wcard__name">Lofi café window rain</div>
-          <div class="wcard__meta"><span class="wcard__tag">Lofi · 4K</span><span class="wcard__votes">↑ 2.8k</span></div>
+          <div class="wcard__meta">
+            <span class="wcard__tag">Lofi · 4K</span>
+            <span class="wcard__votes">↑ 2.8k</span>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ===== NEW WALLPAPERS ===== -->
-  <section class="section section--gray" id="new">
-    <div class="section__head">
-      <h2 class="section__title">New this week</h2>
-      <a href="pages/nature.html" class="section__more">See all →</a>
-    </div>
-    <div class="w-grid w-grid--4">
-      <div class="wcard" onclick="location.href='wallpaper/template.html'">
-        <div class="wcard__thumb" style="background:linear-gradient(135deg,#2a1a00,#4a3000);">
-          <span class="wcard__badge wcard__badge--new">New</span>
+      <div class="wcard" data-cat="cyberpunk" onclick="location.href='wallpaper/template.html'">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1780987313/ChatGPT_Image_Jun_9_2026_01_01_42_AM_bmkhms.png" alt="Cyberpunk car chase wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <div class="wcard__overlay" style="z-index:1;">
+            <button class="wcard__dl-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download
+            </button>
+          </div>
         </div>
         <div class="wcard__body">
-          <div class="wcard__name">Desert dunes sunset</div>
-          <div class="wcard__meta"><span class="wcard__tag">Nature · 4K</span><span class="wcard__votes">↑ 312</span></div>
+          <div class="wcard__name">Cyberpunk car chase</div>
+          <div class="wcard__meta">
+            <span class="wcard__tag">Cyberpunk · 4K</span>
+            <span class="wcard__votes">↑ 2.1k</span>
+          </div>
         </div>
       </div>
-      <div class="wcard" onclick="location.href='wallpaper/template.html'">
-        <div class="wcard__thumb" style="background:linear-gradient(135deg,#001020,#002040);">
-          <span class="wcard__badge wcard__badge--new">New</span>
+
+      <div class="wcard" data-cat="nature" onclick="location.href='wallpaper/template.html'">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1780987339/ChatGPT_Image_Jun_9_2026_12_57_19_AM_bbmayz.png" alt="Mountain sunrise wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <div class="wcard__overlay" style="z-index:1;">
+            <button class="wcard__dl-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download
+            </button>
+          </div>
         </div>
         <div class="wcard__body">
-          <div class="wcard__name">Ocean depth blue</div>
-          <div class="wcard__meta"><span class="wcard__tag">Abstract · 4K</span><span class="wcard__votes">↑ 289</span></div>
+          <div class="wcard__name">Mountain sunrise</div>
+          <div class="wcard__meta">
+            <span class="wcard__tag">Nature · 1080p</span>
+            <span class="wcard__votes">↑ 1.7k</span>
+          </div>
         </div>
       </div>
-      <div class="wcard" onclick="location.href='wallpaper/template.html'">
-        <div class="wcard__thumb" style="background:linear-gradient(135deg,#200010,#400020);">
-          <span class="wcard__badge wcard__badge--new">New</span>
+
+      <div class="wcard" data-cat="lofi" onclick="location.href='wallpaper/template.html'">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1775734597/lucid-origin_lofi_bedroom_with_glowing_computer_screen_plants_vinyl_records_warm_lighting_rai-0_owf33n.jpg" alt="Lofi study desk wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <div class="wcard__overlay" style="z-index:1;">
+            <button class="wcard__dl-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download
+            </button>
+          </div>
         </div>
         <div class="wcard__body">
-          <div class="wcard__name">Neon cherry blossom</div>
-          <div class="wcard__meta"><span class="wcard__tag">Anime · 4K</span><span class="wcard__votes">↑ 241</span></div>
+          <div class="wcard__name">Lofi study desk — purple</div>
+          <div class="wcard__meta">
+            <span class="wcard__tag">Lofi · 1080p</span>
+            <span class="wcard__votes">↑ 1.6k</span>
+          </div>
         </div>
       </div>
-      <div class="wcard" onclick="location.href='wallpaper/template.html'">
-        <div class="wcard__thumb" style="background:linear-gradient(135deg,#101010,#202020);">
-          <span class="wcard__badge wcard__badge--new">New</span>
-        </div>
-        <div class="wcard__body">
-          <div class="wcard__name">Monochrome city grid</div>
-          <div class="wcard__meta"><span class="wcard__tag">Minimal · 1080p</span><span class="wcard__votes">↑ 198</span></div>
-        </div>
-      </div>
+
     </div>
   </section>
 
   <!-- ===== CATEGORIES ===== -->
-  <section class="section section--white" id="top">
+  <section class="section section--gray" id="top">
     <div class="section__head">
       <h2 class="section__title">Browse by category</h2>
     </div>
     <div class="w-grid">
       <a href="pages/lofi.html" class="cat-card">
-        <div class="cat-card__thumb" style="background:linear-gradient(135deg,#1a1035,#2d1b4e);">
-          <div class="cat-card__overlay"><span class="cat-card__name">Lofi</span><span class="cat-card__count">1,240 wallpapers</span></div>
+        <div class="cat-card__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1775734597/lucid-origin_lofi_bedroom_with_glowing_computer_screen_plants_vinyl_records_warm_lighting_rai-0_owf33n.jpg" alt="Lofi wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <div class="cat-card__overlay">
+            <span class="cat-card__name">Lofi</span>
+            <span class="cat-card__count">1,240 wallpapers</span>
+          </div>
         </div>
       </a>
       <a href="pages/cyberpunk.html" class="cat-card">
-        <div class="cat-card__thumb" style="background:linear-gradient(135deg,#1a0010,#3d0020);">
-          <div class="cat-card__overlay"><span class="cat-card__name">Cyberpunk</span><span class="cat-card__count">980 wallpapers</span></div>
+        <div class="cat-card__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1780987355/ChatGPT_Image_Jun_9_2026_12_59_20_AM_xmohbn.png" alt="Cyberpunk wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <div class="cat-card__overlay">
+            <span class="cat-card__name">Cyberpunk</span>
+            <span class="cat-card__count">980 wallpapers</span>
+          </div>
         </div>
       </a>
       <a href="pages/nature.html" class="cat-card">
-        <div class="cat-card__thumb" style="background:linear-gradient(135deg,#001a10,#003d22);">
-          <div class="cat-card__overlay"><span class="cat-card__name">Nature</span><span class="cat-card__count">2,100 wallpapers</span></div>
+        <div class="cat-card__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1780987339/ChatGPT_Image_Jun_9_2026_12_57_19_AM_bbmayz.png" alt="Nature wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <div class="cat-card__overlay">
+            <span class="cat-card__name">Nature</span>
+            <span class="cat-card__count">2,100 wallpapers</span>
+          </div>
         </div>
       </a>
       <a href="pages/abstract.html" class="cat-card">
-        <div class="cat-card__thumb" style="background:linear-gradient(135deg,#1a0a10,#2d0a20);">
-          <div class="cat-card__overlay"><span class="cat-card__name">Abstract</span><span class="cat-card__count">1,560 wallpapers</span></div>
+        <div class="cat-card__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1781134880/lucid-origin_Fluid_abstract_art_flowing_liquid_metal_colors_gold_silver_and_deep_blue_smooth_-0_ywz1be.jpg" alt="Abstract wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <div class="cat-card__overlay">
+            <span class="cat-card__name">Abstract</span>
+            <span class="cat-card__count">1,560 wallpapers</span>
+          </div>
         </div>
       </a>
       <a href="pages/minimal.html" class="cat-card">
-        <div class="cat-card__thumb" style="background:linear-gradient(135deg,#101010,#202020);">
-          <div class="cat-card__overlay"><span class="cat-card__name">Minimal</span><span class="cat-card__count">890 wallpapers</span></div>
+        <div class="cat-card__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1781134870/lucid-origin_Minimalist_desktop_wallpaper_single_thin_geometric_line_forming_a_circle_on_pure-0_wd4gmw.jpg" alt="Minimal wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <div class="cat-card__overlay">
+            <span class="cat-card__name">Minimal</span>
+            <span class="cat-card__count">890 wallpapers</span>
+          </div>
         </div>
       </a>
       <a href="pages/space.html" class="cat-card">
-        <div class="cat-card__thumb" style="background:linear-gradient(135deg,#050510,#0a0a2e);">
-          <div class="cat-card__overlay"><span class="cat-card__name">Space</span><span class="cat-card__count">730 wallpapers</span></div>
+        <div class="cat-card__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1781134868/lucid-origin_Deep_space_nebula_with_vibrant_purple_and_blue_gas_clouds_thousands_of_stars_dis-0_lafc35.jpg" alt="Space wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <div class="cat-card__overlay">
+            <span class="cat-card__name">Space</span>
+            <span class="cat-card__count">730 wallpapers</span>
+          </div>
+        </div>
+      </a>
+      <a href="pages/anime.html" class="cat-card">
+        <div class="cat-card__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1781134882/lucid-origin_Anime_girl_sitting_on_rooftop_at_night_cherry_blossom_petals_falling_city_lights-0_evuxrl.jpg" alt="Anime wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <div class="cat-card__overlay">
+            <span class="cat-card__name">Anime</span>
+            <span class="cat-card__count">540 wallpapers</span>
+          </div>
         </div>
       </a>
     </div>
@@ -364,6 +422,7 @@
       position:absolute; inset:0;
       background:linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
       display:flex; flex-direction:column; justify-content:flex-end; padding:16px;
+      z-index:1;
     }
     .cat-card__name { font-family:var(--font-display); font-size:18px; font-weight:600; color:#fff; display:block; }
     .cat-card__count { font-size:12px; color:rgba(255,255,255,0.6); }
