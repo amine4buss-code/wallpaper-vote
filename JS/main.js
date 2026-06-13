@@ -4,34 +4,26 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ================================================
-     SMART BASE URL
-     ================================================ */
-
   const path = window.location.pathname;
   let base = '';
   if (path.includes('/pages/') || path.includes('/wallpaper/')) {
     base = '../';
   }
 
-  /* ================================================
-     WALLPAPER DATA (for search only)
-     ================================================ */
-
   const wallpapers = [
     { name: 'Lofi bedroom — warm night',  cat: 'lofi',      url: base + 'wallpaper/template.html' },
     { name: 'Forest fog — dawn light',    cat: 'nature',    url: base + 'wallpaper/template.html' },
-    { name: 'Deep space nebula',          cat: 'space',     url: base + 'wallpaper/template.html' },
+    { name: 'Neon city night',            cat: 'cyberpunk', url: base + 'wallpaper/template.html' },
     { name: 'Cyberpunk alley rain',       cat: 'cyberpunk', url: base + 'wallpaper/template.html' },
-    { name: 'Minimal green grid',         cat: 'minimal',   url: base + 'wallpaper/template.html' },
-    { name: 'Abstract fluid waves',       cat: 'abstract',  url: base + 'wallpaper/template.html' },
     { name: 'Jungle waterfall mist',      cat: 'nature',    url: base + 'wallpaper/template.html' },
-    { name: 'Galaxy spiral 8K',           cat: 'space',     url: base + 'wallpaper/template.html' },
     { name: 'Lofi café window rain',      cat: 'lofi',      url: base + 'wallpaper/template.html' },
-    { name: 'Desert dunes sunset',        cat: 'nature',    url: base + 'wallpaper/template.html' },
-    { name: 'Ocean depth blue',           cat: 'abstract',  url: base + 'wallpaper/template.html' },
-    { name: 'Neon cherry blossom',        cat: 'anime',     url: base + 'wallpaper/template.html' },
-    { name: 'Monochrome city grid',       cat: 'minimal',   url: base + 'wallpaper/template.html' },
+    { name: 'Cyberpunk car chase',        cat: 'cyberpunk', url: base + 'wallpaper/template.html' },
+    { name: 'Mountain sunrise',           cat: 'nature',    url: base + 'wallpaper/template.html' },
+    { name: 'Lofi study desk — purple',   cat: 'lofi',      url: base + 'wallpaper/template.html' },
+    { name: 'Deep space nebula',          cat: 'space',     url: base + 'wallpaper/template.html' },
+    { name: 'Fluid abstract waves',       cat: 'abstract',  url: base + 'wallpaper/template.html' },
+    { name: 'Minimal circle line',        cat: 'minimal',   url: base + 'wallpaper/template.html' },
+    { name: 'Anime rooftop cherry blossom', cat: 'anime',   url: base + 'wallpaper/template.html' },
   ];
 
   /* ================================================
@@ -137,28 +129,42 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ================================================
-     CATEGORY FILTER (homepage only)
+     CATEGORY FILTER — homepage
+     Targets ALL cards with data-cat, in any grid
      ================================================ */
 
-  const filterBtns    = document.querySelectorAll('[data-cat]');
-  const wallpaperGrid = document.getElementById('wallpaperGrid');
+  const filterBtns = document.querySelectorAll('.filter-cat[data-cat]');
+  const allCards   = document.querySelectorAll('.wcard[data-cat]');
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', function () {
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      if (!wallpaperGrid) return;
-      wallpaperGrid.querySelectorAll('.wcard').forEach(card => {
-        const cat = btn.getAttribute('data-cat');
+      const cat = btn.getAttribute('data-cat');
+
+      allCards.forEach(card => {
         const show = cat === 'all' || card.getAttribute('data-cat') === cat;
-        card.style.display = show ? 'block' : 'none';
-        if (show) card.style.animation = 'fadeIn 0.3s ease';
+        const parentGrid = card.closest('.w-grid');
+        if (show) {
+          card.style.display = '';
+          card.style.animation = 'fadeIn 0.3s ease';
+        } else {
+          card.style.display = 'none';
+        }
       });
+
+      // Hide hero grid entirely if filtering and no hero card matches, to avoid empty gaps
+      const heroGrid = document.querySelector('.w-grid--hero');
+      if (heroGrid) {
+        const heroCards = heroGrid.querySelectorAll('.wcard[data-cat]');
+        const anyVisible = Array.from(heroCards).some(c => c.style.display !== 'none');
+        heroGrid.style.display = (cat === 'all' || anyVisible) ? '' : 'none';
+      }
     });
   });
 
   /* ================================================
-     SORT — reads vote numbers directly from the cards
+     SORT
      ================================================ */
 
   const sortSelect = document.getElementById('sortSelect');
@@ -166,8 +172,6 @@ document.addEventListener('DOMContentLoaded', function () {
   if (sortSelect) {
     sortSelect.addEventListener('change', function () {
       const val = sortSelect.value;
-
-      // Target all grids on the page except the hero grid
       const grids = document.querySelectorAll('.w-grid:not(.w-grid--hero)');
       if (!grids.length) return;
 
@@ -175,17 +179,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const cards = Array.from(grid.querySelectorAll('.wcard'));
         if (cards.length < 2) return;
 
-        // Read the vote/download number from each card's visible text
         function getScore(card) {
           const voteEl = card.querySelector('.wcard__votes, .wcard__rank');
           if (!voteEl) return 0;
           const text = voteEl.textContent.trim();
-          // Extract number — handles "↑ 2.8k", "#1", "⭐ #1 this week"
           const match = text.match(/([\d.]+)k?/);
           if (!match) return 0;
           let num = parseFloat(match[1]);
           if (text.includes('k')) num *= 1000;
-          // If it's a rank (#1, #2) invert it so #1 = highest score
           if (text.includes('#')) num = 1000 - num;
           return num;
         }
@@ -195,18 +196,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         cards.sort((a, b) => {
-          if (val === 'new') {
-            // New cards first
-            return (isNew(b) ? 1 : 0) - (isNew(a) ? 1 : 0);
-          }
-          if (val === 'top' || val === 'downloads') {
-            return getScore(b) - getScore(a);
-          }
-          // trending — default order (score based)
+          if (val === 'new') return (isNew(b) ? 1 : 0) - (isNew(a) ? 1 : 0);
           return getScore(b) - getScore(a);
         });
 
-        // Re-append with animation
         cards.forEach((card, i) => {
           card.style.opacity = '0';
           card.style.transform = 'translateY(8px)';
@@ -219,7 +212,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
       });
 
-      // Visual feedback on the dropdown
       sortSelect.style.borderColor = '#D85A30';
       setTimeout(() => sortSelect.style.borderColor = '', 1000);
     });
