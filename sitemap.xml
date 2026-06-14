@@ -6,6 +6,7 @@
     <loc>https://wallrank.club/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <lastmod>2026-06-13</lastmod>
   </url>
 
   <!-- Category pages -->
@@ -13,78 +14,77 @@
     <loc>https://wallrank.club/pages/lofi.html</loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+    <lastmod>2026-06-13</lastmod>
   </url>
   <url>
     <loc>https://wallrank.club/pages/cyberpunk.html</loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+    <lastmod>2026-06-13</lastmod>
   </url>
   <url>
     <loc>https://wallrank.club/pages/nature.html</loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+    <lastmod>2026-06-13</lastmod>
   </url>
   <url>
     <loc>https://wallrank.club/pages/abstract.html</loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+    <lastmod>2026-06-13</lastmod>
   </url>
   <url>
     <loc>https://wallrank.club/pages/minimal.html</loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+    <lastmod>2026-06-13</lastmod>
   </url>
   <url>
     <loc>https://wallrank.club/pages/space.html</loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+    <lastmod>2026-06-13</lastmod>
   </url>
   <url>
     <loc>https://wallrank.club/pages/anime.html</loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+    <lastmod>2026-06-13</lastmod>
+  </url>
+
+  <!-- Info pages -->
+  <url>
+    <loc>https://wallrank.club/about.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-06-13</lastmod>
+  </url>
+  <url>
+    <loc>https://wallrank.club/contact.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-06-13</lastmod>
+  </url>
+  <url>
+    <loc>https://wallrank.club/privacy.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <lastmod>2026-06-13</lastmod>
+  </url>
+  <url>
+    <loc>https://wallrank.club/terms.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <lastmod>2026-06-13</lastmod>
   </url>
 
   <!-- Wallpaper pages -->
   <url>
-    <loc>https://wallrank.club/wallpaper/lofi-bedroom-night-4k.html</loc>
+    <loc>https://wallrank.club/wallpaper/template.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://wallrank.club/wallpaper/forest-fog-dawn-4k.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://wallrank.club/wallpaper/deep-space-nebula-8k.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://wallrank.club/wallpaper/cyberpunk-alley-rain-4k.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://wallrank.club/wallpaper/minimal-green-grid-1080p.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://wallrank.club/wallpaper/abstract-fluid-waves-4k.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://wallrank.club/wallpaper/galaxy-spiral-8k.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://wallrank.club/wallpaper/neon-cherry-blossom-4k.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-06-13</lastmod>
   </url>
 
 </urlset>
