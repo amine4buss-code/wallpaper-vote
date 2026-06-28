@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /404.html
+Disallow: /offline.html
 
 Sitemap: https://wallrank.club/sitemap.xml
