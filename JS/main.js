@@ -275,6 +275,11 @@ document.addEventListener('DOMContentLoaded', function () {
     el.style.transform = 'translateY(16px)';
     el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
     observer.observe(el);
+    // Fallback: show all cards after 1.5s in case observer doesn't fire
+    setTimeout(() => {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, 1500);
   });
 
 });
