@@ -45,6 +45,72 @@
     </div>
   </nav>
 
+  <!-- ===== BANNER ===== -->
+  <div class="wr-banner" id="wrBanner">
+    <span class="wr-banner__text" id="bannerText"></span>
+    <button class="wr-banner__close" onclick="document.getElementById('wrBanner').style.display='none'">✕</button>
+  </div>
+
+  <!-- ===== ACTION BUTTONS BAR ===== -->
+  <div class="wr-actions">
+    <button class="wr-action-btn wr-action-btn--dl" onclick="downloadAll()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download All
+    </button>
+    <button class="wr-action-btn wr-action-btn--book" onclick="openBookModal()">
+      📖 Book Download <span class="wr-beta">Beta</span>
+    </button>
+    <button class="wr-action-btn wr-action-btn--random" onclick="randomPick()">
+      🎲 Random Pick
+    </button>
+    <button class="wr-action-btn wr-action-btn--help" onclick="openHelp()">
+      ❤️ Help Us Rate
+    </button>
+  </div>
+
+  <!-- ===== BOOK MODAL ===== -->
+  <div class="wr-modal-overlay" id="bookModal" onclick="closeModal('bookModal')">
+    <div class="wr-modal" onclick="event.stopPropagation()">
+      <button class="wr-modal__close" onclick="closeModal('bookModal')">✕</button>
+      <div class="wr-modal__icon">📖</div>
+      <h2 class="wr-modal__title">Book Download <span class="wr-beta">Beta</span></h2>
+      <p class="wr-modal__desc">Imagine flipping through a beautiful digital book — page by page — each one a stunning wallpaper. That's exactly what we're building.</p>
+      <div class="wr-modal__features">
+        <div class="wr-modal__feature">✨ Flip through wallpapers like real pages</div>
+        <div class="wr-modal__feature">📥 Download the whole collection as one file</div>
+        <div class="wr-modal__feature">🎨 Organized by category and mood</div>
+      </div>
+      <p class="wr-modal__coming">Coming soon — we're working on it! 🚀</p>
+      <button class="wr-modal__btn" onclick="closeModal('bookModal')">Got it, can't wait!</button>
+    </div>
+  </div>
+
+  <!-- ===== RANDOM PICKER MODAL ===== -->
+  <div class="wr-modal-overlay" id="randomModal" onclick="closeModal('randomModal')">
+    <div class="wr-modal" onclick="event.stopPropagation()">
+      <button class="wr-modal__close" onclick="closeModal('randomModal')">✕</button>
+      <div class="wr-modal__icon">🎲</div>
+      <h2 class="wr-modal__title">Your Random Pick</h2>
+      <div class="wr-random__preview" id="randomPreview">
+        <img id="randomImg" src="" alt="" style="width:100%;border-radius:10px;max-height:220px;object-fit:cover;display:block;" />
+        <div class="wr-random__name" id="randomName" style="margin-top:10px;font-weight:500;font-size:15px;"></div>
+        <div class="wr-random__cat" id="randomCat" style="font-size:12px;color:#aaa;margin-top:4px;"></div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:16px;">
+        <button class="wr-modal__btn" id="randomDownload" style="flex:1;">Download this one</button>
+        <button class="wr-modal__btn" onclick="randomPick()" style="flex:1;background:#f7f5f2;color:#1a1a1a;border:0.5px solid #e8e5e0;">Try another 🎲</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== HELP / RATE MODAL ===== -->
+  <div class="wr-modal-overlay" id="helpModal" onclick="closeModal('helpModal')">
+    <div class="wr-modal" onclick="event.stopPropagation()">
+      <button class="wr-modal__close" onclick="closeModal('helpModal')">✕</button>
+      <div id="helpContent"></div>
+    </div>
+  </div>
+
   <!-- MOBILE MENU -->
   <div class="navbar__mobile-menu" id="mobileMenu">
     <a href="#wallpapers">Wallpapers</a>
@@ -766,6 +832,118 @@
         </div>
       </div>
 
+
+      <div class="wcard" data-cat="aesthetic" onclick="location.href='wallpaper/aesthetic-book-nook-autumn.html'">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978785/lucid-origin_Aesthetic_book_nook_stacked_old_books_reading_glasses_cup_of_tea_autumn_leaves_w-0_avknad.jpg" alt="Aesthetic Book Nook — Autumn 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
+          <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
+        </div>
+        <div class="wcard__body">
+          <div class="wcard__name">Aesthetic Book Nook — Autumn</div>
+          <div class="wcard__meta"><span class="wcard__tag">Aesthetic · 4K</span><span class="wcard__votes">↑ 2.1k</span></div>
+        </div>
+      </div>
+      <div class="wcard" data-cat="nature" onclick="location.href='wallpaper/volcano-erupting-lava-ocean.html'">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978785/lucid-origin_Active_volcano_erupting_at_night_lava_flowing_into_ocean_dramatic_red_and_orange-0_czz0vb.jpg" alt="Volcano Erupting — Lava Ocean 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
+          <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
+        </div>
+        <div class="wcard__body">
+          <div class="wcard__name">Volcano Erupting — Lava Ocean</div>
+          <div class="wcard__meta"><span class="wcard__tag">Nature · 4K</span><span class="wcard__votes">↑ 3.2k</span></div>
+        </div>
+      </div>
+      <div class="wcard" data-cat="cyberpunk" onclick="location.href='wallpaper/cyberpunk-alley-rain-steam.html'">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978785/gpt-image-2_Cyberpunk_back_alley_in_heavy_rain_steam_vents_neon_signs_in_Chinese_lonely_figu-0_duwikn.jpg" alt="Cyberpunk Alley — Rain Steam 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
+          <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
+        </div>
+        <div class="wcard__body">
+          <div class="wcard__name">Cyberpunk Alley — Rain Steam</div>
+          <div class="wcard__meta"><span class="wcard__tag">Cyberpunk · 4K</span><span class="wcard__votes">↑ 2.9k</span></div>
+        </div>
+      </div>
+      <div class="wcard" data-cat="abstract" onclick="location.href='wallpaper/colorful-smoke-abstract-purple.html'">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Beautiful_colorful_smoke_abstract_wallpaper_purple_orange_and_gold_smoke_swirls_-0_kwuyrw.jpg" alt="Colorful Smoke Abstract 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
+          <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
+        </div>
+        <div class="wcard__body">
+          <div class="wcard__name">Colorful Smoke Abstract</div>
+          <div class="wcard__meta"><span class="wcard__tag">Abstract · 4K</span><span class="wcard__votes">↑ 2.4k</span></div>
+        </div>
+      </div>
+      <div class="wcard" data-cat="nature" onclick="location.href='wallpaper/iceland-waterfall-rainbow-moss.html'">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Iceland_landscape_massive_waterfall_with_rainbow_green_mossy_rocks_dramatic_clou-0_njzlm3.jpg" alt="Iceland Waterfall — Rainbow Moss 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
+          <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
+        </div>
+        <div class="wcard__body">
+          <div class="wcard__name">Iceland Waterfall — Rainbow Moss</div>
+          <div class="wcard__meta"><span class="wcard__tag">Nature · 4K</span><span class="wcard__votes">↑ 2.7k</span></div>
+        </div>
+      </div>
+      <div class="wcard" data-cat="anime" onclick="location.href='wallpaper/anime-winter-cabin-snow.html'">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Anime_winter_scene_small_wooden_cabin_in_snowy_forest_warm_light_glowing_from_wi-0_jekcr8.jpg" alt="Anime Winter Cabin — Snow 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
+          <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
+        </div>
+        <div class="wcard__body">
+          <div class="wcard__name">Anime Winter Cabin — Snow</div>
+          <div class="wcard__meta"><span class="wcard__tag">Anime · 4K</span><span class="wcard__votes">↑ 1.8k</span></div>
+        </div>
+      </div>
+      <div class="wcard" data-cat="lofi" onclick="location.href='wallpaper/lofi-girl-balcony-neon-city.html'">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Lofi_girl_on_balcony_at_night_neon_city_below_headphones_warm_hoodie_stars_visib-0_uajm32.jpg" alt="Lofi Girl — Balcony Neon City 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
+          <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
+        </div>
+        <div class="wcard__body">
+          <div class="wcard__name">Lofi Girl — Balcony Neon City</div>
+          <div class="wcard__meta"><span class="wcard__tag">Lofi · 4K</span><span class="wcard__votes">↑ 3.1k</span></div>
+        </div>
+      </div>
+      <div class="wcard" data-cat="aesthetic" onclick="location.href='wallpaper/rainy-window-city-lights-candle.html'">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Rainy_window_aesthetic_rain_drops_on_glass_blurry_city_lights_outside_warm_candl-0_iyv4tv.jpg" alt="Rainy Window — City Lights 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
+          <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
+        </div>
+        <div class="wcard__body">
+          <div class="wcard__name">Rainy Window — City Lights</div>
+          <div class="wcard__meta"><span class="wcard__tag">Aesthetic · 4K</span><span class="wcard__votes">↑ 2.8k</span></div>
+        </div>
+      </div>
+      <div class="wcard" data-cat="minimal" onclick="location.href='wallpaper/minimal-sunset-half-circle-ocean.html'">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Minimal_sunset_wallpaper_perfect_half_circle_sun_on_horizon_flat_ocean_gradient_-0_gfffdq.jpg" alt="Minimal Sunset — Half Circle 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
+          <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
+        </div>
+        <div class="wcard__body">
+          <div class="wcard__name">Minimal Sunset — Half Circle</div>
+          <div class="wcard__meta"><span class="wcard__tag">Minimal · 4K</span><span class="wcard__votes">↑ 1.9k</span></div>
+        </div>
+      </div>
+      <div class="wcard" data-cat="anime" onclick="location.href='wallpaper/anime-warrior-cherry-blossom.html'">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783679049/lucid-origin_Anime_warrior_standing_in_bamboo_forest_at_dawn_sword_drawn_cherry_blossom_petal-0_yop8on.jpg" alt="Anime Warrior — Cherry Blossom 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
+          <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
+        </div>
+        <div class="wcard__body">
+          <div class="wcard__name">Anime Warrior — Cherry Blossom</div>
+          <div class="wcard__meta"><span class="wcard__tag">Anime · 4K</span><span class="wcard__votes">↑ 2.3k</span></div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -850,6 +1028,231 @@
     .cat-card__name{font-family:var(--font-display);font-size:18px;font-weight:600;color:#fff;display:block;}
     .cat-card__count{font-size:12px;color:rgba(255,255,255,0.6);}
   </style>
+
+
+  <style>
+    /* BANNER */
+    .wr-banner {
+      background: linear-gradient(90deg, #D85A30, #c44a20);
+      color: #fff;
+      text-align: center;
+      padding: 10px 40px;
+      font-size: 13px;
+      font-weight: 500;
+      position: relative;
+      letter-spacing: 0.2px;
+    }
+    .wr-banner__close {
+      position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; color: rgba(255,255,255,0.7);
+      font-size: 16px; cursor: pointer;
+    }
+    /* ACTION BUTTONS */
+    .wr-actions {
+      display: flex; gap: 8px; padding: 12px 32px;
+      background: var(--surface); border-bottom: 0.5px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .wr-action-btn {
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 16px; border-radius: var(--radius-pill);
+      font-size: 13px; font-weight: 500; cursor: pointer;
+      font-family: var(--font-main); transition: all 0.18s ease;
+      border: 0.5px solid var(--border); background: var(--bg);
+      color: var(--text-primary);
+    }
+    .wr-action-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .wr-action-btn--dl { background: var(--dark); color: #fff; border-color: var(--dark); }
+    .wr-action-btn--dl:hover { background: #333; color: #fff; }
+    .wr-beta {
+      font-size: 10px; background: var(--accent); color: #fff;
+      padding: 2px 6px; border-radius: 999px; margin-left: 4px;
+    }
+    @media(max-width:768px) { .wr-actions { padding: 10px 16px; } }
+
+    /* MODALS */
+    .wr-modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.6); z-index: 300;
+      align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .wr-modal-overlay.open { display: flex; }
+    .wr-modal {
+      background: #fff; border-radius: 20px;
+      padding: 32px 28px; max-width: 440px; width: 100%;
+      position: relative; text-align: center;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+      animation: modalIn 0.25s ease;
+    }
+    @keyframes modalIn { from { opacity:0; transform:scale(0.92); } to { opacity:1; transform:scale(1); } }
+    .wr-modal__close {
+      position: absolute; top: 16px; right: 16px;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--bg); border: 0.5px solid var(--border);
+      font-size: 14px; cursor: pointer; display: flex;
+      align-items: center; justify-content: center;
+      font-family: var(--font-main); color: var(--text-muted);
+    }
+    .wr-modal__close:hover { background: var(--border); }
+    .wr-modal__icon { font-size: 48px; margin-bottom: 12px; }
+    .wr-modal__title { font-family: var(--font-display); font-size: 22px; font-weight: 600; color: var(--text-primary); margin-bottom: 10px; }
+    .wr-modal__desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px; }
+    .wr-modal__features { background: var(--bg); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; text-align: left; }
+    .wr-modal__feature { font-size: 13px; color: var(--text-secondary); padding: 5px 0; }
+    .wr-modal__coming { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+    .wr-modal__btn {
+      width: 100%; padding: 12px; border-radius: var(--radius-md);
+      background: var(--dark); color: #fff; border: none;
+      font-size: 14px; font-weight: 500; cursor: pointer;
+      font-family: var(--font-main); transition: background 0.18s ease;
+    }
+    .wr-modal__btn:hover { background: var(--accent); }
+
+    /* HELP RATING */
+    .help-wallpaper { margin: 12px 0; }
+    .help-wallpaper img { width: 100%; border-radius: 10px; max-height: 180px; object-fit: cover; }
+    .help-wallpaper__name { font-size: 13px; font-weight: 500; margin: 8px 0 10px; color: var(--text-primary); }
+    .help-votes { display: flex; gap: 12px; justify-content: center; }
+    .help-vote-btn {
+      flex: 1; padding: 10px; border-radius: var(--radius-md);
+      border: 0.5px solid var(--border); background: var(--bg);
+      font-size: 20px; cursor: pointer; transition: all 0.15s ease;
+      font-family: var(--font-main);
+    }
+    .help-vote-btn:hover { transform: scale(1.1); }
+    .help-progress { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+    .help-bar { height: 4px; background: var(--border); border-radius: 999px; margin-bottom: 16px; }
+    .help-bar__fill { height: 100%; background: var(--accent); border-radius: 999px; transition: width 0.4s ease; }
+    .help-thanks { font-size: 15px; color: var(--text-primary); line-height: 1.6; }
+  </style>
+
+  <script>
+    // ── ALL WALLPAPERS DATA ──────────────────
+    const allWallpapers = [
+      {name:"Lofi Bedroom — Warm Night", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1775734597/lucid-origin_lofi_bedroom_with_glowing_computer_screen_plants_vinyl_records_warm_lighting_rai-0_owf33n.jpg", slug:"lofi-bedroom-warm-night", cat:"Lofi"},
+      {name:"Cyberpunk Neon City Rain", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1780987355/ChatGPT_Image_Jun_9_2026_12_59_20_AM_xmohbn.png", slug:"cyberpunk-neon-city-rain", cat:"Cyberpunk"},
+      {name:"Forest Fog — Dawn Light", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1780987339/ChatGPT_Image_Jun_9_2026_12_57_19_AM_bbmayz.png", slug:"forest-fog-dawn", cat:"Nature"},
+      {name:"Deep Space Nebula", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1781134868/lucid-origin_Deep_space_nebula_with_vibrant_purple_and_blue_gas_clouds_thousands_of_stars_dis-0_lafc35.jpg", slug:"deep-space-nebula", cat:"Space"},
+      {name:"Fluid Abstract Liquid Metal", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1781134880/lucid-origin_Fluid_abstract_art_flowing_liquid_metal_colors_gold_silver_and_deep_blue_smooth_-0_ywz1be.jpg", slug:"fluid-abstract-liquid-metal", cat:"Abstract"},
+      {name:"Pink Aesthetic — Roses Bouquet", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783424390/lucid-origin_Pink_aesthetic_wallpaper_soft_pink_roses_bouquet_pastel_background_dreamy_femini-0_abnynr.jpg", slug:"pink-aesthetic-roses", cat:"Aesthetic"},
+      {name:"Anime Rooftop Cherry Blossom", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1781134882/lucid-origin_Anime_girl_sitting_on_rooftop_at_night_cherry_blossom_petals_falling_city_lights-0_evuxrl.jpg", slug:"anime-rooftop-cherry-blossom", cat:"Anime"},
+      {name:"Minimal Circle Line Black", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1781134870/lucid-origin_Minimalist_desktop_wallpaper_single_thin_geometric_line_forming_a_circle_on_pure-0_wd4gmw.jpg", slug:"minimal-circle-line-black", cat:"Minimal"},
+      {name:"Northern Lights Aurora Lake", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1782335287/ChatGPT_Image_Jun_22_2026_09_34_50_PM_pfei6g.png", slug:"northern-lights-aurora-lake", cat:"Nature"},
+      {name:"Lofi Girl — Balcony Neon City", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Lofi_girl_on_balcony_at_night_neon_city_below_headphones_warm_hoodie_stars_visib-0_uajm32.jpg", slug:"lofi-girl-balcony-neon-city", cat:"Lofi"},
+      {name:"Iceland Waterfall Rainbow Moss", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Iceland_landscape_massive_waterfall_with_rainbow_green_mossy_rocks_dramatic_clou-0_njzlm3.jpg", slug:"iceland-waterfall-rainbow-moss", cat:"Nature"},
+      {name:"Colorful Smoke Abstract", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Beautiful_colorful_smoke_abstract_wallpaper_purple_orange_and_gold_smoke_swirls_-0_kwuyrw.jpg", slug:"colorful-smoke-abstract-purple", cat:"Abstract"},
+      {name:"Volcano Erupting Lava Ocean", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978785/lucid-origin_Active_volcano_erupting_at_night_lava_flowing_into_ocean_dramatic_red_and_orange-0_czz0vb.jpg", slug:"volcano-erupting-lava-ocean", cat:"Nature"},
+      {name:"Dreamy Pink Sunset Sky", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783576416/lucid-origin_Dreamy_pink_sunset_sky_with_soft_clouds_pastel_cotton_candy_tones_gentle_gradien-0_eq0kr4.jpg", slug:"dreamy-pink-sunset-sky", cat:"Aesthetic"},
+      {name:"Japanese Village Mount Fuji", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1782335413/ChatGPT_Image_Jun_22_2026_09_41_01_PM_ki3qj3.png", slug:"japanese-village-mount-fuji", cat:"Anime"},
+    ];
+
+    // ── BANNER ──────────────────────────────
+    const bannerMsgs = [
+      "🔥 New wallpapers added every week — bookmark us!",
+      "🖥️ Free 4K wallpapers for your desktop and phone",
+      "✨ Over 55 stunning wallpapers — all free to download",
+      "🌍 Visitors from 30+ countries download WallRank wallpapers daily",
+      "🎨 8 categories — Lofi, Cyberpunk, Nature, Space and more",
+      "⚡ New: Aesthetic wallpapers now available — check them out!",
+      "📌 Pin your favorite wallpaper to Pinterest and share the love",
+      "🎲 Try our Random Pick feature — discover a new wallpaper today",
+      "💎 All wallpapers are 4K quality — crisp on any screen",
+      "🚀 WallRank is growing — come back tomorrow for new drops",
+    ];
+    let bannerIdx = 0;
+    const bannerEl = document.getElementById('bannerText');
+    if(bannerEl) {
+      bannerEl.textContent = bannerMsgs[bannerIdx];
+      setInterval(() => {
+        bannerIdx = (bannerIdx + 1) % bannerMsgs.length;
+        bannerEl.style.opacity = '0';
+        setTimeout(() => {
+          bannerEl.textContent = bannerMsgs[bannerIdx];
+          bannerEl.style.opacity = '1';
+        }, 300);
+      }, 4000);
+      bannerEl.style.transition = 'opacity 0.3s ease';
+    }
+
+    // ── MODAL HELPERS ────────────────────────
+    function openModal(id) { document.getElementById(id).classList.add('open'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+    document.addEventListener('keydown', e => { if(e.key==='Escape') { closeModal('bookModal'); closeModal('randomModal'); closeModal('helpModal'); }});
+
+    // ── DOWNLOAD ALL ─────────────────────────
+    function downloadAll() {
+      allWallpapers.forEach((w, i) => {
+        setTimeout(() => {
+          const a = document.createElement('a');
+          a.href = w.img;
+          a.download = w.slug + '.jpg';
+          a.target = '_blank';
+          a.click();
+        }, i * 800);
+      });
+      alert('Starting downloads for ' + allWallpapers.length + ' wallpapers! Your browser may ask for permission — please allow it.');
+    }
+
+    // ── BOOK MODAL ───────────────────────────
+    function openBookModal() { openModal('bookModal'); }
+
+    // ── RANDOM PICK ──────────────────────────
+    function randomPick() {
+      const w = allWallpapers[Math.floor(Math.random() * allWallpapers.length)];
+      document.getElementById('randomImg').src = w.img;
+      document.getElementById('randomImg').alt = w.name;
+      document.getElementById('randomName').textContent = w.name;
+      document.getElementById('randomCat').textContent = w.cat + ' · 4K · Free';
+      document.getElementById('randomDownload').onclick = () => {
+        window.open(w.img, '_blank');
+      };
+      openModal('randomModal');
+    }
+
+    // ── HELP / RATE ──────────────────────────
+    let helpQueue = [], helpIdx = 0;
+    function openHelp() {
+      helpQueue = [...allWallpapers].sort(() => Math.random() - 0.5).slice(0, 5);
+      helpIdx = 0;
+      showHelpWallpaper();
+      openModal('helpModal');
+    }
+
+    function showHelpWallpaper() {
+      if(helpIdx >= helpQueue.length) {
+        document.getElementById('helpContent').innerHTML = `
+          <div style="padding:20px 0;">
+            <div style="font-size:56px;margin-bottom:16px;">🎉</div>
+            <h2 class="wr-modal__title">Thank you so much!</h2>
+            <p class="help-thanks">Your ratings help us understand what wallpapers people love most.<br><br>We'll use your feedback to add more of what you like. You're amazing! 💙</p>
+            <button class="wr-modal__btn" style="margin-top:20px;" onclick="closeModal('helpModal')">Close</button>
+          </div>`;
+        return;
+      }
+      const w = helpQueue[helpIdx];
+      const progress = Math.round(((helpIdx) / helpQueue.length) * 100);
+      document.getElementById('helpContent').innerHTML = `
+        <div class="help-progress">Rating ${helpIdx + 1} of ${helpQueue.length}</div>
+        <div class="help-bar"><div class="help-bar__fill" style="width:${progress}%"></div></div>
+        <div class="help-wallpaper">
+          <img src="${w.img}" alt="${w.name}" />
+          <div class="help-wallpaper__name">${w.name}</div>
+        </div>
+        <p style="font-size:13px;color:#aaa;margin-bottom:12px;">What do you think of this wallpaper?</p>
+        <div class="help-votes">
+          <button class="help-vote-btn" onclick="helpVote('dislike')" title="Don't like it">👎</button>
+          <button class="help-vote-btn" onclick="helpVote('neutral')" title="It's okay">😐</button>
+          <button class="help-vote-btn" onclick="helpVote('like')" title="Love it">❤️</button>
+        </div>`;
+    }
+
+    function helpVote(vote) {
+      console.log('Voted', vote, 'for', helpQueue[helpIdx]?.name);
+      helpIdx++;
+      showHelpWallpaper();
+    }
+  </script>
 
   <script src="JS/main.js"></script>
   <script>
