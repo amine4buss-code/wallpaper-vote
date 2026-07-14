@@ -1,22 +1,20 @@
 {
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{"type": "host", "value": "www.wallrank.club"}],
+      "destination": "https://wallrank.club/:path*",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/sitemap.xml",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/xml"
-        }
-      ]
+      "headers": [{"key": "Content-Type", "value": "application/xml"}]
     },
     {
-      "source": "/robots.txt",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/plain"
-        }
-      ]
+      "source": "/robots.txt", 
+      "headers": [{"key": "Content-Type", "value": "text/plain"}]
     }
   ]
 }
