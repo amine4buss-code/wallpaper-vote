@@ -33,7 +33,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         Search wallpapers...
       </div>
-      <a href="#" class="btn btn--primary">Submit</a>
+      <a href="mailto:hello@wallrank.club?subject=Wallpaper%20Submission&body=Wallpaper%20title%3A%0AImage%20link%20(Google%20Drive%2C%20Imgur%2C%20etc.)%3A%0ACategory%3A%0AYour%20name%2Fcredit%3A%0A" class="btn btn--primary">Submit</a>
     </div>
   </nav>
   <div class="search-overlay" id="searchOverlay">
@@ -56,15 +56,15 @@
         <div style="display:flex;flex-direction:column;gap:12px;">
           <div>
             <label style="font-size:12px;color:var(--text-muted);display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;">Your name</label>
-            <input type="text" placeholder="John Doe" style="width:100%;padding:10px 14px;border:0.5px solid var(--border);border-radius:var(--radius-md);font-family:var(--font-main);font-size:14px;outline:none;background:var(--bg);color:var(--text-primary);" />
+            <input type="text" id="cf-name" placeholder="John Doe" style="width:100%;padding:10px 14px;border:0.5px solid var(--border);border-radius:var(--radius-md);font-family:var(--font-main);font-size:14px;outline:none;background:var(--bg);color:var(--text-primary);" />
           </div>
           <div>
             <label style="font-size:12px;color:var(--text-muted);display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;">Email address</label>
-            <input type="email" placeholder="you@email.com" style="width:100%;padding:10px 14px;border:0.5px solid var(--border);border-radius:var(--radius-md);font-family:var(--font-main);font-size:14px;outline:none;background:var(--bg);color:var(--text-primary);" />
+            <input type="email" id="cf-email" placeholder="you@email.com" style="width:100%;padding:10px 14px;border:0.5px solid var(--border);border-radius:var(--radius-md);font-family:var(--font-main);font-size:14px;outline:none;background:var(--bg);color:var(--text-primary);" />
           </div>
           <div>
             <label style="font-size:12px;color:var(--text-muted);display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;">Subject</label>
-            <select style="width:100%;padding:10px 14px;border:0.5px solid var(--border);border-radius:var(--radius-md);font-family:var(--font-main);font-size:14px;outline:none;background:var(--bg);color:var(--text-primary);">
+            <select id="cf-subject" style="width:100%;padding:10px 14px;border:0.5px solid var(--border);border-radius:var(--radius-md);font-family:var(--font-main);font-size:14px;outline:none;background:var(--bg);color:var(--text-primary);">
               <option>General question</option>
               <option>Submit a wallpaper</option>
               <option>Partnership / advertising</option>
@@ -74,10 +74,11 @@
           </div>
           <div>
             <label style="font-size:12px;color:var(--text-muted);display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;">Message</label>
-            <textarea placeholder="Tell us what's on your mind..." rows="5" style="width:100%;padding:10px 14px;border:0.5px solid var(--border);border-radius:var(--radius-md);font-family:var(--font-main);font-size:14px;outline:none;background:var(--bg);color:var(--text-primary);resize:vertical;"></textarea>
+            <textarea id="cf-message" placeholder="Tell us what's on your mind..." rows="5" style="width:100%;padding:10px 14px;border:0.5px solid var(--border);border-radius:var(--radius-md);font-family:var(--font-main);font-size:14px;outline:none;background:var(--bg);color:var(--text-primary);resize:vertical;"></textarea>
           </div>
           <button onclick="handleSubmit()" style="padding:12px;background:var(--dark);color:#fff;border:none;border-radius:var(--radius-md);font-family:var(--font-main);font-size:14px;font-weight:500;cursor:pointer;" id="submitBtn">Send message</button>
-          <p id="successMsg" style="display:none;font-size:13px;color:var(--accent);text-align:center;">✅ Message sent! We will get back to you within 24 hours.</p>
+          <p id="successMsg" style="display:none;font-size:13px;color:var(--accent);text-align:center;">✅ Opening your email app with your message pre-filled — just hit send there.</p>
+          <p id="errorMsg" style="display:none;font-size:13px;color:#c0392b;text-align:center;">Please fill in your email and a message before sending.</p>
         </div>
       </div>
 
@@ -137,11 +138,33 @@
   <script src="JS/main.js"></script>
   <script>
     function handleSubmit() {
-      document.getElementById('submitBtn').textContent = 'Sending...';
-      setTimeout(() => {
-        document.getElementById('submitBtn').style.display = 'none';
-        document.getElementById('successMsg').style.display = 'block';
-      }, 1000);
+      const name = document.getElementById('cf-name').value.trim();
+      const email = document.getElementById('cf-email').value.trim();
+      const subject = document.getElementById('cf-subject').value;
+      const message = document.getElementById('cf-message').value.trim();
+
+      const errorEl = document.getElementById('errorMsg');
+      const successEl = document.getElementById('successMsg');
+      errorEl.style.display = 'none';
+      successEl.style.display = 'none';
+
+      if (!email || !message) {
+        errorEl.style.display = 'block';
+        return;
+      }
+
+      const to = 'hello@wallrank.club';
+      const mailSubject = encodeURIComponent(`[WallRank] ${subject}`);
+      const bodyLines = [
+        `From: ${name || 'Not provided'}`,
+        `Email: ${email}`,
+        '',
+        message
+      ].join('\n');
+      const mailBody = encodeURIComponent(bodyLines);
+
+      window.location.href = `mailto:${to}?subject=${mailSubject}&body=${mailBody}`;
+      successEl.style.display = 'block';
     }
   </script>
 </body>
