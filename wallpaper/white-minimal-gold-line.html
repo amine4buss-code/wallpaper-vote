@@ -72,6 +72,55 @@
         <p class="wp-info__desc">Pure white minimal wallpaper with a single thin gold diagonal line on clean white background.</p>
         <div class="wp-info__tags"><span class="tag-pill  tag-pill--accent">Minimal</span><span class="tag-pill">4K</span><span class="tag-pill">White</span><span class="tag-pill">Gold</span><span class="tag-pill">Luxury</span></div>
       </div>
+      <!-- Profile picture shape preview -->
+      <div class="pfp-preview">
+        <div class="pfp-preview__head">
+          <span class="pfp-preview__title">Preview as profile picture</span>
+          <span class="pfp-preview__sub">See how this wallpaper looks cropped for social media avatars</span>
+        </div>
+        <div class="pfp-preview__body">
+          <div class="pfp-frame" id="pfpFrame">
+            <img id="pfpImg" src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783576416/lucid-origin_Pure_white_minimal_wallpaper_single_thin_gold_line_diagonal_across_clean_white_b-0_zhhdvg.jpg" alt="Profile picture shape preview" />
+          </div>
+          <div class="pfp-shapes" id="pfpShapes">
+            <button class="pfp-shape active" data-shape="none" title="Original — no shape">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
+            </button>
+            <button class="pfp-shape" data-shape="circle" title="Circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg>
+            </button>
+            <button class="pfp-shape" data-shape="blob" title="Blob">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12,3.5 C15,3 18,5 19,8.5 C20,12 19,15 16.5,17.5 C14,20 10.5,20.5 7.5,18.5 C4.5,16.5 3,13 4,9.5 C5,6 8.5,4 12,3.5 Z"/></svg>
+            </button>
+            <button class="pfp-shape" data-shape="star" title="Star">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12,2 L14.6,8.6 L21.8,8.6 L16.2,13 L18.4,19.8 L12,15.8 L5.6,19.8 L7.8,13 L2.2,8.6 L9.4,8.6 Z"/></svg>
+            </button>
+            <button class="pfp-shape" data-shape="hexagon" title="Hexagon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8,3 L16,3 L21,12 L16,21 L8,21 L3,12 Z"/></svg>
+            </button>
+          </div>
+          <button class="pfp-download" id="pfpDownloadBtn">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download this shape
+          </button>
+        </div>
+      </div>
+
+      <!-- Hidden SVG clip-path definitions used by .pfp-frame shapes -->
+      <svg width="0" height="0" style="position:absolute;">
+        <defs>
+          <clipPath id="pfpBlobClip" clipPathUnits="objectBoundingBox">
+            <path d="M0.5,0.02 C0.68,0.0 0.85,0.1 0.9,0.28 C0.96,0.45 0.94,0.6 0.86,0.74 C0.78,0.88 0.62,0.97 0.46,0.98 C0.3,0.99 0.14,0.92 0.07,0.77 C0.0,0.62 0.02,0.44 0.1,0.29 C0.18,0.14 0.32,0.04 0.5,0.02 Z"/>
+          </clipPath>
+          <clipPath id="pfpStarClip" clipPathUnits="objectBoundingBox">
+            <path d="M0.5,0.02 L0.608,0.325 L0.908,0.325 L0.665,0.5 L0.766,0.808 L0.5,0.625 L0.234,0.808 L0.335,0.5 L0.092,0.325 L0.392,0.325 Z"/>
+          </clipPath>
+          <clipPath id="pfpHexClip" clipPathUnits="objectBoundingBox">
+            <path d="M0.33,0.02 L0.67,0.02 L0.98,0.5 L0.67,0.98 L0.33,0.98 L0.02,0.5 Z"/>
+          </clipPath>
+        </defs>
+      </svg>
+
       <div class="vote-section">
         <span class="vote-section__label">Community rating</span>
         <div class="vote-bar"><div class="vote-bar__fill" id="voteBar" style="width:75%;"></div></div>
@@ -150,6 +199,26 @@
     .search-overlay__box button{font-size:16px;color:#aaa;cursor:pointer;background:none;border:none;}
     .dl-btn-main{display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;}
     .share-btn{display:flex;align-items:center;justify-content:center;}
+    .pfp-preview{margin-top:28px;padding-top:24px;border-top:0.5px solid var(--border);}
+    .pfp-preview__head{display:block;margin-bottom:16px;}
+    .pfp-preview__title{font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--text-primary);display:block;margin-bottom:2px;}
+    .pfp-preview__sub{font-size:12px;color:var(--text-muted);display:block;}
+    .pfp-preview__body{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+    .pfp-frame{width:120px;height:120px;flex-shrink:0;overflow:hidden;background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-md);transition:clip-path .25s ease,border-radius .2s ease,border-color .2s ease;}
+    .pfp-frame img{width:100%;height:100%;object-fit:cover;display:block;}
+    .pfp-frame.shape-circle{clip-path:circle(50% at 50% 50%);border-radius:0;border-color:transparent;}
+    .pfp-frame.shape-blob{clip-path:url(#pfpBlobClip);border-radius:0;border-color:transparent;}
+    .pfp-frame.shape-star{clip-path:url(#pfpStarClip);border-radius:0;border-color:transparent;}
+    .pfp-frame.shape-hexagon{clip-path:url(#pfpHexClip);border-radius:0;border-color:transparent;}
+    .pfp-shapes{display:flex;gap:8px;}
+    .pfp-shape{width:34px;height:34px;border:0.5px solid var(--border);background:var(--surface);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-secondary);transition:all .15s ease;padding:0;}
+    .pfp-shape svg{width:16px;height:16px;}
+    .pfp-shape:hover{border-color:var(--accent);color:var(--accent);}
+    .pfp-shape.active{background:var(--dark);border-color:var(--dark);color:#fff;}
+    .pfp-download{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:9px 16px;border-radius:var(--radius-md);border:0.5px solid var(--border);background:var(--surface);color:var(--text-primary);cursor:pointer;font-family:var(--font-main);}
+    .pfp-download:hover{border-color:var(--accent);color:var(--accent);}
+    @media (max-width:480px){.pfp-preview__body{gap:14px;}.pfp-download{margin-left:0;width:100%;justify-content:center;}}
+
   </style>
 
   <script src="../JS/main.js"></script>
@@ -178,6 +247,91 @@
     if(cb)cb.addEventListener('click',function(){
       navigator.clipboard.writeText(document.getElementById('copyInput').value).then(()=>{cb.textContent='Copied!';setTimeout(()=>cb.textContent='Copy',2000);});
     });
+    // Profile picture shape preview
+    (function () {
+      const frame = document.getElementById('pfpFrame');
+      if (!frame) return;
+      const shapeBtns = document.querySelectorAll('.pfp-shape');
+      const downloadBtn = document.getElementById('pfpDownloadBtn');
+      const pfpImg = document.getElementById('pfpImg');
+
+      const CANVAS_SHAPES = {
+        circle: (ctx, s) => { ctx.arc(s / 2, s / 2, s / 2, 0, Math.PI * 2); },
+        hexagon: (ctx, s) => drawPoly(ctx, s, [[0.33,0.02],[0.67,0.02],[0.98,0.5],[0.67,0.98],[0.33,0.98],[0.02,0.5]]),
+        star: (ctx, s) => drawPoly(ctx, s, [[0.5,0.02],[0.608,0.325],[0.908,0.325],[0.665,0.5],[0.766,0.808],[0.5,0.625],[0.234,0.808],[0.335,0.5],[0.092,0.325],[0.392,0.325]]),
+        blob: (ctx, s) => {
+          const pts = [[0.5,0.02],[0.68,0.0],[0.85,0.1],[0.9,0.28],[0.96,0.45],[0.94,0.6],[0.86,0.74],[0.78,0.88],[0.62,0.97],[0.46,0.98],[0.3,0.99],[0.14,0.92],[0.07,0.77],[0.0,0.62],[0.02,0.44],[0.1,0.29],[0.18,0.14],[0.32,0.04]];
+          drawPoly(ctx, s, pts);
+        }
+      };
+
+      function drawPoly(ctx, s, pts) {
+        pts.forEach(([px, py], i) => {
+          const x = px * s, y = py * s;
+          if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        });
+        ctx.closePath();
+      }
+
+      shapeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          shapeBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          frame.className = 'pfp-frame';
+          const shape = btn.getAttribute('data-shape');
+          if (shape !== 'none') frame.classList.add('shape-' + shape);
+        });
+      });
+
+      if (downloadBtn) downloadBtn.addEventListener('click', () => {
+        const activeBtn = document.querySelector('.pfp-shape.active');
+        const shape = activeBtn ? activeBtn.getAttribute('data-shape') : 'none';
+        const size = 500;
+        const canvas = document.createElement('canvas');
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d');
+
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+
+        img.onload = function () {
+          const ratio = Math.max(size / img.width, size / img.height);
+          const w = img.width * ratio, h = img.height * ratio;
+          const x = (size - w) / 2, y = (size - h) / 2;
+
+          ctx.save();
+          ctx.beginPath();
+          if (shape === 'none') {
+            ctx.rect(0, 0, size, size);
+          } else if (CANVAS_SHAPES[shape]) {
+            CANVAS_SHAPES[shape](ctx, size);
+          }
+          ctx.clip();
+          ctx.drawImage(img, x, y, w, h);
+          ctx.restore();
+
+          try {
+            const url = canvas.toDataURL('image/png');
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'wallrank-profile-' + shape + '.png';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+          } catch (err) {
+            alert("This image can't be exported directly from here due to browser security rules. Try right-click → Save image on the wallpaper above, or screenshot the preview instead.");
+          }
+        };
+
+        img.onerror = function () {
+          alert("Couldn't load the image for export. Try right-click → Save image on the wallpaper above instead.");
+        };
+
+        img.src = pfpImg.src;
+      });
+    })();
+
   </script>
 </body>
 </html>
