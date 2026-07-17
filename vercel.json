@@ -11,6 +11,46 @@
       "permanent": true
     },
     {
+      "source": "/lofi",
+      "destination": "/pages/lofi.html",
+      "permanent": true
+    },
+    {
+      "source": "/cyberpunk",
+      "destination": "/pages/cyberpunk.html",
+      "permanent": true
+    },
+    {
+      "source": "/nature",
+      "destination": "/pages/nature.html",
+      "permanent": true
+    },
+    {
+      "source": "/space",
+      "destination": "/pages/space.html",
+      "permanent": true
+    },
+    {
+      "source": "/abstract",
+      "destination": "/pages/abstract.html",
+      "permanent": true
+    },
+    {
+      "source": "/minimal",
+      "destination": "/pages/minimal.html",
+      "permanent": true
+    },
+    {
+      "source": "/anime",
+      "destination": "/pages/anime.html",
+      "permanent": true
+    },
+    {
+      "source": "/aesthetic",
+      "destination": "/pages/aesthetic.html",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [{"type": "host", "value": "www.wallrank.club"}],
       "destination": "https://wallrank.club/:path*",
