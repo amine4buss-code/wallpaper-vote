@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Download Futuristic Tokyo Megacity 4K wallpaper free — a rain-soaked cyberpunk cityscape lit by towering holographic billboards." />
+  <meta name="keywords" content="cyberpunk, 4k, tokyo, neon, rain, night, free wallpaper download" />
+  <meta property="og:title" content="Futuristic Tokyo Megacity — Neon Rain — WallRank" />
+  <meta property="og:description" content="A sprawling futuristic Tokyo skyline at midnight, heavy rain reflecting the glow of towering holographic billboards. Free 4K download." />
+  <meta property="og:type" content="website" />
+  <title>Futuristic Tokyo Megacity — Neon Rain — WallRank</title>
+  <link rel="stylesheet" href="../CSS/main.css" />
+  <link rel="stylesheet" href="../CSS/wallpaper.css" />
+  <link rel="canonical" href="https://wallrank.club/wallpaper/futuristic-tokyo-megacity-rain.html" />
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-19RP0D764T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-19RP0D764T');
+</script>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <a href="../index.html" class="navbar__logo">Wall<span>Rank</span></a>
+    <div class="navbar__links">
+      <a href="../index.html#trending">Trending</a>
+      <a href="../index.html#new">New</a>
+      <a href="../index.html#top">Top Rated</a>
+      <a href="../pages/cyberpunk.html">Categories</a>
+    </div>
+    <div class="navbar__right">
+      <div class="navbar__search" id="searchToggle">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        Search wallpapers...
+      </div>
+      <a href="mailto:hello@wallrank.club?subject=Wallpaper%20Submission&body=Wallpaper%20title%3A%0AImage%20link%20(Google%20Drive%2C%20Imgur%2C%20etc.)%3A%0ACategory%3A%0AYour%20name%2Fcredit%3A%0A" class="btn btn--primary">Submit</a>
+    </div>
+  </nav>
+
+  <!-- ===== SEARCH OVERLAY ===== -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-overlay__box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="text" id="searchInput" placeholder="Search wallpapers..." autocomplete="off" />
+      <button id="searchClose">✕</button>
+    </div>
+  </div>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <div class="wp-page">
+
+    <!-- LEFT: wallpaper viewer + info -->
+    <div class="wp-page__main">
+
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="breadcrumb__sep">›</span>
+        <a href="../pages/cyberpunk.html">Cyberpunk</a>
+        <span class="breadcrumb__sep">›</span>
+        <span class="breadcrumb__current">Futuristic Tokyo Megacity — Neon Rain</span>
+      </div>
+
+      <!-- Wallpaper viewer -->
+      <div class="wp-viewer" id="wpViewer">
+        <img
+          src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382743/gpt-image-2_A_futuristic_Tokyo_megacity_at_midnight_during_heavy_rain_towering_holographic_b-0_bxefy7.jpg"
+          alt="Futuristic Tokyo Megacity — Neon Rain 4K wallpaper"
+          id="wpMainImg"
+        />
+        <div class="wp-viewer__controls">
+          <button class="wp-viewer__btn" id="fullscreenBtn" title="Fullscreen">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
+              <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Title + tags -->
+      <div class="wp-info">
+        <h1 class="wp-info__title">Futuristic Tokyo Megacity — Neon Rain</h1>
+        <p class="wp-info__desc">A sprawling futuristic Tokyo skyline at midnight, heavy rain reflecting the glow of towering holographic billboards.</p>
+        <div class="wp-info__tags">
+          <span class="tag-pill tag-pill--accent">Cyberpunk</span><span class="tag-pill">4K</span><span class="tag-pill">Tokyo</span><span class="tag-pill">Neon</span><span class="tag-pill">Rain</span><span class="tag-pill">Night</span>
+        </div>
+      </div>
+
+      <!-- Profile picture shape preview -->
+      <div class="pfp-preview">
+        <div class="pfp-preview__head">
+          <span class="pfp-preview__title">Preview as profile picture</span>
+          <span class="pfp-preview__sub">See how this wallpaper looks cropped for social media avatars</span>
+        </div>
+        <div class="pfp-preview__body">
+          <div class="pfp-frame" id="pfpFrame">
+            <img id="pfpImg" src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382743/gpt-image-2_A_futuristic_Tokyo_megacity_at_midnight_during_heavy_rain_towering_holographic_b-0_bxefy7.jpg" alt="Profile picture shape preview" />
+          </div>
+          <div class="pfp-shapes" id="pfpShapes">
+            <button class="pfp-shape active" data-shape="none" title="Original — no shape">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
+            </button>
+            <button class="pfp-shape" data-shape="circle" title="Circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg>
+            </button>
+            <button class="pfp-shape" data-shape="blob" title="Blob">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12,3.5 C15,3 18,5 19,8.5 C20,12 19,15 16.5,17.5 C14,20 10.5,20.5 7.5,18.5 C4.5,16.5 3,13 4,9.5 C5,6 8.5,4 12,3.5 Z"/></svg>
+            </button>
+            <button class="pfp-shape" data-shape="star" title="Star">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12,2 L14.6,8.6 L21.8,8.6 L16.2,13 L18.4,19.8 L12,15.8 L5.6,19.8 L7.8,13 L2.2,8.6 L9.4,8.6 Z"/></svg>
+            </button>
+            <button class="pfp-shape" data-shape="hexagon" title="Hexagon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8,3 L16,3 L21,12 L16,21 L8,21 L3,12 Z"/></svg>
+            </button>
+          </div>
+          <button class="pfp-download" id="pfpDownloadBtn">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download this shape
+          </button>
+        </div>
+      </div>
+
+      <!-- Hidden SVG clip-path definitions used by .pfp-frame shapes -->
+      <svg width="0" height="0" style="position:absolute;">
+        <defs>
+          <clipPath id="pfpBlobClip" clipPathUnits="objectBoundingBox">
+            <path d="M0.5,0.02 C0.68,0.0 0.85,0.1 0.9,0.28 C0.96,0.45 0.94,0.6 0.86,0.74 C0.78,0.88 0.62,0.97 0.46,0.98 C0.3,0.99 0.14,0.92 0.07,0.77 C0.0,0.62 0.02,0.44 0.1,0.29 C0.18,0.14 0.32,0.04 0.5,0.02 Z"/>
+          </clipPath>
+          <clipPath id="pfpStarClip" clipPathUnits="objectBoundingBox">
+            <path d="M0.5,0.02 L0.608,0.325 L0.908,0.325 L0.665,0.5 L0.766,0.808 L0.5,0.625 L0.234,0.808 L0.335,0.5 L0.092,0.325 L0.392,0.325 Z"/>
+          </clipPath>
+          <clipPath id="pfpHexClip" clipPathUnits="objectBoundingBox">
+            <path d="M0.33,0.02 L0.67,0.02 L0.98,0.5 L0.67,0.98 L0.33,0.98 L0.02,0.5 Z"/>
+          </clipPath>
+        </defs>
+      </svg>
+      <!-- Device mockup preview -->
+      <div class="device-preview">
+        <div class="device-preview__head">
+          <span class="device-preview__title">See it on your devices</span>
+          <span class="device-preview__sub">A quick preview of how this wallpaper looks in real life — tap any device for fullscreen</span>
+        </div>
+        <div class="device-mockups">
+          <div class="device-item device-item--phone" id="deviceMockPhone">
+            <div class="device-phone">
+              <div class="device-phone__notch"></div>
+              <div class="device-phone__screen" style="background-image:url('https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382743/gpt-image-2_A_futuristic_Tokyo_megacity_at_midnight_during_heavy_rain_towering_holographic_b-0_bxefy7.jpg');"></div>
+            </div>
+            <span class="device-item__label">Phone</span>
+          </div>
+          <div class="device-item device-item--laptop" id="deviceMockLaptop">
+            <div class="device-laptop">
+              <div class="device-laptop__screen">
+                <div class="device-laptop__cam"></div>
+                <div class="device-laptop__wall" style="background-image:url('https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382743/gpt-image-2_A_futuristic_Tokyo_megacity_at_midnight_during_heavy_rain_towering_holographic_b-0_bxefy7.jpg');"></div>
+              </div>
+              <div class="device-laptop__base"></div>
+            </div>
+            <span class="device-item__label">Laptop</span>
+          </div>
+          <div class="device-item device-item--desktop" id="deviceMockDesktop">
+            <div class="device-desktop">
+              <div class="device-desktop__screen" style="background-image:url('https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382743/gpt-image-2_A_futuristic_Tokyo_megacity_at_midnight_during_heavy_rain_towering_holographic_b-0_bxefy7.jpg');"></div>
+              <div class="device-desktop__neck"></div>
+              <div class="device-desktop__foot"></div>
+            </div>
+            <span class="device-item__label">Desktop</span>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Vote section -->
+      <div class="vote-section">
+        <span class="vote-section__label">Community rating</span>
+        <div class="vote-bar">
+          <div class="vote-bar__fill" style="width: 87%;"></div>
+        </div>
+        <span class="vote-count">4,821 votes</span>
+        <button class="vote-btn" id="voteBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"/>
+          </svg>
+          <span id="voteCount">4821</span>
+        </button>
+      </div>
+
+      <!-- Download section -->
+      <div class="dl-section">
+        <div class="dl-section__title">Choose resolution</div>
+        <div class="dl-options">
+          <div class="dl-option selected" data-res="4K" data-size="8.2 MB">
+            <span class="dl-option__res">4K</span>
+            <span class="dl-option__size">3840×2160 · 8.2 MB</span>
+          </div>
+          <div class="dl-option" data-res="1080p" data-size="3.1 MB">
+            <span class="dl-option__res">1080p</span>
+            <span class="dl-option__size">1920×1080 · 3.1 MB</span>
+          </div>
+          <div class="dl-option" data-res="Mobile" data-size="1.4 MB">
+            <span class="dl-option__res">Mobile</span>
+            <span class="dl-option__size">1080×1920 · 1.4 MB</span>
+          </div>
+        </div>
+        <button class="dl-btn-main" id="downloadBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download 4K — Free
+        </button>
+      </div>
+
+      <!-- Share -->
+      <div class="share-row">
+        <span class="share-row__label">Share</span>
+        <button class="share-btn" title="Share on Twitter">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 22.43.36a9 9 0 0 1-2.88 1.1A4.52 4.52 0 0 0 16 0c-2.5 0-4.5 2-4.5 4.5 0 .35.04.7.11 1.03A12.8 12.8 0 0 1 2 1s-4 9 5 13a11.06 11.06 0 0 1-6.5 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+          </svg>
+        </button>
+        <button class="share-btn" title="Share on Reddit">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/>
+          </svg>
+        </button>
+        <button class="share-btn" title="Copy link">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+          </svg>
+        </button>
+        <div class="copy-link">
+          <input type="text" value="https://wallrank.club/wallpaper/futuristic-tokyo-megacity-rain.html" readonly id="copyInput" />
+          <button class="copy-link__btn" id="copyBtn">Copy</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: sidebar -->
+    <div class="wp-page__sidebar">
+
+      <!-- Details -->
+      <div class="sidebar-section">
+        <div class="sidebar-section__title">Details</div>
+        <div class="detail-grid">
+          <div class="detail-card">
+            <div class="detail-card__lbl">Category</div>
+            <div class="detail-card__val">Cyberpunk</div>
+          </div>
+          <div class="detail-card">
+            <div class="detail-card__lbl">Resolution</div>
+            <div class="detail-card__val">4K</div>
+          </div>
+          <div class="detail-card">
+            <div class="detail-card__lbl">Downloads</div>
+            <div class="detail-card__val">12,400</div>
+          </div>
+          <div class="detail-card">
+            <div class="detail-card__lbl">Rank</div>
+            <div class="detail-card__val">#1 🔥</div>
+          </div>
+          <div class="detail-card">
+            <div class="detail-card__lbl">Format</div>
+            <div class="detail-card__val">JPG / PNG</div>
+          </div>
+          <div class="detail-card">
+            <div class="detail-card__lbl">Added</div>
+            <div class="detail-card__val">June 2026</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="sidebar-section">
+        <div class="sidebar-section__title">Stats</div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat__key">Views</span>
+          <span class="sidebar-stat__val">84,200</span>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat__key">Downloads</span>
+          <span class="sidebar-stat__val">12,400</span>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat__key">Votes</span>
+          <span class="sidebar-stat__val">4,821</span>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat__key">Rating</span>
+          <span class="sidebar-stat__val">87% positive</span>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat__key">Weekly rank</span>
+          <span class="sidebar-stat__val">#1</span>
+        </div>
+      </div>
+
+      <!-- Related -->
+      <div class="sidebar-section">
+        <div class="sidebar-section__title">Related wallpapers</div>
+        <div class="related-grid">
+          <div class="related-card" onclick="location.href='cyberpunk-character-rooftop.html'">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a1035,#2d1b4e);"></div>
+            <div class="related-card__name">Cyberpunk Character — Rooftop</div>
+          </div>
+          <div class="related-card" onclick="location.href='cyberpunk-neon-city-rain.html'">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,#2a1a35,#3d2b5e);"></div>
+            <div class="related-card__name">Cyberpunk neon city rain</div>
+          </div>
+          <div class="related-card" onclick="location.href='cyberpunk-alley-rain-steam.html'">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a0a25,#2d1a3e);"></div>
+            <div class="related-card__name">Cyberpunk Alley — Rain Steam</div>
+          </div>
+          <div class="related-card" onclick="location.href='cyberpunk-megacity-aerial.html'">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,#0a1535,#1a254e);"></div>
+            <div class="related-card__name">Cyberpunk megacity — aerial</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox__close" id="lightboxClose">✕</button>
+    <img src="" alt="Fullscreen wallpaper" id="lightboxImg" />
+  </div>
+
+  <!-- ===== SEARCH OVERLAY STYLES ===== -->
+  <style>
+    .search-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5); z-index: 200;
+      align-items: flex-start; justify-content: center;
+      padding-top: 80px;
+    }
+    .search-overlay.open { display: flex; }
+    .search-overlay__box {
+      background: #fff; border-radius: 12px;
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 20px; width: 100%; max-width: 560px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+    .search-overlay__box svg { width:18px; height:18px; stroke:#aaa; flex-shrink:0; }
+    .search-overlay__box input { flex:1; border:none; outline:none; font-size:16px; font-family:var(--font-main); color:#1a1a1a; }
+    .search-overlay__box button { font-size:16px; color:#aaa; cursor:pointer; background:none; border:none; }
+
+    /* Profile picture shape preview */
+    .pfp-preview { margin-top:28px; padding-top:24px; border-top:0.5px solid var(--border); }
+    .pfp-preview__head { display:block; margin-bottom:16px; }
+    .pfp-preview__title { font-family:var(--font-display); font-size:16px; font-weight:600; color:var(--text-primary); display:block; margin-bottom:2px; }
+    .pfp-preview__sub { font-size:12px; color:var(--text-muted); display:block; }
+    .pfp-preview__body { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+    .pfp-frame { width:120px; height:120px; flex-shrink:0; overflow:hidden; background:var(--bg); border:0.5px solid var(--border); border-radius:var(--radius-md); transition:clip-path .25s ease, border-radius .2s ease, border-color .2s ease; }
+    .pfp-frame img { width:100%; height:100%; object-fit:cover; display:block; }
+    .pfp-frame.shape-circle { clip-path:circle(50% at 50% 50%); border-radius:0; border-color:transparent; }
+    .pfp-frame.shape-blob { clip-path:url(#pfpBlobClip); border-radius:0; border-color:transparent; }
+    .pfp-frame.shape-star { clip-path:url(#pfpStarClip); border-radius:0; border-color:transparent; }
+    .pfp-frame.shape-hexagon { clip-path:url(#pfpHexClip); border-radius:0; border-color:transparent; }
+    .pfp-shapes { display:flex; gap:8px; }
+    .pfp-shape { width:34px; height:34px; border:0.5px solid var(--border); background:var(--surface); border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--text-secondary); transition:all .15s ease; padding:0; }
+    .pfp-shape svg { width:16px; height:16px; }
+    .pfp-shape:hover { border-color:var(--accent); color:var(--accent); }
+    .pfp-shape.active { background:var(--dark); border-color:var(--dark); color:#fff; }
+    .pfp-download { margin-left:auto; display:inline-flex; align-items:center; gap:6px; font-size:13px; padding:9px 16px; border-radius:var(--radius-md); border:0.5px solid var(--border); background:var(--surface); color:var(--text-primary); cursor:pointer; font-family:var(--font-main); }
+    .pfp-download:hover { border-color:var(--accent); color:var(--accent); }
+    @media (max-width:480px) {
+      .pfp-preview__body { gap:14px; }
+      .pfp-download { margin-left:0; width:100%; justify-content:center; }
+    }
+    .device-preview{margin-top:28px;padding-top:24px;border-top:0.5px solid var(--border);}
+    .device-preview__head{display:block;margin-bottom:20px;}
+    .device-preview__title{font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--text-primary);display:block;margin-bottom:2px;}
+    .device-preview__sub{font-size:12px;color:var(--text-muted);display:block;}
+    .device-mockups{display:flex;align-items:flex-end;justify-content:center;gap:36px;flex-wrap:wrap;padding:12px 0 20px;}
+    .device-item{display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer;}
+    .device-item__label{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;}
+    .device-phone{width:88px;height:180px;background:var(--dark);border-radius:20px;padding:7px;box-shadow:var(--shadow-md);position:relative;transition:transform .2s ease;box-sizing:border-box;}
+    .device-phone__notch{position:absolute;top:7px;left:50%;transform:translateX(-50%);width:28px;height:5px;background:var(--dark);border-radius:3px;z-index:2;}
+    .device-phone__screen{width:100%;height:100%;border-radius:14px;background-size:cover;background-position:center;}
+    .device-item--phone:hover .device-phone{transform:translateY(-4px);}
+    .device-laptop{display:flex;flex-direction:column;align-items:center;transition:transform .2s ease;}
+    .device-laptop__screen{width:200px;height:126px;background:var(--dark);border-radius:8px 8px 2px 2px;padding:6px;position:relative;box-shadow:var(--shadow-md);box-sizing:border-box;}
+    .device-laptop__cam{position:absolute;top:2px;left:50%;transform:translateX(-50%);width:3px;height:3px;border-radius:50%;background:#555;z-index:2;}
+    .device-laptop__wall{width:100%;height:100%;border-radius:2px;background-size:cover;background-position:center;}
+    .device-laptop__base{width:230px;height:9px;background:var(--border-dark);border-radius:0 0 6px 6px;margin-top:1px;}
+    .device-item--laptop:hover .device-laptop{transform:translateY(-4px);}
+    .device-desktop{display:flex;flex-direction:column;align-items:center;transition:transform .2s ease;}
+    .device-desktop__screen{width:200px;height:120px;background-size:cover;background-position:center;box-shadow:var(--shadow-md);border:6px solid var(--dark);border-radius:6px;box-sizing:border-box;}
+    .device-desktop__neck{width:14px;height:18px;background:var(--border-dark);}
+    .device-desktop__foot{width:64px;height:8px;background:var(--border-dark);border-radius:4px;margin-top:-1px;}
+    .device-item--desktop:hover .device-desktop{transform:translateY(-4px);}
+    @media (max-width:480px){.device-mockups{gap:20px;}.device-phone{width:64px;height:132px;border-radius:16px;}.device-laptop__screen{width:140px;height:88px;}.device-laptop__base{width:162px;}.device-desktop__screen{width:140px;height:84px;}}
+
+  </style>
+
+  <script src="../JS/main.js"></script>
+  <script>
+    // Resolution selector
+    document.querySelectorAll('.dl-option').forEach(function(opt) {
+      opt.addEventListener('click', function() {
+        document.querySelectorAll('.dl-option').forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        const res = opt.getAttribute('data-res');
+        document.getElementById('downloadBtn').innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download ${res} — Free
+        `;
+      });
+    });
+
+    // Vote button
+    const voteBtn   = document.getElementById('voteBtn');
+    const voteCount = document.getElementById('voteCount');
+    let voted = false;
+    voteBtn.addEventListener('click', function() {
+      voted = !voted;
+      voteBtn.classList.toggle('voted', voted);
+      voteCount.textContent = voted ? 4822 : 4821;
+      voteBtn.style.transform = 'scale(1.25)';
+      setTimeout(() => voteBtn.style.transform = 'scale(1)', 200);
+    });
+
+    // Fullscreen lightbox
+    const lightbox      = document.getElementById('lightbox');
+    const lightboxImg   = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const wpViewer      = document.getElementById('wpViewer');
+    const wpMainImg     = document.getElementById('wpMainImg');
+
+    wpViewer.addEventListener('click', function() {
+      lightboxImg.src = wpMainImg.src;
+      lightbox.classList.add('open');
+    });
+
+    lightboxClose.addEventListener('click', function() {
+      lightbox.classList.remove('open');
+    });
+
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) lightbox.classList.remove('open');
+    });
+
+    // Copy link
+    document.getElementById('copyBtn').addEventListener('click', function() {
+      const input = document.getElementById('copyInput');
+      input.select();
+      document.execCommand('copy');
+      this.textContent = 'Copied!';
+      setTimeout(() => this.textContent = 'Copy', 2000);
+    });
+
+    // Profile picture shape preview
+    (function () {
+      const frame = document.getElementById('pfpFrame');
+      const shapeBtns = document.querySelectorAll('.pfp-shape');
+      const downloadBtn = document.getElementById('pfpDownloadBtn');
+      const pfpImg = document.getElementById('pfpImg');
+
+      const CANVAS_SHAPES = {
+        circle: (ctx, s) => { ctx.arc(s / 2, s / 2, s / 2, 0, Math.PI * 2); },
+        hexagon: (ctx, s) => drawPoly(ctx, s, [[0.33,0.02],[0.67,0.02],[0.98,0.5],[0.67,0.98],[0.33,0.98],[0.02,0.5]]),
+        star: (ctx, s) => drawPoly(ctx, s, [[0.5,0.02],[0.608,0.325],[0.908,0.325],[0.665,0.5],[0.766,0.808],[0.5,0.625],[0.234,0.808],[0.335,0.5],[0.092,0.325],[0.392,0.325]]),
+        blob: (ctx, s) => {
+          // approximate the SVG blob curve as a smooth polygon for canvas export
+          const pts = [[0.5,0.02],[0.68,0.0],[0.85,0.1],[0.9,0.28],[0.96,0.45],[0.94,0.6],[0.86,0.74],[0.78,0.88],[0.62,0.97],[0.46,0.98],[0.3,0.99],[0.14,0.92],[0.07,0.77],[0.0,0.62],[0.02,0.44],[0.1,0.29],[0.18,0.14],[0.32,0.04]];
+          drawPoly(ctx, s, pts);
+        }
+      };
+
+      function drawPoly(ctx, s, pts) {
+        pts.forEach(([px, py], i) => {
+          const x = px * s, y = py * s;
+          if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        });
+        ctx.closePath();
+      }
+
+      shapeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          shapeBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          frame.className = 'pfp-frame';
+          const shape = btn.getAttribute('data-shape');
+          if (shape !== 'none') frame.classList.add('shape-' + shape);
+        });
+      });
+
+      downloadBtn.addEventListener('click', () => {
+        const activeBtn = document.querySelector('.pfp-shape.active');
+        const shape = activeBtn ? activeBtn.getAttribute('data-shape') : 'none';
+        const size = 500;
+        const canvas = document.createElement('canvas');
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d');
+
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+
+        img.onload = function () {
+          const ratio = Math.max(size / img.width, size / img.height);
+          const w = img.width * ratio, h = img.height * ratio;
+          const x = (size - w) / 2, y = (size - h) / 2;
+
+          ctx.save();
+          ctx.beginPath();
+          if (shape === 'none') {
+            ctx.rect(0, 0, size, size);
+          } else if (CANVAS_SHAPES[shape]) {
+            CANVAS_SHAPES[shape](ctx, size);
+          }
+          ctx.clip();
+          ctx.drawImage(img, x, y, w, h);
+          ctx.restore();
+
+          try {
+            const url = canvas.toDataURL('image/png');
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'wallrank-profile-' + shape + '.png';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+          } catch (err) {
+            alert("This image can't be exported directly from here due to browser security rules. Try right-click → Save image on the wallpaper above, or screenshot the preview instead.");
+          }
+        };
+
+        img.onerror = function () {
+          alert("Couldn't load the image for export. Try right-click → Save image on the wallpaper above instead.");
+        };
+
+        img.src = pfpImg.src;
+      });
+    })();
+    // Device mockup click -> open existing fullscreen lightbox
+    (function () {
+      const lb = document.getElementById('lightbox');
+      if (!lb) return;
+      ['deviceMockPhone', 'deviceMockLaptop', 'deviceMockDesktop'].forEach(function (id) {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('click', function () { lb.classList.add('open'); });
+      });
+    })();
+
+  </script>
+
+</body>
+</html>

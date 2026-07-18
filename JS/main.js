@@ -75,6 +75,18 @@ document.addEventListener('DOMContentLoaded', function () {
     { name: 'Rainy Window — City Lights', cat: 'aesthetic', url: base + 'wallpaper/rainy-window-city-lights-candle.html' },
     { name: 'Minimal Sunset — Half Circle', cat: 'minimal', url: base + 'wallpaper/minimal-sunset-half-circle-ocean.html' },
     { name: 'Anime Warrior — Cherry Blossom', cat: 'anime', url: base + 'wallpaper/anime-warrior-cherry-blossom.html' },
+    { name: 'Futuristic Tokyo Megacity — Neon Rain', cat: 'cyberpunk', url: base + 'wallpaper/futuristic-tokyo-megacity-rain.html' },
+    { name: 'Alien Ocean — Beneath Twin Moons', cat: 'space', url: base + 'wallpaper/alien-ocean-twin-moons.html' },
+    { name: 'Space Observatory — Black Hole', cat: 'space', url: base + 'wallpaper/space-observatory-black-hole.html' },
+    { name: 'Enchanted Forest — Glowing Mushrooms', cat: 'nature', url: base + 'wallpaper/enchanted-forest-glowing-mushrooms.html' },
+    { name: 'Nordic Mountains — Epic Sunrise', cat: 'nature', url: base + 'wallpaper/nordic-mountains-epic-sunrise.html' },
+    { name: 'Lone Samurai — Cherry Blossom Kyoto', cat: 'anime', url: base + 'wallpaper/samurai-cherry-blossom-kyoto.html' },
+    { name: 'Matte Black Lamborghini — Neon Garage', cat: 'cyberpunk', url: base + 'wallpaper/lamborghini-neon-garage.html' },
+    { name: 'Floating Islands — Endless Waterfalls', cat: 'nature', url: base + 'wallpaper/floating-islands-waterfalls.html' },
+    { name: 'Luxury Lofi Workspace — City Night', cat: 'lofi', url: base + 'wallpaper/luxury-lofi-workspace-city.html' },
+    { name: 'Minimal Luxury — Obsidian Black', cat: 'minimal', url: base + 'wallpaper/minimal-luxury-obsidian-black.html' },
+    { name: 'Enchanted Forest — Glowing Mushrooms II', cat: 'nature', url: base + 'wallpaper/enchanted-forest-glowing-mushrooms-ii.html' },
+    { name: 'Space Observatory — Black Hole II', cat: 'space', url: base + 'wallpaper/space-observatory-black-hole-ii.html' },
   ];
 
   /* ================================================
