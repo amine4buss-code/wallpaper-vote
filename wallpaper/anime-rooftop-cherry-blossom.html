@@ -139,6 +139,41 @@
           </clipPath>
         </defs>
       </svg>
+      <!-- Device mockup preview -->
+      <div class="device-preview">
+        <div class="device-preview__head">
+          <span class="device-preview__title">See it on your devices</span>
+          <span class="device-preview__sub">A quick preview of how this wallpaper looks in real life — tap any device for fullscreen</span>
+        </div>
+        <div class="device-mockups">
+          <div class="device-item device-item--phone" id="deviceMockPhone">
+            <div class="device-phone">
+              <div class="device-phone__notch"></div>
+              <div class="device-phone__screen" style="background-image:url('https://res.cloudinary.com/dnfzr2kno/image/upload/v1781134882/lucid-origin_Anime_girl_sitting_on_rooftop_at_night_cherry_blossom_petals_falling_city_lights-0_evuxrl.jpg');"></div>
+            </div>
+            <span class="device-item__label">Phone</span>
+          </div>
+          <div class="device-item device-item--laptop" id="deviceMockLaptop">
+            <div class="device-laptop">
+              <div class="device-laptop__screen">
+                <div class="device-laptop__cam"></div>
+                <div class="device-laptop__wall" style="background-image:url('https://res.cloudinary.com/dnfzr2kno/image/upload/v1781134882/lucid-origin_Anime_girl_sitting_on_rooftop_at_night_cherry_blossom_petals_falling_city_lights-0_evuxrl.jpg');"></div>
+              </div>
+              <div class="device-laptop__base"></div>
+            </div>
+            <span class="device-item__label">Laptop</span>
+          </div>
+          <div class="device-item device-item--desktop" id="deviceMockDesktop">
+            <div class="device-desktop">
+              <div class="device-desktop__screen" style="background-image:url('https://res.cloudinary.com/dnfzr2kno/image/upload/v1781134882/lucid-origin_Anime_girl_sitting_on_rooftop_at_night_cherry_blossom_petals_falling_city_lights-0_evuxrl.jpg');"></div>
+              <div class="device-desktop__neck"></div>
+              <div class="device-desktop__foot"></div>
+            </div>
+            <span class="device-item__label">Desktop</span>
+          </div>
+        </div>
+      </div>
+
 
 
       <div class="vote-section">
@@ -245,6 +280,30 @@
     .pfp-download{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:9px 16px;border-radius:var(--radius-md);border:0.5px solid var(--border);background:var(--surface);color:var(--text-primary);cursor:pointer;font-family:var(--font-main);}
     .pfp-download:hover{border-color:var(--accent);color:var(--accent);}
     @media (max-width:480px){.pfp-preview__body{gap:14px;}.pfp-download{margin-left:0;width:100%;justify-content:center;}}
+    .device-preview{margin-top:28px;padding-top:24px;border-top:0.5px solid var(--border);}
+    .device-preview__head{display:block;margin-bottom:20px;}
+    .device-preview__title{font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--text-primary);display:block;margin-bottom:2px;}
+    .device-preview__sub{font-size:12px;color:var(--text-muted);display:block;}
+    .device-mockups{display:flex;align-items:flex-end;justify-content:center;gap:36px;flex-wrap:wrap;padding:12px 0 20px;}
+    .device-item{display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer;}
+    .device-item__label{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;}
+    .device-phone{width:88px;height:180px;background:var(--dark);border-radius:20px;padding:7px;box-shadow:var(--shadow-md);position:relative;transition:transform .2s ease;box-sizing:border-box;}
+    .device-phone__notch{position:absolute;top:7px;left:50%;transform:translateX(-50%);width:28px;height:5px;background:var(--dark);border-radius:3px;z-index:2;}
+    .device-phone__screen{width:100%;height:100%;border-radius:14px;background-size:cover;background-position:center;}
+    .device-item--phone:hover .device-phone{transform:translateY(-4px);}
+    .device-laptop{display:flex;flex-direction:column;align-items:center;transition:transform .2s ease;}
+    .device-laptop__screen{width:200px;height:126px;background:var(--dark);border-radius:8px 8px 2px 2px;padding:6px;position:relative;box-shadow:var(--shadow-md);box-sizing:border-box;}
+    .device-laptop__cam{position:absolute;top:2px;left:50%;transform:translateX(-50%);width:3px;height:3px;border-radius:50%;background:#555;z-index:2;}
+    .device-laptop__wall{width:100%;height:100%;border-radius:2px;background-size:cover;background-position:center;}
+    .device-laptop__base{width:230px;height:9px;background:var(--border-dark);border-radius:0 0 6px 6px;margin-top:1px;}
+    .device-item--laptop:hover .device-laptop{transform:translateY(-4px);}
+    .device-desktop{display:flex;flex-direction:column;align-items:center;transition:transform .2s ease;}
+    .device-desktop__screen{width:200px;height:120px;background-size:cover;background-position:center;box-shadow:var(--shadow-md);border:6px solid var(--dark);border-radius:6px;box-sizing:border-box;}
+    .device-desktop__neck{width:14px;height:18px;background:var(--border-dark);}
+    .device-desktop__foot{width:64px;height:8px;background:var(--border-dark);border-radius:4px;margin-top:-1px;}
+    .device-item--desktop:hover .device-desktop{transform:translateY(-4px);}
+    @media (max-width:480px){.device-mockups{gap:20px;}.device-phone{width:64px;height:132px;border-radius:16px;}.device-laptop__screen{width:140px;height:88px;}.device-laptop__base{width:162px;}.device-desktop__screen{width:140px;height:84px;}}
+
 
   </style>
 
@@ -388,6 +447,16 @@
         img.src = pfpImg.src;
       });
     })();
+    // Device mockup click -> open existing fullscreen lightbox
+    (function () {
+      const lb = document.getElementById('lightbox');
+      if (!lb) return;
+      ['deviceMockPhone', 'deviceMockLaptop', 'deviceMockDesktop'].forEach(function (id) {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('click', function () { lb.classList.add('open'); });
+      });
+    })();
+
 
   </script>
 
