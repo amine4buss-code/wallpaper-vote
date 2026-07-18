@@ -53,7 +53,7 @@
   </div>
 
   <div class="filter-bar">
-    <span class="filter-bar__label" id="hsCount">0 hairstyles</span>
+    <span class="filter-bar__label" id="hsCount">2 hairstyles</span>
     <div class="filter-bar__cats">
       <a href="../index.html" class="filter-cat">All</a>
       <a href="straight.html" class="filter-cat active">Straight</a>
@@ -65,7 +65,26 @@
 
   <section class="section section--white">
     <div class="w-grid" id="hairstyleGrid">
-      <!-- Straight hairstyle cards go here. -->
+      <div class="wcard" data-type="straight" onclick="location.href='../style/italian-bob.html'">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Create_an_elegant_beauty_magazine_hairstyle_poster_featuring_a_gorgeous_woman_wi-0_rvrnax.jpg" alt="Woman with a sleek short black Italian Bob hairstyle" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn">View style</button></div>
+        </div>
+        <div class="wcard__body">
+          <div class="wcard__name">Italian Bob</div>
+          <div class="wcard__meta"><span class="wcard__tag">Straight · Short</span><span class="wcard__votes" title="Hair color shown">💇 Black</span></div>
+        </div>
+      </div>
+      <div class="wcard" data-type="straight" onclick="location.href='../style/french-bob.html'">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Premium_hairstyle_information_card_featuring_a_fashionable_woman_wearing_a_Frenc-0_syywwp.jpg" alt="Woman with a straight short French Bob hairstyle with fringe" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn">View style</button></div>
+        </div>
+        <div class="wcard__body">
+          <div class="wcard__name">French Bob</div>
+          <div class="wcard__meta"><span class="wcard__tag">Straight · Short</span><span class="wcard__votes" title="Hair color shown">💇 Brunette</span></div>
+        </div>
+      </div>
     </div>
     <div class="hs-empty" id="hsEmptyState">
       <div class="hs-empty__icon">💇‍♀️</div>
