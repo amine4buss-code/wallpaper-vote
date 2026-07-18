@@ -1,0 +1,354 @@
+{
+  "hairstyles": [
+    {
+      "id": "hs-0001",
+      "slug": "u-cut",
+      "status": "published",
+
+      "name": "U-Cut Layers",
+      "description": "A layered cut where the bottom of the hair is trimmed into a soft, rounded U-shape rather than a blunt straight line. Worn long with soft waves through the ends in a walnut-brown tone with mocha undertones, it preserves overall length while adding gentle volume and movement.",
+
+      "gender": "women",
+      "hair_type": "wavy",
+      "length": "long",
+      "color": "brunette",
+      "texture": null,
+      "face_shape": [],
+      "style_tags": ["korean-style", "layered", "everyday"],
+      "maintenance": "medium",
+      "trend": "trending",
+
+      "tags": ["u-cut-layers", "layered-ends", "long-hair", "korean-hairstyle", "walnut-brown"],
+
+      "image_url": "https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Create_a_premium_hairstyle_inspiration_poster_featuring_a_woman_with_elegant_U-C-0_mz18um.jpg",
+      "image_id": "gpt-image-2_Create_a_premium_hairstyle_inspiration_poster_featuring_a_woman_with_elegant_U-C-0_mz18um",
+      "alt_text": "Woman with long wavy brunette U-Cut Layers hairstyle, soft rounded ends",
+
+      "seo_title": "U-Cut Layers Hairstyle — Long Wavy Brunette Look | WallRank",
+      "seo_description": "U-Cut Layers: long wavy hair trimmed into a soft rounded U-shape at the ends, shown in walnut brown with mocha tones. See the full look on WallRank.",
+      "og_title": "U-Cut Layers Hairstyle Inspiration",
+      "og_description": "Long, wavy, softly rounded ends in warm walnut brown — U-Cut Layers.",
+      "pinterest_description": "U-Cut Layers hairstyle inspiration — long wavy layers, soft rounded ends, walnut brown tones. Save for your next salon visit! #ucutlayers #haircutideas #longhair #koreanhairstyle",
+
+      "related": ["long-curtain-layers", "hollywood-layers", "hush-cut"],
+
+      "date_added": "2026-07-18",
+      "source_credit": null
+    },
+    {
+      "id": "hs-0002",
+      "slug": "face-framing-layers",
+      "status": "published",
+
+      "name": "Face-Framing Layers",
+      "description": "Shorter layers cut around the face that draw attention toward the eyes and cheekbones while blending into the rest of the length. Shown here on long, softly wavy hair in a medium brown base with beige balayage for dimension.",
+
+      "gender": "women",
+      "hair_type": "wavy",
+      "length": "long",
+      "color": "balayage",
+      "texture": null,
+      "face_shape": [],
+      "style_tags": ["face-framing", "layered", "editorial-glam", "balayage"],
+      "maintenance": "medium",
+      "trend": "trending",
+
+      "tags": ["face-framing-layers", "layers", "beige-balayage", "long-hair"],
+
+      "image_url": "https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_High-end_beauty_editorial_showcasing_a_woman_with_soft_Face_Framing_Layers_silky-0_grj5ys.jpg",
+      "image_id": "gpt-image-2_High-end_beauty_editorial_showcasing_a_woman_with_soft_Face_Framing_Layers_silky-0_grj5ys",
+      "alt_text": "Woman with long wavy face-framing layers hairstyle and beige balayage",
+
+      "seo_title": "Face-Framing Layers Hairstyle — Beige Balayage | WallRank",
+      "seo_description": "Face-framing layers hairstyle inspiration: soft wavy layers with beige balayage that highlight the eyes and cheekbones. See the full look on WallRank.",
+      "og_title": "Face-Framing Layers Inspiration",
+      "og_description": "Soft wavy layers with beige balayage, framing the face beautifully.",
+      "pinterest_description": "Face-framing layers hairstyle inspiration — soft layers, beige balayage, effortless movement. Save this look! #faceframinglayers #balayage #haircutideas #layeredhair",
+
+      "related": ["long-curtain-layers", "butterfly-layers", "hollywood-layers"],
+
+      "date_added": "2026-07-18",
+      "source_credit": null
+    },
+    {
+      "id": "hs-0003",
+      "slug": "italian-bob",
+      "status": "published",
+
+      "name": "Italian Bob",
+      "description": "A sleek, chin-to-jaw-length bob with a glossy, blunt finish, associated with polished Italian styling. Shown here in a deep espresso-black base with soft mocha brown undertones for subtle warmth.",
+
+      "gender": "women",
+      "hair_type": "straight",
+      "length": "short",
+      "color": "black",
+      "texture": null,
+      "face_shape": [],
+      "style_tags": ["bob", "editorial-glam", "office-friendly"],
+      "maintenance": "medium",
+      "trend": "trending",
+
+      "tags": ["italian-bob", "bob-haircut", "short-hair", "espresso-black"],
+
+      "image_url": "https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Create_an_elegant_beauty_magazine_hairstyle_poster_featuring_a_gorgeous_woman_wi-0_rvrnax.jpg",
+      "image_id": "gpt-image-2_Create_an_elegant_beauty_magazine_hairstyle_poster_featuring_a_gorgeous_woman_wi-0_rvrnax",
+      "alt_text": "Woman with a sleek short black Italian Bob hairstyle",
+
+      "seo_title": "Italian Bob Hairstyle — Sleek Espresso Black | WallRank",
+      "seo_description": "The Italian Bob: a sleek, glossy chin-length bob shown in deep espresso black with mocha undertones. See the full look on WallRank.",
+      "og_title": "Italian Bob Hairstyle Inspiration",
+      "og_description": "Sleek, glossy, chin-length — the Italian Bob in espresso black.",
+      "pinterest_description": "Italian Bob hairstyle inspiration — sleek espresso black, effortlessly chic. Save this look! #italianbob #bobhaircut #blackhair #shorthairinspo",
+
+      "related": ["french-bob", "hush-cut", "u-cut"],
+
+      "date_added": "2026-07-18",
+      "source_credit": null
+    },
+    {
+      "id": "hs-0004",
+      "slug": "hush-cut",
+      "status": "published",
+
+      "name": "Hush Cut",
+      "description": "A softer, quieter take on a layered shag — long wavy layers with wispy face-framing bangs, styled for gentle, natural movement rather than dramatic texture. Shown in dark mocha with soft ash brown undertones.",
+
+      "gender": "women",
+      "hair_type": "wavy",
+      "length": "long",
+      "color": "brunette",
+      "texture": null,
+      "face_shape": [],
+      "style_tags": ["k-beauty", "layered", "everyday", "wispy-bangs"],
+      "maintenance": "medium",
+      "trend": "trending",
+
+      "tags": ["hush-cut", "layered-hair", "wispy-bangs", "long-hair", "dark-mocha"],
+
+      "image_url": "https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Create_a_Korean_luxury_hairstyle_poster_featuring_a_beautiful_woman_wearing_a_tr-0_uinhrv.jpg",
+      "image_id": "gpt-image-2_Create_a_Korean_luxury_hairstyle_poster_featuring_a_beautiful_woman_wearing_a_tr-0_uinhrv",
+      "alt_text": "Woman with a long wavy Hush Cut hairstyle in dark mocha with wispy bangs",
+
+      "seo_title": "Hush Cut Hairstyle — Soft Wavy Layers | WallRank",
+      "seo_description": "The Hush Cut: soft, wavy layered hair with wispy face-framing bangs in dark mocha tones. See the full look on WallRank.",
+      "og_title": "Hush Cut Hairstyle Inspiration",
+      "og_description": "Soft, wavy, quietly beautiful — the Hush Cut in dark mocha.",
+      "pinterest_description": "Hush Cut hairstyle inspiration — soft wavy layers, wispy bangs, dark mocha tones. Save this look! #hushcut #kbeauty #layeredhaircut #softbangs",
+
+      "related": ["u-cut", "soft-shag", "long-curtain-layers"],
+
+      "date_added": "2026-07-18",
+      "source_credit": null
+    },
+    {
+      "id": "hs-0005",
+      "slug": "french-bob",
+      "status": "published",
+
+      "name": "French Bob",
+      "description": "A chin-length, blunt-cut bob with a wispy fringe, associated with effortless Parisian styling. Shown in a dark coffee base with chestnut brown undertones and a sleek, straight finish.",
+
+      "gender": "women",
+      "hair_type": "straight",
+      "length": "short",
+      "color": "brunette",
+      "texture": null,
+      "face_shape": [],
+      "style_tags": ["bob", "vintage-retro", "office-friendly"],
+      "maintenance": "medium",
+      "trend": "classic",
+
+      "tags": ["french-bob", "bob-haircut", "short-hair", "dark-coffee"],
+
+      "image_url": "https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Premium_hairstyle_information_card_featuring_a_fashionable_woman_wearing_a_Frenc-0_syywwp.jpg",
+      "image_id": "gpt-image-2_Premium_hairstyle_information_card_featuring_a_fashionable_woman_wearing_a_Frenc-0_syywwp",
+      "alt_text": "Woman with a straight short French Bob hairstyle with fringe",
+
+      "seo_title": "French Bob Hairstyle — Dark Coffee Chin-Length Cut | WallRank",
+      "seo_description": "The French Bob: a soft, chin-length blunt bob with fringe, shown in dark coffee with chestnut undertones. See the full look on WallRank.",
+      "og_title": "French Bob Hairstyle Inspiration",
+      "og_description": "Chin-length, blunt, effortlessly Parisian — the French Bob.",
+      "pinterest_description": "French Bob hairstyle inspiration — chin-length, dark coffee tones, effortless Parisian style. Save this look! #frenchbob #bobhaircut #shorthairinspo",
+
+      "related": ["italian-bob", "hush-cut", "u-cut"],
+
+      "date_added": "2026-07-18",
+      "source_credit": null
+    },
+    {
+      "id": "hs-0006",
+      "slug": "long-curtain-layers",
+      "status": "published",
+
+      "name": "Long Curtain Layers",
+      "description": "Long, wavy layers parted centrally that frame the face like curtains, sweeping outward with volume around the cheekbones and temples. Shown in a soft chestnut base with golden brown undertones for warmth.",
+
+      "gender": "women",
+      "hair_type": "wavy",
+      "length": "long",
+      "color": "brunette",
+      "texture": null,
+      "face_shape": [],
+      "style_tags": ["curtain-layers", "face-framing", "everyday", "k-beauty"],
+      "maintenance": "medium",
+      "trend": "trending",
+
+      "tags": ["curtain-layers", "long-hair", "face-framing", "golden-brown"],
+
+      "image_url": "https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Photorealistic_beauty_poster_showing_a_woman_with_Long_Curtain_Layers_flowing_si-0_jhkhpr.jpg",
+      "image_id": "gpt-image-2_Photorealistic_beauty_poster_showing_a_woman_with_Long_Curtain_Layers_flowing_si-0_jhkhpr",
+      "alt_text": "Woman with long wavy Curtain Layers hairstyle framing the face, golden brown tones",
+
+      "seo_title": "Long Curtain Layers Hairstyle — Golden Brown | WallRank",
+      "seo_description": "Long Curtain Layers: face-framing wavy layers in soft chestnut with golden brown undertones. See the full look on WallRank.",
+      "og_title": "Long Curtain Layers Inspiration",
+      "og_description": "Center-parted, face-framing, flowing golden brown — Long Curtain Layers.",
+      "pinterest_description": "Long Curtain Layers hairstyle inspiration — soft face-framing layers, golden brown tones. Save this look! #curtainlayers #longhair #layeredhaircut",
+
+      "related": ["u-cut", "face-framing-layers", "hush-cut"],
+
+      "date_added": "2026-07-18",
+      "source_credit": null
+    },
+    {
+      "id": "hs-0007",
+      "slug": "butterfly-layers",
+      "status": "published",
+
+      "name": "Butterfly Layers",
+      "description": "A heavily layered cut with shorter, voluminous layers on top that blend into much longer layers underneath, creating a dramatic fanning effect. Shown in chocolate brown with honey balayage for dimension and shine.",
+
+      "gender": "women",
+      "hair_type": "wavy",
+      "length": "long",
+      "color": "balayage",
+      "texture": null,
+      "face_shape": [],
+      "style_tags": ["heavily-layered", "voluminous", "editorial-glam", "balayage"],
+      "maintenance": "medium",
+      "trend": "trending",
+
+      "tags": ["butterfly-layers", "layered", "honey-balayage", "voluminous-hair"],
+
+      "image_url": "https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Ultra_realistic_beauty_editorial_poster_featuring_a_beautiful_woman_with_luxurio-0_kur962.jpg",
+      "image_id": "gpt-image-2_Ultra_realistic_beauty_editorial_poster_featuring_a_beautiful_woman_with_luxurio-0_kur962",
+      "alt_text": "Woman with long wavy Butterfly Layers hairstyle and honey balayage",
+
+      "seo_title": "Butterfly Layers Hairstyle — Honey Balayage | WallRank",
+      "seo_description": "Butterfly Layers: short voluminous top layers blending into long lengths, shown in chocolate brown with honey balayage. See the full look on WallRank.",
+      "og_title": "Butterfly Layers Hairstyle Inspiration",
+      "og_description": "Big volume up top, long flowing layers below, honey balayage — Butterfly Layers.",
+      "pinterest_description": "Butterfly Layers hairstyle inspiration — dramatic layers, honey balayage, effortless volume. Save this look! #butterflylayers #balayage #layeredhaircut",
+
+      "related": ["face-framing-layers", "hollywood-layers", "soft-shag"],
+
+      "date_added": "2026-07-18",
+      "source_credit": null
+    },
+    {
+      "id": "hs-0008",
+      "slug": "soft-shag",
+      "status": "published",
+
+      "name": "Soft Shag",
+      "description": "A modernized, softer take on the classic shag — feathered layers throughout for texture and movement, paired with wispy bangs. Shown in cool brown with cinnamon brown undertones.",
+
+      "gender": "women",
+      "hair_type": "wavy",
+      "length": "medium",
+      "color": "brunette",
+      "texture": null,
+      "face_shape": [],
+      "style_tags": ["shag", "korean-style", "textured", "wispy-bangs"],
+      "maintenance": "medium",
+      "trend": "trending",
+
+      "tags": ["soft-shag", "shag-haircut", "textured-hair", "cinnamon-brown"],
+
+      "image_url": "https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400849/gpt-image-2_Ultra_realistic_Korean_hairstyle_guide_featuring_a_woman_with_a_Soft_Shag_haircu-0_bezzp4.jpg",
+      "image_id": "gpt-image-2_Ultra_realistic_Korean_hairstyle_guide_featuring_a_woman_with_a_Soft_Shag_haircu-0_bezzp4",
+      "alt_text": "Woman with a medium-length wavy Soft Shag hairstyle, cinnamon brown tones",
+
+      "seo_title": "Soft Shag Hairstyle — Feathered Layers | WallRank",
+      "seo_description": "The Soft Shag: feathered medium-length layers with wispy bangs, shown in cool brown with cinnamon undertones. See the full look on WallRank.",
+      "og_title": "Soft Shag Hairstyle Inspiration",
+      "og_description": "Feathered, textured, softly undone — the modern Soft Shag.",
+      "pinterest_description": "Soft Shag hairstyle inspiration — feathered layers, cinnamon brown tones. Save this look! #softshag #shaghaircut #texturedhair",
+
+      "related": ["butterfly-layers", "wolf-cut", "hush-cut"],
+
+      "date_added": "2026-07-18",
+      "source_credit": null
+    },
+    {
+      "id": "hs-0009",
+      "slug": "hollywood-layers",
+      "status": "published",
+
+      "name": "Hollywood Layers",
+      "description": "A glamorous, voluminous layered blowout style associated with red-carpet styling — long, bouncy waves throughout for maximum movement and shine. Shown in rich chocolate with warm caramel undertones.",
+
+      "gender": "women",
+      "hair_type": "wavy",
+      "length": "long",
+      "color": "brunette",
+      "texture": null,
+      "face_shape": [],
+      "style_tags": ["red-carpet", "editorial-glam", "voluminous"],
+      "maintenance": "high",
+      "trend": "classic",
+
+      "tags": ["hollywood-layers", "glam-waves", "long-hair", "warm-caramel"],
+
+      "image_url": "https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Luxury_Pinterest_hairstyle_information_poster_featuring_a_glamorous_woman_with_H-0_c9xdgq.jpg",
+      "image_id": "gpt-image-2_Luxury_Pinterest_hairstyle_information_poster_featuring_a_glamorous_woman_with_H-0_c9xdgq",
+      "alt_text": "Woman with long wavy Hollywood Layers hairstyle, rich chocolate and caramel tones",
+
+      "seo_title": "Hollywood Layers Hairstyle — Glam Waves | WallRank",
+      "seo_description": "Hollywood Layers: voluminous red-carpet-style waves in rich chocolate with warm caramel undertones. See the full look on WallRank.",
+      "og_title": "Hollywood Layers Hairstyle Inspiration",
+      "og_description": "Bouncy, voluminous, glamorous — Hollywood Layers in rich chocolate and caramel.",
+      "pinterest_description": "Hollywood Layers hairstyle inspiration — glam waves, rich chocolate tones, red-carpet volume. Save this look! #hollywoodlayers #glamhair #longhairinspo",
+
+      "related": ["butterfly-layers", "face-framing-layers", "u-cut"],
+
+      "date_added": "2026-07-18",
+      "source_credit": null
+    },
+    {
+      "id": "hs-0010",
+      "slug": "wolf-cut",
+      "status": "published",
+
+      "name": "Modern Wolf Cut",
+      "description": "A hybrid of shag and mullet styles — choppy, heavily layered hair with volume concentrated at the crown and tapering ends, paired with wispy curtain bangs. Shown in dark ash brown with caramel highlights, styled to medium length.",
+
+      "gender": "women",
+      "hair_type": "wavy",
+      "length": "medium",
+      "color": "brunette",
+      "texture": null,
+      "face_shape": [],
+      "style_tags": ["wolf-cut", "shag", "streetwear"],
+      "maintenance": "medium",
+      "trend": "trending",
+
+      "tags": ["modern-wolf-cut", "shag-mullet", "layered-haircut", "caramel-highlights"],
+
+      "image_url": "https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Luxury_beauty_editorial_featuring_a_young_woman_with_a_modern_Wolf_Cut_hairstyle-0_pomgih.jpg",
+      "image_id": "gpt-image-2_Luxury_beauty_editorial_featuring_a_young_woman_with_a_modern_Wolf_Cut_hairstyle-0_pomgih",
+      "alt_text": "Woman with a medium-length wavy Modern Wolf Cut hairstyle, dark ash brown with caramel highlights",
+
+      "seo_title": "Modern Wolf Cut Hairstyle — Shag-Mullet Hybrid | WallRank",
+      "seo_description": "The Modern Wolf Cut: choppy, layered medium-length hair with caramel highlights and an edgy, undone texture. See the full look on WallRank.",
+      "og_title": "Modern Wolf Cut Hairstyle Inspiration",
+      "og_description": "Choppy, layered, edgy — the Modern Wolf Cut in dark ash brown with caramel.",
+      "pinterest_description": "Modern Wolf Cut hairstyle inspiration — choppy layers, caramel highlights, edgy texture. Save this look! #wolfcut #shagmullet #edgyhaircut",
+
+      "related": ["soft-shag", "hush-cut", "butterfly-layers"],
+
+      "date_added": "2026-07-18",
+      "source_credit": null
+    }
+  ]
+}
