@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function () {
       results.forEach(w => {
         const item = document.createElement('div');
         item.style.cssText = 'padding:11px 20px;font-size:13px;color:#1a1a1a;cursor:pointer;display:flex;align-items:center;gap:12px;border-bottom:0.5px solid #f0ede8;transition:background 0.15s ease;';
-        const hl = w.name.replace(new RegExp(query, 'gi'), m => `<strong style="color:#D85A30;">${m}</strong>`);
+        const hl = w.name.replace(new RegExp(query, 'gi'), m => `<strong style="color:#6C4CFF;">${m}</strong>`);
         item.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span style="flex:1;">${hl}</span><span style="font-size:11px;color:#aaa;text-transform:capitalize;">${w.cat}</span>`;
         item.addEventListener('mouseenter', () => item.style.background = '#f7f5f2');
         item.addEventListener('mouseleave', () => item.style.background = '#fff');
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const msg = document.createElement('div');
     msg.id = 'searchSuggestions';
     msg.style.cssText = 'position:absolute;top:100%;left:0;right:0;background:#fff;border-radius:0 0 12px 12px;border-top:0.5px solid #e8e5e0;box-shadow:0 20px 40px rgba(0,0,0,0.15);padding:16px 20px;font-size:13px;color:#aaa;text-align:center;';
-    msg.innerHTML = `No results for "<strong style="color:#1a1a1a;">${query}</strong>" — try <a href="${base}pages/lofi.html" style="color:#D85A30;">Lofi</a> or <a href="${base}pages/nature.html" style="color:#D85A30;">Nature</a>`;
+    msg.innerHTML = `No results for "<strong style="color:#1a1a1a;">${query}</strong>" — try <a href="${base}pages/lofi.html" style="color:#6C4CFF;">Lofi</a> or <a href="${base}pages/nature.html" style="color:#6C4CFF;">Nature</a>`;
     box.style.position = 'relative';
     box.appendChild(msg);
   }
@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
       });
 
-      sortSelect.style.borderColor = '#D85A30';
+      sortSelect.style.borderColor = '#6C4CFF';
       setTimeout(() => sortSelect.style.borderColor = '', 1000);
     });
   }
@@ -344,6 +344,24 @@ document.addEventListener('DOMContentLoaded', function () {
       el.style.transform = 'translateY(0)';
     }, 1500);
   });
+
+  /* ================================================
+     AUTO WALLPAPER COUNT
+     Counts real cards in the DOM instead of a
+     hardcoded number that goes stale every time
+     wallpapers are added.
+     ================================================ */
+  const statEl = document.getElementById('statWallpaperCount');
+  if (statEl) {
+    const wpGrid = document.getElementById('wallpaperGrid');
+    if (wpGrid) {
+      const count = wpGrid.querySelectorAll('.wcard').length;
+      if (count > 0) {
+        const rounded = count - (count % 5); // round down to nearest 5, e.g. 77 -> 75+
+        statEl.textContent = rounded + '+';
+      }
+    }
+  }
 
 });
 
