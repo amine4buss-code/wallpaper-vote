@@ -51,7 +51,7 @@
         </svg>
         Search wallpapers...
       </div>
-      <a href="mailto:hello@wallrank.club?subject=Wallpaper%20Submission&body=Wallpaper%20title%3A%0AImage%20link%20(Google%20Drive%2C%20Imgur%2C%20etc.)%3A%0ACategory%3A%0AYour%20name%2Fcredit%3A%0A" class="btn btn--primary">Submit</a>
+      <a href="mailto:kabanijames9@gmail.com?subject=Wallpaper%20Submission&body=Wallpaper%20title%3A%0AImage%20link%20(Google%20Drive%2C%20Imgur%2C%20etc.)%3A%0ACategory%3A%0AYour%20name%2Fcredit%3A%0A" class="btn btn--primary">Submit</a>
     </div>
   </nav>
 
@@ -196,20 +196,6 @@
       </div>
 
 
-      <!-- Vote section -->
-      <div class="vote-section">
-        <span class="vote-section__label">Community rating</span>
-        <div class="vote-bar">
-          <div class="vote-bar__fill" style="width: 87%;"></div>
-        </div>
-        <span class="vote-count">4,821 votes</span>
-        <button class="vote-btn" id="voteBtn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="18 15 12 9 6 15"/>
-          </svg>
-          <span id="voteCount">4821</span>
-        </button>
-      </div>
 
       <!-- Download section -->
       <div class="dl-section">
@@ -282,14 +268,6 @@
             <div class="detail-card__val">4K</div>
           </div>
           <div class="detail-card">
-            <div class="detail-card__lbl">Downloads</div>
-            <div class="detail-card__val">12,400</div>
-          </div>
-          <div class="detail-card">
-            <div class="detail-card__lbl">Rank</div>
-            <div class="detail-card__val">#1 🔥</div>
-          </div>
-          <div class="detail-card">
             <div class="detail-card__lbl">Format</div>
             <div class="detail-card__val">JPG / PNG</div>
           </div>
@@ -300,30 +278,6 @@
         </div>
       </div>
 
-      <!-- Stats -->
-      <div class="sidebar-section">
-        <div class="sidebar-section__title">Stats</div>
-        <div class="sidebar-stat">
-          <span class="sidebar-stat__key">Views</span>
-          <span class="sidebar-stat__val">84,200</span>
-        </div>
-        <div class="sidebar-stat">
-          <span class="sidebar-stat__key">Downloads</span>
-          <span class="sidebar-stat__val">12,400</span>
-        </div>
-        <div class="sidebar-stat">
-          <span class="sidebar-stat__key">Votes</span>
-          <span class="sidebar-stat__val">4,821</span>
-        </div>
-        <div class="sidebar-stat">
-          <span class="sidebar-stat__key">Rating</span>
-          <span class="sidebar-stat__val">87% positive</span>
-        </div>
-        <div class="sidebar-stat">
-          <span class="sidebar-stat__key">Weekly rank</span>
-          <span class="sidebar-stat__val">#1</span>
-        </div>
-      </div>
 
       <!-- Related -->
       <div class="sidebar-section">
@@ -445,17 +399,6 @@
     });
 
     // Vote button
-    const voteBtn   = document.getElementById('voteBtn');
-    const voteCount = document.getElementById('voteCount');
-    let voted = false;
-    voteBtn.addEventListener('click', function() {
-      voted = !voted;
-      voteBtn.classList.toggle('voted', voted);
-      voteCount.textContent = voted ? 4822 : 4821;
-      voteBtn.style.transform = 'scale(1.25)';
-      setTimeout(() => voteBtn.style.transform = 'scale(1)', 200);
-    });
-
     // Fullscreen lightbox
     const lightbox      = document.getElementById('lightbox');
     const lightboxImg   = document.getElementById('lightboxImg');
