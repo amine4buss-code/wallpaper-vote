@@ -87,6 +87,16 @@ document.addEventListener('DOMContentLoaded', function () {
     { name: 'Minimal Luxury — Obsidian Black', cat: 'minimal', url: base + 'wallpaper/minimal-luxury-obsidian-black.html' },
     { name: 'Enchanted Forest — Glowing Mushrooms II', cat: 'nature', url: base + 'wallpaper/enchanted-forest-glowing-mushrooms-ii.html' },
     { name: 'Space Observatory — Black Hole II', cat: 'space', url: base + 'wallpaper/space-observatory-black-hole-ii.html' },
+    { name: 'Ancient Tree — Golden Wheat Field', cat: 'nature', url: base + 'wallpaper/ancient-tree-golden-wheat-field.html' },
+    { name: 'Sand Dunes — Abstract Waves at Sunset', cat: 'abstract', url: base + 'wallpaper/sand-dunes-abstract-waves-sunset.html' },
+    { name: 'Anime Girl Reading — Cherry Blossom Field', cat: 'anime', url: base + 'wallpaper/anime-girl-reading-cherry-blossom.html' },
+    { name: 'Anime Mecha — Abandoned City at Dawn', cat: 'anime', url: base + 'wallpaper/anime-mecha-abandoned-city-dawn.html' },
+    { name: 'Molten Copper — Teal Liquid Marbling', cat: 'abstract', url: base + 'wallpaper/molten-copper-teal-marbling.html' },
+    { name: 'Deep Violet Ink — Water Diffusion', cat: 'abstract', url: base + 'wallpaper/deep-violet-ink-water-diffusion.html' },
+    { name: 'Colony Ship — Passing Gas Giant', cat: 'space', url: base + 'wallpaper/colony-ship-gas-giant.html' },
+    { name: 'Frosted Glass Panels — Pastel Light', cat: 'minimal', url: base + 'wallpaper/frosted-glass-panels-pastel.html' },
+    { name: 'Cyberpunk Underground Night Market', cat: 'cyberpunk', url: base + 'wallpaper/cyberpunk-underground-night-market.html' },
+    { name: 'Anime Umbrella — Rainy Ramen Shop', cat: 'anime', url: base + 'wallpaper/anime-umbrella-rain-ramen-shop.html' },
   ];
 
   /* ================================================
