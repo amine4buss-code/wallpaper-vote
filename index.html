@@ -23,6 +23,7 @@
   gtag('js', new Date());
   gtag('config', 'G-19RP0D764T');
 </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
 </head>
 <body>
 
@@ -62,7 +63,7 @@
       Download All
     </button>
     <button class="wr-action-btn wr-action-btn--book" onclick="openBookModal()">
-      📖 Book Download <span class="wr-beta">Beta</span>
+      📖 Flip-Book View
     </button>
     <button class="wr-action-btn wr-action-btn--random" onclick="randomPick()">
       🎲 Random Pick
@@ -70,22 +71,39 @@
     <button class="wr-action-btn wr-action-btn--help" onclick="openHelp()">
       ❤️ Help Us Rate
     </button>
+    <button class="wr-action-btn wr-action-btn--select" id="selectModeBtn" onclick="toggleSelectMode()">
+      ☑️ Select wallpapers
+    </button>
+  </div>
+
+  <!-- ===== SELECT MODE FLOATING BAR ===== -->
+  <div class="wr-select-bar" id="selectBar">
+    <span id="selectCount">0 selected</span>
+    <div class="wr-select-bar__actions">
+      <button class="wr-select-bar__btn wr-select-bar__btn--clear" onclick="clearSelection()">Clear</button>
+      <button class="wr-select-bar__btn wr-select-bar__btn--dl" id="selectDownloadBtn" onclick="downloadSelected()">Download selected (.zip)</button>
+      <button class="wr-select-bar__btn wr-select-bar__btn--cancel" onclick="toggleSelectMode()">✕</button>
+    </div>
   </div>
 
   <!-- ===== BOOK MODAL ===== -->
   <div class="wr-modal-overlay" id="bookModal" onclick="closeModal('bookModal')">
-    <div class="wr-modal" onclick="event.stopPropagation()">
-      <button class="wr-modal__close" onclick="closeModal('bookModal')">✕</button>
-      <div class="wr-modal__icon">📖</div>
-      <h2 class="wr-modal__title">Book Download <span class="wr-beta">Beta</span></h2>
-      <p class="wr-modal__desc">Imagine flipping through a beautiful digital book — page by page — each one a stunning wallpaper. That's exactly what we're building.</p>
-      <div class="wr-modal__features">
-        <div class="wr-modal__feature">✨ Flip through wallpapers like real pages</div>
-        <div class="wr-modal__feature">📥 Download the whole collection as one file</div>
-        <div class="wr-modal__feature">🎨 Organized by category and mood</div>
+    <div class="wr-book" onclick="event.stopPropagation()">
+      <button class="wr-modal__close wr-book__close" onclick="closeModal('bookModal')">✕</button>
+      <div class="wr-book__stage">
+        <div class="wr-book__page" id="bookPage">
+          <div class="wr-book__page-inner" id="bookPageInner">
+            <img id="bookPageImg" src="" alt="" />
+            <div class="wr-book__page-caption" id="bookPageCaption"></div>
+          </div>
+        </div>
       </div>
-      <p class="wr-modal__coming">Coming soon — we're working on it! 🚀</p>
-      <button class="wr-modal__btn" onclick="closeModal('bookModal')">Got it, can't wait!</button>
+      <div class="wr-book__controls">
+        <button class="wr-book__nav" id="bookPrevBtn" onclick="bookFlip(-1)">‹ Prev</button>
+        <span class="wr-book__counter" id="bookCounter">1 / 1</span>
+        <button class="wr-book__nav" id="bookNextBtn" onclick="bookFlip(1)">Next ›</button>
+      </div>
+      <button class="wr-modal__btn wr-book__dl" id="bookDownloadAllBtn" onclick="bookDownloadAll()">Download all as .zip</button>
     </div>
   </div>
 
@@ -211,7 +229,7 @@
 
       <!-- LOFI -->
       <div class="wcard" data-cat="lofi" onclick="location.href='wallpaper/lofi-bedroom-warm-night.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1775734597/lucid-origin_lofi_bedroom_with_glowing_computer_screen_plants_vinyl_records_warm_lighting_rai-0_owf33n.jpg" alt="Lofi bedroom warm night 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge" style="position:relative;z-index:1;">🔥 Top</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -224,7 +242,7 @@
 
       <!-- CYBERPUNK -->
       <div class="wcard" data-cat="cyberpunk" onclick="location.href='wallpaper/cyberpunk-neon-city-rain.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1780987355/ChatGPT_Image_Jun_9_2026_12_59_20_AM_xmohbn.png" alt="Cyberpunk neon city rain 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
         </div>
@@ -236,7 +254,7 @@
 
       <!-- NATURE -->
       <div class="wcard" data-cat="nature" onclick="location.href='wallpaper/forest-fog-dawn.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1780987339/ChatGPT_Image_Jun_9_2026_12_57_19_AM_bbmayz.png" alt="Forest fog dawn sunlight 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
         </div>
@@ -248,7 +266,7 @@
 
       <!-- SPACE -->
       <div class="wcard" data-cat="space" onclick="location.href='wallpaper/deep-space-nebula.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1781134868/lucid-origin_Deep_space_nebula_with_vibrant_purple_and_blue_gas_clouds_thousands_of_stars_dis-0_lafc35.jpg" alt="Deep space nebula purple blue 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -261,7 +279,7 @@
 
       <!-- ABSTRACT -->
       <div class="wcard" data-cat="abstract" onclick="location.href='wallpaper/fluid-abstract-liquid-metal.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1781134880/lucid-origin_Fluid_abstract_art_flowing_liquid_metal_colors_gold_silver_and_deep_blue_smooth_-0_ywz1be.jpg" alt="Fluid abstract liquid metal gold 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
         </div>
@@ -273,7 +291,7 @@
 
       <!-- MINIMAL -->
       <div class="wcard" data-cat="minimal" onclick="location.href='wallpaper/minimal-red-dot-cream.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1781365287/lucid-origin_Minimalist_wallpaper_single_red_dot_on_cream_textured_paper_background_soft_shad-0_otflks.jpg" alt="Minimalist red dot cream paper 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
         </div>
@@ -285,7 +303,7 @@
 
       <!-- ANIME -->
       <div class="wcard" data-cat="anime" onclick="location.href='wallpaper/anime-rooftop-cherry-blossom.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1781134882/lucid-origin_Anime_girl_sitting_on_rooftop_at_night_cherry_blossom_petals_falling_city_lights-0_evuxrl.jpg" alt="Anime girl rooftop cherry blossom 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -298,7 +316,7 @@
 
       <!-- CYBERPUNK 2 -->
       <div class="wcard" data-cat="cyberpunk" onclick="location.href='wallpaper/blade-runner-alley-neon.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1780987313/ChatGPT_Image_Jun_9_2026_01_01_42_AM_bmkhms.png" alt="Cyberpunk blade runner alley 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
         </div>
@@ -310,7 +328,7 @@
 
       <!-- SPACE 2 -->
       <div class="wcard" data-cat="space" onclick="location.href='wallpaper/saturn-rings-golden.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1781365288/lucid-origin_Saturn_rings_close_up_view_from_space_golden_and_beige_tones_stars_in_background-0_sskozb.jpg" alt="Saturn rings golden space 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
         </div>
@@ -322,7 +340,7 @@
 
       <!-- NATURE 2 -->
       <div class="wcard" data-cat="nature" onclick="location.href='wallpaper/bioluminescent-jellyfish-ocean.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1781365284/lucid-origin_Glowing_bioluminescent_jellyfish_floating_in_dark_deep_ocean_blue_and_purple_glo-0_wven3o.jpg" alt="Bioluminescent jellyfish ocean 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -335,7 +353,7 @@
 
       <!-- ANIME 2 -->
       <div class="wcard" data-cat="anime" onclick="location.href='wallpaper/anime-samurai-bamboo-forest.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1781365290/lucid-origin_Anime_samurai_standing_in_bamboo_forest_at_sunset_golden_light_rays_dramatic_atm-0_plon7u.jpg" alt="Anime samurai bamboo forest sunset 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
         </div>
@@ -347,7 +365,7 @@
 
       <!-- MINIMAL 2 -->
       <div class="wcard" data-cat="minimal" onclick="location.href='wallpaper/minimal-circle-line-black.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1781134870/lucid-origin_Minimalist_desktop_wallpaper_single_thin_geometric_line_forming_a_circle_on_pure-0_wd4gmw.jpg" alt="Minimalist circle line geometric 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
         </div>
@@ -360,7 +378,7 @@
 
       <!-- LOFI APT -->
       <div class="wcard" data-cat="lofi" onclick="location.href='wallpaper/lofi-apartment-city-window.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1782335248/ChatGPT_Image_Jun_22_2026_09_30_35_PM_vr4bjc.png" alt="Lofi apartment city window night 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -373,7 +391,7 @@
 
       <!-- NORTHERN LIGHTS -->
       <div class="wcard" data-cat="nature" onclick="location.href='wallpaper/northern-lights-aurora-lake.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1782335287/ChatGPT_Image_Jun_22_2026_09_34_50_PM_pfei6g.png" alt="Northern lights aurora borealis mountain lake 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -386,7 +404,7 @@
 
       <!-- CYBERPUNK MEGACITY -->
       <div class="wcard" data-cat="cyberpunk" onclick="location.href='wallpaper/cyberpunk-megacity-aerial.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1782335404/ChatGPT_Image_Jun_22_2026_09_37_16_PM_xvrbtb.png" alt="Cyberpunk futuristic megacity aerial neon 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -399,7 +417,7 @@
 
       <!-- MILKY WAY DESERT -->
       <div class="wcard" data-cat="space" onclick="location.href='wallpaper/milky-way-desert-night.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1782335378/ChatGPT_Image_Jun_22_2026_09_38_26_PM_xxt7bq.png" alt="Milky way galaxy arch over desert night 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -412,7 +430,7 @@
 
       <!-- JAPAN VILLAGE -->
       <div class="wcard" data-cat="anime" onclick="location.href='wallpaper/japanese-village-mount-fuji.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1782335413/ChatGPT_Image_Jun_22_2026_09_41_01_PM_ki3qj3.png" alt="Anime Japanese village Mount Fuji cherry blossom 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -423,7 +441,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="nature" onclick="location.href='wallpaper/tropical-sunset-beach.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1782600299/ChatGPT_Image_Jun_27_2026_11_34_16_PM_edjw8a.png" alt="Tropical sunset beach golden sky 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -434,7 +452,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="cyberpunk" onclick="location.href='wallpaper/cyberpunk-neon-subway.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1782600296/ChatGPT_Image_Jun_27_2026_11_37_40_PM_1_gq5uyw.png" alt="Cyberpunk neon subway station purple pink 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -445,7 +463,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="lofi" onclick="location.href='wallpaper/lofi-study-room-green-lamp.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1782600251/ChatGPT_Image_Jun_27_2026_11_35_31_PM_ozexrh.png" alt="Lofi study room green lamp rainy night 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -456,7 +474,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="space" onclick="location.href='wallpaper/black-hole-accretion-disk.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1782600234/ChatGPT_Image_Jun_27_2026_11_37_16_PM_bkvfm8.png" alt="Black hole accretion disk gold orange space 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -467,7 +485,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="minimal" onclick="location.href='wallpaper/minimal-pastel-gradient.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1782600141/ChatGPT_Image_Jun_27_2026_11_37_26_PM_xlwqjz.png" alt="Minimalist pastel gradient pink lavender 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -479,7 +497,7 @@
       </div>
 
       <div class="wcard" data-cat="aesthetic" onclick="location.href='wallpaper/pink-aesthetic-roses.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783424390/lucid-origin_Pink_aesthetic_wallpaper_soft_pink_roses_bouquet_pastel_background_dreamy_femini-0_abnynr.jpg" alt="Pink aesthetic roses bouquet pastel 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -490,7 +508,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="aesthetic" onclick="location.href='wallpaper/purple-aesthetic-bedroom.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783424390/lucid-origin_Purple_aesthetic_bedroom_interior_fairy_lights_lavender_flowers_soft_purple_tone-0_k5vck8.jpg" alt="Purple aesthetic bedroom fairy lights lavender 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -501,7 +519,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="nature" onclick="location.href='wallpaper/cherry-blossom-tunnel-japan.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783424390/lucid-origin_Cherry_blossom_tunnel_path_soft_pink_petals_falling_sunlight_through_branches_sp-0_tlt8nx.jpg" alt="Cherry blossom tunnel path Japan spring 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -512,7 +530,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="minimal" onclick="location.href='wallpaper/beige-minimal-pampas-grass.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783424390/lucid-origin_Beige_minimal_aesthetic_wallpaper_dried_pampas_grass_in_ceramic_vase_warm_neutra-0_suexdn.jpg" alt="Beige minimal pampas grass ceramic vase 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -523,7 +541,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="lofi" onclick="location.href='wallpaper/cozy-reading-nook-fairy-lights.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783424390/lucid-origin_Cozy_aesthetic_reading_nook_warm_fairy_lights_stack_of_books_cup_of_tea_soft_bla-0_bd1eio.jpg" alt="Cozy reading nook fairy lights books tea 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -536,7 +554,7 @@
 
 
       <div class="wcard" data-cat="lofi" onclick="location.href='wallpaper/lofi-girl-window-city-night.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783524664/lucid-origin_Lofi_girl_sitting_by_window_at_night_city_skyline_in_background_warm_desk_lamp_h-0_ehnb9q.jpg" alt="Lofi Girl — Window City Night 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -547,7 +565,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="lofi" onclick="location.href='wallpaper/lofi-aesthetic-room-polaroid.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783524664/lucid-origin_Aesthetic_lofi_room_polaroid_photos_on_wall_fairy_lights_vinyl_player_warm_orang-0_qk6eyv.jpg" alt="Lofi Aesthetic Room — Polaroid 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -558,7 +576,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="cyberpunk" onclick="location.href='wallpaper/cyberpunk-neon-highway-night.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783524665/lucid-origin_Cyberpunk_neon_lit_highway_at_night_motion_blur_car_lights_purple_and_blue_neon_-0_dqo1qf.jpg" alt="Cyberpunk Neon Highway — Night 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -569,7 +587,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="nature" onclick="location.href='wallpaper/majestic-waterfall-rainforest.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783524664/lucid-origin_Majestic_waterfall_in_tropical_rainforest_sunlight_breaking_through_mist_lush_gr-0_ey3tbz.jpg" alt="Majestic Waterfall — Rainforest 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -580,7 +598,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="nature" onclick="location.href='wallpaper/red-canyon-desert-golden-hour.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783524664/lucid-origin_Red_canyon_desert_landscape_at_golden_hour_dramatic_rock_formations_warm_orange_-0_kojcoh.jpg" alt="Red Canyon Desert — Golden Hour 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -591,7 +609,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="space" onclick="location.href='wallpaper/two-galaxies-colliding-space.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783524664/lucid-origin_Two_galaxies_colliding_in_deep_space_spiral_arms_of_light_vibrant_purple_blue_an-0_dflel0.jpg" alt="Two Galaxies Colliding 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -602,7 +620,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="abstract" onclick="location.href='wallpaper/vibrant-abstract-paint-splash.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783524665/lucid-origin_Vibrant_colorful_abstract_wallpaper_explosive_paint_splash_red_orange_yellow_blu-0_e21rnm.jpg" alt="Vibrant Abstract — Paint Splash 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -613,7 +631,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="minimal" onclick="location.href='wallpaper/dark-minimal-triangle-black.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783524665/lucid-origin_Dark_minimal_wallpaper_single_white_geometric_triangle_on_pure_black_background_-0_cxofs9.jpg" alt="Dark Minimal — Triangle Black 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -624,7 +642,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="anime" onclick="location.href='wallpaper/anime-ancient-temple-ruins.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783524665/lucid-origin_Anime_style_ancient_temple_ruins_overgrown_with_nature_moss_covered_stone_steps_-0_v0z5ox.jpg" alt="Anime Ancient Temple Ruins 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -635,7 +653,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="aesthetic" onclick="location.href='wallpaper/soft-aesthetic-white-flowers.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783524664/lucid-origin_Soft_aesthetic_flatlay_white_flowers_on_marble_surface_golden_jewelry_pastel_pin-0_akwsil.jpg" alt="Soft Aesthetic — White Flowers 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -648,7 +666,7 @@
 
 
       <div class="wcard" data-cat="aesthetic" onclick="location.href='wallpaper/golden-hour-sunlight-curtains.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783576416/lucid-origin_Golden_hour_aesthetic_sunlight_streaming_through_curtains_onto_white_linen_bed_d-0_hub29j.jpg" alt="Golden Hour — Sunlight Curtains 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -659,7 +677,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="abstract" onclick="location.href='wallpaper/deep-blue-abstract-ocean-light.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783576416/lucid-origin_Deep_blue_abstract_wallpaper_flowing_ocean_waves_made_of_light_electric_blue_and-0_p1mcxt.jpg" alt="Deep Blue Abstract — Ocean Light 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -670,7 +688,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="minimal" onclick="location.href='wallpaper/white-minimal-gold-line.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783576416/lucid-origin_Pure_white_minimal_wallpaper_single_thin_gold_line_diagonal_across_clean_white_b-0_zhhdvg.jpg" alt="White Minimal — Gold Line 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -681,7 +699,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="lofi" onclick="location.href='wallpaper/lofi-bedroom-rain-candlelight.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783576416/lucid-origin_Lofi_bedroom_with_rain_pouring_outside_window_warm_candlelight_on_desk_open_note-0_kxjdrw.jpg" alt="Lofi Bedroom — Rain Candlelight 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -692,7 +710,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="space" onclick="location.href='wallpaper/eagle-nebula-pillars-creation.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783576416/lucid-origin_Eagle_nebula_pillars_of_creation_towering_gas_columns_deep_space_vivid_orange_br-0_n4pokw.jpg" alt="Eagle Nebula — Pillars of Creation 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -703,7 +721,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="aesthetic" onclick="location.href='wallpaper/dreamy-pink-sunset-sky.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783576416/lucid-origin_Dreamy_pink_sunset_sky_with_soft_clouds_pastel_cotton_candy_tones_gentle_gradien-0_eq0kr4.jpg" alt="Dreamy Pink Sunset Sky 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -714,7 +732,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="nature" onclick="location.href='wallpaper/autumn-forest-path-golden.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783576417/lucid-origin_Autumn_forest_path_covered_in_orange_and_red_fallen_leaves_golden_sunlight_throu-0_wgmkpj.jpg" alt="Autumn Forest Path — Golden 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -727,7 +745,7 @@
 
 
       <div class="wcard" data-cat="anime" onclick="location.href='wallpaper/anime-warrior-bamboo-dawn.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783679049/lucid-origin_Anime_warrior_standing_in_bamboo_forest_at_dawn_sword_drawn_cherry_blossom_petal-0_yop8on.jpg" alt="Anime Warrior — Bamboo Dawn 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -738,7 +756,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="aesthetic" onclick="location.href='wallpaper/vintage-aesthetic-film-camera.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783679048/gpt-image-2_Vintage_aesthetic_flatlay_old_film_camera_dried_flowers_handwritten_letters_warm-0_m3qvvj.jpg" alt="Vintage Aesthetic — Film Camera 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -749,7 +767,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="minimal" onclick="location.href='wallpaper/black-white-minimal-sphere.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783679048/lucid-origin_Black_and_white_minimal_wallpaper_perfect_sphere_casting_soft_shadow_on_clean_wh-0_ujiws1.jpg" alt="Black White Minimal — Sphere 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -760,7 +778,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="cyberpunk" onclick="location.href='wallpaper/cyberpunk-character-rooftop.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783679048/lucid-origin_Cyberpunk_character_standing_on_rooftop_overlooking_neon_megacity_at_night_long_-0_thmguo.jpg" alt="Cyberpunk Character — Rooftop 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -771,7 +789,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="nature" onclick="location.href='wallpaper/turquoise-ocean-aerial-coral.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783679048/lucid-origin_Turquoise_tropical_ocean_from_above_crystal_clear_water_coral_reef_visible_below-0_y25ptq.jpg" alt="Turquoise Ocean — Aerial Coral 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -782,7 +800,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="nature" onclick="location.href='wallpaper/lavender-field-provence-france.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783679048/lucid-origin_Endless_lavender_field_in_Provence_France_purple_rows_stretching_to_horizon_old_-0_oh1na1.jpg" alt="Lavender Field — Provence France 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -793,7 +811,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="space" onclick="location.href='wallpaper/mars-surface-sunset-moons.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783679048/lucid-origin_Mars_surface_at_sunset_red_rocky_landscape_two_moons_visible_in_purple_sky_NASA_-0_vrmz2a.jpg" alt="Mars Surface — Sunset Moons 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -804,7 +822,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="lofi" onclick="location.href='wallpaper/lofi-japan-ramen-street-night.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783679048/lucid-origin_Lofi_anime_street_in_Japan_at_night_small_ramen_shop_with_warm_orange_glow_lante-0_kkmdwm.jpg" alt="Lofi Japan — Ramen Street Night 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -815,7 +833,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="abstract" onclick="location.href='wallpaper/neon-abstract-geometric-shapes.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783679047/lucid-origin_Neon_abstract_wallpaper_glowing_geometric_shapes_pink_purple_and_cyan_light_trai-0_sqcqtl.jpg" alt="Neon Abstract — Geometric Shapes 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -826,7 +844,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="aesthetic" onclick="location.href='wallpaper/coffee-aesthetic-latte-morning.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783679048/lucid-origin_Coffee_aesthetic_wallpaper_latte_art_in_white_ceramic_cup_croissant_beside_it_mo-0_oqfity.jpg" alt="Coffee Aesthetic — Latte Morning 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -839,7 +857,7 @@
 
 
       <div class="wcard" data-cat="aesthetic" onclick="location.href='wallpaper/aesthetic-book-nook-autumn.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978785/lucid-origin_Aesthetic_book_nook_stacked_old_books_reading_glasses_cup_of_tea_autumn_leaves_w-0_avknad.jpg" alt="Aesthetic Book Nook — Autumn 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -850,7 +868,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="nature" onclick="location.href='wallpaper/volcano-erupting-lava-ocean.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978785/lucid-origin_Active_volcano_erupting_at_night_lava_flowing_into_ocean_dramatic_red_and_orange-0_czz0vb.jpg" alt="Volcano Erupting — Lava Ocean 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -861,7 +879,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="cyberpunk" onclick="location.href='wallpaper/cyberpunk-alley-rain-steam.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978785/gpt-image-2_Cyberpunk_back_alley_in_heavy_rain_steam_vents_neon_signs_in_Chinese_lonely_figu-0_duwikn.jpg" alt="Cyberpunk Alley — Rain Steam 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -872,7 +890,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="abstract" onclick="location.href='wallpaper/colorful-smoke-abstract-purple.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Beautiful_colorful_smoke_abstract_wallpaper_purple_orange_and_gold_smoke_swirls_-0_kwuyrw.jpg" alt="Colorful Smoke Abstract 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -883,7 +901,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="nature" onclick="location.href='wallpaper/iceland-waterfall-rainbow-moss.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Iceland_landscape_massive_waterfall_with_rainbow_green_mossy_rocks_dramatic_clou-0_njzlm3.jpg" alt="Iceland Waterfall — Rainbow Moss 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -894,7 +912,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="anime" onclick="location.href='wallpaper/anime-winter-cabin-snow.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Anime_winter_scene_small_wooden_cabin_in_snowy_forest_warm_light_glowing_from_wi-0_jekcr8.jpg" alt="Anime Winter Cabin — Snow 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -905,7 +923,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="lofi" onclick="location.href='wallpaper/lofi-girl-balcony-neon-city.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Lofi_girl_on_balcony_at_night_neon_city_below_headphones_warm_hoodie_stars_visib-0_uajm32.jpg" alt="Lofi Girl — Balcony Neon City 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -916,7 +934,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="aesthetic" onclick="location.href='wallpaper/rainy-window-city-lights-candle.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Rainy_window_aesthetic_rain_drops_on_glass_blurry_city_lights_outside_warm_candl-0_iyv4tv.jpg" alt="Rainy Window — City Lights 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -927,7 +945,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="minimal" onclick="location.href='wallpaper/minimal-sunset-half-circle-ocean.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Minimal_sunset_wallpaper_perfect_half_circle_sun_on_horizon_flat_ocean_gradient_-0_gfffdq.jpg" alt="Minimal Sunset — Half Circle 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -938,7 +956,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="anime" onclick="location.href='wallpaper/anime-warrior-cherry-blossom.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1783679049/lucid-origin_Anime_warrior_standing_in_bamboo_forest_at_dawn_sword_drawn_cherry_blossom_petal-0_yop8on.jpg" alt="Anime Warrior — Cherry Blossom 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -950,7 +968,7 @@
       </div>
 
           <div class="wcard" data-cat="cyberpunk" onclick="location.href='wallpaper/futuristic-tokyo-megacity-rain.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382743/gpt-image-2_A_futuristic_Tokyo_megacity_at_midnight_during_heavy_rain_towering_holographic_b-0_bxefy7.jpg" alt="Futuristic Tokyo Megacity — Neon Rain 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -961,7 +979,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="space" onclick="location.href='wallpaper/alien-ocean-twin-moons.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382743/lucid-origin_An_enormous_alien_ocean_stretching_beyond_the_horizon_beneath_two_giant_moons_an-0_e1xosc.jpg" alt="Alien Ocean — Beneath Twin Moons 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -972,7 +990,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="space" onclick="location.href='wallpaper/space-observatory-black-hole.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382743/lucid-origin_A_futuristic_space_observatory_orbiting_dangerously_close_to_a_colossal_black_ho-0_gurtxn.jpg" alt="Space Observatory — Black Hole 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -983,7 +1001,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="nature" onclick="location.href='wallpaper/enchanted-forest-glowing-mushrooms.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382743/lucid-origin_An_enchanted_ancient_forest_at_dawn_filled_with_glowing_blue_mushrooms_towering_-0_tywgzv.jpg" alt="Enchanted Forest — Glowing Mushrooms 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -994,7 +1012,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="nature" onclick="location.href='wallpaper/nordic-mountains-epic-sunrise.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382742/lucid-origin_Epic_Nordic_mountain_landscape_at_sunrise_enormous_snow-covered_cliffs_surroundi-0_i2j3ox.jpg" alt="Nordic Mountains — Epic Sunrise 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -1005,7 +1023,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="anime" onclick="location.href='wallpaper/samurai-cherry-blossom-kyoto.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382742/lucid-origin_Lone_samurai_standing_beneath_a_giant_cherry_blossom_tree_overlooking_ancient_Ky-0_qcipu3.jpg" alt="Lone Samurai — Cherry Blossom Kyoto 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -1016,7 +1034,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="cyberpunk" onclick="location.href='wallpaper/lamborghini-neon-garage.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382742/lucid-origin_Ultra_realistic_matte_black_Lamborghini_parked_inside_an_endless_futuristic_neon-0_x2bibm.jpg" alt="Matte Black Lamborghini — Neon Garage 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -1027,7 +1045,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="nature" onclick="location.href='wallpaper/floating-islands-waterfalls.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382742/lucid-origin_Gigantic_floating_islands_suspended_above_endless_clouds_massive_waterfalls_flow-0_iuwvux.jpg" alt="Floating Islands — Endless Waterfalls 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -1038,7 +1056,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="lofi" onclick="location.href='wallpaper/luxury-lofi-workspace-city.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382742/lucid-origin_Modern_luxury_lofi_workspace_overlooking_a_futuristic_city_at_night_massive_floo-0_tk16up.jpg" alt="Luxury Lofi Workspace — City Night 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -1049,7 +1067,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="minimal" onclick="location.href='wallpaper/minimal-luxury-obsidian-black.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382742/lucid-origin_Minimal_luxury_black_wallpaper_featuring_smooth_flowing_matte_obsidian_curves_wi-0_c7lywr.jpg" alt="Minimal Luxury — Obsidian Black 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -1060,7 +1078,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="nature" onclick="location.href='wallpaper/enchanted-forest-glowing-mushrooms-ii.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784090355/lucid-origin_An_enchanted_ancient_forest_at_dawn_filled_with_glowing_blue_mushrooms_towering_-0_o0hvm4.jpg" alt="Enchanted Forest — Glowing Mushrooms II 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -1071,7 +1089,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="space" onclick="location.href='wallpaper/space-observatory-black-hole-ii.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784090355/lucid-origin_A_futuristic_space_observatory_orbiting_dangerously_close_to_a_colossal_black_ho-0_pbxamp.jpg" alt="Space Observatory — Black Hole II 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -1082,7 +1100,7 @@
         </div>
       </div>
           <div class="wcard" data-cat="nature" onclick="location.href='wallpaper/ancient-tree-golden-wheat-field.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784800623/lucid-origin_A_single_ancient_tree_standing_alone_in_golden_wheat_fields_under_a_dramatic_sto-0_jrfvh1.jpg" alt="Ancient Tree — Golden Wheat Field 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -1093,7 +1111,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="abstract" onclick="location.href='wallpaper/sand-dunes-abstract-waves-sunset.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784800622/lucid-origin_Sand_dunes_shaped_into_smooth_abstract_waves_under_warm_sunset_light_aerial_top--0_v704yv.jpg" alt="Sand Dunes — Abstract Waves at Sunset 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -1104,7 +1122,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="anime" onclick="location.href='wallpaper/anime-girl-reading-cherry-blossom.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784800623/lucid-origin_Anime_girl_reading_under_a_cherry_blossom_tree_in_a_quiet_countryside_field_soft-0_peeuhv.jpg" alt="Anime Girl Reading — Cherry Blossom Field 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -1115,7 +1133,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="anime" onclick="location.href='wallpaper/anime-mecha-abandoned-city-dawn.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784800622/lucid-origin_Anime-style_mecha_standing_in_a_misty_abandoned_city_at_dawn_moody_cinematic_lig-0_yzwnbn.jpg" alt="Anime Mecha — Abandoned City at Dawn 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -1126,7 +1144,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="abstract" onclick="location.href='wallpaper/molten-copper-teal-marbling.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784800622/lucid-origin_Molten_copper_and_teal_liquid_marbling_swirling_together_glossy_high-contrast_st-0_rgqadj.jpg" alt="Molten Copper — Teal Liquid Marbling 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -1137,7 +1155,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="abstract" onclick="location.href='wallpaper/deep-violet-ink-water-diffusion.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784800622/lucid-origin_Deep_violet_ink_dropped_into_clear_water_mid-diffusion_captured_in_ultra-slow-mo-0_sdoujr.jpg" alt="Deep Violet Ink — Water Diffusion 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -1148,7 +1166,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="space" onclick="location.href='wallpaper/colony-ship-gas-giant.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784800622/lucid-origin_A_colony_ship_drifting_past_a_massive_gas_giant_with_visible_storm_bands_distant-0_bh7vxo.jpg" alt="Colony Ship — Passing Gas Giant 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -1159,7 +1177,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="minimal" onclick="location.href='wallpaper/frosted-glass-panels-pastel.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784800622/lucid-origin_Frosted_glass_panels_layered_at_angles_catching_soft_pastel_light_minimal_shadow-0_q9l3tq.jpg" alt="Frosted Glass Panels — Pastel Light 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -1170,7 +1188,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="cyberpunk" onclick="location.href='wallpaper/cyberpunk-underground-night-market.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784800622/lucid-origin_Underground_cyberpunk_night_market_packed_with_holographic_food_stalls_and_neon_-0_u2vsal.jpg" alt="Cyberpunk Underground Night Market 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -1181,7 +1199,7 @@
         </div>
       </div>
       <div class="wcard" data-cat="anime" onclick="location.href='wallpaper/anime-umbrella-rain-ramen-shop.html'">
-        <div class="wcard__thumb" style="position:relative;overflow:hidden;">
+        <div class="wcard__thumb" style="position:relative;overflow:hidden;"><div class="wcard__select-mark"></div>
           <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784800622/lucid-origin_Two_anime_characters_sharing_an_umbrella_in_the_rain_outside_a_ramen_shop_warm_n-0_uccvhi.jpg" alt="Anime Umbrella — Rainy Ramen Shop 4K wallpaper" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <span class="wcard__badge wcard__badge--new" style="position:relative;z-index:1;">New</span>
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button></div>
@@ -1323,6 +1341,88 @@
     }
     @media(max-width:768px) { .wr-actions { padding: 10px 16px; } }
 
+    .wr-action-btn--select.active { background: var(--gradient-brand); color: #fff; border-color: transparent; }
+
+    .wr-select-bar {
+      display: none; position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%);
+      z-index: 400; background: var(--ink); color: #fff; border-radius: var(--radius-pill);
+      padding: 12px 12px 12px 20px; align-items: center; gap: 16px;
+      box-shadow: 0 12px 40px rgba(11,11,20,0.35); font-family: var(--font-utility); font-size: 13px;
+    }
+    .wr-select-bar.open { display: flex; }
+    .wr-select-bar__actions { display: flex; gap: 8px; }
+    .wr-select-bar__btn {
+      padding: 8px 14px; border-radius: var(--radius-pill); border: none; cursor: pointer;
+      font-family: var(--font-utility); font-size: 12.5px; font-weight: 600;
+    }
+    .wr-select-bar__btn--clear { background: rgba(255,255,255,0.12); color: #fff; }
+    .wr-select-bar__btn--dl { background: var(--gradient-brand); color: #fff; }
+    .wr-select-bar__btn--cancel { background: none; color: rgba(255,255,255,0.6); padding: 8px 10px; }
+    @media(max-width:560px) {
+      .wr-select-bar { left: 12px; right: 12px; transform: none; flex-direction: column; align-items: stretch; gap: 10px; }
+      .wr-select-bar__actions { justify-content: space-between; }
+    }
+
+    body.select-mode .wcard { cursor: pointer; }
+    .wcard__select-mark {
+      display: none; position: absolute; top: 8px; left: 8px; z-index: 2;
+      width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.85);
+      border: 2px solid rgba(0,0,0,0.15); align-items: center; justify-content: center; font-size: 13px;
+    }
+    body.select-mode .wcard__select-mark { display: flex; }
+    .wcard.selected .wcard__select-mark { background: var(--gradient-brand); border-color: transparent; color: #fff; }
+    .wcard.selected .wcard__thumb { outline: 3px solid var(--volt); outline-offset: -3px; }
+
+    /* ── 3D FLIP-BOOK ── */
+    .wr-book {
+      background: var(--ink); border-radius: var(--radius-lg); padding: 24px;
+      width: 100%; max-width: 480px; position: relative;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    }
+    .wr-book__close {
+      position: absolute; top: 14px; right: 14px; z-index: 5;
+      background: rgba(255,255,255,0.1); color: #fff; border-radius: 50%;
+      width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+      border: none; cursor: pointer; font-size: 14px;
+    }
+    .wr-book__stage {
+      perspective: 1800px; width: 100%; aspect-ratio: 3/4;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .wr-book__page {
+      width: 100%; height: 100%; transform-style: preserve-3d;
+      transform-origin: left center;
+      transition: transform 0.28s cubic-bezier(0.45, 0, 0.55, 1);
+      border-radius: var(--radius-md); overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    }
+    .wr-book__page.flip-out-next { transform: rotateY(-92deg); }
+    .wr-book__page.flip-out-prev { transform: rotateY(92deg); }
+    .wr-book__page-inner { width: 100%; height: 100%; position: relative; background: #111; }
+    .wr-book__page-inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .wr-book__page-caption {
+      position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 16px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.75));
+      color: #fff; font-family: var(--font-utility); font-size: 13px; font-weight: 600;
+    }
+    .wr-book__controls {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 16px; color: #fff; font-family: var(--font-utility); font-size: 13px;
+    }
+    .wr-book__nav {
+      background: rgba(255,255,255,0.1); color: #fff; border: none; border-radius: var(--radius-pill);
+      padding: 9px 16px; cursor: pointer; font-family: var(--font-utility); font-size: 13px; font-weight: 600;
+    }
+    .wr-book__nav:hover { background: rgba(255,255,255,0.2); }
+    .wr-book__nav:disabled { opacity: 0.35; cursor: default; }
+    .wr-book__counter { color: rgba(255,255,255,0.6); }
+    .wr-book__dl {
+      width: 100%; margin-top: 14px; background: var(--gradient-brand); color: #fff;
+      border: none; border-radius: var(--radius-pill); padding: 12px; cursor: pointer;
+      font-family: var(--font-utility); font-size: 13px; font-weight: 600;
+    }
+    @media(max-width:560px) { .wr-book { max-width: 92vw; padding: 18px; } }
+
     /* MODALS */
     .wr-modal-overlay {
       display: none; position: fixed; inset: 0;
@@ -1383,21 +1483,92 @@
   <script>
     // ── ALL WALLPAPERS DATA ──────────────────
     const allWallpapers = [
-      {name:"Lofi Bedroom — Warm Night", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1775734597/lucid-origin_lofi_bedroom_with_glowing_computer_screen_plants_vinyl_records_warm_lighting_rai-0_owf33n.jpg", slug:"lofi-bedroom-warm-night", cat:"Lofi"},
-      {name:"Cyberpunk Neon City Rain", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1780987355/ChatGPT_Image_Jun_9_2026_12_59_20_AM_xmohbn.png", slug:"cyberpunk-neon-city-rain", cat:"Cyberpunk"},
-      {name:"Forest Fog — Dawn Light", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1780987339/ChatGPT_Image_Jun_9_2026_12_57_19_AM_bbmayz.png", slug:"forest-fog-dawn", cat:"Nature"},
-      {name:"Deep Space Nebula", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1781134868/lucid-origin_Deep_space_nebula_with_vibrant_purple_and_blue_gas_clouds_thousands_of_stars_dis-0_lafc35.jpg", slug:"deep-space-nebula", cat:"Space"},
-      {name:"Fluid Abstract Liquid Metal", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1781134880/lucid-origin_Fluid_abstract_art_flowing_liquid_metal_colors_gold_silver_and_deep_blue_smooth_-0_ywz1be.jpg", slug:"fluid-abstract-liquid-metal", cat:"Abstract"},
-      {name:"Pink Aesthetic — Roses Bouquet", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783424390/lucid-origin_Pink_aesthetic_wallpaper_soft_pink_roses_bouquet_pastel_background_dreamy_femini-0_abnynr.jpg", slug:"pink-aesthetic-roses", cat:"Aesthetic"},
-      {name:"Anime Rooftop Cherry Blossom", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1781134882/lucid-origin_Anime_girl_sitting_on_rooftop_at_night_cherry_blossom_petals_falling_city_lights-0_evuxrl.jpg", slug:"anime-rooftop-cherry-blossom", cat:"Anime"},
-      {name:"Minimal Circle Line Black", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1781134870/lucid-origin_Minimalist_desktop_wallpaper_single_thin_geometric_line_forming_a_circle_on_pure-0_wd4gmw.jpg", slug:"minimal-circle-line-black", cat:"Minimal"},
-      {name:"Northern Lights Aurora Lake", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1782335287/ChatGPT_Image_Jun_22_2026_09_34_50_PM_pfei6g.png", slug:"northern-lights-aurora-lake", cat:"Nature"},
-      {name:"Lofi Girl — Balcony Neon City", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Lofi_girl_on_balcony_at_night_neon_city_below_headphones_warm_hoodie_stars_visib-0_uajm32.jpg", slug:"lofi-girl-balcony-neon-city", cat:"Lofi"},
-      {name:"Iceland Waterfall Rainbow Moss", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Iceland_landscape_massive_waterfall_with_rainbow_green_mossy_rocks_dramatic_clou-0_njzlm3.jpg", slug:"iceland-waterfall-rainbow-moss", cat:"Nature"},
-      {name:"Colorful Smoke Abstract", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Beautiful_colorful_smoke_abstract_wallpaper_purple_orange_and_gold_smoke_swirls_-0_kwuyrw.jpg", slug:"colorful-smoke-abstract-purple", cat:"Abstract"},
-      {name:"Volcano Erupting Lava Ocean", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978785/lucid-origin_Active_volcano_erupting_at_night_lava_flowing_into_ocean_dramatic_red_and_orange-0_czz0vb.jpg", slug:"volcano-erupting-lava-ocean", cat:"Nature"},
+      {name:"Lofi bedroom — warm night", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1775734597/lucid-origin_lofi_bedroom_with_glowing_computer_screen_plants_vinyl_records_warm_lighting_rai-0_owf33n.jpg", slug:"lofi-bedroom-warm-night", cat:"Lofi"},
+      {name:"Cyberpunk neon city rain", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1780987355/ChatGPT_Image_Jun_9_2026_12_59_20_AM_xmohbn.png", slug:"cyberpunk-neon-city-rain", cat:"Cyberpunk"},
+      {name:"Forest fog — dawn light", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1780987339/ChatGPT_Image_Jun_9_2026_12_57_19_AM_bbmayz.png", slug:"forest-fog-dawn", cat:"Nature"},
+      {name:"Deep space nebula", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1781134868/lucid-origin_Deep_space_nebula_with_vibrant_purple_and_blue_gas_clouds_thousands_of_stars_dis-0_lafc35.jpg", slug:"deep-space-nebula", cat:"Space"},
+      {name:"Fluid abstract liquid metal", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1781134880/lucid-origin_Fluid_abstract_art_flowing_liquid_metal_colors_gold_silver_and_deep_blue_smooth_-0_ywz1be.jpg", slug:"fluid-abstract-liquid-metal", cat:"Abstract"},
+      {name:"Minimal red dot — cream", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1781365287/lucid-origin_Minimalist_wallpaper_single_red_dot_on_cream_textured_paper_background_soft_shad-0_otflks.jpg", slug:"minimal-red-dot-cream", cat:"Minimal"},
+      {name:"Anime rooftop cherry blossom", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1781134882/lucid-origin_Anime_girl_sitting_on_rooftop_at_night_cherry_blossom_petals_falling_city_lights-0_evuxrl.jpg", slug:"anime-rooftop-cherry-blossom", cat:"Anime"},
+      {name:"Blade runner alley — neon", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1780987313/ChatGPT_Image_Jun_9_2026_01_01_42_AM_bmkhms.png", slug:"blade-runner-alley-neon", cat:"Cyberpunk"},
+      {name:"Saturn rings — golden", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1781365288/lucid-origin_Saturn_rings_close_up_view_from_space_golden_and_beige_tones_stars_in_background-0_sskozb.jpg", slug:"saturn-rings-golden", cat:"Space"},
+      {name:"Bioluminescent jellyfish ocean", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1781365284/lucid-origin_Glowing_bioluminescent_jellyfish_floating_in_dark_deep_ocean_blue_and_purple_glo-0_wven3o.jpg", slug:"bioluminescent-jellyfish-ocean", cat:"Nature"},
+      {name:"Samurai bamboo forest sunset", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1781365290/lucid-origin_Anime_samurai_standing_in_bamboo_forest_at_sunset_golden_light_rays_dramatic_atm-0_plon7u.jpg", slug:"anime-samurai-bamboo-forest", cat:"Anime"},
+      {name:"Minimal circle — black", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1781134870/lucid-origin_Minimalist_desktop_wallpaper_single_thin_geometric_line_forming_a_circle_on_pure-0_wd4gmw.jpg", slug:"minimal-circle-line-black", cat:"Minimal"},
+      {name:"Lofi apartment — city window", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1782335248/ChatGPT_Image_Jun_22_2026_09_30_35_PM_vr4bjc.png", slug:"lofi-apartment-city-window", cat:"Lofi"},
+      {name:"Northern lights — aurora lake", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1782335287/ChatGPT_Image_Jun_22_2026_09_34_50_PM_pfei6g.png", slug:"northern-lights-aurora-lake", cat:"Nature"},
+      {name:"Cyberpunk megacity — aerial", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1782335404/ChatGPT_Image_Jun_22_2026_09_37_16_PM_xvrbtb.png", slug:"cyberpunk-megacity-aerial", cat:"Cyberpunk"},
+      {name:"Milky way — desert night", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1782335378/ChatGPT_Image_Jun_22_2026_09_38_26_PM_xxt7bq.png", slug:"milky-way-desert-night", cat:"Space"},
+      {name:"Japanese village — Mount Fuji", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1782335413/ChatGPT_Image_Jun_22_2026_09_41_01_PM_ki3qj3.png", slug:"japanese-village-mount-fuji", cat:"Anime"},
+      {name:"Tropical sunset beach", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1782600299/ChatGPT_Image_Jun_27_2026_11_34_16_PM_edjw8a.png", slug:"tropical-sunset-beach", cat:"Nature"},
+      {name:"Cyberpunk neon subway station", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1782600296/ChatGPT_Image_Jun_27_2026_11_37_40_PM_1_gq5uyw.png", slug:"cyberpunk-neon-subway", cat:"Cyberpunk"},
+      {name:"Lofi study room — green lamp", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1782600251/ChatGPT_Image_Jun_27_2026_11_35_31_PM_ozexrh.png", slug:"lofi-study-room-green-lamp", cat:"Lofi"},
+      {name:"Black hole — accretion disk", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1782600234/ChatGPT_Image_Jun_27_2026_11_37_16_PM_bkvfm8.png", slug:"black-hole-accretion-disk", cat:"Space"},
+      {name:"Minimal pastel gradient", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1782600141/ChatGPT_Image_Jun_27_2026_11_37_26_PM_xlwqjz.png", slug:"minimal-pastel-gradient", cat:"Minimal"},
+      {name:"Pink aesthetic — roses bouquet", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783424390/lucid-origin_Pink_aesthetic_wallpaper_soft_pink_roses_bouquet_pastel_background_dreamy_femini-0_abnynr.jpg", slug:"pink-aesthetic-roses", cat:"Aesthetic"},
+      {name:"Purple aesthetic bedroom", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783424390/lucid-origin_Purple_aesthetic_bedroom_interior_fairy_lights_lavender_flowers_soft_purple_tone-0_k5vck8.jpg", slug:"purple-aesthetic-bedroom", cat:"Aesthetic"},
+      {name:"Cherry blossom tunnel — Japan", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783424390/lucid-origin_Cherry_blossom_tunnel_path_soft_pink_petals_falling_sunlight_through_branches_sp-0_tlt8nx.jpg", slug:"cherry-blossom-tunnel-japan", cat:"Nature"},
+      {name:"Beige minimal — pampas grass", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783424390/lucid-origin_Beige_minimal_aesthetic_wallpaper_dried_pampas_grass_in_ceramic_vase_warm_neutra-0_suexdn.jpg", slug:"beige-minimal-pampas-grass", cat:"Minimal"},
+      {name:"Cozy reading nook — fairy lights", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783424390/lucid-origin_Cozy_aesthetic_reading_nook_warm_fairy_lights_stack_of_books_cup_of_tea_soft_bla-0_bd1eio.jpg", slug:"cozy-reading-nook-fairy-lights", cat:"Lofi"},
+      {name:"Lofi Girl — Window City Night", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783524664/lucid-origin_Lofi_girl_sitting_by_window_at_night_city_skyline_in_background_warm_desk_lamp_h-0_ehnb9q.jpg", slug:"lofi-girl-window-city-night", cat:"Lofi"},
+      {name:"Lofi Aesthetic Room — Polaroid", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783524664/lucid-origin_Aesthetic_lofi_room_polaroid_photos_on_wall_fairy_lights_vinyl_player_warm_orang-0_qk6eyv.jpg", slug:"lofi-aesthetic-room-polaroid", cat:"Lofi"},
+      {name:"Cyberpunk Neon Highway — Night", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783524665/lucid-origin_Cyberpunk_neon_lit_highway_at_night_motion_blur_car_lights_purple_and_blue_neon_-0_dqo1qf.jpg", slug:"cyberpunk-neon-highway-night", cat:"Cyberpunk"},
+      {name:"Majestic Waterfall — Rainforest", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783524664/lucid-origin_Majestic_waterfall_in_tropical_rainforest_sunlight_breaking_through_mist_lush_gr-0_ey3tbz.jpg", slug:"majestic-waterfall-rainforest", cat:"Nature"},
+      {name:"Red Canyon Desert — Golden Hour", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783524664/lucid-origin_Red_canyon_desert_landscape_at_golden_hour_dramatic_rock_formations_warm_orange_-0_kojcoh.jpg", slug:"red-canyon-desert-golden-hour", cat:"Nature"},
+      {name:"Two Galaxies Colliding", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783524664/lucid-origin_Two_galaxies_colliding_in_deep_space_spiral_arms_of_light_vibrant_purple_blue_an-0_dflel0.jpg", slug:"two-galaxies-colliding-space", cat:"Space"},
+      {name:"Vibrant Abstract — Paint Splash", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783524665/lucid-origin_Vibrant_colorful_abstract_wallpaper_explosive_paint_splash_red_orange_yellow_blu-0_e21rnm.jpg", slug:"vibrant-abstract-paint-splash", cat:"Abstract"},
+      {name:"Dark Minimal — Triangle Black", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783524665/lucid-origin_Dark_minimal_wallpaper_single_white_geometric_triangle_on_pure_black_background_-0_cxofs9.jpg", slug:"dark-minimal-triangle-black", cat:"Minimal"},
+      {name:"Anime Ancient Temple Ruins", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783524665/lucid-origin_Anime_style_ancient_temple_ruins_overgrown_with_nature_moss_covered_stone_steps_-0_v0z5ox.jpg", slug:"anime-ancient-temple-ruins", cat:"Anime"},
+      {name:"Soft Aesthetic — White Flowers", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783524664/lucid-origin_Soft_aesthetic_flatlay_white_flowers_on_marble_surface_golden_jewelry_pastel_pin-0_akwsil.jpg", slug:"soft-aesthetic-white-flowers", cat:"Aesthetic"},
+      {name:"Golden Hour — Sunlight Curtains", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783576416/lucid-origin_Golden_hour_aesthetic_sunlight_streaming_through_curtains_onto_white_linen_bed_d-0_hub29j.jpg", slug:"golden-hour-sunlight-curtains", cat:"Aesthetic"},
+      {name:"Deep Blue Abstract — Ocean Light", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783576416/lucid-origin_Deep_blue_abstract_wallpaper_flowing_ocean_waves_made_of_light_electric_blue_and-0_p1mcxt.jpg", slug:"deep-blue-abstract-ocean-light", cat:"Abstract"},
+      {name:"White Minimal — Gold Line", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783576416/lucid-origin_Pure_white_minimal_wallpaper_single_thin_gold_line_diagonal_across_clean_white_b-0_zhhdvg.jpg", slug:"white-minimal-gold-line", cat:"Minimal"},
+      {name:"Lofi Bedroom — Rain Candlelight", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783576416/lucid-origin_Lofi_bedroom_with_rain_pouring_outside_window_warm_candlelight_on_desk_open_note-0_kxjdrw.jpg", slug:"lofi-bedroom-rain-candlelight", cat:"Lofi"},
+      {name:"Eagle Nebula — Pillars of Creation", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783576416/lucid-origin_Eagle_nebula_pillars_of_creation_towering_gas_columns_deep_space_vivid_orange_br-0_n4pokw.jpg", slug:"eagle-nebula-pillars-creation", cat:"Space"},
       {name:"Dreamy Pink Sunset Sky", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783576416/lucid-origin_Dreamy_pink_sunset_sky_with_soft_clouds_pastel_cotton_candy_tones_gentle_gradien-0_eq0kr4.jpg", slug:"dreamy-pink-sunset-sky", cat:"Aesthetic"},
-      {name:"Japanese Village Mount Fuji", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1782335413/ChatGPT_Image_Jun_22_2026_09_41_01_PM_ki3qj3.png", slug:"japanese-village-mount-fuji", cat:"Anime"},
+      {name:"Autumn Forest Path — Golden", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783576417/lucid-origin_Autumn_forest_path_covered_in_orange_and_red_fallen_leaves_golden_sunlight_throu-0_wgmkpj.jpg", slug:"autumn-forest-path-golden", cat:"Nature"},
+      {name:"Anime Warrior — Bamboo Dawn", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783679049/lucid-origin_Anime_warrior_standing_in_bamboo_forest_at_dawn_sword_drawn_cherry_blossom_petal-0_yop8on.jpg", slug:"anime-warrior-bamboo-dawn", cat:"Anime"},
+      {name:"Vintage Aesthetic — Film Camera", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783679048/gpt-image-2_Vintage_aesthetic_flatlay_old_film_camera_dried_flowers_handwritten_letters_warm-0_m3qvvj.jpg", slug:"vintage-aesthetic-film-camera", cat:"Aesthetic"},
+      {name:"Black White Minimal — Sphere", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783679048/lucid-origin_Black_and_white_minimal_wallpaper_perfect_sphere_casting_soft_shadow_on_clean_wh-0_ujiws1.jpg", slug:"black-white-minimal-sphere", cat:"Minimal"},
+      {name:"Cyberpunk Character — Rooftop", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783679048/lucid-origin_Cyberpunk_character_standing_on_rooftop_overlooking_neon_megacity_at_night_long_-0_thmguo.jpg", slug:"cyberpunk-character-rooftop", cat:"Cyberpunk"},
+      {name:"Turquoise Ocean — Aerial Coral", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783679048/lucid-origin_Turquoise_tropical_ocean_from_above_crystal_clear_water_coral_reef_visible_below-0_y25ptq.jpg", slug:"turquoise-ocean-aerial-coral", cat:"Nature"},
+      {name:"Lavender Field — Provence France", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783679048/lucid-origin_Endless_lavender_field_in_Provence_France_purple_rows_stretching_to_horizon_old_-0_oh1na1.jpg", slug:"lavender-field-provence-france", cat:"Nature"},
+      {name:"Mars Surface — Sunset Moons", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783679048/lucid-origin_Mars_surface_at_sunset_red_rocky_landscape_two_moons_visible_in_purple_sky_NASA_-0_vrmz2a.jpg", slug:"mars-surface-sunset-moons", cat:"Space"},
+      {name:"Lofi Japan — Ramen Street Night", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783679048/lucid-origin_Lofi_anime_street_in_Japan_at_night_small_ramen_shop_with_warm_orange_glow_lante-0_kkmdwm.jpg", slug:"lofi-japan-ramen-street-night", cat:"Lofi"},
+      {name:"Neon Abstract — Geometric Shapes", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783679047/lucid-origin_Neon_abstract_wallpaper_glowing_geometric_shapes_pink_purple_and_cyan_light_trai-0_sqcqtl.jpg", slug:"neon-abstract-geometric-shapes", cat:"Abstract"},
+      {name:"Coffee Aesthetic — Latte Morning", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783679048/lucid-origin_Coffee_aesthetic_wallpaper_latte_art_in_white_ceramic_cup_croissant_beside_it_mo-0_oqfity.jpg", slug:"coffee-aesthetic-latte-morning", cat:"Aesthetic"},
+      {name:"Aesthetic Book Nook — Autumn", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978785/lucid-origin_Aesthetic_book_nook_stacked_old_books_reading_glasses_cup_of_tea_autumn_leaves_w-0_avknad.jpg", slug:"aesthetic-book-nook-autumn", cat:"Aesthetic"},
+      {name:"Volcano Erupting — Lava Ocean", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978785/lucid-origin_Active_volcano_erupting_at_night_lava_flowing_into_ocean_dramatic_red_and_orange-0_czz0vb.jpg", slug:"volcano-erupting-lava-ocean", cat:"Nature"},
+      {name:"Cyberpunk Alley — Rain Steam", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978785/gpt-image-2_Cyberpunk_back_alley_in_heavy_rain_steam_vents_neon_signs_in_Chinese_lonely_figu-0_duwikn.jpg", slug:"cyberpunk-alley-rain-steam", cat:"Cyberpunk"},
+      {name:"Colorful Smoke Abstract", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Beautiful_colorful_smoke_abstract_wallpaper_purple_orange_and_gold_smoke_swirls_-0_kwuyrw.jpg", slug:"colorful-smoke-abstract-purple", cat:"Abstract"},
+      {name:"Iceland Waterfall — Rainbow Moss", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Iceland_landscape_massive_waterfall_with_rainbow_green_mossy_rocks_dramatic_clou-0_njzlm3.jpg", slug:"iceland-waterfall-rainbow-moss", cat:"Nature"},
+      {name:"Anime Winter Cabin — Snow", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Anime_winter_scene_small_wooden_cabin_in_snowy_forest_warm_light_glowing_from_wi-0_jekcr8.jpg", slug:"anime-winter-cabin-snow", cat:"Anime"},
+      {name:"Lofi Girl — Balcony Neon City", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Lofi_girl_on_balcony_at_night_neon_city_below_headphones_warm_hoodie_stars_visib-0_uajm32.jpg", slug:"lofi-girl-balcony-neon-city", cat:"Lofi"},
+      {name:"Rainy Window — City Lights", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Rainy_window_aesthetic_rain_drops_on_glass_blurry_city_lights_outside_warm_candl-0_iyv4tv.jpg", slug:"rainy-window-city-lights-candle", cat:"Aesthetic"},
+      {name:"Minimal Sunset — Half Circle", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783978784/lucid-origin_Minimal_sunset_wallpaper_perfect_half_circle_sun_on_horizon_flat_ocean_gradient_-0_gfffdq.jpg", slug:"minimal-sunset-half-circle-ocean", cat:"Minimal"},
+      {name:"Anime Warrior — Cherry Blossom", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1783679049/lucid-origin_Anime_warrior_standing_in_bamboo_forest_at_dawn_sword_drawn_cherry_blossom_petal-0_yop8on.jpg", slug:"anime-warrior-cherry-blossom", cat:"Anime"},
+      {name:"Futuristic Tokyo Megacity — Neon Rain", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382743/gpt-image-2_A_futuristic_Tokyo_megacity_at_midnight_during_heavy_rain_towering_holographic_b-0_bxefy7.jpg", slug:"futuristic-tokyo-megacity-rain", cat:"Cyberpunk"},
+      {name:"Alien Ocean — Beneath Twin Moons", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382743/lucid-origin_An_enormous_alien_ocean_stretching_beyond_the_horizon_beneath_two_giant_moons_an-0_e1xosc.jpg", slug:"alien-ocean-twin-moons", cat:"Space"},
+      {name:"Space Observatory — Black Hole", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382743/lucid-origin_A_futuristic_space_observatory_orbiting_dangerously_close_to_a_colossal_black_ho-0_gurtxn.jpg", slug:"space-observatory-black-hole", cat:"Space"},
+      {name:"Enchanted Forest — Glowing Mushrooms", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382743/lucid-origin_An_enchanted_ancient_forest_at_dawn_filled_with_glowing_blue_mushrooms_towering_-0_tywgzv.jpg", slug:"enchanted-forest-glowing-mushrooms", cat:"Nature"},
+      {name:"Nordic Mountains — Epic Sunrise", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382742/lucid-origin_Epic_Nordic_mountain_landscape_at_sunrise_enormous_snow-covered_cliffs_surroundi-0_i2j3ox.jpg", slug:"nordic-mountains-epic-sunrise", cat:"Nature"},
+      {name:"Lone Samurai — Cherry Blossom Kyoto", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382742/lucid-origin_Lone_samurai_standing_beneath_a_giant_cherry_blossom_tree_overlooking_ancient_Ky-0_qcipu3.jpg", slug:"samurai-cherry-blossom-kyoto", cat:"Anime"},
+      {name:"Matte Black Lamborghini — Neon Garage", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382742/lucid-origin_Ultra_realistic_matte_black_Lamborghini_parked_inside_an_endless_futuristic_neon-0_x2bibm.jpg", slug:"lamborghini-neon-garage", cat:"Cyberpunk"},
+      {name:"Floating Islands — Endless Waterfalls", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382742/lucid-origin_Gigantic_floating_islands_suspended_above_endless_clouds_massive_waterfalls_flow-0_iuwvux.jpg", slug:"floating-islands-waterfalls", cat:"Nature"},
+      {name:"Luxury Lofi Workspace — City Night", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382742/lucid-origin_Modern_luxury_lofi_workspace_overlooking_a_futuristic_city_at_night_massive_floo-0_tk16up.jpg", slug:"luxury-lofi-workspace-city", cat:"Lofi"},
+      {name:"Minimal Luxury — Obsidian Black", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1784382742/lucid-origin_Minimal_luxury_black_wallpaper_featuring_smooth_flowing_matte_obsidian_curves_wi-0_c7lywr.jpg", slug:"minimal-luxury-obsidian-black", cat:"Minimal"},
+      {name:"Enchanted Forest — Glowing Mushrooms II", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1784090355/lucid-origin_An_enchanted_ancient_forest_at_dawn_filled_with_glowing_blue_mushrooms_towering_-0_o0hvm4.jpg", slug:"enchanted-forest-glowing-mushrooms-ii", cat:"Nature"},
+      {name:"Space Observatory — Black Hole II", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1784090355/lucid-origin_A_futuristic_space_observatory_orbiting_dangerously_close_to_a_colossal_black_ho-0_pbxamp.jpg", slug:"space-observatory-black-hole-ii", cat:"Space"},
+      {name:"Ancient Tree — Golden Wheat Field", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1784800623/lucid-origin_A_single_ancient_tree_standing_alone_in_golden_wheat_fields_under_a_dramatic_sto-0_jrfvh1.jpg", slug:"ancient-tree-golden-wheat-field", cat:"Nature"},
+      {name:"Sand Dunes — Abstract Waves at Sunset", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1784800622/lucid-origin_Sand_dunes_shaped_into_smooth_abstract_waves_under_warm_sunset_light_aerial_top--0_v704yv.jpg", slug:"sand-dunes-abstract-waves-sunset", cat:"Abstract"},
+      {name:"Anime Girl Reading — Cherry Blossom Field", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1784800623/lucid-origin_Anime_girl_reading_under_a_cherry_blossom_tree_in_a_quiet_countryside_field_soft-0_peeuhv.jpg", slug:"anime-girl-reading-cherry-blossom", cat:"Anime"},
+      {name:"Anime Mecha — Abandoned City at Dawn", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1784800622/lucid-origin_Anime-style_mecha_standing_in_a_misty_abandoned_city_at_dawn_moody_cinematic_lig-0_yzwnbn.jpg", slug:"anime-mecha-abandoned-city-dawn", cat:"Anime"},
+      {name:"Molten Copper — Teal Liquid Marbling", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1784800622/lucid-origin_Molten_copper_and_teal_liquid_marbling_swirling_together_glossy_high-contrast_st-0_rgqadj.jpg", slug:"molten-copper-teal-marbling", cat:"Abstract"},
+      {name:"Deep Violet Ink — Water Diffusion", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1784800622/lucid-origin_Deep_violet_ink_dropped_into_clear_water_mid-diffusion_captured_in_ultra-slow-mo-0_sdoujr.jpg", slug:"deep-violet-ink-water-diffusion", cat:"Abstract"},
+      {name:"Colony Ship — Passing Gas Giant", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1784800622/lucid-origin_A_colony_ship_drifting_past_a_massive_gas_giant_with_visible_storm_bands_distant-0_bh7vxo.jpg", slug:"colony-ship-gas-giant", cat:"Space"},
+      {name:"Frosted Glass Panels — Pastel Light", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1784800622/lucid-origin_Frosted_glass_panels_layered_at_angles_catching_soft_pastel_light_minimal_shadow-0_q9l3tq.jpg", slug:"frosted-glass-panels-pastel", cat:"Minimal"},
+      {name:"Cyberpunk Underground Night Market", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1784800622/lucid-origin_Underground_cyberpunk_night_market_packed_with_holographic_food_stalls_and_neon_-0_u2vsal.jpg", slug:"cyberpunk-underground-night-market", cat:"Cyberpunk"},
+      {name:"Anime Umbrella — Rainy Ramen Shop", img:"https://res.cloudinary.com/dnfzr2kno/image/upload/v1784800622/lucid-origin_Two_anime_characters_sharing_an_umbrella_in_the_rain_outside_a_ramen_shop_warm_n-0_uccvhi.jpg", slug:"anime-umbrella-rain-ramen-shop", cat:"Anime"}
     ];
 
     // ── BANNER ──────────────────────────────
@@ -1438,32 +1609,184 @@
     function closeModal(id) { document.getElementById(id).classList.remove('open'); }
     document.addEventListener('keydown', e => { if(e.key==='Escape') { closeModal('bookModal'); closeModal('randomModal'); closeModal('helpModal'); }});
 
-    // ── DOWNLOAD ALL ─────────────────────────
-    function downloadAll() {
-      allWallpapers.forEach((w, i) => {
-        setTimeout(() => {
-          const a = document.createElement('a');
-          a.href = w.img;
-          a.download = w.slug + '.jpg';
-          a.target = '_blank';
-          a.click();
-        }, i * 800);
-      });
-      alert('Starting downloads for ' + allWallpapers.length + ' wallpapers! Your browser may ask for permission — please allow it.');
+    // ── SHARED: bundle any list of {name, img, slug} into one .zip download ──
+    async function zipAndDownload(items, zipName, btnEl) {
+      if (!window.JSZip) {
+        alert("Download tool is still loading — please try again in a second.");
+        return;
+      }
+      const originalLabel = btnEl ? btnEl.innerHTML : null;
+      if (btnEl) btnEl.innerHTML = `Preparing 0/${items.length}…`;
+
+      const zip = new JSZip();
+      let done = 0, failed = 0;
+
+      await Promise.all(items.map(async (w) => {
+        try {
+          const res = await fetch(w.img, { mode: 'cors' });
+          if (!res.ok) throw new Error('fetch failed');
+          const blob = await res.blob();
+          const ext = (w.img.split('.').pop() || 'jpg').split('?')[0].slice(0, 4);
+          zip.file(`${w.slug || w.name}.${ext}`, blob);
+        } catch (err) {
+          failed++;
+        } finally {
+          done++;
+          if (btnEl) btnEl.innerHTML = `Preparing ${done}/${items.length}…`;
+        }
+      }));
+
+      if (done - failed === 0) {
+        alert("Couldn't prepare any images for download right now. Please try again shortly.");
+        if (btnEl) btnEl.innerHTML = originalLabel;
+        return;
+      }
+
+      if (btnEl) btnEl.innerHTML = 'Zipping…';
+      const content = await zip.generateAsync({ type: 'blob' });
+      const url = URL.createObjectURL(content);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = zipName;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+
+      if (btnEl) btnEl.innerHTML = originalLabel;
+      if (failed > 0) {
+        alert(`Done! ${done - failed} of ${items.length} images were included — ${failed} couldn't be fetched and were skipped.`);
+      }
     }
 
-    // ── BOOK MODAL ───────────────────────────
-    function openBookModal() { openModal('bookModal'); }
+    // ── DOWNLOAD ALL (now: one real .zip file to your device, not many tabs) ──
+    function downloadAll() {
+      const btn = document.querySelector('.wr-action-btn--dl');
+      zipAndDownload(allWallpapers, 'wallrank-wallpapers.zip', btn);
+    }
 
-    // ── RANDOM PICK ──────────────────────────
+    // ── BOOK MODAL: real working 3D flip-book ──
+    let bookIndex = 0;
+    let bookFlipping = false;
+
+    function bookRender() {
+      const w = allWallpapers[bookIndex];
+      document.getElementById('bookPageImg').src = w.img;
+      document.getElementById('bookPageImg').alt = w.name;
+      document.getElementById('bookPageCaption').textContent = `${w.name} — ${w.cat}`;
+      document.getElementById('bookCounter').textContent = `${bookIndex + 1} / ${allWallpapers.length}`;
+      document.getElementById('bookPrevBtn').disabled = bookIndex === 0;
+      document.getElementById('bookNextBtn').disabled = bookIndex === allWallpapers.length - 1;
+    }
+
+    function bookFlip(direction) {
+      if (bookFlipping) return;
+      const nextIndex = bookIndex + direction;
+      if (nextIndex < 0 || nextIndex >= allWallpapers.length) return;
+
+      bookFlipping = true;
+      const page = document.getElementById('bookPage');
+      page.classList.add(direction > 0 ? 'flip-out-next' : 'flip-out-prev');
+
+      setTimeout(() => {
+        bookIndex = nextIndex;
+        bookRender();
+        page.classList.remove('flip-out-next', 'flip-out-prev');
+        bookFlipping = false;
+      }, 280);
+    }
+
+    function openBookModal() {
+      bookIndex = 0;
+      bookRender();
+      openModal('bookModal');
+    }
+
+    function bookDownloadAll() {
+      const btn = document.getElementById('bookDownloadAllBtn');
+      zipAndDownload(allWallpapers, 'wallrank-wallpapers.zip', btn);
+    }
+
+    // ── SELECT MODE ──────────────────────────
+    let selectModeActive = false;
+    const selectedSlugs = new Set();
+
+    function toggleSelectMode() {
+      selectModeActive = !selectModeActive;
+      document.body.classList.toggle('select-mode', selectModeActive);
+      document.getElementById('selectModeBtn').classList.toggle('active', selectModeActive);
+      if (!selectModeActive) clearSelection();
+    }
+
+    function updateSelectBar() {
+      const bar = document.getElementById('selectBar');
+      const count = selectedSlugs.size;
+      document.getElementById('selectCount').textContent = count + (count === 1 ? ' selected' : ' selected');
+      bar.classList.toggle('open', selectModeActive && count > 0);
+    }
+
+    function clearSelection() {
+      selectedSlugs.clear();
+      document.querySelectorAll('.wcard.selected').forEach(c => c.classList.remove('selected'));
+      updateSelectBar();
+    }
+
+    function downloadSelected() {
+      const items = allWallpapers.filter(w => selectedSlugs.has(w.slug));
+      if (!items.length) return;
+      const btn = document.getElementById('selectDownloadBtn');
+      zipAndDownload(items, 'wallrank-selection.zip', btn);
+    }
+
+    // Intercept card clicks during select mode, BEFORE the card's own
+    // onclick (which navigates to the wallpaper page) can fire.
+    document.getElementById('wallpaperGrid').addEventListener('click', function (e) {
+      if (!selectModeActive) return;
+      const card = e.target.closest('.wcard');
+      if (!card) return;
+      e.stopPropagation();
+      e.preventDefault();
+
+      const cards = Array.from(document.querySelectorAll('#wallpaperGrid .wcard'));
+      const idx = cards.indexOf(card);
+      const w = allWallpapers[idx];
+      if (!w) return;
+
+      if (selectedSlugs.has(w.slug)) {
+        selectedSlugs.delete(w.slug);
+        card.classList.remove('selected');
+      } else {
+        selectedSlugs.add(w.slug);
+        card.classList.add('selected');
+      }
+      updateSelectBar();
+    }, true);
+
+
+
+    // ── RANDOM PICK (no repeats until every wallpaper has been shown) ──
+    let randomSeenSlugs = new Set();
     function randomPick() {
-      const w = allWallpapers[Math.floor(Math.random() * allWallpapers.length)];
+      let pool = allWallpapers.filter(w => !randomSeenSlugs.has(w.slug));
+      if (pool.length === 0) {
+        randomSeenSlugs.clear();
+        pool = allWallpapers;
+      }
+      const w = pool[Math.floor(Math.random() * pool.length)];
+      randomSeenSlugs.add(w.slug);
+
       document.getElementById('randomImg').src = w.img;
       document.getElementById('randomImg').alt = w.name;
       document.getElementById('randomName').textContent = w.name;
       document.getElementById('randomCat').textContent = w.cat + ' · 4K · Free';
       document.getElementById('randomDownload').onclick = () => {
-        window.open(w.img, '_blank');
+        const a = document.createElement('a');
+        a.href = w.img;
+        a.download = w.slug + '.jpg';
+        a.target = '_blank';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
       };
       openModal('randomModal');
     }
