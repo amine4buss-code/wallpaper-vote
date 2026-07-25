@@ -112,6 +112,21 @@ document.addEventListener('DOMContentLoaded', function () {
     { name: 'Sage Botanical — Pressed Leaves', cat: 'aesthetic', url: base + 'wallpaper/sage-botanical-pressed-leaves.html' },
     { name: 'Rainy Library Window', cat: 'lofi', url: base + 'wallpaper/rainy-library-window.html' },
     { name: 'Chibi Cocoa — Frosty Window', cat: 'anime', url: base + 'wallpaper/chibi-cocoa-frosty-window.html' },
+    { name: 'Anime Rooftop — Sunset Wind', cat: 'anime', url: base + 'wallpaper/anime-rooftop-sunset-wind.html' },
+    { name: 'Rainy Train Window — City Lights', cat: 'lofi', url: base + 'wallpaper/rainy-train-window-city-lights.html' },
+    { name: 'Empty Elevated Train Platform — Night', cat: 'cyberpunk', url: base + 'wallpaper/empty-elevated-train-platform-night.html' },
+    { name: 'Terracotta Ripples — Macro Texture', cat: 'abstract', url: base + 'wallpaper/terracotta-ripples-macro.html' },
+    { name: 'Matcha Latte — Marble Table', cat: 'aesthetic', url: base + 'wallpaper/matcha-latte-marble-table.html' },
+    { name: 'Emerald Liquid Glass — Folds', cat: 'abstract', url: base + 'wallpaper/emerald-liquid-glass-folds.html' },
+    { name: 'Horoscope Constellation — Navy Sky', cat: 'space', url: base + 'wallpaper/horoscope-constellation-navy.html' },
+    { name: 'Chrome Liquid Metal — Droplets', cat: 'abstract', url: base + 'wallpaper/chrome-liquid-metal-droplets.html' },
+    { name: 'Black Feather — Pale Stone', cat: 'minimal', url: base + 'wallpaper/black-feather-pale-stone.html' },
+    { name: 'Vintage Polaroids — Dried Flowers', cat: 'aesthetic', url: base + 'wallpaper/vintage-polaroids-dried-flowers.html' },
+    { name: 'Liquid Glass — Frosted Ribbons', cat: 'abstract', url: base + 'wallpaper/liquid-glass-frosted-ribbons.html' },
+    { name: 'Vending Machine — Rain Alley', cat: 'cyberpunk', url: base + 'wallpaper/vending-machine-rain-alley.html' },
+    { name: 'Cream & Taupe — Color-Blocked Shapes', cat: 'minimal', url: base + 'wallpaper/cream-taupe-color-blocked-shapes.html' },
+    { name: 'White Line — Sage Green', cat: 'minimal', url: base + 'wallpaper/white-line-sage-green.html' },
+    { name: 'Blush Pink Circles — Minimal', cat: 'minimal', url: base + 'wallpaper/blush-pink-circles-minimal.html' },
   ];
 
   /* ================================================
