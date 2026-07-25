@@ -97,6 +97,21 @@ document.addEventListener('DOMContentLoaded', function () {
     { name: 'Frosted Glass Panels — Pastel Light', cat: 'minimal', url: base + 'wallpaper/frosted-glass-panels-pastel.html' },
     { name: 'Cyberpunk Underground Night Market', cat: 'cyberpunk', url: base + 'wallpaper/cyberpunk-underground-night-market.html' },
     { name: 'Anime Umbrella — Rainy Ramen Shop', cat: 'anime', url: base + 'wallpaper/anime-umbrella-rain-ramen-shop.html' },
+    { name: 'Single Glowing Planet', cat: 'space', url: base + 'wallpaper/single-glowing-planet-minimal-space.html' },
+    { name: 'Pastel Nebula — Minimal Stars', cat: 'space', url: base + 'wallpaper/pastel-nebula-minimal-stars.html' },
+    { name: 'Candlelit Antique Study Desk', cat: 'lofi', url: base + 'wallpaper/candlelit-antique-study-desk.html' },
+    { name: 'Lone Figure — Foggy Bus Stop', cat: 'cyberpunk', url: base + 'wallpaper/lone-figure-foggy-bus-stop.html' },
+    { name: 'Quiet City Street — 3AM Rain', cat: 'cyberpunk', url: base + 'wallpaper/quiet-city-street-3am-rain.html' },
+    { name: 'Gold Gradient — Quiet Fade', cat: 'abstract', url: base + 'wallpaper/gold-gradient-quiet-fade.html' },
+    { name: 'Kawaii Cat — Crescent Moon', cat: 'anime', url: base + 'wallpaper/kawaii-cat-crescent-moon.html' },
+    { name: 'Burgundy Silk Drapery', cat: 'aesthetic', url: base + 'wallpaper/burgundy-silk-drapery.html' },
+    { name: 'Turquoise Waves — Depth Effect', cat: 'nature', url: base + 'wallpaper/turquoise-waves-depth-effect.html' },
+    { name: 'Golden Autumn Reflections', cat: 'nature', url: base + 'wallpaper/golden-autumn-reflections.html' },
+    { name: 'Misty Pine Forest — Deer Silhouette', cat: 'nature', url: base + 'wallpaper/misty-pine-forest-deer-silhouette.html' },
+    { name: 'Midnight Blue Silk — Gold Thread', cat: 'abstract', url: base + 'wallpaper/midnight-blue-silk-gold-thread.html' },
+    { name: 'Sage Botanical — Pressed Leaves', cat: 'aesthetic', url: base + 'wallpaper/sage-botanical-pressed-leaves.html' },
+    { name: 'Rainy Library Window', cat: 'lofi', url: base + 'wallpaper/rainy-library-window.html' },
+    { name: 'Chibi Cocoa — Frosty Window', cat: 'anime', url: base + 'wallpaper/chibi-cocoa-frosty-window.html' },
   ];
 
   /* ================================================
