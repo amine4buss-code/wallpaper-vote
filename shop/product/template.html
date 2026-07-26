@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="__META_DESC__" />
+  <meta property="og:title" content="__NAME__ — WallRank Shop" />
+  <meta property="og:description" content="__META_DESC__" />
+  <meta property="og:type" content="product" />
+  <title>__NAME__ — WallRank Shop</title>
+  <link rel="stylesheet" href="../../CSS/main.css" />
+  <!--
+    DEV TEMPLATE — NOT A REAL PRODUCT PAGE.
+    Copy this file to add a new product, then:
+      1) Create the product on Gumroad first (or your chosen processor)
+         and get its real checkout URL
+      2) Replace every __PLACEHOLDER__ below with real content
+      3) Set __BUY_URL__ to the real Gumroad product link
+      4) Set the canonical URL to the real final filename
+      5) Remove the noindex meta tag
+      6) Add a matching card to shop/index.html's product grid
+    Until filled in, this stays out of Google's index.
+  -->
+  <meta name="robots" content="noindex, nofollow" />
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-19RP0D764T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-19RP0D764T');
+</script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="../../index.html" class="navbar__logo">Wall<span>Rank</span></a>
+    <div class="navbar__links">
+      <a href="../../index.html">Wallpapers</a>
+      <a href="../../index.html#categories">Categories</a>
+      <a href="../../hairstyles/index.html">Hairstyles</a>
+      <a href="../../social-backgrounds/index.html">Backgrounds</a>
+      <a href="../../characters/index.html">Characters</a>
+      <a href="../index.html" class="active">Shop</a>
+      <a href="../../about.html">About</a>
+    </div>
+    <div class="navbar__right">
+      <div class="navbar__search" id="searchToggle">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Search...
+      </div>
+    </div>
+  </nav>
+
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-overlay__box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="searchInput" placeholder="Search..." autocomplete="off" />
+      <button id="searchClose">✕</button>
+    </div>
+  </div>
+
+  <div class="product-page">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb__sep">›</span>
+      <a href="../index.html">Shop</a>
+      <span class="breadcrumb__sep">›</span>
+      <span class="breadcrumb__current">__NAME__</span>
+    </div>
+
+    <div class="product-page__grid">
+      <div class="product-page__image">
+        <img src="__IMG_SRC__" alt="__NAME__" />
+      </div>
+      <div class="product-page__info">
+        <h1 class="product-page__title">__NAME__</h1>
+        <p class="product-page__price">__PRICE__</p>
+        <p class="product-page__desc">__DESCRIPTION__</p>
+        <ul class="product-page__features">
+          __FEATURES__
+        </ul>
+        <a href="__BUY_URL__" target="_blank" rel="noopener noreferrer" class="btn btn--primary product-page__buy">
+          Buy now — instant download
+        </a>
+        <p class="product-page__note">Secure checkout via Gumroad. Instant digital delivery — no account needed.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span class="footer__copy">© 2026 WallRank — Wallpapers, hairstyles &amp; backgrounds</span>
+    <div class="footer__links">
+      <a href="../../about.html">About</a>
+      <a href="../../privacy.html">Privacy</a>
+      <a href="../../terms.html">Terms</a>
+      <a href="../../contact.html">Contact</a>
+    </div>
+  </footer>
+
+  <style>
+    .search-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;align-items:flex-start;justify-content:center;padding-top:80px;}
+    .search-overlay.open{display:flex;}
+    .search-overlay__box{background:#fff;border-radius:12px;display:flex;align-items:center;gap:12px;padding:14px 20px;width:100%;max-width:560px;box-shadow:0 20px 60px rgba(0,0,0,0.2);}
+    .search-overlay__box svg{width:18px;height:18px;stroke:#aaa;flex-shrink:0;}
+    .search-overlay__box input{flex:1;border:none;outline:none;font-size:16px;font-family:var(--font-main);color:#1a1a1a;}
+    .search-overlay__box button{font-size:16px;color:#aaa;cursor:pointer;background:none;border:none;}
+
+    .product-page { max-width: 1000px; margin: 0 auto; padding: 32px 24px 64px; }
+    .product-page__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 24px; }
+    .product-page__image img { width: 100%; border-radius: var(--radius-lg); border: 0.5px solid var(--border); }
+    .product-page__title { font-family: var(--font-display); font-size: 30px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; letter-spacing: -0.4px; }
+    .product-page__price { font-family: var(--font-utility); font-size: 22px; font-weight: 700; color: var(--volt); margin-bottom: 16px; }
+    .product-page__desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 18px; }
+    .product-page__features { padding-left: 20px; margin-bottom: 24px; }
+    .product-page__features li { font-size: 13.5px; color: var(--text-secondary); line-height: 1.8; }
+    .product-page__buy { width: 100%; justify-content: center; padding: 14px; font-size: 14px; margin-bottom: 10px; }
+    .product-page__note { font-size: 12px; color: var(--text-muted); text-align: center; }
+    @media(max-width:720px) { .product-page__grid { grid-template-columns: 1fr; } }
+  </style>
+
+  <script>
+    const searchToggle = document.getElementById('searchToggle');
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchClose = document.getElementById('searchClose');
+    const searchInput = document.getElementById('searchInput');
+    if (searchToggle) searchToggle.addEventListener('click', function () {
+      searchOverlay.classList.add('open');
+      setTimeout(() => searchInput && searchInput.focus(), 100);
+    });
+    if (searchClose) searchClose.addEventListener('click', function () {
+      searchOverlay.classList.remove('open');
+      if (searchInput) searchInput.value = '';
+    });
+    if (searchOverlay) searchOverlay.addEventListener('click', function (e) {
+      if (e.target === searchOverlay) searchOverlay.classList.remove('open');
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && searchOverlay) searchOverlay.classList.remove('open');
+    });
+  </script>
+</body>
+</html>
