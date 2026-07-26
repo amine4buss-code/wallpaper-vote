@@ -403,6 +403,21 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  /* ================================================
+     AUTO CATEGORY COUNTS
+     Replaces old hardcoded fake numbers on the
+     "Browse by category" cards (e.g. "1,240 wallpapers"
+     when the real count was under 20) with real counts
+     computed from allWallpapers.
+     ================================================ */
+  document.querySelectorAll('.cat-card[data-cat]').forEach(function (card) {
+    var cat = card.getAttribute('data-cat');
+    var countEl = card.querySelector('[data-cat-count]');
+    if (!countEl || typeof allWallpapers === 'undefined') return;
+    var n = allWallpapers.filter(function (w) { return w.cat && w.cat.toLowerCase() === cat; }).length;
+    countEl.textContent = n + (n === 1 ? ' wallpaper' : ' wallpapers');
+  });
+
 });
 
 /* ================================================
