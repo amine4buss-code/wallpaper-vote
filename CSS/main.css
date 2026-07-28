@@ -161,6 +161,79 @@ button {
   background: var(--gradient-brand);
 }
 
+/* "More" dropdown for smaller/newer sections */
+.navbar__dropdown {
+  position: relative;
+}
+
+.navbar__dropdown-trigger {
+  font-family: var(--font-utility);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color var(--transition), background var(--transition);
+}
+
+.navbar__dropdown-trigger:hover,
+.navbar__dropdown.open .navbar__dropdown-trigger {
+  color: var(--text-primary);
+  background: var(--bg);
+}
+
+.navbar__dropdown-trigger svg {
+  width: 12px;
+  height: 12px;
+  transition: transform 0.18s ease;
+}
+
+.navbar__dropdown.open .navbar__dropdown-trigger svg {
+  transform: rotate(180deg);
+}
+
+.navbar__dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 190px;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: 6px;
+  z-index: 150;
+}
+
+.navbar__dropdown.open .navbar__dropdown-menu {
+  display: block;
+}
+
+.navbar__dropdown-menu a {
+  display: block;
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+}
+
+.navbar__dropdown-menu a:hover {
+  background: var(--accent-bg);
+  color: var(--volt);
+}
+
 .navbar__right {
   display: flex;
   align-items: center;

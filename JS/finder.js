@@ -313,4 +313,24 @@
     if (grid) applyFilter(grid, values);
   });
 
+  /* ---------- "More" nav dropdown: click to toggle, close on outside click ---------- */
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.navbar__dropdown').forEach(function (dropdown) {
+      const trigger = dropdown.querySelector('.navbar__dropdown-trigger');
+      if (!trigger) return;
+      trigger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const wasOpen = dropdown.classList.contains('open');
+        document.querySelectorAll('.navbar__dropdown.open').forEach(d => d.classList.remove('open'));
+        if (!wasOpen) dropdown.classList.add('open');
+      });
+    });
+    document.addEventListener('click', function () {
+      document.querySelectorAll('.navbar__dropdown.open').forEach(d => d.classList.remove('open'));
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') document.querySelectorAll('.navbar__dropdown.open').forEach(d => d.classList.remove('open'));
+    });
+  });
+
 })();

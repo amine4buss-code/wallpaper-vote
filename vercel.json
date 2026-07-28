@@ -56,6 +56,11 @@
       "permanent": true
     },
     {
+      "source": "/character",
+      "destination": "/pages/character.html",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {
