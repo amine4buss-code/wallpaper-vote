@@ -170,6 +170,21 @@
         grid.style.display = hasCards ? '' : 'none';
       }
       updateCount();
+
+      // ── DROPDOWN TOGGLE FIX ──
+      document.querySelectorAll('.navbar__dropdown-trigger').forEach(trigger => {
+        trigger.addEventListener('click', function (e) {
+          e.stopPropagation();
+          const parent = this.closest('.navbar__dropdown');
+          parent.classList.toggle('open');
+        });
+      });
+
+      document.addEventListener('click', function () {
+        document.querySelectorAll('.navbar__dropdown.open').forEach(d => {
+          d.classList.remove('open');
+        });
+      });
     });
   </script>
 </body>
