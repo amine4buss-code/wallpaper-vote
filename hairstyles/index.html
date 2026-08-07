@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Browse in-demand women's hairstyles on WallRank — filter by straight, wavy, curly or coily, with color, length and styling details for each look." />
+  <meta name="description" content="Browse in-demand women's hairstyles on WallRank — filter by straight, wavy, length, color, and more." />
   <title>Hairstyles — In-Demand Looks | WallRank</title>
   <link rel="stylesheet" href="../CSS/main.css" />
 <!-- Google Analytics -->
@@ -48,7 +48,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         Search hairstyles...
       </div>
-      <a href="mailto:kabanijames9@gmail.com?subject=Hairstyle%20Submission&body=Hairstyle%20name%3A%0AImage%20link%3A%0AType%20(straight%2Fwavy%2Fcurly%2Fcoily)%3A%0AColor%3A%0ALength%3A%0A" class="btn btn--primary">Submit</a>
+      <a href="mailto:kabanijames9@gmail.com?subject=Hairstyle%20Submission&body=Hairstyle%20name%3A%0AImage%20link%3A%0AType%20(straight%2Fwavy)%3A%0AColor%3A%0ALength%3A%0A" class="btn btn--primary">Submit</a>
     </div>
   </nav>
 
@@ -63,128 +63,167 @@
   <div class="hs-hero">
     <div class="hs-hero__tag">New section</div>
     <h1 class="hs-hero__title">Hairstyles</h1>
-    <p class="hs-hero__sub">In-demand women's hairstyles, organized by type — with color, length and styling details for each look.</p>
+    <p class="hs-hero__sub">In-demand women's hairstyles — filter by type, length, or color to find your next look.</p>
   </div>
 
+  <!-- ===== FILTER BAR ===== -->
   <div class="filter-bar">
     <span class="filter-bar__label" id="hsCount">10 hairstyles</span>
     <div class="filter-bar__cats" id="hsFilterBar">
-      <button class="filter-cat active" data-type="all">All</button>
-      <button class="filter-cat" data-type="straight">Straight</button>
-      <button class="filter-cat" data-type="wavy">Wavy</button>
-      <button class="filter-cat" data-type="curly">Curly</button>
-      <button class="filter-cat" data-type="coily">Coily</button>
+      <!-- Type filters -->
+      <button class="filter-cat active" data-filter="type" data-value="all">All</button>
+      <button class="filter-cat" data-filter="type" data-value="straight">Straight</button>
+      <button class="filter-cat" data-filter="type" data-value="wavy">Wavy</button>
+
+      <!-- Divider -->
+      <span class="filter-divider">|</span>
+
+      <!-- Length filters -->
+      <button class="filter-cat" data-filter="length" data-value="all">All Lengths</button>
+      <button class="filter-cat" data-filter="length" data-value="short">Short</button>
+      <button class="filter-cat" data-filter="length" data-value="medium">Medium</button>
+      <button class="filter-cat" data-filter="length" data-value="long">Long</button>
+
+      <!-- Divider -->
+      <span class="filter-divider">|</span>
+
+      <!-- Color filters -->
+      <button class="filter-cat" data-filter="color" data-value="all">All Colors</button>
+      <button class="filter-cat" data-filter="color" data-value="brunette">Brunette</button>
+      <button class="filter-cat" data-filter="color" data-value="black">Black</button>
+      <button class="filter-cat" data-filter="color" data-value="balayage">Balayage</button>
     </div>
   </div>
 
+  <!-- ===== GRID ===== -->
   <section class="section section--white">
     <div class="w-grid" id="hairstyleGrid">
-      <div class="wcard" data-type="wavy" onclick="location.href='style/u-cut.html'">
+      <!-- U-Cut Layers -->
+      <div class="wcard" data-type="wavy" data-length="long" data-color="brunette" onclick="location.href='style/u-cut.html'">
         <div class="wcard__thumb" style="position:relative;overflow:hidden;">
-          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Create_a_premium_hairstyle_inspiration_poster_featuring_a_woman_with_elegant_U-C-0_mz18um.jpg" alt="Woman with long wavy brunette U-Cut Layers hairstyle, soft rounded ends" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Create_a_premium_hairstyle_inspiration_poster_featuring_a_woman_with_elegant_U-C-0_mz18um.jpg" alt="U-Cut Layers hairstyle" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn">View style</button></div>
         </div>
         <div class="wcard__body">
           <div class="wcard__name">U-Cut Layers</div>
-          <div class="wcard__meta"><span class="wcard__tag">Wavy · Long</span><span class="wcard__votes" title="Hair color shown">💇 Brunette</span></div>
+          <div class="wcard__meta"><span class="wcard__tag">Wavy · Long</span><span class="wcard__votes">💇 Brunette</span></div>
         </div>
       </div>
-      <div class="wcard" data-type="wavy" onclick="location.href='style/face-framing-layers.html'">
+
+      <!-- Face-Framing Layers -->
+      <div class="wcard" data-type="wavy" data-length="long" data-color="balayage" onclick="location.href='style/face-framing-layers.html'">
         <div class="wcard__thumb" style="position:relative;overflow:hidden;">
-          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_High-end_beauty_editorial_showcasing_a_woman_with_soft_Face_Framing_Layers_silky-0_grj5ys.jpg" alt="Woman with long wavy face-framing layers hairstyle and beige balayage" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_High-end_beauty_editorial_showcasing_a_woman_with_soft_Face_Framing_Layers_silky-0_grj5ys.jpg" alt="Face-Framing Layers hairstyle" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn">View style</button></div>
         </div>
         <div class="wcard__body">
           <div class="wcard__name">Face-Framing Layers</div>
-          <div class="wcard__meta"><span class="wcard__tag">Wavy · Long</span><span class="wcard__votes" title="Hair color shown">💇 Balayage</span></div>
+          <div class="wcard__meta"><span class="wcard__tag">Wavy · Long</span><span class="wcard__votes">💇 Balayage</span></div>
         </div>
       </div>
-      <div class="wcard" data-type="straight" onclick="location.href='style/italian-bob.html'">
+
+      <!-- Italian Bob -->
+      <div class="wcard" data-type="straight" data-length="short" data-color="black" onclick="location.href='style/italian-bob.html'">
         <div class="wcard__thumb" style="position:relative;overflow:hidden;">
-          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Create_an_elegant_beauty_magazine_hairstyle_poster_featuring_a_gorgeous_woman_wi-0_rvrnax.jpg" alt="Woman with a sleek short black Italian Bob hairstyle" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Create_an_elegant_beauty_magazine_hairstyle_poster_featuring_a_gorgeous_woman_wi-0_rvrnax.jpg" alt="Italian Bob hairstyle" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn">View style</button></div>
         </div>
         <div class="wcard__body">
           <div class="wcard__name">Italian Bob</div>
-          <div class="wcard__meta"><span class="wcard__tag">Straight · Short</span><span class="wcard__votes" title="Hair color shown">💇 Black</span></div>
+          <div class="wcard__meta"><span class="wcard__tag">Straight · Short</span><span class="wcard__votes">💇 Black</span></div>
         </div>
       </div>
-      <div class="wcard" data-type="wavy" onclick="location.href='style/hush-cut.html'">
+
+      <!-- Hush Cut -->
+      <div class="wcard" data-type="wavy" data-length="long" data-color="brunette" onclick="location.href='style/hush-cut.html'">
         <div class="wcard__thumb" style="position:relative;overflow:hidden;">
-          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Create_a_Korean_luxury_hairstyle_poster_featuring_a_beautiful_woman_wearing_a_tr-0_uinhrv.jpg" alt="Woman with a long wavy Hush Cut hairstyle in dark mocha with wispy bangs" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Create_a_Korean_luxury_hairstyle_poster_featuring_a_beautiful_woman_wearing_a_tr-0_uinhrv.jpg" alt="Hush Cut hairstyle" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn">View style</button></div>
         </div>
         <div class="wcard__body">
           <div class="wcard__name">Hush Cut</div>
-          <div class="wcard__meta"><span class="wcard__tag">Wavy · Long</span><span class="wcard__votes" title="Hair color shown">💇 Brunette</span></div>
+          <div class="wcard__meta"><span class="wcard__tag">Wavy · Long</span><span class="wcard__votes">💇 Brunette</span></div>
         </div>
       </div>
-      <div class="wcard" data-type="straight" onclick="location.href='style/french-bob.html'">
+
+      <!-- French Bob -->
+      <div class="wcard" data-type="straight" data-length="short" data-color="brunette" onclick="location.href='style/french-bob.html'">
         <div class="wcard__thumb" style="position:relative;overflow:hidden;">
-          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Premium_hairstyle_information_card_featuring_a_fashionable_woman_wearing_a_Frenc-0_syywwp.jpg" alt="Woman with a straight short French Bob hairstyle with fringe" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Premium_hairstyle_information_card_featuring_a_fashionable_woman_wearing_a_Frenc-0_syywwp.jpg" alt="French Bob hairstyle" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn">View style</button></div>
         </div>
         <div class="wcard__body">
           <div class="wcard__name">French Bob</div>
-          <div class="wcard__meta"><span class="wcard__tag">Straight · Short</span><span class="wcard__votes" title="Hair color shown">💇 Brunette</span></div>
+          <div class="wcard__meta"><span class="wcard__tag">Straight · Short</span><span class="wcard__votes">💇 Brunette</span></div>
         </div>
       </div>
-      <div class="wcard" data-type="wavy" onclick="location.href='style/long-curtain-layers.html'">
+
+      <!-- Long Curtain Layers -->
+      <div class="wcard" data-type="wavy" data-length="long" data-color="brunette" onclick="location.href='style/long-curtain-layers.html'">
         <div class="wcard__thumb" style="position:relative;overflow:hidden;">
-          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Photorealistic_beauty_poster_showing_a_woman_with_Long_Curtain_Layers_flowing_si-0_jhkhpr.jpg" alt="Woman with long wavy Curtain Layers hairstyle framing the face, golden brown tones" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Photorealistic_beauty_poster_showing_a_woman_with_Long_Curtain_Layers_flowing_si-0_jhkhpr.jpg" alt="Long Curtain Layers hairstyle" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn">View style</button></div>
         </div>
         <div class="wcard__body">
           <div class="wcard__name">Long Curtain Layers</div>
-          <div class="wcard__meta"><span class="wcard__tag">Wavy · Long</span><span class="wcard__votes" title="Hair color shown">💇 Brunette</span></div>
+          <div class="wcard__meta"><span class="wcard__tag">Wavy · Long</span><span class="wcard__votes">💇 Brunette</span></div>
         </div>
       </div>
-      <div class="wcard" data-type="wavy" onclick="location.href='style/butterfly-layers.html'">
+
+      <!-- Butterfly Layers -->
+      <div class="wcard" data-type="wavy" data-length="long" data-color="balayage" onclick="location.href='style/butterfly-layers.html'">
         <div class="wcard__thumb" style="position:relative;overflow:hidden;">
-          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Ultra_realistic_beauty_editorial_poster_featuring_a_beautiful_woman_with_luxurio-0_kur962.jpg" alt="Woman with long wavy Butterfly Layers hairstyle and honey balayage" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Ultra_realistic_beauty_editorial_poster_featuring_a_beautiful_woman_with_luxurio-0_kur962.jpg" alt="Butterfly Layers hairstyle" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn">View style</button></div>
         </div>
         <div class="wcard__body">
           <div class="wcard__name">Butterfly Layers</div>
-          <div class="wcard__meta"><span class="wcard__tag">Wavy · Long</span><span class="wcard__votes" title="Hair color shown">💇 Balayage</span></div>
+          <div class="wcard__meta"><span class="wcard__tag">Wavy · Long</span><span class="wcard__votes">💇 Balayage</span></div>
         </div>
       </div>
-      <div class="wcard" data-type="wavy" onclick="location.href='style/soft-shag.html'">
+
+      <!-- Soft Shag -->
+      <div class="wcard" data-type="wavy" data-length="medium" data-color="brunette" onclick="location.href='style/soft-shag.html'">
         <div class="wcard__thumb" style="position:relative;overflow:hidden;">
-          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400849/gpt-image-2_Ultra_realistic_Korean_hairstyle_guide_featuring_a_woman_with_a_Soft_Shag_haircu-0_bezzp4.jpg" alt="Woman with a medium-length wavy Soft Shag hairstyle, cinnamon brown tones" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400849/gpt-image-2_Ultra_realistic_Korean_hairstyle_guide_featuring_a_woman_with_a_Soft_Shag_haircu-0_bezzp4.jpg" alt="Soft Shag hairstyle" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn">View style</button></div>
         </div>
         <div class="wcard__body">
           <div class="wcard__name">Soft Shag</div>
-          <div class="wcard__meta"><span class="wcard__tag">Wavy · Medium</span><span class="wcard__votes" title="Hair color shown">💇 Brunette</span></div>
+          <div class="wcard__meta"><span class="wcard__tag">Wavy · Medium</span><span class="wcard__votes">💇 Brunette</span></div>
         </div>
       </div>
-      <div class="wcard" data-type="wavy" onclick="location.href='style/hollywood-layers.html'">
+
+      <!-- Hollywood Layers -->
+      <div class="wcard" data-type="wavy" data-length="long" data-color="brunette" onclick="location.href='style/hollywood-layers.html'">
         <div class="wcard__thumb" style="position:relative;overflow:hidden;">
-          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Luxury_Pinterest_hairstyle_information_poster_featuring_a_glamorous_woman_with_H-0_c9xdgq.jpg" alt="Woman with long wavy Hollywood Layers hairstyle, rich chocolate and caramel tones" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Luxury_Pinterest_hairstyle_information_poster_featuring_a_glamorous_woman_with_H-0_c9xdgq.jpg" alt="Hollywood Layers hairstyle" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn">View style</button></div>
         </div>
         <div class="wcard__body">
           <div class="wcard__name">Hollywood Layers</div>
-          <div class="wcard__meta"><span class="wcard__tag">Wavy · Long</span><span class="wcard__votes" title="Hair color shown">💇 Brunette</span></div>
+          <div class="wcard__meta"><span class="wcard__tag">Wavy · Long</span><span class="wcard__votes">💇 Brunette</span></div>
         </div>
       </div>
-      <div class="wcard" data-type="wavy" onclick="location.href='style/wolf-cut.html'">
+
+      <!-- Modern Wolf Cut -->
+      <div class="wcard" data-type="wavy" data-length="medium" data-color="brunette" onclick="location.href='style/wolf-cut.html'">
         <div class="wcard__thumb" style="position:relative;overflow:hidden;">
-          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Luxury_beauty_editorial_featuring_a_young_woman_with_a_modern_Wolf_Cut_hairstyle-0_pomgih.jpg" alt="Woman with a medium-length wavy Modern Wolf Cut hairstyle, dark ash brown with caramel highlights" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <img src="https://res.cloudinary.com/dnfzr2kno/image/upload/v1784400850/gpt-image-2_Luxury_beauty_editorial_featuring_a_young_woman_with_a_modern_Wolf_Cut_hairstyle-0_pomgih.jpg" alt="Modern Wolf Cut hairstyle" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
           <div class="wcard__overlay" style="z-index:1;"><button class="wcard__dl-btn">View style</button></div>
         </div>
         <div class="wcard__body">
           <div class="wcard__name">Modern Wolf Cut</div>
-          <div class="wcard__meta"><span class="wcard__tag">Wavy · Medium</span><span class="wcard__votes" title="Hair color shown">💇 Brunette</span></div>
+          <div class="wcard__meta"><span class="wcard__tag">Wavy · Medium</span><span class="wcard__votes">💇 Brunette</span></div>
         </div>
       </div>
     </div>
-    <div class="hs-empty" id="hsEmptyState">
+
+    <div class="hs-empty" id="hsEmptyState" style="display:none;">
       <div class="hs-empty__icon">💇‍♀️</div>
-      <p class="hs-empty__title">First styles landing soon</p>
-      <p class="hs-empty__sub">We're curating the first batch of in-demand hairstyles — check back shortly, or browse wallpapers in the meantime.</p>
-      <a href="../index.html" class="btn btn--primary">Browse wallpapers</a>
+      <p class="hs-empty__title">No hairstyles match your filters</p>
+      <p class="hs-empty__sub">Try adjusting your filters or check back for new styles.</p>
+      <button class="btn btn--primary" onclick="resetFilters()">Reset filters</button>
     </div>
   </section>
 
@@ -215,6 +254,25 @@
     .hs-empty__icon{font-size:40px;margin-bottom:16px;}
     .hs-empty__title{font-family:var(--font-display);font-size:19px;font-weight:600;color:var(--text-primary);margin-bottom:8px;}
     .hs-empty__sub{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:24px;}
+
+    .filter-divider {
+      color: var(--border);
+      font-size: 14px;
+      padding: 0 4px;
+      opacity: 0.5;
+    }
+
+    @media (max-width: 768px) {
+      .filter-divider { display: none; }
+      .filter-bar__cats {
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .filter-cat {
+        font-size: 11px;
+        padding: 5px 10px;
+      }
+    }
   </style>
 
   <script src="../JS/hairstyles.js"></script>
