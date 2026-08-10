@@ -1,0 +1,9 @@
+{
+  "name": "wallrank-club",
+  "version": "0.1.0",
+  "description": "Free wallpapers filtered by mood and color, previewed on real devices.",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve ."
+  }
+}

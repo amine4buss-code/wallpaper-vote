@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WallRank — Wallpapers for every screen</title>
+<meta name="description" content="Free wallpapers filtered by mood and color, previewed on your real device, turned into profile pictures, and matched to you by quiz.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+
+<header class="site">
+  <div class="nav">
+    <div class="wordmark"><span class="dot"></span>WallRank</div>
+    <div class="navlinks" id="navlinks">
+      <button data-view="browse" class="active">Browse</button>
+      <button data-view="categories">Categories</button>
+      <button data-view="room">Room Demo</button>
+      <button data-view="devices">On a Device</button>
+      <button data-view="puzzle">Play Puzzle</button>
+      <button data-view="stats">Stats</button>
+    </div>
+    <div class="navcta">
+      <button class="btn" id="btnImprove">Help Us Improve</button>
+      <button class="btn primary" id="btnHelpChoose">Help Me Choose</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Free · Community-built · Always growing</div>
+      <h1>Wallpapers,<br><span class="italic">matched to your mood.</span></h1>
+      <p class="lead">Filter by mood and color, preview on your exact device, turn any piece into a profile picture, or let our quiz pick one for you. Can't find it? We'll make it for free.</p>
+      <div class="hero-actions">
+        <button class="btn primary" id="heroStart">Start browsing</button>
+        <button class="btn" id="heroAsk">Ask for a custom wallpaper</button>
+      </div>
+      <div class="hero-stats">
+        <div><div class="num" id="heroCountWalls">—</div><div class="lbl">Wallpapers</div></div>
+        <div><div class="num" id="heroCountCats">—</div><div class="lbl">Niches reserved</div></div>
+        <div><div class="num" id="heroCountViews">—</div><div class="lbl">Views today</div></div>
+      </div>
+    </div>
+    <div class="hero-visual" id="heroVisual"></div>
+  </div>
+</section>
+
+<!-- BROWSE -->
+<section id="view-browse" class="wrap">
+  <div class="section-head">
+    <div><h2>Browse the wall</h2><p>Filter by mood, color, and the dimensions you actually need.</p></div>
+    <div style="font-family:var(--mono);font-size:12px;color:var(--ink-faint)" id="resultCount"></div>
+  </div>
+  <div class="browse-layout">
+    <div class="filter-panel">
+      <h4>Mood</h4>
+      <div class="chip-row" id="moodFilters"></div>
+      <h4>Color</h4>
+      <div class="swatch-row" id="colorFilters"></div>
+      <h4>Dimension</h4>
+      <select class="dim-select" id="dimFilter"><option value="">Any dimension</option></select>
+      <h4>Category</h4>
+      <select class="dim-select" id="catFilter"><option value="">All categories</option></select>
+      <button class="btn small clear-filters" id="clearFilters">Clear filters</button>
+    </div>
+    <div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section id="view-categories" class="wrap hidden">
+  <div class="section-head">
+    <div><h2>Every niche, reserved</h2><p>We've mapped the full taxonomy — deep niches included. Populated ones are live now; the rest have their spot saved and fill in as we go.</p></div>
+  </div>
+  <div class="cat-groups" id="catGroups"></div>
+</section>
+
+<!-- ROOM DEMO -->
+<section id="view-room" class="wrap hidden">
+  <div class="section-head">
+    <div><h2>See it in a room</h2><p>Step into a desk setup and watch wallpapers cycle on the monitor. Flip the room's lighting to preview dark vs. light spaces.</p></div>
+  </div>
+  <div class="room-scene" id="roomScene">
+    <div class="room-toggle"><button id="roomLight" class="on">Light</button><button id="roomDark">Dark</button></div>
+    <div class="room-label" id="roomLabel">—</div>
+    <div class="window"></div>
+    <div class="plant"><div class="pot"></div><div class="leaf"></div><div class="leaf"></div><div class="leaf"></div></div>
+    <div class="lamp"><div class="shade"></div></div>
+    <button class="room-nav left" id="roomPrev">‹</button>
+    <button class="room-nav right" id="roomNext">›</button>
+    <div class="desk"></div>
+    <div class="room-monitor">
+      <div class="glow" id="roomGlow"></div>
+      <div class="mscreen" id="roomScreen"></div>
+      <div class="mstand"></div><div class="mbase"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ON A DEVICE -->
+<section id="view-devices" class="wrap hidden">
+  <div class="section-head">
+    <div><h2>On a device</h2><p>Pick real device dimensions and drop in any wallpaper to see how it actually looks.</p></div>
+  </div>
+  <div class="device-list" id="deviceList"></div>
+  <div class="device-stage" id="deviceStage"></div>
+  <div class="section-head" style="margin-top:30px;"><h3 style="font-size:16px;">Choose a wallpaper</h3></div>
+  <div class="gallery-grid" id="devicePickerGrid"></div>
+</section>
+
+<!-- PUZZLE -->
+<section id="view-puzzle" class="wrap hidden">
+  <div class="section-head">
+    <div><h2>Play a puzzle</h2><p>Pick a wallpaper, shuffle it, slide it back into place.</p></div>
+  </div>
+  <div class="puzzle-wrap">
+    <div>
+      <div class="puzzle-board" id="puzzleBoard"></div>
+      <div style="margin-top:14px;display:flex;gap:10px;align-items:center;">
+        <button class="btn primary small" id="puzzleShuffle">Shuffle</button>
+        <span id="puzzleMoves" style="font-family:var(--mono);font-size:12px;color:var(--ink-dim);"></span>
+      </div>
+      <div id="puzzleWin" style="margin-top:10px;color:var(--accent-2);font-weight:600;"></div>
+    </div>
+    <div class="puzzle-side" style="flex:1;min-width:240px;">
+      <div class="field"><label>Pick a wallpaper to play with</label></div>
+      <div class="gallery-grid" id="puzzlePickerGrid" style="grid-template-columns:repeat(auto-fill,minmax(140px,1fr));"></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="view-stats" class="wrap hidden">
+  <div class="section-head">
+    <div><h2>What's popular</h2><p>Live activity from everyone browsing right now (this session).</p></div>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-col"><h3>👁 Top Viewed</h3><div id="statsViewed"></div></div>
+    <div class="stat-col"><h3>⬇ Top Downloaded</h3><div id="statsDownloaded"></div></div>
+    <div class="stat-col"><h3>🔥 Daily Hot</h3><div id="statsHot"></div></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">WallRank — a free wallpaper project. Built to help, not to sell.</div>
+</footer>
+
+<!-- ================= MODALS ================= -->
+
+<div class="overlay" id="previewOverlay">
+  <div class="modal">
+    <div class="modal-head"><h3 id="pvTitle">—</h3><button class="x-close" data-close="previewOverlay">✕</button></div>
+    <div class="modal-body preview-layout">
+      <div>
+        <div class="device-tabs" id="deviceTabs"></div>
+        <div class="device-frame-wrap" id="deviceFrameWrap"></div>
+      </div>
+      <div class="side-panel">
+        <div class="field">
+          <label>Download dimension</label>
+          <div class="dim-pick" id="dimPick"></div>
+        </div>
+        <div class="field">
+          <button class="btn primary" style="width:100%" id="downloadBtn">Download wallpaper</button>
+        </div>
+        <div class="field">
+          <button class="btn" style="width:100%" id="ppBtn">Make it a profile picture</button>
+        </div>
+        <div class="field">
+          <label>Tags</label>
+          <div class="tagrow" id="pvTags"></div>
+        </div>
+        <div class="field">
+          <label>Activity</label>
+          <div class="stat-line"><span>Views</span><span id="pvViews">0</span></div>
+          <div class="stat-line"><span>Downloads</span><span id="pvDownloads">0</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="ppOverlay">
+  <div class="modal" style="max-width:640px;">
+    <div class="modal-head"><h3>Make a profile picture</h3><button class="x-close" data-close="ppOverlay">✕</button></div>
+    <div class="modal-body">
+      <label style="font-family:var(--mono);font-size:11px;color:var(--ink-faint);text-transform:uppercase;">Shape</label>
+      <div class="shape-row" id="shapeRow"></div>
+      <div class="pp-preview">
+        <canvas id="ppCanvas" width="320" height="320"></canvas>
+        <div>
+          <p style="color:var(--ink-dim);font-size:13px;max-width:220px;">Clipped from your selected wallpaper. Download as a transparent PNG, ready for any platform.</p>
+          <button class="btn primary" id="ppDownload">Download PNG</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="chooseOverlay">
+  <div class="modal" style="max-width:640px;">
+    <div class="modal-head"><h3>Help me choose a wallpaper</h3><button class="x-close" data-close="chooseOverlay">✕</button></div>
+    <div class="modal-body" id="chooseBody"></div>
+  </div>
+</div>
+
+<div class="overlay" id="improveOverlay">
+  <div class="modal" style="max-width:640px;">
+    <div class="modal-head"><h3>Help us improve</h3><button class="x-close" data-close="improveOverlay">✕</button></div>
+    <div class="modal-body">
+      <p style="color:var(--ink-dim);font-size:13.5px;margin-top:0;">Quick yes/no on a few wallpapers — this feedback trains what we curate next. Saved to our feedback log for this session.</p>
+      <div id="improveList"></div>
+      <div class="feedback-log" id="improveLog"></div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="askOverlay">
+  <div class="modal" style="max-width:560px;">
+    <div class="modal-head"><h3>Ask for a wallpaper</h3><button class="x-close" data-close="askOverlay">✕</button></div>
+    <div class="modal-body">
+      <p style="color:var(--ink-dim);font-size:13.5px;margin-top:0;">Free custom service. Describe what you want, or point us at 1-2 existing wallpapers to remix, and we'll build it or edit it for you.</p>
+      <div class="form-field"><label>Your name</label><input id="askName" placeholder="Jane Doe"></div>
+      <div class="form-field"><label>Your email</label><input id="askEmail" placeholder="you@email.com"></div>
+      <div class="form-field"><label>What do you want?</label>
+        <select id="askType"><option>Build something new from scratch</option><option>Edit / remix an existing wallpaper</option><option>Combine two or more wallpapers</option><option>Not sure — surprise me</option></select>
+      </div>
+      <div class="form-field"><label>Describe it</label><textarea id="askDesc" placeholder="Mood, colors, subject, dimensions you need..."></textarea></div>
+      <button class="btn primary" style="width:100%" id="askSend">Send request</button>
+      <p style="color:var(--ink-faint);font-size:11.5px;margin-top:10px;">Opens your email client with everything pre-filled — nothing is sent automatically.</p>
+    </div>
+  </div>
+</div>
+
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
