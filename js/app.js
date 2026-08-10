@@ -53,12 +53,8 @@ function renderFilterPanel(){
   DIMENSIONS.forEach(d=>{ const o=document.createElement("option"); o.value=d.id; o.textContent=`${d.label} (${d.w}×${d.h})`; ds.appendChild(o); });
   ds.addEventListener("change",()=>{ state.filters.dim = ds.value; renderGallery(); });
   const cSel = $("#catFilter");
-  CATEGORY_GROUPS.forEach(g=>{
-    const og = document.createElement("optgroup"); og.label=g.name;
-    g.cats.filter(c=>c.palette).forEach(c=>{ const o=document.createElement("option"); o.value=c.id; o.textContent=c.label; og.appendChild(o); });
-    if(og.children.length) cSel.appendChild(og);
-  });
   cSel.addEventListener("change",()=>{ state.filters.cat = cSel.value; renderGallery(); });
+  refreshCategoryDropdown();
   $("#clearFilters").addEventListener("click",()=>{
     state.filters = {moods:new Set(),colors:new Set(),dim:"",cat:""};
     $all(".chip").forEach(c=>c.classList.remove("on"));
@@ -66,6 +62,18 @@ function renderFilterPanel(){
     ds.value=""; cSel.value="";
     renderGallery();
   });
+}
+// Rebuilds just the category dropdown options — safe to call again after real
+// photos load in, without re-adding chip/swatch listeners or duplicating <option>s.
+function refreshCategoryDropdown(){
+  const cSel = $("#catFilter"); const prev = cSel.value;
+  cSel.innerHTML = `<option value="">All categories</option>`;
+  CATEGORY_GROUPS.forEach(g=>{
+    const og = document.createElement("optgroup"); og.label=g.name;
+    g.cats.filter(c=>WALLPAPERS.some(w=>w.catId===c.id)).forEach(c=>{ const o=document.createElement("option"); o.value=c.id; o.textContent=c.label; og.appendChild(o); });
+    if(og.children.length) cSel.appendChild(og);
+  });
+  cSel.value = prev;
 }
 function toggleSetItem(set,item){ set.has(item)?set.delete(item):set.add(item); }
 
@@ -103,7 +111,7 @@ function renderCategoryGroups(){
     const div = document.createElement("div"); div.className="cat-group";
     div.innerHTML = `<h3>${g.name} <span class="n">${g.cats.length} niches</span></h3>
       <div class="cat-tiles">${g.cats.map(c=>{
-        const count = c.palette ? WALLPAPERS.filter(w=>w.catId===c.id).length : 0;
+        const count = WALLPAPERS.filter(w=>w.catId===c.id).length;
         return `<button class="cat-tile ${count?'':'soon'}" data-cat="${c.id}">
           <div class="t">${c.label}</div><div class="c">${count? count+" wallpapers":"Coming soon"}</div>
         </button>`;
@@ -112,7 +120,7 @@ function renderCategoryGroups(){
   });
   $all(".cat-tile").forEach(t=>t.addEventListener("click",()=>{
     const id = t.dataset.cat;
-    if(!CAT_LOOKUP[id].palette){ return; }
+    if(!WALLPAPERS.some(w=>w.catId===id)){ return; }
     state.filters = {moods:new Set(),colors:new Set(),dim:"",cat:id};
     $("#catFilter").value=id;
     switchView("browse");
@@ -128,6 +136,13 @@ function openPreview(id){
   $("#pvTags").innerHTML = [w.mood, w.catLabel, ...w.colors].map(t=>`<span class="tag">${t}</span>`).join("");
   $("#pvViews").textContent = w.views.toLocaleString();
   $("#pvDownloads").textContent = w.downloads.toLocaleString();
+  if(w.photo && w.photographer){
+    $("#pvCreditField").style.display = "";
+    $("#pvCreditLink").textContent = w.photographer;
+    $("#pvCreditLink").href = w.photographerUrl || w.sourceUrl || "#";
+  } else {
+    $("#pvCreditField").style.display = "none";
+  }
   renderDeviceTabs(); renderDeviceFrame();
   renderDimPick();
   openOverlay("previewOverlay");
@@ -148,24 +163,36 @@ function renderDimPick(){
   $("#dimPick").innerHTML = DIMENSIONS.map(d=>`<button class="chip ${state.currentDim===d.id?'on':''}" data-dim="${d.id}">${d.label}</button>`).join("");
   $all("#dimPick .chip").forEach(b=>b.addEventListener("click",()=>{ state.currentDim=b.dataset.dim; renderDimPick(); }));
 }
-$("#downloadBtn").addEventListener("click",()=>{
+$("#downloadBtn").addEventListener("click", async ()=>{
   const w = state.currentWallpaper; const dim = DIMENSIONS.find(d=>d.id===state.currentDim);
-  downloadGradientPNG(w, dim.w, dim.h, `${w.name.replace(/\s+/g,'-').toLowerCase()}-${dim.id}.png`);
+  await downloadWallpaperPNG(w, dim.w, dim.h, `${w.name.replace(/\s+/g,'-').toLowerCase()}-${dim.id}.png`);
   w.downloads++; $("#pvDownloads").textContent = w.downloads.toLocaleString();
 });
 $("#ppBtn").addEventListener("click",()=>{ openOverlay("ppOverlay"); renderPPCanvas(); });
 
-function downloadGradientPNG(w, targetW, targetH, filename){
-  const scale = Math.min(1, 1600/Math.max(targetW,targetH));
-  const cw = Math.round(targetW*scale), ch = Math.round(targetH*scale);
-  const canvas = document.createElement("canvas"); canvas.width=cw; canvas.height=ch;
-  const ctx = canvas.getContext("2d");
-  paintWallpaperGradient(ctx, w, cw, ch);
-  canvas.toBlob(blob=>{
-    const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = filename; a.click();
+// Loads an actual photo (real wallpapers) or falls back to painting a gradient
+// (placeholder niches that don't have real photos yet).
+function loadPhotoImage(url){
+  return new Promise((resolve,reject)=>{
+    const img = new Image(); img.crossOrigin = "anonymous";
+    img.onload = ()=>resolve(img); img.onerror = reject;
+    img.src = url;
   });
 }
-function paintWallpaperGradient(ctx, w, cw, ch){
+async function paintWallpaperToCanvas(ctx, w, cw, ch){
+  if(w.photo && w.photoUrl){
+    try{
+      const img = await loadPhotoImage(w.photoUrl);
+      const scale = Math.max(cw/img.width, ch/img.height);
+      const dw = img.width*scale, dh = img.height*scale;
+      ctx.drawImage(img, (cw-dw)/2, (ch-dh)/2, dw, dh);
+      return;
+    }catch(e){
+      // Photo failed to load (offline/CORS) and there's no gradient behind a real
+      // photo entry — fill a flat neutral tone rather than crashing.
+      if(!w.stops){ ctx.fillStyle = "#3a3d4a"; ctx.fillRect(0,0,cw,ch); return; }
+    }
+  }
   let grad;
   if(w.gradType==="radial"){
     grad = ctx.createRadialGradient(cw*0.4,ch*0.35,10, cw*0.5,ch*0.5, Math.max(cw,ch)*0.75);
@@ -178,6 +205,16 @@ function paintWallpaperGradient(ctx, w, cw, ch){
     grad.addColorStop(0, w.stops[0]); grad.addColorStop(0.35, w.stops[1]); grad.addColorStop(0.7, w.stops[2]); grad.addColorStop(1, w.stops[3]);
   }
   ctx.fillStyle = grad; ctx.fillRect(0,0,cw,ch);
+}
+async function downloadWallpaperPNG(w, targetW, targetH, filename){
+  const scale = Math.min(1, 1600/Math.max(targetW,targetH));
+  const cw = Math.round(targetW*scale), ch = Math.round(targetH*scale);
+  const canvas = document.createElement("canvas"); canvas.width=cw; canvas.height=ch;
+  const ctx = canvas.getContext("2d");
+  await paintWallpaperToCanvas(ctx, w, cw, ch);
+  canvas.toBlob(blob=>{
+    const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = filename; a.click();
+  });
 }
 
 /* ===================== PROFILE PICTURE ===================== */
@@ -212,12 +249,12 @@ function shapePath(ctx,shape,size){
     ctx.closePath();
   }
 }
-function renderPPCanvas(){
+async function renderPPCanvas(){
   const w = state.currentWallpaper; if(!w) return;
   const canvas = $("#ppCanvas"); const ctx = canvas.getContext("2d"); const size=320;
   ctx.clearRect(0,0,size,size);
   ctx.save(); shapePath(ctx,state.ppShape,size); ctx.clip();
-  paintWallpaperGradient(ctx,w,size,size);
+  await paintWallpaperToCanvas(ctx,w,size,size);
   ctx.restore();
 }
 $("#ppDownload").addEventListener("click",()=>{
@@ -353,14 +390,14 @@ function renderPuzzlePickers(){
   $all(".wcard",pg).forEach(el=>el.addEventListener("click",()=>{ state.puzzleWallpaper = WALLPAPERS.find(w=>w.id==+el.dataset.id); shufflePuzzle(); }));
   if(!state.puzzleOrder.length) shufflePuzzle();
 }
-function puzzleBg(){
+async function puzzleBg(){
   const canvas = document.createElement("canvas"); canvas.width=360; canvas.height=360;
-  const ctx = canvas.getContext("2d"); paintWallpaperGradient(ctx, state.puzzleWallpaper, 360,360);
+  const ctx = canvas.getContext("2d"); await paintWallpaperToCanvas(ctx, state.puzzleWallpaper, 360,360);
   return canvas.toDataURL();
 }
 let puzzleImgCache = null;
-function shufflePuzzle(){
-  puzzleImgCache = puzzleBg();
+async function shufflePuzzle(){
+  puzzleImgCache = await puzzleBg();
   let order = [...Array(16).keys()];
   // shuffle via random valid swaps starting from solved to guarantee solvability
   let blank = 15;
@@ -428,8 +465,20 @@ function renderStats(){
 }
 
 /* ===================== INIT ===================== */
-renderHero();
-renderFilterPanel();
-renderGallery();
-renderCategoryGroups();
-renderShapeRow();
+async function initApp(){
+  // Paint immediately with gradient placeholders so the site never looks empty while loading...
+  renderHero();
+  renderFilterPanel();
+  renderGallery();
+  renderCategoryGroups();
+  renderShapeRow();
+  // ...then layer in real photos (if data/photos.json exists) and re-render what changed.
+  const gotPhotos = await mergeRealPhotos();
+  if(gotPhotos){
+    renderHero();
+    refreshCategoryDropdown();
+    renderGallery();
+    renderCategoryGroups();
+  }
+}
+initApp();
