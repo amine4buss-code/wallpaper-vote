@@ -10,10 +10,13 @@ wallrank-club/
 ├── css/
 │   └── styles.css      # all styling
 ├── js/
-│   ├── data.js          # moods, colors, dimensions, category taxonomy, wallpaper generation, devices
-│   └── app.js           # state + all UI logic (gallery, modals, room demo, puzzle, stats...)
+│   ├── config.js         # Supabase URL + public anon key (fill this in — see below)
+│   ├── data.js            # moods, colors, dimensions, category taxonomy, wallpaper generation, devices
+│   └── app.js             # state + all UI logic (gallery, modals, room demo, puzzle, stats, database calls)
+├── supabase/
+│   └── schema.sql        # run once in Supabase's SQL Editor to create the database
 ├── assets/
-│   └── wallpapers/      # drop real wallpaper images here when ready (see "Using real images" below)
+│   └── wallpapers/      # drop real wallpaper images here when ready
 └── README.md
 ```
 
@@ -31,36 +34,32 @@ Static hosting works out of the box:
 - **GitHub Pages**: push this repo, enable Pages on the `main` branch, root folder.
 - **Vercel / Netlify**: import the repo, no build command needed, output directory `/`.
 
-## Adding real wallpapers (Pexels import pipeline)
+## Setting up the real database (Supabase)
 
-The site ships with 117 mapped niches (`scripts/niches.json`) and a script that pulls real, licensed photos for every one of them from Pexels, auto-tagging color from each photo's actual dominant color instead of a guess:
+The site now talks to a real Postgres database for views, downloads, and "help us improve" feedback — no more numbers resetting on refresh.
 
-```bash
-# 1. Get a free key: https://www.pexels.com/api/  (200 req/hr, 20k/month)
-# 2. Run the import (defaults to 3 photos per niche — ~117 x 3 = ~350 wallpapers)
-PEXELS_API_KEY=your_key_here node scripts/import-wallpapers.mjs
+1. Create a free project at [supabase.com](https://supabase.com).
+2. In your new project: **SQL Editor → New query** → paste the entire contents of `supabase/schema.sql` → **Run**. This creates the tables and the secure functions the site calls.
+3. In **Project Settings → API**, copy your **Project URL** and **anon public key**.
+4. Open `js/config.js` and paste them in place of the two placeholder strings.
+5. Commit and push. The site is now recording real activity.
 
-# or pull more per niche:
-PEXELS_API_KEY=your_key_here node scripts/import-wallpapers.mjs --per-niche=6
-```
+**Important:** only ever put the `anon` key in `js/config.js`. The `service_role` key (shown on the same page) has full admin access and must never go in this repo — the anon key is the only one designed to be public.
 
-This writes `data/photos.json`. Commit it and the live site picks up real photos automatically on top of the gradient placeholders — niches without real photos yet just keep showing their gradient, nothing breaks. Photo credit (photographer name, linked) shows automatically in the preview modal per Pexels' attribution terms.
-
-Re-run the script anytime to refresh the catalog with new photos.
+If `js/config.js` is left with the placeholder values, the site still works exactly as before — it just doesn't persist stats anywhere (silent no-op, logged to the browser console).
 
 ## Current state (what's real vs. simulated)
 
-- Wallpapers start as CSS/canvas gradients (`js/data.js` → `PALETTES`) and get real photos layered on top once you run the import script above.
-- Views, downloads, and "help us improve" feedback live in memory (`js/app.js` → `state`) and reset on page reload. There's no database yet.
-- "Ask for a wallpaper" opens the visitor's email client via a `mailto:` link pointed at `requests@wallrank.club` — update that address in `js/app.js` if needed.
-- The full category taxonomy (19 groups, 117 niches) is mapped in both `js/data.js` → `CATEGORY_GROUPS` and `scripts/niches.json`. Any category with zero wallpapers shows as "Coming soon" on the Categories page — this now checks actual wallpaper presence, not a static flag, so it updates automatically as you import more photos.
+- Wallpapers start as CSS/canvas gradients (`js/data.js` → `PALETTES`). Real photos/images can layer on top via `data/photos.json` — this mechanism is source-agnostic (built for Pexels originally, works the same for AI-generated images or your own uploads).
+- Views, downloads, and "help us improve" feedback write to Supabase in real time once `js/config.js` is filled in (see above). Until then, they're 0 and don't persist.
+- "Ask for a wallpaper" opens the visitor's email client via `mailto:` **and** saves a backup copy to the `custom_requests` table, so nothing is lost if their email client isn't configured.
+- The full category taxonomy (19 groups, 117 niches) is mapped in `js/data.js` → `CATEGORY_GROUPS`. A category shows as "Coming soon" until at least one wallpaper exists for it — this is checked live against actual wallpaper data, not a static flag.
 
-## Next steps to make it a real product
+## Next steps
 
-1. **Run the import script** (above) to replace gradient placeholders with real photos across all 117 niches.
-2. **A backend** — persist views, downloads, and improve-feedback in a real database (Postgres via Supabase/Neon is a fast path) instead of in-memory `state`. This needs API routes, which means moving off pure static hosting (e.g. a small Next.js or Express layer, or serverless functions on Vercel/Netlify).
-3. **Custom request handling** — if `mailto:` isn't enough, add a real form submission (e.g. a serverless function that emails you or writes to a database).
-4. **Rate limits at scale** — Pexels' free tier is 20k requests/month; if the catalog needs to grow well past a few thousand images, consider mixing in Unsplash's API too, or licensing a stock set directly.
+1. **Fill in `js/config.js`** with your Supabase keys (see above) — this is the last piece to make stats real.
+2. **Real wallpaper content** — populate `data/photos.json` (any format matching what `mergeRealPhotos()` in `js/data.js` expects) with real images, sourced however you decide (AI-generated, licensed stock, your own work).
+3. **Review feedback and requests periodically** — in Supabase, **Table Editor → feedback** and **Table Editor → custom_requests** show everything visitors have submitted.
 
 ## Credits
 

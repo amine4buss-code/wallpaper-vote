@@ -6,6 +6,32 @@ function closeOverlay(id){ $("#"+id).classList.remove("show"); }
 $all("[data-close]").forEach(b=>b.addEventListener("click",()=>closeOverlay(b.dataset.close)));
 $all(".overlay").forEach(o=>o.addEventListener("click",e=>{ if(e.target===o) closeOverlay(o.id); }));
 
+/* ===================== DATABASE WRITES ===================== */
+// All of these are fire-and-forget: the UI updates instantly from local state,
+// and the real number lands in Supabase in the background. If Supabase isn't
+// configured yet (js/config.js still has placeholder keys), window.sb is
+// undefined and these quietly no-op — the site still works either way.
+async function recordView(w){
+  if(!window.sb) return;
+  try{ await window.sb.rpc('increment_view', { p_wallpaper_id: w.slug }); }
+  catch(e){ console.warn('Could not record view', e); }
+}
+async function recordDownload(w){
+  if(!window.sb) return;
+  try{ await window.sb.rpc('increment_download', { p_wallpaper_id: w.slug }); }
+  catch(e){ console.warn('Could not record download', e); }
+}
+async function recordFeedback(w, vote){
+  if(!window.sb) return;
+  try{ await window.sb.rpc('submit_feedback', { p_wallpaper_id: w.slug, p_vote: vote }); }
+  catch(e){ console.warn('Could not record feedback', e); }
+}
+async function recordCustomRequest(name, email, type, description){
+  if(!window.sb) return;
+  try{ await window.sb.rpc('submit_custom_request', { p_name:name, p_email:email, p_type:type, p_description:description }); }
+  catch(e){ console.warn('Could not save custom request', e); }
+}
+
 function switchView(view){
   $all(".navlinks button").forEach(b=>b.classList.toggle("active", b.dataset.view===view));
   ["browse","categories","room","devices","puzzle","stats"].forEach(v=>{
@@ -132,6 +158,7 @@ function renderCategoryGroups(){
 function openPreview(id){
   const w = WALLPAPERS.find(x=>x.id===id); if(!w) return;
   w.views++; state.currentWallpaper = w; state.currentDim = w.nativeDim; state.currentDeviceTab="phone";
+  recordView(w); // fire-and-forget write to the real database
   $("#pvTitle").textContent = w.name;
   $("#pvTags").innerHTML = [w.mood, w.catLabel, ...w.colors].map(t=>`<span class="tag">${t}</span>`).join("");
   $("#pvViews").textContent = w.views.toLocaleString();
@@ -167,6 +194,7 @@ $("#downloadBtn").addEventListener("click", async ()=>{
   const w = state.currentWallpaper; const dim = DIMENSIONS.find(d=>d.id===state.currentDim);
   await downloadWallpaperPNG(w, dim.w, dim.h, `${w.name.replace(/\s+/g,'-').toLowerCase()}-${dim.id}.png`);
   w.downloads++; $("#pvDownloads").textContent = w.downloads.toLocaleString();
+  recordDownload(w);
 });
 $("#ppBtn").addEventListener("click",()=>{ openOverlay("ppOverlay"); renderPPCanvas(); });
 
@@ -326,8 +354,10 @@ function renderImprove(){
     </div>`).join("");
   $all(".yn").forEach(b=>b.addEventListener("click",()=>{
     const id=+b.dataset.id, v=b.dataset.v;
+    const w = WALLPAPERS.find(x=>x.id===id);
     state.feedback[id] = state.feedback[id]||{yes:0,no:0};
     state.feedback[id][v]++;
+    recordFeedback(w, v);
     b.parentElement.querySelectorAll(".yn").forEach(x=>x.style.opacity=.4);
     b.style.opacity=1; b.style.borderColor = v==="yes"?"#7fbf7f":"#e08080";
     renderImproveLog();
@@ -336,7 +366,7 @@ function renderImprove(){
 }
 function renderImproveLog(){
   const entries = Object.entries(state.feedback);
-  $("#improveLog").innerHTML = entries.length ? `Session feedback saved: ` + entries.map(([id,v])=>{
+  $("#improveLog").innerHTML = entries.length ? `Saved${window.sb?" to the database":" this session"}: ` + entries.map(([id,v])=>{
     const w = WALLPAPERS.find(x=>x.id==id);
     return `${w.name} (👍${v.yes} 👎${v.no})`;
   }).join(" · ") : "";
@@ -349,6 +379,7 @@ $("#askSend").addEventListener("click",()=>{
   const email = $("#askEmail").value || "—";
   const type = $("#askType").value;
   const desc = $("#askDesc").value || "—";
+  recordCustomRequest(name, email, type, desc); // saved to the database as a backup even if the mailto below doesn't go through
   const subject = encodeURIComponent("Custom wallpaper request — "+name);
   const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nRequest type: ${type}\n\nDescription:\n${desc}`);
   window.location.href = `mailto:requests@wallrank.club?subject=${subject}&body=${body}`;
@@ -447,20 +478,23 @@ function tryMove(idx){
 $("#puzzleShuffle").addEventListener("click", shufflePuzzle);
 
 /* ===================== STATS ===================== */
-function renderStats(){
+async function renderStats(){
+  await loadRealStats(); // pull the latest real numbers before showing the leaderboard
+  const anyActivity = WALLPAPERS.some(w=>w.views>0 || w.downloads>0);
   const byViews = [...WALLPAPERS].sort((a,b)=>b.views-a.views).slice(0,6);
   const byDownloads = [...WALLPAPERS].sort((a,b)=>b.downloads-a.downloads).slice(0,6);
-  const byHot = [...WALLPAPERS].sort((a,b)=>b.hot-a.hot).slice(0,6);
-  function rows(list,valKey,label){
+  const byHot = [...WALLPAPERS].sort((a,b)=>hotScore(b)-hotScore(a)).slice(0,6);
+  function rows(list,valFn,label){
+    if(!anyActivity) return `<div class="empty-note">No activity yet — be the first to browse.</div>`;
     return list.map((w,i)=>`<div class="stat-row" data-id="${w.id}">
       <span class="rank">${i+1}</span>
       <div class="thumb" style="background:${w.bg}"></div>
-      <div class="info"><div class="n">${w.name}</div><div class="v">${w[valKey].toLocaleString()} ${label}</div></div>
+      <div class="info"><div class="n">${w.name}</div><div class="v">${valFn(w).toLocaleString()} ${label}</div></div>
     </div>`).join("");
   }
-  $("#statsViewed").innerHTML = rows(byViews,"views","views");
-  $("#statsDownloaded").innerHTML = rows(byDownloads,"downloads","downloads");
-  $("#statsHot").innerHTML = rows(byHot,"hot","hot score");
+  $("#statsViewed").innerHTML = rows(byViews, w=>w.views, "views");
+  $("#statsDownloaded").innerHTML = rows(byDownloads, w=>w.downloads, "downloads");
+  $("#statsHot").innerHTML = rows(byHot, hotScore, "hot score");
   $all(".stat-row").forEach(el=>el.addEventListener("click",()=>openPreview(+el.dataset.id)));
 }
 
@@ -472,13 +506,14 @@ async function initApp(){
   renderGallery();
   renderCategoryGroups();
   renderShapeRow();
-  // ...then layer in real photos (if data/photos.json exists) and re-render what changed.
+  // ...then layer in real photos (if data/photos.json exists) and real database stats.
   const gotPhotos = await mergeRealPhotos();
-  if(gotPhotos){
+  const gotStats = await loadRealStats();
+  if(gotPhotos || gotStats){
     renderHero();
-    refreshCategoryDropdown();
+    if(gotPhotos) refreshCategoryDropdown();
     renderGallery();
-    renderCategoryGroups();
+    if(gotPhotos) renderCategoryGroups();
   }
 }
 initApp();
