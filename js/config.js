@@ -8,8 +8,8 @@
  *
  * Fill these in after creating your Supabase project, then commit + push.
  */
-const SUPABASE_URL = "PASTE_YOUR_PROJECT_URL_HERE";
-const SUPABASE_ANON_KEY = "PASTE_YOUR_ANON_PUBLIC_KEY_HERE";
+const SUPABASE_URL = "https://svrroicqugucdgttidgr.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_Fy3Jvq7RJSeaKkUGgwvusw_NZEExPmR";
 
 // Creates the shared client other scripts use (window.sb). If the keys above
 // haven't been filled in yet, this safely does nothing — the site still works,
