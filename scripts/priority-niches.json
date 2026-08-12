@@ -1,0 +1,102 @@
+[
+  {
+    "catId": "y2k", "label": "Y2K", "group": "Aesthetic Subcultures", "mood": "Playful",
+    "colors": ["pink", "teal"],
+    "promptBase": "Y2K aesthetic digital wallpaper, chrome bubble letters, holographic gradient, glossy 3D shapes, butterfly motifs, early-2000s futurism, pink and cyan palette, clean high-detail digital art, no text, no watermark"
+  },
+  {
+    "catId": "kawaii", "label": "Kawaii", "group": "Aesthetic Subcultures", "mood": "Playful",
+    "colors": ["pink", "white"],
+    "promptBase": "kawaii cute character illustration wallpaper, soft pastel colors, big sparkling eyes, rounded shapes, dreamy glow, adorable minimal scene, clean vector-style digital art, no text, no watermark"
+  },
+  {
+    "catId": "blackwallpaper", "label": "Black Wallpapers", "group": "Dark & Moody", "mood": "Dark & Moody",
+    "colors": ["black"],
+    "promptBase": "pure black AMOLED wallpaper, deep true black background, single subtle glowing accent element, minimal high-contrast composition, ultra clean, no text, no watermark"
+  },
+  {
+    "catId": "monochrome", "label": "Monochrome", "group": "Minimal & Aesthetic", "mood": "Minimal",
+    "colors": ["black", "gray", "white"],
+    "promptBase": "monochrome black and white wallpaper, dramatic lighting, fine grain texture, minimal composition, high contrast, gallery-quality photography style, no text, no watermark"
+  },
+  {
+    "catId": "galaxy", "label": "Galaxies", "group": "Space & Sci-Fi", "mood": "Epic",
+    "colors": ["purple", "blue"],
+    "promptBase": "deep space galaxy wallpaper, swirling nebula clouds, dense starfield, vibrant purple and blue cosmic colors, ultra detailed, cinematic space photography style, no text, no watermark"
+  },
+  {
+    "catId": "nebula", "label": "Nebulae", "group": "Space & Sci-Fi", "mood": "Dreamy",
+    "colors": ["purple", "pink"],
+    "promptBase": "colorful nebula wallpaper, dreamy cosmic gas clouds, soft glowing pink and purple light, scattered stars, ethereal deep space atmosphere, no text, no watermark"
+  },
+  {
+    "catId": "cyberpunk", "label": "Cyberpunk", "group": "Tech & Digital", "mood": "Energetic",
+    "colors": ["pink", "teal"],
+    "promptBase": "cyberpunk city wallpaper, neon signs reflecting on wet street, rain, dense futuristic skyline, glowing pink and cyan lights, cinematic night atmosphere, no text, no watermark"
+  },
+  {
+    "catId": "neonstreets", "label": "Neon Streets", "group": "Urban & Architecture", "mood": "Energetic",
+    "colors": ["pink", "teal", "neon"],
+    "promptBase": "neon-lit city street at night wallpaper, glowing signage, rain-slicked pavement reflections, moody urban atmosphere, vibrant neon color palette, no text, no watermark"
+  },
+  {
+    "catId": "wildflowers", "label": "Flowers & Botanical", "group": "Nature & Landscapes", "mood": "Playful",
+    "colors": ["green", "gold"],
+    "promptBase": "soft botanical wallpaper, delicate wildflowers, pastel watercolor style, gentle natural light, dreamy spring atmosphere, no text, no watermark"
+  },
+  {
+    "catId": "cottagecore", "label": "Cottagecore", "group": "Aesthetic Subcultures", "mood": "Calm",
+    "colors": ["green", "gold"],
+    "promptBase": "cottagecore aesthetic wallpaper, cozy countryside scene, warm golden light, rustic wildflower field, soft nostalgic atmosphere, painterly digital art style, no text, no watermark"
+  },
+  {
+    "catId": "aurora", "label": "Northern Lights", "group": "Nature & Landscapes", "mood": "Dreamy",
+    "colors": ["purple", "blue", "teal"],
+    "promptBase": "aurora borealis wallpaper, vivid northern lights over snowy mountain landscape, starry night sky, vibrant green and purple glow, cinematic long-exposure photography style, no text, no watermark"
+  },
+  {
+    "catId": "minimalsolid", "label": "Minimalist Solid", "group": "Minimal & Aesthetic", "mood": "Minimal",
+    "colors": ["brown", "white"],
+    "promptBase": "minimalist wallpaper, soft solid color gradient field, subtle grain texture, extremely clean composition, calming warm neutral tones, no text, no watermark"
+  },
+  {
+    "catId": "quotes", "label": "Motivational Quotes", "group": "Typography & Quotes", "mood": "Energetic",
+    "colors": ["black", "white"],
+    "promptBase": "minimal typography-inspired abstract wallpaper background, clean bold negative space composition suited for overlaying a short quote, soft gradient, no readable text, no watermark"
+  },
+  {
+    "catId": "mountains", "label": "Mountains", "group": "Nature & Landscapes", "mood": "Calm",
+    "colors": ["blue", "gray", "white"],
+    "promptBase": "majestic mountain landscape wallpaper, misty peaks, dramatic soft light, serene natural color palette, cinematic wide landscape photography style, no text, no watermark"
+  },
+  {
+    "catId": "ocean", "label": "Beaches & Ocean", "group": "Nature & Landscapes", "mood": "Calm",
+    "colors": ["blue", "teal"],
+    "promptBase": "calm turquoise ocean wallpaper, soft waves, golden hour light, tropical horizon, peaceful serene atmosphere, cinematic photography style, no text, no watermark"
+  },
+  {
+    "catId": "sunset", "label": "Sunrises & Sunsets", "group": "Nature & Landscapes", "mood": "Romantic",
+    "colors": ["orange", "red", "gold"],
+    "promptBase": "vivid sunset sky wallpaper, warm orange and pink gradient clouds, soft golden light, romantic peaceful atmosphere, cinematic wide sky photography style, no text, no watermark"
+  },
+  {
+    "catId": "vaporwave", "label": "Vaporwave", "group": "Tech & Digital", "mood": "Nostalgic",
+    "colors": ["pink", "purple", "teal"],
+    "promptBase": "vaporwave aesthetic wallpaper, retro grid horizon, glowing sun, chrome geometric shapes, pink and purple gradient sky, 80s retrofuturism, no text, no watermark"
+  },
+  {
+    "catId": "dragons", "label": "Dragons", "group": "Fantasy & Surreal", "mood": "Epic",
+    "colors": ["red", "black"],
+    "promptBase": "epic fantasy dragon wallpaper, dramatic dark atmosphere, glowing embers, detailed scales, cinematic fantasy concept art style, no text, no watermark"
+  },
+  {
+    "catId": "forest", "label": "Forests", "group": "Nature & Landscapes", "mood": "Calm",
+    "colors": ["green"],
+    "promptBase": "peaceful misty forest wallpaper, tall pine trees, soft morning light rays through fog, deep green tones, tranquil nature photography style, no text, no watermark"
+  },
+  {
+    "catId": "fluidart", "label": "Fluid Art", "group": "Abstract & Patterns", "mood": "Energetic",
+    "colors": ["pink", "orange", "purple"],
+    "promptBase": "abstract fluid art wallpaper, swirling liquid paint colors, glossy marbled texture, vibrant color blend, high-detail macro abstract art style, no text, no watermark"
+  }
+]

@@ -183,29 +183,31 @@ Object.keys(PALETTES).forEach((catId, ci)=>{
   }
 });
 
-// Real, properly-licensed photos (from any source — Pexels, your own uploads, AI
-// generations) layer on top of the gradient placeholders once data/photos.json
-// exists. Niches without real photos yet keep showing their gradient placeholder.
+// Real AI-generated wallpapers, published via scripts/generate-wallpapers.mjs,
+// layer on top of the gradient placeholders once the `wallpapers` table has
+// rows in it. Niches without real wallpapers yet keep showing their gradient
+// placeholder — nothing breaks either way.
 async function mergeRealPhotos(){
+  if(!window.sb) return false; // Supabase not configured yet — see js/config.js
   try{
-    const res = await fetch('data/photos.json', {cache:"no-store"});
-    if(!res.ok) return false;
-    const photos = await res.json();
-    if(!Array.isArray(photos) || !photos.length) return false;
-    photos.forEach((p,i)=>{
+    const { data, error } = await window.sb
+      .from('wallpapers')
+      .select('*')
+      .eq('status', 'published');
+    if(error || !data || !data.length) return false;
+    data.forEach(p=>{
       const id = WID++;
       WALLPAPERS.push({
-        id, slug: p.slug || `${p.catId}-photo-${i}`, name:p.name, catId:p.catId, catLabel:p.catLabel, group:p.group,
-        mood:p.mood, colors:p.colors, nativeDim:p.nativeDim,
-        bg:`url('${p.photo}')`, photoUrl:p.photo, photo:true,
-        photographer:p.photographer, photographerUrl:p.photographerUrl, sourceUrl:p.sourceUrl,
+        id, slug: p.slug, name:p.title, catId:p.category_id, catLabel:p.category_label, group:p.category_group,
+        mood:p.mood, colors:p.colors, nativeDim:p.aspect_ratio,
+        bg:`url('${p.image_url}')`, photoUrl:p.image_url, photo:true,
         views: 0, downloads: 0
       });
-      if(CAT_LOOKUP[p.catId]) CAT_LOOKUP[p.catId].hasRealPhotos = true;
+      if(CAT_LOOKUP[p.category_id]) CAT_LOOKUP[p.category_id].hasRealPhotos = true;
     });
     return true;
   }catch(e){
-    console.warn("No real photos loaded (data/photos.json not found yet) — showing gradient placeholders.");
+    console.warn("Could not load real wallpapers from the database — showing gradient placeholders.", e);
     return false;
   }
 }

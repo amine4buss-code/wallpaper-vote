@@ -4,6 +4,11 @@
   "description": "Free wallpapers filtered by mood and color, previewed on real devices.",
   "private": true,
   "scripts": {
-    "dev": "npx serve ."
+    "dev": "npx serve .",
+    "sync": "node --env-file=.env scripts/sync-local-wallpapers.mjs",
+    "generate": "node --env-file=.env scripts/generate-wallpapers.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0"
   }
 }
