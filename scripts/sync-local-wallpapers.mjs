@@ -3,34 +3,6 @@
  * Publishes wallpapers you generated yourself (for free, with any tool —
  * Gemini, Bing Image Creator, Leonardo, whatever) to the live database.
  * No paid API involved — this only talks to your own free Supabase project.
- *
- * FOLDER CONVENTION:
- *   to-upload/
- *     galaxy/
- *       concept1-phone.png
- *       concept1-desktop.png
- *       concept1-square.png
- *       concept2-phone.png
- *       ...
- *     y2k/
- *       concept1-phone.png
- *       ...
- *
- * Rules:
- *  - Top-level folder name = the category id (must match an id in
- *    scripts/priority-niches.json, or js/data.js CATEGORY_GROUPS — check
- *    there for the full list of valid ids like "galaxy", "y2k", "mountains").
- *  - Filename must end in -phone, -desktop, -square, -tablet, or -ultrawide
- *    so the script knows which aspect ratio each image is.
- *  - Everything before that suffix (e.g. "concept1") groups the set together
- *    as one "concept" — doesn't need to be anything specific.
- *
- * Requires (same as the generation script, minus FAL_KEY — no AI API used here):
- *   SUPABASE_URL
- *   SUPABASE_SERVICE_ROLE_KEY   (local .env only, never commit this)
- *
- * Usage:
- *   node --env-file=.env scripts/sync-local-wallpapers.mjs
  */
 
 import { createClient } from "@supabase/supabase-js";
@@ -41,13 +13,7 @@ const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
-  console.error([
-    "Missing environment variables. Set these in your .env file:",
-    "  SUPABASE_URL",
-    "  SUPABASE_SERVICE_ROLE_KEY   (Project Settings -> API -> service_role)",
-    "",
-    "Then run: node --env-file=.env scripts/sync-local-wallpapers.mjs"
-  ].join("\n"));
+  console.error("Missing SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY in .env");
   process.exit(1);
 }
 
@@ -61,14 +27,12 @@ const RATIO_SUFFIXES = {
   ultrawide:  { width: 3440, height: 1440 }
 };
 
+const ROMAN = ["I","II","III","IV","V","VI","VII","VIII","IX","X"];
+
 const sb = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
 async function loadNicheInfo(){
-  // Pull labels/mood/colors from priority-niches.json first (it's richer),
-  // falling back to a generic entry if a folder name isn't in that list —
-  // so this still works for any of the other 117 niches, not just the 20.
-  const fs2 = await import("node:fs/promises");
-  const priority = JSON.parse(await fs2.readFile(new URL("./priority-niches.json", import.meta.url)));
+  const priority = JSON.parse(await fs.readFile(new URL("./priority-niches.json", import.meta.url)));
   const map = {};
   priority.forEach(n => { map[n.catId] = { label: n.label, group: n.group, mood: n.mood, colors: n.colors }; });
   return map;
@@ -81,12 +45,17 @@ function contentTypeFor(filename){
   return "image/png";
 }
 
+function conceptNumberFrom(nameNoExt, ratioMatch){
+  const trailingMatch = nameNoExt.replace(`-${ratioMatch}`, "").match(/-(\d+)$/);
+  return trailingMatch ? parseInt(trailingMatch[1], 10) : 1;
+}
+
 async function main(){
   let catFolders;
   try{
     catFolders = await fs.readdir(UPLOAD_DIR, { withFileTypes: true });
   }catch(e){
-    console.error(`Couldn't find a "to-upload" folder next to this script. Create it, add category subfolders, and try again.\n(${e.message})`);
+    console.error(`Couldn't find "to-upload" folder.\n(${e.message})`);
     process.exit(1);
   }
 
@@ -98,7 +67,7 @@ async function main(){
     const catId = entry.name;
     const info = nicheInfo[catId] || { label: catId, group: "Uncategorized", mood: "Calm", colors: ["gray"] };
     if(!nicheInfo[catId]){
-      console.log(`Note: "${catId}" isn't in priority-niches.json — using generic label/mood/colors. Add it there for better tagging.`);
+      console.log(`Note: "${catId}" isn't in priority-niches.json — using generic label.`);
     }
 
     const catDir = new URL(`${catId}/`, UPLOAD_DIR);
@@ -106,13 +75,15 @@ async function main(){
 
     for(const filename of files){
       const nameNoExt = filename.replace(/\.(png|jpe?g|webp)$/i, "");
-      const ratioMatch = Object.keys(RATIO_SUFFIXES).find(r => nameNoExt.endsWith(`-${r}`));
+      const ratioMatch = Object.keys(RATIO_SUFFIXES).find(r => nameNoExt.includes(`-${r}`));
       if(!ratioMatch){
-        console.log(`  ! ${catId}/${filename} — filename must end in -phone, -desktop, -square, -tablet, or -ultrawide. Skipping.`);
+        console.log(`  ! ${catId}/${filename} — filename must include -phone, -desktop, -square, -tablet, or -ultrawide. Skipping.`);
         skipped++;
         continue;
       }
       const slug = `${catId}-${nameNoExt}`.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+      const conceptNum = conceptNumberFrom(nameNoExt, ratioMatch);
+      const title = `${info.label} ${ROMAN[conceptNum-1] || conceptNum}`;
 
       process.stdout.write(`  ${catId}/${filename}... `);
       try{
@@ -132,8 +103,7 @@ async function main(){
         const { data: urlData } = sb.storage.from("wallpapers").getPublicUrl(storagePath);
 
         const { error: insertError } = await sb.from("wallpapers").insert({
-          slug,
-          title: `${info.label} ${nameNoExt.replace(`-${ratioMatch}`, "")}`.trim(),
+          slug, title,
           category_id: catId,
           category_label: info.label,
           category_group: info.group,
