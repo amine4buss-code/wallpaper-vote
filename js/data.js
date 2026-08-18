@@ -14,6 +14,21 @@ const DIMENSIONS = [
   {id:"tablet",label:"Tablet",w:1640,h:2360,ratio:"41/59"}
 ];
 
+// Social Media Backgrounds section reuses every existing wallpaper image —
+// same content, just exported/previewed at platform-specific dimensions
+// instead of device dimensions. No new images required to launch this.
+const SOCIAL_PLATFORMS = [
+  {id:"igStory",label:"Instagram Story",w:1080,h:1920,ratio:"9/16"},
+  {id:"igPost",label:"Instagram Post",w:1080,h:1080,ratio:"1/1"},
+  {id:"twitterHeader",label:"X / Twitter Header",w:1500,h:500,ratio:"3/1"},
+  {id:"twitterPost",label:"X / Twitter Post",w:1200,h:675,ratio:"16/9"},
+  {id:"facebookCover",label:"Facebook Cover",w:820,h:312,ratio:"205/78"},
+  {id:"linkedinBanner",label:"LinkedIn Banner",w:1584,h:396,ratio:"4/1"},
+  {id:"youtubeThumb",label:"YouTube Thumbnail",w:1280,h:720,ratio:"16/9"},
+  {id:"pinterestPin",label:"Pinterest Pin",w:1000,h:1500,ratio:"2/3"},
+  {id:"zoomBg",label:"Zoom Background",w:1920,h:1080,ratio:"16/9"}
+];
+
 // palette per populated sub-niche: [c0,c1,c2,c3]
 const PALETTES = {
   mountains:["#26415c","#3e5c76","#748cab","#f0ebe3"], ocean:["#003049","#0077b6","#00b4d8","#caf0f8"],

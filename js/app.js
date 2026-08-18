@@ -34,13 +34,14 @@ async function recordCustomRequest(name, email, type, description){
 
 function switchView(view){
   $all(".navlinks button").forEach(b=>b.classList.toggle("active", b.dataset.view===view));
-  ["browse","categories","room","devices","puzzle","stats"].forEach(v=>{
+  ["browse","categories","room","devices","puzzle","social","stats"].forEach(v=>{
     $("#view-"+v).classList.toggle("hidden", v!==view);
   });
   if(view==="stats") renderStats();
   if(view==="room") renderRoom();
   if(view==="devices") renderDevices();
   if(view==="puzzle") renderPuzzlePickers();
+  if(view==="social") renderSocial();
   window.scrollTo({top: $("header.site").offsetHeight+40, behavior:"smooth"});
 }
 $all(".navlinks button").forEach(b=>b.addEventListener("click",()=>switchView(b.dataset.view)));
@@ -476,6 +477,41 @@ function tryMove(idx){
   }
 }
 $("#puzzleShuffle").addEventListener("click", shufflePuzzle);
+
+/* ===================== SOCIAL MEDIA BACKGROUNDS ===================== */
+if(!state.socialPlatform) state.socialPlatform = SOCIAL_PLATFORMS[0].id;
+
+function renderSocial(){
+  const picker = $("#socialPlatformPicker");
+  picker.innerHTML = SOCIAL_PLATFORMS.map(p=>`<button class="chip ${state.socialPlatform===p.id?'on':''}" data-platform="${p.id}">${p.label} <span style="opacity:.6">(${p.w}×${p.h})</span></button>`).join("");
+  $all("#socialPlatformPicker .chip").forEach(b=>b.addEventListener("click",()=>{ state.socialPlatform = b.dataset.platform; renderSocial(); }));
+
+  const platform = SOCIAL_PLATFORMS.find(p=>p.id===state.socialPlatform);
+  const grid = $("#socialGrid");
+  grid.innerHTML = WALLPAPERS.slice(0, 40).map(w=>`
+    <div class="wcard" data-id="${w.id}">
+      <div class="thumb" style="background:${w.bg};aspect-ratio:${platform.ratio}">
+        <div class="badge">${platform.label}</div>
+      </div>
+      <div class="meta">
+        <div class="name">${w.name}</div>
+        <button class="btn small" style="width:100%;margin-top:8px" data-download="${w.id}">Download for ${platform.label}</button>
+      </div>
+    </div>`).join("");
+
+  $all("#socialGrid [data-download]").forEach(btn=>{
+    btn.addEventListener("click", async (e)=>{
+      e.stopPropagation();
+      const w = WALLPAPERS.find(x=>x.id===+btn.dataset.download);
+      const p = SOCIAL_PLATFORMS.find(pp=>pp.id===state.socialPlatform);
+      btn.textContent = "Preparing...";
+      await downloadWallpaperPNG(w, p.w, p.h, `${w.name.replace(/\s+/g,'-').toLowerCase()}-${p.id}.png`);
+      btn.textContent = `Download for ${p.label}`;
+      w.downloads++; recordDownload(w);
+    });
+  });
+  $all("#socialGrid .wcard").forEach(el=>el.addEventListener("click",()=>openPreview(+el.dataset.id)));
+}
 
 /* ===================== STATS ===================== */
 async function renderStats(){
