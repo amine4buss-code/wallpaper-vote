@@ -5,7 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WallRank — Wallpapers for every screen</title>
 <meta name="description" content="Free wallpapers filtered by mood and color, previewed on your real device, turned into profile pictures, and matched to you by quiz.">
+<link rel="canonical" href="https://wallrank.club/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%2312141c'/%3E%3Ccircle cx='50' cy='50' r='16' fill='%23e0a458'/%3E%3C/svg%3E">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="WallRank — Wallpapers for every screen">
+<meta property="og:description" content="Free wallpapers filtered by mood and color, previewed on your real device, turned into profile pictures, and matched to you by quiz.">
+<meta property="og:url" content="https://wallrank.club/">
+<meta property="og:image" content="https://wallrank.club/assets/og-image.jpg">
+<meta property="og:site_name" content="WallRank">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="WallRank — Wallpapers for every screen">
+<meta name="twitter:description" content="Free wallpapers filtered by mood and color, previewed on your real device, turned into profile pictures, and matched to you by quiz.">
+<meta name="twitter:image" content="https://wallrank.club/assets/og-image.jpg">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "WallRank",
+  "url": "https://wallrank.club/",
+  "description": "Free wallpapers filtered by mood and color, previewed on your real device, turned into profile pictures, and matched to you by quiz."
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -158,8 +187,8 @@
 <!-- ================= MODALS ================= -->
 
 <div class="overlay" id="previewOverlay">
-  <div class="modal">
-    <div class="modal-head"><h3 id="pvTitle">—</h3><button class="x-close" data-close="previewOverlay">✕</button></div>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="pvTitle">
+    <div class="modal-head"><h3 id="pvTitle">—</h3><button class="x-close" data-close="previewOverlay" aria-label="Close">✕</button></div>
     <div class="modal-body preview-layout">
       <div>
         <div class="device-tabs" id="deviceTabs"></div>
@@ -195,8 +224,8 @@
 </div>
 
 <div class="overlay" id="ppOverlay">
-  <div class="modal" style="max-width:640px;">
-    <div class="modal-head"><h3>Make a profile picture</h3><button class="x-close" data-close="ppOverlay">✕</button></div>
+  <div class="modal" style="max-width:640px;" role="dialog" aria-modal="true" aria-labelledby="ppTitle">
+    <div class="modal-head"><h3 id="ppTitle">Make a profile picture</h3><button class="x-close" data-close="ppOverlay" aria-label="Close">✕</button></div>
     <div class="modal-body">
       <label style="font-family:var(--mono);font-size:11px;color:var(--ink-faint);text-transform:uppercase;">Shape</label>
       <div class="shape-row" id="shapeRow"></div>
@@ -212,15 +241,15 @@
 </div>
 
 <div class="overlay" id="chooseOverlay">
-  <div class="modal" style="max-width:640px;">
-    <div class="modal-head"><h3>Help me choose a wallpaper</h3><button class="x-close" data-close="chooseOverlay">✕</button></div>
+  <div class="modal" style="max-width:640px;" role="dialog" aria-modal="true" aria-labelledby="chooseTitle">
+    <div class="modal-head"><h3 id="chooseTitle">Help me choose a wallpaper</h3><button class="x-close" data-close="chooseOverlay" aria-label="Close">✕</button></div>
     <div class="modal-body" id="chooseBody"></div>
   </div>
 </div>
 
 <div class="overlay" id="improveOverlay">
-  <div class="modal" style="max-width:640px;">
-    <div class="modal-head"><h3>Help us improve</h3><button class="x-close" data-close="improveOverlay">✕</button></div>
+  <div class="modal" style="max-width:640px;" role="dialog" aria-modal="true" aria-labelledby="improveTitle">
+    <div class="modal-head"><h3 id="improveTitle">Help us improve</h3><button class="x-close" data-close="improveOverlay" aria-label="Close">✕</button></div>
     <div class="modal-body">
       <p style="color:var(--ink-dim);font-size:13.5px;margin-top:0;">Quick yes/no on a few wallpapers — this feedback trains what we curate next. Saved to our feedback log for this session.</p>
       <div id="improveList"></div>
@@ -230,16 +259,16 @@
 </div>
 
 <div class="overlay" id="askOverlay">
-  <div class="modal" style="max-width:560px;">
-    <div class="modal-head"><h3>Ask for a wallpaper</h3><button class="x-close" data-close="askOverlay">✕</button></div>
+  <div class="modal" style="max-width:560px;" role="dialog" aria-modal="true" aria-labelledby="askTitle">
+    <div class="modal-head"><h3 id="askTitle">Ask for a wallpaper</h3><button class="x-close" data-close="askOverlay" aria-label="Close">✕</button></div>
     <div class="modal-body">
       <p style="color:var(--ink-dim);font-size:13.5px;margin-top:0;">Free custom service. Describe what you want, or point us at 1-2 existing wallpapers to remix, and we'll build it or edit it for you.</p>
-      <div class="form-field"><label>Your name</label><input id="askName" placeholder="Jane Doe"></div>
-      <div class="form-field"><label>Your email</label><input id="askEmail" placeholder="you@email.com"></div>
-      <div class="form-field"><label>What do you want?</label>
+      <div class="form-field"><label for="askName">Your name</label><input id="askName" placeholder="Jane Doe"></div>
+      <div class="form-field"><label for="askEmail">Your email</label><input id="askEmail" placeholder="you@email.com"></div>
+      <div class="form-field"><label for="askType">What do you want?</label>
         <select id="askType"><option>Build something new from scratch</option><option>Edit / remix an existing wallpaper</option><option>Combine two or more wallpapers</option><option>Not sure — surprise me</option></select>
       </div>
-      <div class="form-field"><label>Describe it</label><textarea id="askDesc" placeholder="Mood, colors, subject, dimensions you need..."></textarea></div>
+      <div class="form-field"><label for="askDesc">Describe it</label><textarea id="askDesc" placeholder="Mood, colors, subject, dimensions you need..."></textarea></div>
       <button class="btn primary" style="width:100%" id="askSend">Send request</button>
       <p style="color:var(--ink-faint);font-size:11.5px;margin-top:10px;">Opens your email client with everything pre-filled — nothing is sent automatically.</p>
     </div>
@@ -247,9 +276,9 @@
 </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/config.js"></script>
-<script src="js/data.js"></script>
-<script src="js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+<script src="js/config.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
 </body>
 </html>
