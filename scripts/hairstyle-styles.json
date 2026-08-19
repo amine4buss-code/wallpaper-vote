@@ -1,0 +1,22 @@
+[
+  {"styleId":"bob","label":"Bob Cut","length":"medium","texture":"straight","hairColor":"brunette","forWhom":"women",
+   "promptBase":"professional studio portrait photo, woman with a sleek chin-length bob haircut, brunette hair, straight texture, clean modern salon lighting, neutral background, front-facing, high detail, realistic photography"},
+  {"styleId":"pixie","label":"Pixie Cut","length":"short","texture":"straight","hairColor":"blonde","forWhom":"women",
+   "promptBase":"professional studio portrait photo, woman with a short blonde pixie haircut, textured straight style, clean modern salon lighting, neutral background, front-facing, high detail, realistic photography"},
+  {"styleId":"longlayers","label":"Long Layers","length":"long","texture":"wavy","hairColor":"brunette","forWhom":"women",
+   "promptBase":"professional studio portrait photo, woman with long layered brunette hair, soft wavy texture, natural movement, clean modern salon lighting, neutral background, front-facing, high detail, realistic photography"},
+  {"styleId":"braids","label":"Box Braids","length":"long","texture":"coily","hairColor":"black","forWhom":"women",
+   "promptBase":"professional studio portrait photo, woman with long black box braids, neat parting, clean modern salon lighting, neutral background, front-facing, high detail, realistic photography"},
+  {"styleId":"beachwaves","label":"Beach Waves","length":"medium","texture":"wavy","hairColor":"blonde","forWhom":"women",
+   "promptBase":"professional studio portrait photo, woman with medium-length blonde beach waves, tousled natural texture, clean modern salon lighting, neutral background, front-facing, high detail, realistic photography"},
+  {"styleId":"curtainbangs","label":"Curtain Bangs","length":"medium","texture":"straight","hairColor":"brunette","forWhom":"women",
+   "promptBase":"professional studio portrait photo, woman with medium-length brunette hair and soft curtain bangs framing the face, straight texture, clean modern salon lighting, neutral background, front-facing, high detail, realistic photography"},
+  {"styleId":"bridalupdo","label":"Bridal Updo","length":"long","texture":"wavy","hairColor":"brunette","forWhom":"women",
+   "promptBase":"professional studio portrait photo, woman with an elegant bridal updo hairstyle, soft wavy pieces framing the face, romantic wedding-ready style, clean modern salon lighting, neutral background, front-facing, high detail, realistic photography"},
+  {"styleId":"afrocurls","label":"Natural Afro Curls","length":"medium","texture":"coily","hairColor":"black","forWhom":"unisex",
+   "promptBase":"professional studio portrait photo, person with natural black afro curls, defined coily texture, healthy voluminous shape, clean modern salon lighting, neutral background, front-facing, high detail, realistic photography"},
+  {"styleId":"mensfade","label":"Men's Fade","length":"short","texture":"straight","hairColor":"black","forWhom":"men",
+   "promptBase":"professional studio portrait photo, man with a sharp black fade haircut, clean short sides, textured top, clean modern barbershop lighting, neutral background, front-facing, high detail, realistic photography"},
+  {"styleId":"mensundercut","label":"Men's Undercut","length":"medium","texture":"straight","hairColor":"brunette","forWhom":"men",
+   "promptBase":"professional studio portrait photo, man with a brunette undercut hairstyle, short sides with longer textured top swept back, clean modern barbershop lighting, neutral background, front-facing, high detail, realistic photography"}
+]
