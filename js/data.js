@@ -248,6 +248,35 @@ async function loadRealStats(){
 }
 function hotScore(w){ return (w.views||0) + (w.downloads||0)*4; }
 
+/* ===================== HAIRSTYLES (separate content type) ===================== */
+// Deliberately not part of WALLPAPERS/CATEGORY_GROUPS — hairstyles filter on
+// length/texture/color, not mood/color-of-image, so they get their own small
+// taxonomy instead of being force-fit into the wallpaper system.
+const HAIRSTYLE_LENGTHS = ["short","medium","long"];
+const HAIRSTYLE_TEXTURES = ["straight","wavy","curly","coily"];
+const HAIRSTYLE_COLORS = ["blonde","brunette","black","red","balayage","fantasy","gray"];
+const HAIRSTYLE_FOR = [{id:"",label:"Any"},{id:"women",label:"Women's"},{id:"men",label:"Men's"},{id:"unisex",label:"Unisex"}];
+
+let HAIRSTYLES = [];
+
+async function loadHairstyles(){
+  if(!window.sb) return false;
+  try{
+    const { data, error } = await window.sb.from('hairstyles').select('*').eq('status','published');
+    if(error || !data) return false;
+    HAIRSTYLES = data.map(h => ({
+      id: h.id, slug: h.slug, title: h.title,
+      styleId: h.style_id, styleLabel: h.style_label,
+      length: h.length, texture: h.texture, hairColor: h.hair_color, forWhom: h.for_whom,
+      imageUrl: h.image_url, views: h.views||0, downloads: h.downloads||0
+    }));
+    return true;
+  }catch(e){
+    console.warn("Could not load hairstyles from the database.", e);
+    return false;
+  }
+}
+
 /* ===================== STATE ===================== */
 const state = {
   filters:{ moods:new Set(), colors:new Set(), dim:"", cat:"" },

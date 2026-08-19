@@ -34,7 +34,7 @@ async function recordCustomRequest(name, email, type, description){
 
 function switchView(view){
   $all(".navlinks button").forEach(b=>b.classList.toggle("active", b.dataset.view===view));
-  ["browse","categories","room","devices","puzzle","social","stats"].forEach(v=>{
+  ["browse","categories","room","devices","puzzle","social","hairstyles","stats"].forEach(v=>{
     $("#view-"+v).classList.toggle("hidden", v!==view);
   });
   if(view==="stats") renderStats();
@@ -42,6 +42,7 @@ function switchView(view){
   if(view==="devices") renderDevices();
   if(view==="puzzle") renderPuzzlePickers();
   if(view==="social") renderSocial();
+  if(view==="hairstyles") renderHairstylesView();
   window.scrollTo({top: $("header.site").offsetHeight+40, behavior:"smooth"});
 }
 $all(".navlinks button").forEach(b=>b.addEventListener("click",()=>switchView(b.dataset.view)));
@@ -512,6 +513,95 @@ function renderSocial(){
   });
   $all("#socialGrid .wcard").forEach(el=>el.addEventListener("click",()=>openPreview(+el.dataset.id)));
 }
+
+/* ===================== HAIRSTYLES ===================== */
+if(!state.hairFilters) state.hairFilters = { styles:new Set(), lengths:new Set(), textures:new Set(), colors:new Set(), forWhom:"" };
+let hairstylesLoaded = false;
+let currentHairstyle = null;
+
+async function renderHairstylesView(){
+  if(!hairstylesLoaded){
+    await loadHairstyles();
+    hairstylesLoaded = true;
+    renderHairFilterPanel();
+  }
+  renderHairGrid();
+}
+
+function renderHairFilterPanel(){
+  const styleIds = [...new Set(HAIRSTYLES.map(h=>h.styleId))];
+  const styleLabels = {}; HAIRSTYLES.forEach(h=>{ styleLabels[h.styleId] = h.styleLabel; });
+
+  $("#hairStyleFilters").innerHTML = styleIds.map(id=>`<button class="chip" data-hf="styles" data-val="${id}">${styleLabels[id]}</button>`).join("") || `<span style="color:var(--ink-faint);font-size:12px">No hairstyles published yet</span>`;
+  $("#hairLengthFilters").innerHTML = HAIRSTYLE_LENGTHS.map(l=>`<button class="chip" data-hf="lengths" data-val="${l}">${l}</button>`).join("");
+  $("#hairTextureFilters").innerHTML = HAIRSTYLE_TEXTURES.map(t=>`<button class="chip" data-hf="textures" data-val="${t}">${t}</button>`).join("");
+  $("#hairColorFilters").innerHTML = HAIRSTYLE_COLORS.map(c=>`<button class="chip" data-hf="colors" data-val="${c}">${c}</button>`).join("");
+  $("#hairForFilter").innerHTML = HAIRSTYLE_FOR.map(f=>`<option value="${f.id}">${f.label}</option>`).join("");
+
+  $all("[data-hf]").forEach(b=>b.addEventListener("click",()=>{
+    const set = state.hairFilters[b.dataset.hf];
+    toggleSetItem(set, b.dataset.val);
+    b.classList.toggle("on");
+    renderHairGrid();
+  }));
+  $("#hairForFilter").addEventListener("change",()=>{ state.hairFilters.forWhom = $("#hairForFilter").value; renderHairGrid(); });
+  $("#hairClearFilters").addEventListener("click",()=>{
+    state.hairFilters = { styles:new Set(), lengths:new Set(), textures:new Set(), colors:new Set(), forWhom:"" };
+    $all("[data-hf]").forEach(b=>b.classList.remove("on"));
+    $("#hairForFilter").value = "";
+    renderHairGrid();
+  });
+}
+
+function filteredHairstyles(){
+  const f = state.hairFilters;
+  return HAIRSTYLES.filter(h=>{
+    if(f.styles.size && !f.styles.has(h.styleId)) return false;
+    if(f.lengths.size && !f.lengths.has(h.length)) return false;
+    if(f.textures.size && !f.textures.has(h.texture)) return false;
+    if(f.colors.size && !f.colors.has(h.hairColor)) return false;
+    if(f.forWhom && h.forWhom !== f.forWhom) return false;
+    return true;
+  });
+}
+
+function renderHairGrid(){
+  const list = filteredHairstyles();
+  $("#hairResultCount").textContent = `${list.length} hairstyle${list.length!==1?"s":""}`;
+  const grid = $("#hairGrid");
+  grid.innerHTML = list.length ? list.map(h=>`
+    <div class="wcard" data-id="${h.id}">
+      <div class="thumb" style="background-image:url('${h.imageUrl}');background-size:cover;background-position:center top;aspect-ratio:3/4">
+        <div class="badge">${h.length}</div>
+      </div>
+      <div class="meta"><div class="name">${h.title}</div><div class="sub">${h.texture} · ${h.hairColor}</div></div>
+    </div>`).join("") : `<div class="empty-note" style="grid-column:1/-1">No hairstyles match yet — this section is brand new, more are being added regularly.</div>`;
+  $all(".wcard", grid).forEach(el=>el.addEventListener("click",()=>openHairPreview(+el.dataset.id)));
+}
+
+function openHairPreview(id){
+  const h = HAIRSTYLES.find(x=>x.id===id); if(!h) return;
+  currentHairstyle = h;
+  h.views++;
+  if(window.sb){ window.sb.rpc('increment_hairstyle_view', { p_slug: h.slug }).catch(()=>{}); }
+  $("#hairPvTitle").textContent = h.title;
+  $("#hairPvImage").src = h.imageUrl;
+  $("#hairPvImage").alt = h.title;
+  $("#hairPvTags").innerHTML = [h.styleLabel, h.length, h.texture, h.hairColor, h.forWhom].map(t=>`<span class="tag">${t}</span>`).join("");
+  openOverlay("hairPreviewOverlay");
+}
+
+$("#hairDownloadBtn").addEventListener("click", async ()=>{
+  const h = currentHairstyle; if(!h) return;
+  const res = await fetch(h.imageUrl);
+  const blob = await res.blob();
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `${h.slug}.jpg`;
+  a.click();
+  h.downloads++;
+  if(window.sb){ window.sb.rpc('increment_hairstyle_download', { p_slug: h.slug }).catch(()=>{}); }
+});
 
 /* ===================== STATS ===================== */
 async function renderStats(){

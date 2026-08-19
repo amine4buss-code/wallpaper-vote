@@ -51,6 +51,7 @@
       <button data-view="devices">On a Device</button>
       <button data-view="puzzle">Play Puzzle</button>
       <button data-view="social">Social Backgrounds</button>
+      <button data-view="hairstyles">Hairstyles</button>
       <button data-view="stats">Stats</button>
     </div>
     <div class="navcta">
@@ -177,6 +178,32 @@
   <div class="gallery-grid" id="socialGrid"></div>
 </section>
 
+<!-- HAIRSTYLES -->
+<section id="view-hairstyles" class="wrap hidden">
+  <div class="section-head">
+    <div><h2>Hairstyle inspiration</h2><p>Browse by style, length, texture, and color.</p></div>
+    <div style="font-family:var(--mono);font-size:12px;color:var(--ink-faint)" id="hairResultCount"></div>
+  </div>
+  <div class="browse-layout">
+    <div class="filter-panel">
+      <h4>Style</h4>
+      <div class="chip-row" id="hairStyleFilters"></div>
+      <h4>Length</h4>
+      <div class="chip-row" id="hairLengthFilters"></div>
+      <h4>Texture</h4>
+      <div class="chip-row" id="hairTextureFilters"></div>
+      <h4>Hair color</h4>
+      <div class="chip-row" id="hairColorFilters"></div>
+      <h4>For</h4>
+      <select class="dim-select" id="hairForFilter"></select>
+      <button class="btn small clear-filters" id="hairClearFilters" style="margin-top:16px;">Clear filters</button>
+    </div>
+    <div>
+      <div class="gallery-grid" id="hairGrid"></div>
+    </div>
+  </div>
+</section>
+
 <!-- STATS -->
 <section id="view-stats" class="wrap hidden">
   <div class="section-head">
@@ -281,6 +308,17 @@
       <div class="form-field"><label for="askDesc">Describe it</label><textarea id="askDesc" placeholder="Mood, colors, subject, dimensions you need..."></textarea></div>
       <button class="btn primary" style="width:100%" id="askSend">Send request</button>
       <p style="color:var(--ink-faint);font-size:11.5px;margin-top:10px;">Opens your email client with everything pre-filled — nothing is sent automatically.</p>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="hairPreviewOverlay">
+  <div class="modal" style="max-width:520px;" role="dialog" aria-modal="true" aria-labelledby="hairPvTitle">
+    <div class="modal-head"><h3 id="hairPvTitle">—</h3><button class="x-close" data-close="hairPreviewOverlay" aria-label="Close">✕</button></div>
+    <div class="modal-body">
+      <img id="hairPvImage" style="width:100%;border-radius:12px;margin-bottom:16px;" alt="">
+      <div class="tagrow" id="hairPvTags" style="margin-bottom:16px;"></div>
+      <button class="btn primary" style="width:100%" id="hairDownloadBtn">Download image</button>
     </div>
   </div>
 </div>
